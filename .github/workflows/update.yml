@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: "0 5 * * *"   # tous les jours vers 6h-7h (heure de Paris)
   workflow_dispatch:       # bouton "Run workflow" pour lancer à la main
+    inputs:
+      lookback_days:
+        description: "Nombre de jours à couvrir (mettre 180 pour un remplissage initial de 6 mois, laisser vide sinon)"
+        required: false
+        default: "14"
 permissions:
   contents: write
 jobs:
@@ -20,6 +25,7 @@ jobs:
           PISTE_CLIENT_SECRET: ${{ secrets.PISTE_CLIENT_SECRET }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LOOKBACK_DAYS: ${{ github.event.inputs.lookback_days || '14' }}
       - run: |
           git config user.name "veille-bot"
           git config user.email "bot@users.noreply.github.com"
