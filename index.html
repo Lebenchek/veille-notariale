@@ -1,0 +1,64 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Veille juridique notariale</title><link rel="alternate" type="application/rss+xml" href="feed.xml">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#14213d">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Veille notariale"><link rel="apple-touch-icon" href="icon.png">
+<style>:root{--bg:#f3f0e8;--fg:#1d2433;--card:#fff;--mut:#6b7280;--bd:#e5e0d3;--navy:#14213d;--navy2:#26426b;--gold:#b8893b;--jur:#26426b;--txt:#8c2f39;--doc:#2f7a5b}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1420;--fg:#e9ecf3;--card:#182033;--mut:#98a2b3;--bd:#27314a;--gold:#d9a95a;--jur:#7fa6e0;--txt:#e58a94;--doc:#6fcfa3}}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif;overflow-x:hidden}
+header{position:relative;overflow:hidden;color:#fff;padding:calc(30px + env(safe-area-inset-top,0px)) 18px 26px;
+background:radial-gradient(600px 240px at 90% -10%,rgba(217,169,90,.35),transparent 70%),repeating-linear-gradient(45deg,rgba(255,255,255,.035) 0 2px,transparent 2px 14px),linear-gradient(135deg,#0d1730,#26426b)}
+.w{max-width:860px;margin:auto;position:relative}.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#e3c58c;font-weight:600}
+h1{font:800 34px/1.1 'Playfair Display',Georgia,serif;margin:8px 0 10px;letter-spacing:.01em}
+.orn{display:flex;align-items:center;gap:12px;color:#e3c58c;margin:0 0 12px}.orn:before,.orn:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#e3c58c)}.orn:after{transform:scaleX(-1)}
+.sub{color:#cbd5e6;font-size:13.5px}.sub a{color:#e3c58c}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.stat{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:11px 8px;text-align:center;backdrop-filter:blur(6px)}
+.stat b{display:block;font:700 24px 'Playfair Display',Georgia,serif;color:#f1d9a6}.stat span{font-size:10.5px;color:#cbd5e6;text-transform:uppercase;letter-spacing:.08em}
+.band{height:5px;background:linear-gradient(90deg,var(--gold),#f1d9a6,var(--gold))}
+main{max-width:860px;margin:auto;padding:22px 14px 30px}
+.search{position:relative}.search input{width:100%;padding:14px 16px 14px 46px;border:1px solid var(--bd);border-radius:14px;font:16px Inter,system-ui;background:var(--card);color:var(--fg);outline:none;box-shadow:0 2px 8px rgba(20,33,61,.06)}
+.search input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,137,59,.22)}
+.search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--mut);fill:none;stroke-width:2}
+.chips{display:flex;gap:8px;margin:14px 0 4px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--bd);background:var(--card);color:var(--fg);padding:8px 14px;border-radius:99px;font:500 13px Inter,system-ui;cursor:pointer;transition:.15s}
+.chip.on{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-color:transparent}
+@media(prefers-color-scheme:dark){.chip.on{background:var(--gold);color:#14213d}}
+.lbl{font:700 12px Inter;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:14px 2px 4px}
+.card{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 4px 14px rgba(20,33,61,.06);position:relative;overflow:hidden}
+.card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
+.card.t-Jurisprudence{--c:var(--jur)}.card.t-Texte{--c:var(--txt)}.card.t-Doctrine{--c:var(--doc)}
+.ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:700 20px 'Playfair Display',Georgia,serif;color:#fff;background:var(--c)}
+.body{min-width:0;overflow-wrap:anywhere}
+.top{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-bottom:8px}
+.badge{font:600 10.5px Inter,system-ui;text-transform:uppercase;letter-spacing:.07em;padding:3px 9px;border-radius:99px;color:var(--c);border:1px solid var(--c)}
+.badge.new{background:var(--gold);border-color:var(--gold);color:#14213d}.date{font-size:12.5px;color:var(--mut);font-weight:500}
+.card a.t{display:block;font:700 17px/1.35 'Playfair Display',Georgia,serif;color:var(--fg);text-decoration:none}.card a.t:hover{color:var(--gold)}
+.src{font-size:12.5px;color:var(--mut);margin-top:4px}.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{font-size:11.5px;padding:3px 10px;border-radius:99px;background:rgba(184,137,59,.13);border:1px solid rgba(184,137,59,.35)}
+.abs{font-size:14px;margin-top:8px;opacity:.92}.ai{margin-top:10px;padding:9px 12px;border-radius:10px;background:rgba(38,66,107,.08);border:1px dashed var(--navy2);font-size:13px;color:var(--mut)}
+.more{display:inline-block;margin-top:10px;font:600 13px Inter;color:var(--gold);text-decoration:none}
+footer{max-width:860px;margin:0 auto;padding:10px 16px calc(28px + env(safe-area-inset-bottom,0px));font-size:12px;color:var(--mut);border-top:1px solid var(--bd)}
+</style></head><body>
+<header><div class="w"><div class="eyebrow">Actualité juridique</div><h1>Veille notariale</h1><div class="orn">§</div>
+<div class="sub">Textes · Jurisprudence · Doctrine — sources officielles<br>Mise à jour <span id="upd">28/09/2026 23:07 UTC</span> · <a href="feed.xml">Flux RSS</a></div>
+<div class="stats"><div class="stat"><b id="n1">0</b><span>Éléments</span></div><div class="stat"><b id="n2">0</b><span>Nouveaux 7 j</span></div><div class="stat"><b id="n3">0</b><span>Matières</span></div></div></div></header><div class="band"></div>
+<main><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input id="q" placeholder="Rechercher : donation, indivision, Cass.…"></div><div class="chips" id="ch"></div><div class="lbl">Dernières publications</div><div id="list"></div></main>
+<footer>Contenus repris des sources officielles (titre, date, sommaire publiés par la source). Seul le texte du lien fait foi : vérifiez toujours sur Légifrance, Judilibre ou la source d'origine avant tout usage professionnel. Les résumés automatiques sont générés par IA à partir du seul texte de la source et peuvent contenir des erreurs.</footer>
+<script>const D=[];let mat="",typ="";const $=id=>document.getElementById(id);
+const M=[...new Set(D.flatMap(i=>i.matieres))].sort(),T=[...new Set(D.map(i=>i.type))];
+const esc=s=>(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const IC={Jurisprudence:"⚖",Texte:"§",Doctrine:"✎"};
+const cut=Date.now()-7*864e5,isNew=i=>new Date(i.first_seen).getTime()>=cut;
+$("n1").textContent=D.length;$("n2").textContent=D.filter(isNew).length;$("n3").textContent=M.length;
+function chips(){$("ch").innerHTML=["Tout",...T,...M].map(x=>`<button class="chip ${(x==="Tout"&&!mat&&!typ)||x===mat||x===typ?"on":""}" data-x="${esc(x)}">${esc(x)}</button>`).join("");
+document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{const x=b.dataset.x;if(x==="Tout"){mat="";typ=""}else if(M.includes(x)){mat=mat===x?"":x}else{typ=typ===x?"":x}chips();draw()})}
+const fd=d=>{try{return new Date(d).toLocaleDateString("fr-FR",{day:"numeric",month:"short",year:"numeric"})}catch(e){return d}};
+function draw(){const q=$("q").value.toLowerCase();const r=D.filter(i=>(!mat||i.matieres.includes(mat))&&(!typ||i.type===typ)&&(!q||(i.title+i.abstract).toLowerCase().includes(q))).slice(0,300);
+$("list").innerHTML=r.map(i=>{const k=i.type.split(" ")[0];return `<div class="card t-${esc(k)}"><div class="ico">${IC[k]||"§"}</div><div class="body"><div class="top"><span class="badge">${esc(i.type)}</span>${isNew(i)?'<span class="badge new">Nouveau</span>':""}<span class="date">${fd(i.date)}</span></div>
+<a class="t" href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)}</a><div class="src">${esc(i.source)}</div>
+${i.abstract?`<div class="abs">${esc(i.abstract)}</div>`:""}${i.ai?`<div class="ai"><b>Résumé automatique (IA), à vérifier :</b> ${esc(i.ai)}</div>`:""}
+<div class="tags">${i.matieres.map(m=>`<span class="tag">${esc(m)}</span>`).join("")}</div><a class="more" href="${esc(i.url)}" target="_blank" rel="noopener">Consulter la source officielle →</a></div></div>`}).join("")||'<p style="color:var(--mut)">Aucun résultat.</p>'}
+$("q").oninput=draw;chips();draw();</script></body></html>
