@@ -142,19 +142,41 @@ def src_rss():
     return out
 
 def ai_summary(item):
-    key = os.getenv("ANTHROPIC_API_KEY")
-    if not key or not (item.get("abstract") or len(item["title"]) > 60): return None
+    """Résumé optionnel, 2 phrases max, basé UNIQUEMENT sur le texte fourni.
+    Utilise Google Gemini (niveau gratuit) si GEMINI_API_KEY est présent,
+    sinon l'API Anthropic si ANTHROPIC_API_KEY est présent (payant), sinon rien."""
+    if not (item.get("abstract") or len(item["title"]) > 60): return None
     prompt = ("Reformule en 2 phrases maximum, en français, le texte ci-dessous, en t'appuyant UNIQUEMENT sur ce texte. "
               "N'ajoute aucune information, aucun numéro d'article, aucune date qui n'y figure pas. "
               "Si le texte est insuffisant, réponds exactement : INSUFFISANT.\n\nTitre : " + item["title"] + "\n" + item.get("abstract", ""))
-    try:
-        r = requests.post("https://api.anthropic.com/v1/messages", timeout=60,
-            headers={"x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
-            json={"model": "claude-haiku-4-5-20251001", "max_tokens": 200, "messages": [{"role": "user", "content": prompt}]})
-        txt = r.json()["content"][0]["text"].strip()
-        return None if txt.startswith("INSUFFISANT") else txt
-    except Exception as e:
-        log("Résumé IA", e); return None
+
+    gkey = os.getenv("GEMINI_API_KEY")
+    if gkey:
+        try:
+            r = requests.post(
+                f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={gkey}",
+                timeout=60, headers={"content-type": "application/json"},
+                json={"contents": [{"parts": [{"text": prompt}]}],
+                      "generationConfig": {"maxOutputTokens": 200, "temperature": 0.2}})
+            r.raise_for_status()
+            txt = r.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
+            return None if txt.startswith("INSUFFISANT") else txt
+        except Exception as e:
+            log("Résumé IA (Gemini)", e); return None
+
+    akey = os.getenv("ANTHROPIC_API_KEY")
+    if akey:
+        try:
+            r = requests.post("https://api.anthropic.com/v1/messages", timeout=60,
+                headers={"x-api-key": akey, "anthropic-version": "2023-06-01", "content-type": "application/json"},
+                json={"model": "claude-haiku-4-5-20251001", "max_tokens": 200, "messages": [{"role": "user", "content": prompt}]})
+            r.raise_for_status()
+            txt = r.json()["content"][0]["text"].strip()
+            return None if txt.startswith("INSUFFISANT") else txt
+        except Exception as e:
+            log("Résumé IA (Anthropic)", e); return None
+
+    return None
 
 def main():
     os.makedirs(DOCS, exist_ok=True)
