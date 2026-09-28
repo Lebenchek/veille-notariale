@@ -14,7 +14,8 @@
 Dépôt > Settings > Secrets and variables > Actions > New repository secret :
 - `PISTE_CLIENT_ID` = votre client ID
 - `PISTE_CLIENT_SECRET` = votre client secret
-- (facultatif, payant, résumés IA) `ANTHROPIC_API_KEY`
+- (facultatif, gratuit, résumés IA) `GEMINI_API_KEY` — voir ci-dessous comment l'obtenir
+- (facultatif, alternative payante) `ANTHROPIC_API_KEY` — utilisée seulement si `GEMINI_API_KEY` est absent
 
 ## 4. Publication de la page
 Settings > Pages > Source : « Deploy from a branch » > branche `main`, dossier `/docs` > Save.
@@ -25,7 +26,15 @@ Votre page : https://VOTRE-NOM.github.io/veille-notariale/
 
 Ensuite tout est automatique (chaque matin). En cas d'erreur : ouvrez le run, copiez le journal, envoyez-le à Claude.
 
-## 6. Installer comme une application (facultatif mais recommandé)
+## 6. Obtenir la clé gratuite Gemini (facultatif, pour le résumé IA)
+1. Allez sur https://aistudio.google.com/apikey et connectez-vous avec un compte Google.
+2. Cliquez sur « Create API key ». Aucune carte bancaire n'est demandée pour le niveau gratuit.
+3. Copiez la clé (elle commence par `AIza...`).
+4. Dans GitHub : Settings > Secrets and variables > Actions > New repository secret. Nom : `GEMINI_API_KEY`, valeur : la clé copiée.
+
+Le résumé apparaîtra automatiquement sous vos textes, étiqueté « Résumé automatique (IA), à vérifier ». Le quota gratuit est largement suffisant pour ce volume ; s'il est un jour dépassé, la page continue de fonctionner normalement, simplement sans résumé ce jour-là.
+
+## 7. Installer comme une application (facultatif mais recommandé)
 Ouvrez votre page sur votre téléphone.
 - **iPhone (Safari)** : bouton Partager > « Sur l'écran d'accueil ».
 - **Android (Chrome)** : menu ⋮ > « Ajouter à l'écran d'accueil » (ou « Installer l'application »).
