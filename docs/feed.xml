@@ -1,10 +1,1 @@
-# Flux RSS/Atom vérifiés : Nom|URL|garder_tout (1) ou filtrer par matière (0)
-Notaires de France - Toute l'actualité|https://www.notaires.fr/fr/rss/actualites|0
-Notaires de France - Donation|https://www.notaires.fr/rss/thematique?id_thematique=4099|1
-Notaires de France - Succession|https://www.notaires.fr/rss/thematique?id_thematique=4102|1
-Notaires de France - Famille|https://www.notaires.fr/rss/thematique?id_thematique=4100|1
-Notaires de France - Immobilier|https://www.notaires.fr/rss/thematique?id_thematique=4101|1
-Notaires de France - Entreprise|https://www.notaires.fr/rss/thematique?id_thematique=4104|1
-Notaires de France - Le rôle du notaire|https://www.notaires.fr/rss/thematique?id_thematique=4107|1
-Notaires de France - Collectivités territoriales|https://www.notaires.fr/rss/thematique?id_thematique=4105|0
-Notaires de France - Formation et emploi|https://www.notaires.fr/rss/thematique?id_thematique=4106|0
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Veille juridique notariale</title><link>.</link><description>Textes, jurisprudence et doctrine</description></channel></rss>
