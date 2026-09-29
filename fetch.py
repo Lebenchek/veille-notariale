@@ -2,7 +2,7 @@
 mots-clés, page web + flux RSS. Aucun texte n'est réécrit : on affiche le titre,
 la date et le sommaire publiés par la source, avec lien vers l'original.
 Résumé IA : optionnel, désactivé sans ANTHROPIC_API_KEY, toujours étiqueté."""
-import os, json, html, re, datetime as dt
+import os, json, html, re, time, datetime as dt
 import requests, feedparser
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -204,35 +204,9 @@ def ai_summary(item):
               "Si le texte source est insuffisant pour produire une fiche substantielle, réponds exactement : INSUFFISANT\n\n"
               "Titre : " + item["title"] + "\n" + item.get("abstract", ""))
 
-    gkey = os.getenv("GEMINI_API_KEY")
-    if gkey:
-        try:
-            r = requests.post(
-                "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent",
-                timeout=60, headers={"content-type": "application/json", "x-goog-api-key": gkey},
-                json={"contents": [{"parts": [{"text": prompt}]}],
-                      "generationConfig": {"maxOutputTokens": 550, "temperature": 0.2}})
-            r.raise_for_status()
-            txt = r.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
-            if txt.startswith("INSUFFISANT"): return None
-            return parse_ai_json(txt) or {"resume": txt[:400], "points": [], "portee": None}
-        except Exception as e:
-            log("Résumé IA (Gemini)", e); return None
-
-    akey = os.getenv("ANTHROPIC_API_KEY")
-    if akey:
-        try:
-            r = requests.post("https://api.anthropic.com/v1/messages", timeout=60,
-                headers={"x-api-key": akey, "anthropic-version": "2023-06-01", "content-type": "application/json"},
-                json={"model": "claude-haiku-4-5-20251001", "max_tokens": 550, "messages": [{"role": "user", "content": prompt}]})
-            r.raise_for_status()
-            txt = r.json()["content"][0]["text"].strip()
-            if txt.startswith("INSUFFISANT"): return None
-            return parse_ai_json(txt) or {"resume": txt[:400], "points": [], "portee": None}
-        except Exception as e:
-            log("Résumé IA (Anthropic)", e); return None
-
-    return None
+    txt = call_ai(prompt, max_tokens=550)
+    if not txt or txt.startswith("INSUFFISANT"): return None
+    return parse_ai_json(txt) or {"resume": txt[:400], "points": [], "portee": None}
 
 def main():
     os.makedirs(DOCS, exist_ok=True)
@@ -290,12 +264,26 @@ def notify(new_items):
     except Exception as e:
         log("Notification ntfy", e)
 
+def _post_with_retry(url, **kw):
+    """Réessaie automatiquement en cas de 429 (quota) ou 503 (serveur saturé), avec pause croissante."""
+    delay = 8
+    for attempt in range(4):
+        r = requests.post(url, **kw)
+        if r.status_code not in (429, 503):
+            return r
+        wait = delay * (attempt + 1)
+        log(f"IA : {r.status_code}, nouvelle tentative dans {wait}s (essai {attempt+1}/4)")
+        time.sleep(wait)
+    return r
+
 def call_ai(prompt, max_tokens=700):
-    """Appel générique au modèle disponible (Gemini prioritaire, Anthropic en repli). Retourne le texte brut ou None."""
+    """Appel générique au modèle disponible (Gemini prioritaire, Anthropic en repli). Retourne le texte brut ou None.
+    Une pause systématique entre appels évite de dépasser le quota gratuit de requêtes par minute."""
+    time.sleep(5)
     gkey = os.getenv("GEMINI_API_KEY")
     if gkey:
         try:
-            r = requests.post("https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent",
+            r = _post_with_retry("https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent",
                 timeout=60, headers={"content-type": "application/json", "x-goog-api-key": gkey},
                 json={"contents": [{"parts": [{"text": prompt}]}],
                       "generationConfig": {"maxOutputTokens": max_tokens, "temperature": 0.2}})
@@ -306,7 +294,7 @@ def call_ai(prompt, max_tokens=700):
     akey = os.getenv("ANTHROPIC_API_KEY")
     if akey:
         try:
-            r = requests.post("https://api.anthropic.com/v1/messages", timeout=60,
+            r = _post_with_retry("https://api.anthropic.com/v1/messages", timeout=60,
                 headers={"x-api-key": akey, "anthropic-version": "2023-06-01", "content-type": "application/json"},
                 json={"model": "claude-haiku-4-5-20251001", "max_tokens": max_tokens, "messages": [{"role": "user", "content": prompt}]})
             r.raise_for_status()
