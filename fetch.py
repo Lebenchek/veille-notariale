@@ -297,7 +297,7 @@ def call_ai(prompt, max_tokens=700):
         try:
             r = _post_with_retry("https://api.groq.com/openai/v1/chat/completions", "Groq", timeout=60,
                 headers={"content-type": "application/json", "Authorization": f"Bearer {qkey.strip()}"},
-                json={"model": "llama-3.3-70b-versatile", "temperature": 0.2, "max_tokens": max_tokens,
+                json={"model": "openai/gpt-oss-120b", "temperature": 0.2, "max_tokens": max_tokens,
                       "messages": [{"role": "user", "content": prompt}]})
             if r.status_code < 400:
                 return r.json()["choices"][0]["message"]["content"].strip()
