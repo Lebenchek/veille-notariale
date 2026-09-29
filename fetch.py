@@ -277,9 +277,22 @@ def _post_with_retry(url, **kw):
     return r
 
 def call_ai(prompt, max_tokens=700):
-    """Appel générique au modèle disponible (Gemini prioritaire, Anthropic en repli). Retourne le texte brut ou None.
+    """Appel générique au modèle disponible (Groq prioritaire — quota gratuit généreux et stable —,
+    puis Gemini, puis Anthropic en dernier repli). Retourne le texte brut ou None.
     Une pause systématique entre appels évite de dépasser le quota gratuit de requêtes par minute."""
-    time.sleep(5)
+    time.sleep(3)
+    qkey = os.getenv("GROQ_API_KEY")
+    if qkey:
+        try:
+            r = _post_with_retry("https://api.groq.com/openai/v1/chat/completions", timeout=60,
+                headers={"content-type": "application/json", "Authorization": f"Bearer {qkey}"},
+                json={"model": "llama-3.3-70b-versatile", "temperature": 0.2, "max_tokens": max_tokens,
+                      "messages": [{"role": "user", "content": prompt}]})
+            r.raise_for_status()
+            return r.json()["choices"][0]["message"]["content"].strip()
+        except Exception as e:
+            log("IA (Groq)", e)
+
     gkey = os.getenv("GEMINI_API_KEY")
     if gkey:
         try:
