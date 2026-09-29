@@ -202,7 +202,7 @@ def ai_summary(item):
     if gkey:
         try:
             r = requests.post(
-                "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+                "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent",
                 timeout=60, headers={"content-type": "application/json", "x-goog-api-key": gkey},
                 json={"contents": [{"parts": [{"text": prompt}]}],
                       "generationConfig": {"maxOutputTokens": 550, "temperature": 0.2}})
@@ -289,7 +289,7 @@ def call_ai(prompt, max_tokens=700):
     gkey = os.getenv("GEMINI_API_KEY")
     if gkey:
         try:
-            r = requests.post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+            r = requests.post("https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent",
                 timeout=60, headers={"content-type": "application/json", "x-goog-api-key": gkey},
                 json={"contents": [{"parts": [{"text": prompt}]}],
                       "generationConfig": {"maxOutputTokens": max_tokens, "temperature": 0.2}})
