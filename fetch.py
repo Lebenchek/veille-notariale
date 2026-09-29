@@ -154,8 +154,8 @@ def ai_summary(item):
     if gkey:
         try:
             r = requests.post(
-                f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={gkey}",
-                timeout=60, headers={"content-type": "application/json"},
+                "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+                timeout=60, headers={"content-type": "application/json", "x-goog-api-key": gkey},
                 json={"contents": [{"parts": [{"text": prompt}]}],
                       "generationConfig": {"maxOutputTokens": 200, "temperature": 0.2}})
             r.raise_for_status()
