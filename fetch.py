@@ -264,56 +264,68 @@ def notify(new_items):
     except Exception as e:
         log("Notification ntfy", e)
 
-def _post_with_retry(url, **kw):
-    """Réessaie automatiquement en cas de 429 (quota) ou 503 (serveur saturé), avec pause croissante."""
-    delay = 8
-    for attempt in range(4):
+_DEAD_PROVIDERS = set()  # fournisseurs déjà en échec définitif sur ce run : on ne les rappelle plus, pour ne pas perdre de temps
+
+def _post_with_retry(url, provider, **kw):
+    """Réessaie en cas de 429 (quota) ou 503 (serveur saturé) : 2 essais max, pause courte.
+    Toute autre erreur (400, 401, 404...) indique un problème de configuration, pas un aléa réseau :
+    on n'insiste pas, on marque le fournisseur mort pour le reste du run et on log le détail exact."""
+    delay = 6
+    r = None
+    for attempt in range(2):
         r = requests.post(url, **kw)
         if r.status_code not in (429, 503):
-            return r
+            break
         wait = delay * (attempt + 1)
-        log(f"IA : {r.status_code}, nouvelle tentative dans {wait}s (essai {attempt+1}/4)")
+        log(f"IA ({provider}) : {r.status_code}, nouvel essai dans {wait}s ({attempt+1}/2)")
         time.sleep(wait)
+    if r.status_code >= 400:
+        body = (r.text or "")[:300].replace("\n", " ")
+        log(f"IA ({provider}) : échec {r.status_code} — {body}")
+        if r.status_code not in (429, 503):
+            _DEAD_PROVIDERS.add(provider)  # erreur de config : inutile de réessayer ce fournisseur ce run-ci
     return r
 
 def call_ai(prompt, max_tokens=700):
     """Appel générique au modèle disponible (Groq prioritaire — quota gratuit généreux et stable —,
     puis Gemini, puis Anthropic en dernier repli). Retourne le texte brut ou None.
-    Une pause systématique entre appels évite de dépasser le quota gratuit de requêtes par minute."""
-    time.sleep(3)
+    Un fournisseur qui échoue avec une erreur de configuration (pas un simple embouteillage) est
+    écarté pour le reste du run, afin de ne pas perdre de temps à répéter le même échec."""
+    time.sleep(2)
     qkey = os.getenv("GROQ_API_KEY")
-    if qkey:
+    if qkey and "groq" not in _DEAD_PROVIDERS:
         try:
-            r = _post_with_retry("https://api.groq.com/openai/v1/chat/completions", timeout=60,
-                headers={"content-type": "application/json", "Authorization": f"Bearer {qkey}"},
+            r = _post_with_retry("https://api.groq.com/openai/v1/chat/completions", "Groq", timeout=60,
+                headers={"content-type": "application/json", "Authorization": f"Bearer {qkey.strip()}"},
                 json={"model": "llama-3.3-70b-versatile", "temperature": 0.2, "max_tokens": max_tokens,
                       "messages": [{"role": "user", "content": prompt}]})
-            r.raise_for_status()
-            return r.json()["choices"][0]["message"]["content"].strip()
+            if r.status_code < 400:
+                return r.json()["choices"][0]["message"]["content"].strip()
         except Exception as e:
-            log("IA (Groq)", e)
+            log("IA (Groq) exception", e); _DEAD_PROVIDERS.add("groq")
 
     gkey = os.getenv("GEMINI_API_KEY")
-    if gkey:
+    if gkey and "gemini" not in _DEAD_PROVIDERS:
         try:
             r = _post_with_retry("https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent",
-                timeout=60, headers={"content-type": "application/json", "x-goog-api-key": gkey},
+                "Gemini", timeout=60, headers={"content-type": "application/json", "x-goog-api-key": gkey.strip()},
                 json={"contents": [{"parts": [{"text": prompt}]}],
                       "generationConfig": {"maxOutputTokens": max_tokens, "temperature": 0.2}})
-            r.raise_for_status()
-            return r.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
+            if r.status_code < 400:
+                return r.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
         except Exception as e:
-            log("IA (Gemini)", e)
+            log("IA (Gemini) exception", e); _DEAD_PROVIDERS.add("gemini")
+
     akey = os.getenv("ANTHROPIC_API_KEY")
-    if akey:
+    if akey and "anthropic" not in _DEAD_PROVIDERS:
         try:
-            r = _post_with_retry("https://api.anthropic.com/v1/messages", timeout=60,
-                headers={"x-api-key": akey, "anthropic-version": "2023-06-01", "content-type": "application/json"},
+            r = _post_with_retry("https://api.anthropic.com/v1/messages", "Anthropic", timeout=60,
+                headers={"x-api-key": akey.strip(), "anthropic-version": "2023-06-01", "content-type": "application/json"},
                 json={"model": "claude-haiku-4-5-20251001", "max_tokens": max_tokens, "messages": [{"role": "user", "content": prompt}]})
-            r.raise_for_status()
-            return r.json()["content"][0]["text"].strip()
+            if r.status_code < 400:
+                return r.json()["content"][0]["text"].strip()
         except Exception as e:
-            log("IA (Anthropic)", e)
+            log("IA (Anthropic) exception", e); _DEAD_PROVIDERS.add("anthropic")
     return None
 
 def weekly_digest(items):
