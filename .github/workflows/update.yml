@@ -23,9 +23,11 @@ jobs:
         env:
           PISTE_CLIENT_ID: ${{ secrets.PISTE_CLIENT_ID }}
           PISTE_CLIENT_SECRET: ${{ secrets.PISTE_CLIENT_SECRET }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           LOOKBACK_DAYS: ${{ github.event.inputs.lookback_days || '14' }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
       - run: |
           git config user.name "veille-bot"
           git config user.email "bot@users.noreply.github.com"
