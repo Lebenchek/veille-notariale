@@ -92,10 +92,16 @@ def src_judilibre(tok):
             log("Judilibre", q, e); continue
         for x in r.json().get("results", []):
             if x["id"] in seen: continue
-            seen.add(x["id"])
             themes = x.get("themes") or []
             title = f'Cass. {x.get("chamber","")} — {x.get("decision_date","")} — n° {x.get("number","")}'.replace("  ", " ")
             summ = x.get("summary") or ""
+            chamber = (x.get("chamber") or "").lower()
+            mentions_notaire = "notair" in (title + " " + summ + " " + " ".join(themes)).lower()
+            # Hors sujet pour un notaire : décisions purement pénales, sociales ou prud'homales,
+            # sauf si un notaire est explicitement en cause (ex : faute professionnelle).
+            if any(k in chamber for k in ("crim", "sociale", "prud")) and not mentions_notaire:
+                continue
+            seen.add(x["id"])
             ab = " | ".join(filter(None, [("Thèmes : " + " ; ".join(themes)) if themes else "", "Sommaire officiel : " + summ if summ else "",
                                           "Solution : " + x["solution"] if x.get("solution") else ""]))
             pub = x.get("publication") or []
