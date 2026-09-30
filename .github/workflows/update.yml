@@ -8,6 +8,10 @@ on:
         description: "Nombre de jours à couvrir (mettre 180 pour un remplissage initial de 6 mois, laisser vide sinon)"
         required: false
         default: "14"
+      ai_batch:
+        description: "Nombre de fiches IA à générer ce run (mettre 200-300 pour rattraper le retard, 25 au quotidien)"
+        required: false
+        default: "25"
 permissions:
   contents: write
 jobs:
@@ -27,6 +31,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           LOOKBACK_DAYS: ${{ github.event.inputs.lookback_days || '14' }}
+          AI_BATCH: ${{ github.event.inputs.ai_batch || '25' }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
       - run: |
           git config user.name "veille-bot"
