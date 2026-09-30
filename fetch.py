@@ -40,6 +40,19 @@ def extract_articles(text):
             seen.add(label.lower()); found.append(label)
     return found[:5]
 
+_MOIS = {"janvier":1,"février":2,"fevrier":2,"mars":3,"avril":4,"mai":5,"juin":6,"juillet":7,
+         "août":8,"aout":8,"septembre":9,"octobre":10,"novembre":11,"décembre":12,"decembre":12}
+_DATE_TITRE_RE = re.compile(r"(\d{1,2})\s+(" + "|".join(_MOIS) + r")\s+(\d{4})", re.IGNORECASE)
+
+def date_from_title(title):
+    """Extrait une date française 'DD mois YYYY' directement du titre, en secours quand l'API ne la fournit pas."""
+    m = _DATE_TITRE_RE.search(title or "")
+    if not m: return None
+    try:
+        return f"{int(m.group(3)):04d}-{_MOIS[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
+    except Exception:
+        return None
+
 def log(*a): print("[veille]", *a, flush=True)
 
 def piste_token():
@@ -139,7 +152,8 @@ def src_fonds(tok):
                 t = (x.get("titles") or [{}])[0]; tid, title = t.get("id"), t.get("title")
                 if not tid or not title or tid in seen: continue
                 seen.add(tid)
-                out.append({"id": "LF-" + tid, "source": label, "type": "Jurisprudence", "date": _d(x.get("date")) or str(TODAY),
+                out.append({"id": "LF-" + tid, "source": label, "type": "Jurisprudence",
+                            "date": date_from_title(title) or _d(x.get("date")) or str(TODAY),
                             "title": title, "abstract": "", "url": f"https://www.legifrance.gouv.fr/{path}/id/{tid}", "_hint": q})
     return out
 
@@ -188,21 +202,27 @@ def ai_summary(item):
     Utilise Google Gemini (niveau gratuit) si GEMINI_API_KEY est présent,
     sinon l'API Anthropic si ANTHROPIC_API_KEY est présent (payant), sinon rien.
     Toujours étiqueté "IA, à vérifier" côté affichage ; jamais présenté comme le texte officiel."""
-    if not (item.get("abstract") or len(item["title"]) > 60): return None
+    if len(item["title"]) < 15: return None
+    has_abstract = bool(item.get("abstract"))
+    consigne_min = ("Seul le titre est disponible ici, sans sommaire détaillé : limite-toi à ce que le titre permet "
+                     "raisonnablement de déduire. Remplis au minimum \"resume\" (reformulation factuelle du titre), et "
+                     "laisse les autres champs en chaîne vide ou liste vide si le titre seul ne suffit pas à les "
+                     "renseigner sans risque d'invention.") if not has_abstract else (
+                     "Sois aussi précis et complet que le texte source le permet, sans délayer.")
     prompt = ("Tu prépares une fiche de synthèse à destination d'un notaire français, en t'appuyant STRICTEMENT et "
-              "UNIQUEMENT sur le texte ci-dessous (titre + sommaire officiel). N'invente et n'ajoute AUCUN fait, "
-              "numéro d'article, date, chiffre, nom ou conséquence juridique qui n'y figure pas explicitement. "
-              "Sois aussi précis et complet que le texte source le permet, sans délayer : chaque champ doit apporter "
-              "une information réelle, jamais une reformulation vide. Laisse un champ en chaîne vide plutôt que "
-              "d'inventer. Réponds STRICTEMENT en JSON, sans aucun texte autour, avec exactement ces clés :\n"
-              '{"resume": "2-3 phrases reformulant précisément le contenu et sa portée juridique", '
+              "UNIQUEMENT sur le texte ci-dessous (titre" + (" + sommaire officiel" if has_abstract else " seul, sans sommaire") +
+              "). N'invente et n'ajoute AUCUN fait, numéro d'article, date, chiffre, nom ou conséquence juridique qui n'y "
+              f"figure pas explicitement. {consigne_min} Chaque champ rempli doit apporter une information réelle, jamais "
+              "une reformulation vide. Laisse un champ en chaîne vide plutôt que d'inventer. Réponds STRICTEMENT en JSON, "
+              "sans aucun texte autour, avec exactement ces clés :\n"
+              '{"resume": "1-3 phrases reformulant précisément le contenu et sa portée juridique", '
               '"contexte": "1-2 phrases sur ce que ce texte/cette décision modifie ou clarifie par rapport à l\'état du '
               'droit antérieur, UNIQUEMENT si le texte source le précise explicitement, sinon chaîne vide", '
-              '"points_cles": ["fait précis et concret 1", "fait précis 2", "fait précis 3", "fait précis 4 (si le texte le permet)"], '
+              '"points_cles": ["fait précis et concret 1 (si disponible)", "fait précis 2 (si disponible)"], '
               '"qui_est_concerne": "1 phrase courte sur les personnes, actes ou situations concernés, seulement si explicite, sinon chaîne vide", '
               '"vigilance": "1-2 phrases au conditionnel sur ce qu\'un notaire devrait vérifier, adapter dans ses actes, ou '
               'signaler à ses clients, seulement si le texte le permet clairement, sinon chaîne vide"}\n'
-              "Si le texte source est insuffisant pour produire une fiche substantielle, réponds exactement : INSUFFISANT\n\n"
+              "Réponds exactement INSUFFISANT seulement si le titre lui-même est trop vague pour en tirer un résumé factuel.\n\n"
               "Titre : " + item["title"] + "\n" + item.get("abstract", ""))
 
     txt = call_ai(prompt, max_tokens=550)
@@ -236,6 +256,8 @@ def main():
         arts = extract_articles(it["title"] + " " + it.get("abstract", ""))
         if arts: it["articles"] = arts
         store[it["id"]] = it; added += 1
+    items_preview = sorted(store.values(), key=lambda i: (i["date"], i["first_seen"]), reverse=True)
+    digest = weekly_digest(items_preview)  # en premier : c'est la fonctionnalité la plus utile, elle ne doit jamais manquer de quota
     n, ai_batch = 0, int(os.getenv("AI_BATCH", "25"))
     for it in sorted(store.values(), key=lambda i: i["date"], reverse=True):
         if n >= ai_batch: break
@@ -243,7 +265,6 @@ def main():
             it["ai"] = ai_summary(it); n += 1
     items = sorted(store.values(), key=lambda i: (i["date"], i["first_seen"]), reverse=True)
     json.dump(items, open(DATA, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    digest = weekly_digest(items)
     json.dump({"date": str(TODAY), "by_matiere": digest or {}}, open(os.path.join(DOCS, "digest.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     write_html(items, digest); write_rss(items)
     new_today = [i for i in items if i["first_seen"] == str(TODAY)]
@@ -345,13 +366,15 @@ def weekly_digest(items):
     for mat, its in sorted(by_mat.items(), key=lambda kv: -len(kv[1]))[:8]:
         if len(its) < 2: continue
         lst = "\n".join(f"- {i['title']} ({i['type']}, {i['date']})" + (f" : {i['abstract'][:180]}" if i.get("abstract") else "") for i in its[:12])
-        prompt = ("Tu rédiges le paragraphe de synthèse hebdomadaire d'une veille juridique pour des notaires, sur la "
-                   f"matière « {mat} ». Voici la liste des publications de la semaine dans cette matière, avec leur type "
-                   "et leur date. En 3 à 5 phrases MAXIMUM, dresse un panorama factuel de ce qui s'est passé cette semaine "
-                   "dans cette matière, en t'appuyant UNIQUEMENT sur les éléments listés ci-dessous — sans inventer aucun "
-                   "fait qui n'y figure pas, et sans commentaire de style. Termine si pertinent par une phrase de vigilance "
-                   "pratique pour un notaire. Réponds uniquement avec le paragraphe, sans titre ni introduction.\n\n" + lst)
-        txt = call_ai(prompt, max_tokens=300)
+        prompt = ("Tu rédiges la synthèse hebdomadaire d'une veille juridique pour des notaires, sur la matière "
+                   f"« {mat} ». Voici la liste des publications de la semaine dans cette matière, avec leur type et leur "
+                   "date. En t'appuyant UNIQUEMENT sur les éléments listés ci-dessous — sans inventer aucun fait qui n'y "
+                   "figure pas —, réponds en 3 phrases COURTES et COMPLÈTES maximum (jamais coupée en milieu de phrase), "
+                   "chacune sur sa propre ligne, séparées par un retour à la ligne : la 1ère résume factuellement ce qui "
+                   "s'est passé, la 2e donne un détail concret marquant, la 3e (optionnelle) est une phrase de vigilance "
+                   "pratique pour un notaire. Reste concis : mieux vaut une phrase de moins qu'une phrase coupée. Réponds "
+                   "uniquement avec ces phrases, sans titre ni introduction.\n\n" + lst)
+        txt = call_ai(prompt, max_tokens=450)
         if txt and not txt.startswith("INSUFFISANT"): digest[mat] = txt[:900]
     return digest or None
 
@@ -365,88 +388,128 @@ def write_rss(items):
 
 PAGE = """<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Veille juridique notariale</title><link rel="alternate" type="application/rss+xml" href="feed.xml">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="manifest" href="manifest.json"><meta name="theme-color" content="#14213d">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Veille notariale"><link rel="apple-touch-icon" href="icon.png">
-<style>:root{--bg:#f3f0e8;--fg:#1d2433;--card:#fff;--mut:#6b7280;--bd:#e5e0d3;--navy:#14213d;--navy2:#26426b;--gold:#b8893b;--jur:#26426b;--txt:#8c2f39;--doc:#2f7a5b}
-@media(prefers-color-scheme:dark){:root{--bg:#0f1420;--fg:#e9ecf3;--card:#182033;--mut:#98a2b3;--bd:#27314a;--gold:#d9a95a;--jur:#7fa6e0;--txt:#e58a94;--doc:#6fcfa3}}
-*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif;overflow-x:hidden}
-header{position:relative;overflow:hidden;color:#fff;padding:calc(30px + env(safe-area-inset-top,0px)) 18px 26px;
-background:radial-gradient(600px 240px at 90% -10%,rgba(217,169,90,.35),transparent 70%),repeating-linear-gradient(45deg,rgba(255,255,255,.035) 0 2px,transparent 2px 14px),linear-gradient(135deg,#0d1730,#26426b)}
-.w{max-width:860px;margin:auto;position:relative}.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#e3c58c;font-weight:600}
-h1{font:800 34px/1.1 'Playfair Display',Georgia,serif;margin:8px 0 10px;letter-spacing:.01em}
-.orn{display:flex;align-items:center;gap:12px;color:#e3c58c;margin:0 0 12px}.orn:before,.orn:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#e3c58c)}.orn:after{transform:scaleX(-1)}
-.sub{color:#cbd5e6;font-size:13.5px}.sub a{color:#e3c58c}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
-.stat{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:11px 8px;text-align:center;backdrop-filter:blur(6px)}
-.stat b{display:block;font:700 24px 'Playfair Display',Georgia,serif;color:#f1d9a6}.stat span{font-size:10.5px;color:#cbd5e6;text-transform:uppercase;letter-spacing:.08em}
-.band{height:5px;background:linear-gradient(90deg,var(--gold),#f1d9a6,var(--gold))}
-main{max-width:860px;margin:auto;padding:22px 14px 30px}
-.search{position:relative}.search input{width:100%;padding:14px 16px 14px 46px;border:1px solid var(--bd);border-radius:14px;font:16px Inter,system-ui;background:var(--card);color:var(--fg);outline:none;box-shadow:0 2px 8px rgba(20,33,61,.06)}
-.search input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,137,59,.22)}
-.search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--mut);fill:none;stroke-width:2}
-.chips{display:flex;gap:8px;margin:14px 0 4px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
-.chip{flex:none;border:1px solid var(--bd);background:var(--card);color:var(--fg);padding:8px 14px;border-radius:99px;font:500 13px Inter,system-ui;cursor:pointer;transition:.15s}
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f0e9;--fg:#1d2433;--card:#fff;--mut:#666f80;--bd:#e3e0d3;--navy:#14213d;--navy2:#26426b;--gold:#b8893b;--jur:#26426b;--txt:#8c2f39;--doc:#2f7a5b;--ring:#b8893b55}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1320;--fg:#e9ecf3;--card:#171f33;--mut:#9aa3b5;--bd:#28324a;--gold:#d9a95a;--jur:#7fa6e0;--txt:#e58a94;--doc:#6fcfa3;--ring:#d9a95a55}}
+*{box-sizing:border-box}html{scroll-padding-top:120px}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit}
+
+/* ===== En-tête ===== */
+header{position:relative;overflow:hidden;color:#fff;padding:calc(26px + env(safe-area-inset-top,0px)) 18px 22px;
+background:radial-gradient(600px 240px at 90% -10%,rgba(217,169,90,.32),transparent 70%),repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 2px,transparent 2px 14px),linear-gradient(135deg,#0d1730,#26426b)}
+.w{max-width:1180px;margin:auto;position:relative}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#e3c58c;font-weight:600}
+h1{font:800 30px/1.1 'Playfair Display',Georgia,serif;margin:7px 0 8px}
+.orn{display:flex;align-items:center;gap:12px;color:#e3c58c;margin:0 0 10px;max-width:340px}.orn:before,.orn:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#e3c58c)}.orn:after{transform:scaleX(-1)}
+.sub{color:#cbd5e6;font-size:13px}.sub a{color:#e3c58c;text-decoration:none}
+.stats{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:9px 16px;text-align:center;backdrop-filter:blur(6px);min-width:88px}
+.stat b{display:block;font:700 21px 'Playfair Display',Georgia,serif;color:#f1d9a6}.stat span{font-size:10px;color:#cbd5e6;text-transform:uppercase;letter-spacing:.07em}
+.band{height:4px;background:linear-gradient(90deg,var(--gold),#f1d9a6,var(--gold))}
+
+/* ===== Barre de filtres, collante ===== */
+.filterbar{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--bd);padding:10px 18px;box-shadow:0 2px 10px rgba(20,33,61,.05)}
+.fw{max-width:1180px;margin:auto}
+.search{position:relative;max-width:520px}
+.search input{width:100%;padding:11px 14px 11px 40px;border:1px solid var(--bd);border-radius:11px;font:15px Inter,system-ui;background:var(--card);color:var(--fg);outline:none}
+.search input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--ring)}
+.search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--mut);fill:none;stroke-width:2}
+.chips{display:flex;gap:7px;margin-top:9px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--bd);background:var(--card);color:var(--fg);padding:6px 12px;border-radius:99px;font:600 12.5px Inter;cursor:pointer;white-space:nowrap;display:flex;gap:5px;align-items:center}
+.chip .n{font:700 10.5px Inter;opacity:.6}
 .chip.on{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-color:transparent}
-@media(prefers-color-scheme:dark){.chip.on{background:var(--gold);color:#14213d}}
-.lbl{font:700 12px Inter;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:14px 2px 4px}
-.card{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 4px 14px rgba(20,33,61,.06);position:relative;overflow:hidden}
+.chip.on .n{opacity:.85;color:#e3c58c}
+@media(prefers-color-scheme:dark){.chip.on{background:var(--gold);color:#14213d}.chip.on .n{color:#14213d}}
+
+main{max-width:1180px;margin:auto;padding:18px 16px 34px}
+#brief-wrap{margin-bottom:6px}
+.brief{background:linear-gradient(160deg,var(--navy),var(--navy2));border-radius:18px;padding:20px 20px 8px;margin-bottom:20px;box-shadow:0 8px 24px rgba(20,33,61,.18);color:#fff}
+.brief h2{font:700 19px 'Playfair Display',Georgia,serif;margin:0 0 2px}
+.brief .sub2{font-size:12px;color:#cbd5e6;margin-bottom:12px}
+.brief details{border-top:1px solid rgba(255,255,255,.15);padding:11px 0}
+.brief summary{cursor:pointer;font:600 14px Inter;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.brief summary::-webkit-details-marker{display:none}.brief summary:after{content:"+";font-size:17px;color:#e3c58c}
+.brief details[open] summary:after{content:"–"}
+.brief p{font-size:13px;line-height:1.55;color:#e7ecf5;margin:6px 0 2px 2px}
+
+.daysep{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin:20px 2px 2px;color:var(--mut)}
+.daysep:first-child{margin-top:0}
+.daysep .lbl{font:700 11.5px Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.daysep:before,.daysep:after{content:"";height:1px;flex:1;background:var(--bd)}
+
+#list{display:grid;grid-template-columns:1fr;gap:13px}
+@media(min-width:860px){#list{grid-template-columns:1fr 1fr}}
+
+.card{background:var(--card);border:1px solid var(--bd);border-radius:15px;padding:15px;box-shadow:0 3px 10px rgba(20,33,61,.05);position:relative;overflow:hidden;display:flex;gap:12px;align-items:flex-start}
 .card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
 .card.t-Jurisprudence{--c:var(--jur)}.card.t-Texte{--c:var(--txt)}.card.t-Doctrine{--c:var(--doc)}
-.ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:700 20px 'Playfair Display',Georgia,serif;color:#fff;background:var(--c)}
-.body{min-width:0;overflow-wrap:anywhere}
-.top{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-bottom:8px}
-.badge{font:600 10.5px Inter,system-ui;text-transform:uppercase;letter-spacing:.07em;padding:3px 9px;border-radius:99px;color:var(--c);border:1px solid var(--c)}
-.badge.new{background:var(--gold);border-color:var(--gold);color:#14213d}.date{font-size:12.5px;color:var(--mut);font-weight:500}
-.card a.t{display:block;font:700 17px/1.35 'Playfair Display',Georgia,serif;color:var(--fg);text-decoration:none}.card a.t:hover{color:var(--gold)}
-.src{font-size:12.5px;color:var(--mut);margin-top:4px}.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.tag{font-size:11.5px;padding:3px 10px;border-radius:99px;background:rgba(184,137,59,.13);border:1px solid rgba(184,137,59,.35)}
-.abs{font-size:14px;margin-top:8px;opacity:.92}.ai{margin-top:10px;padding:9px 12px;border-radius:10px;background:rgba(38,66,107,.08);border:1px dashed var(--navy2);font-size:13px;color:var(--mut)}
-.more{display:inline-block;margin-top:10px;font:600 13px Inter;color:var(--gold);text-decoration:none}
+.ico{flex:none;width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font:700 17px 'Playfair Display',Georgia,serif;color:#fff;background:var(--c)}
+.body{min-width:0;overflow-wrap:anywhere;flex:1}
+.top{display:flex;flex-wrap:wrap;gap:5px 7px;align-items:center;margin-bottom:6px}
+.badge{font:700 10px Inter;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:99px;color:var(--c);border:1px solid var(--c)}
 .badge.bull{background:linear-gradient(135deg,var(--gold),#8a5f22);border-color:transparent;color:#1d1400}
-.brief{background:linear-gradient(160deg,var(--navy),var(--navy2));border-radius:18px;padding:20px 20px 8px;margin-bottom:18px;box-shadow:0 8px 24px rgba(20,33,61,.18);color:#fff}
-.brief h2{font:700 20px 'Playfair Display',Georgia,serif;margin:0 0 2px;display:flex;align-items:center;gap:8px}
-.brief .sub2{font-size:12.5px;color:#cbd5e6;margin-bottom:14px}
-.brief details{border-top:1px solid rgba(255,255,255,.15);padding:12px 0}
-.brief summary{cursor:pointer;font:600 14.5px Inter;list-style:none;display:flex;justify-content:space-between;align-items:center}
-.brief summary::-webkit-details-marker{display:none}.brief summary:after{content:"+";font-size:18px;color:#e3c58c}
-.brief details[open] summary:after{content:"–"}
-.brief p{font-size:13.5px;line-height:1.6;color:#e7ecf5;margin:8px 0 4px}
-.brief .cnt{font-size:11.5px;color:#e3c58c;background:rgba(255,255,255,.1);border-radius:99px;padding:1px 8px}
-.pts{margin:10px 0 0;padding:10px 12px;border-radius:10px;background:rgba(47,122,91,.09);border:1px solid rgba(47,122,91,.35)}
-.pts .lbl2{font:700 11px Inter;letter-spacing:.08em;text-transform:uppercase;color:var(--doc);margin-bottom:5px}
-.pts ul{margin:0;padding-left:18px}.pts li{font-size:13.5px;margin:2px 0}
-.fiche-sec{margin-top:8px}.fiche-sec .lbl3{font:700 10.5px Inter;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:2px}
-.fiche-sec p{margin:0;font-size:13.5px}
-.portee{margin-top:8px;padding:8px 11px;border-radius:8px;background:rgba(184,137,59,.10);border-left:3px solid var(--gold);font-size:13px}
-.portee b{color:var(--gold)}
-.artchips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
-.artchip{font:600 11px Inter;padding:2px 8px;border-radius:6px;background:var(--bg);border:1px solid var(--bd);color:var(--mut)}
+.badge.new{background:var(--gold);border-color:var(--gold);color:#14213d}
+.date{font-size:11.5px;color:var(--mut);font-weight:600;margin-left:auto}
+.card a.t{display:block;font:700 16px/1.32 'Playfair Display',Georgia,serif;color:var(--fg);text-decoration:none}.card a.t:hover{color:var(--gold)}
+.src{font-size:11.5px;color:var(--mut);margin-top:3px}
+.abs{font-size:13.5px;margin-top:8px;opacity:.92}
+.toggle{background:none;border:none;color:var(--gold);font:600 12px Inter;cursor:pointer;padding:4px 0;margin-top:2px}
 .absfull{display:none}.card.exp .absfull{display:block}.card.exp .abssum{display:none}
-.toggle{background:none;border:none;color:var(--gold);font:600 12.5px Inter;cursor:pointer;padding:4px 0;margin-top:4px}
-footer{max-width:860px;margin:0 auto;padding:10px 16px calc(28px + env(safe-area-inset-bottom,0px));font-size:12px;color:var(--mut);border-top:1px solid var(--bd)}
+
+.fiche{margin-top:10px;border-radius:11px;background:linear-gradient(180deg,rgba(47,122,91,.07),rgba(47,122,91,.03));border:1px solid rgba(47,122,91,.28);padding:11px 12px}
+.fiche .tag2{display:inline-block;font:700 10px Inter;letter-spacing:.07em;text-transform:uppercase;color:var(--doc);background:rgba(47,122,91,.14);padding:2px 8px;border-radius:6px;margin-bottom:7px}
+.fiche .resume{font-size:13.5px;margin:0 0 8px}
+.fsec{margin-top:7px;padding-top:7px;border-top:1px dashed var(--bd)}
+.fsec .h{font:700 11px Inter;color:var(--fg);display:flex;align-items:center;gap:5px;margin-bottom:2px}
+.fsec p{margin:0;font-size:13px}.fsec ul{margin:2px 0 0;padding-left:17px}.fsec li{font-size:13px;margin:1px 0}
+.vig{margin-top:8px;padding:8px 10px;border-radius:9px;background:rgba(184,137,59,.12);border-left:3px solid var(--gold);font-size:12.5px}
+.vig b{color:var(--gold);display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+
+.artchips{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.artchip{font:700 10.5px Inter;padding:2px 8px;border-radius:6px;background:var(--bg);border:1px solid var(--bd);color:var(--mut)}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.tag{font-size:11px;font-weight:600;padding:2px 9px;border-radius:99px;background:rgba(184,137,59,.13);border:1px solid rgba(184,137,59,.35)}
+.more{display:inline-flex;align-items:center;gap:4px;margin-top:10px;font:700 12px Inter;color:var(--gold);text-decoration:none}
+footer{max-width:1180px;margin:8px auto 0;padding:14px 16px calc(28px + env(safe-area-inset-bottom,0px));font-size:11.5px;color:var(--mut);border-top:1px solid var(--bd)}
 </style></head><body>
 <header><div class="w"><div class="eyebrow">Actualité juridique</div><h1>Veille notariale</h1><div class="orn">§</div>
 <div class="sub">Textes · Jurisprudence · Doctrine — sources officielles<br>Mise à jour <span id="upd">__UPD__</span> · <a href="feed.xml">Flux RSS</a></div>
-<div class="stats"><div class="stat"><b id="n1">0</b><span>Éléments</span></div><div class="stat"><b id="n2">0</b><span>Nouveaux 7 j</span></div><div class="stat"><b id="n3">0</b><span>Matières</span></div></div></div></header><div class="band"></div>
-<main><div id="brief"></div><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input id="q" placeholder="Rechercher : donation, indivision, Cass.…"></div><div class="chips" id="ch"></div><div class="lbl">Dernières publications</div><div id="list"></div></main>
-<footer>Contenus repris des sources officielles (titre, date, sommaire publiés par la source). Seul le texte du lien fait foi : vérifiez toujours sur Légifrance, Judilibre ou la source d'origine avant tout usage professionnel. Les résumés automatiques sont générés par IA à partir du seul texte de la source et peuvent contenir des erreurs.</footer>
+<div class="stats"><div class="stat"><b id="n1">0</b><span>Éléments</span></div><div class="stat"><b id="n2">0</b><span>Nouveaux 7j</span></div><div class="stat"><b id="n3">0</b><span>Matières</span></div></div></div></header><div class="band"></div>
+<div class="filterbar"><div class="fw">
+<div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input id="q" placeholder="Rechercher : donation, indivision, Cass.…"></div>
+<div class="chips" id="ch"></div></div></div>
+<main><div id="brief-wrap"></div><div id="list"></div></main>
+<footer>Contenus repris des sources officielles (titre, date, sommaire publiés par la source). Seul le texte du lien fait foi : vérifiez toujours sur Légifrance, Judilibre ou la source d'origine avant tout usage professionnel. Les fiches automatiques sont générées par IA à partir du seul texte de la source et peuvent contenir des erreurs.</footer>
 <script>const D=__DATA__;const DIGEST=__DIGEST__;let mat="",typ="";const $=id=>document.getElementById(id);
-function renderBrief(){
-  const b=$("brief"); if(!DIGEST||!DIGEST.by_matiere||!Object.keys(DIGEST.by_matiere).length){b.style.display="none";return}
-  const entries=Object.entries(DIGEST.by_matiere);
-  b.innerHTML=`<div class="brief"><h2>📋 Brief de la semaine</h2><div class="sub2">Synthèse automatique (IA) des 7 derniers jours, par matière — généré le ${fd(DIGEST.date)} · à vérifier au besoin sur les fiches ci-dessous</div>
-  ${entries.map(([m,t],idx)=>`<details ${idx===0?"open":""}><summary>${esc(m)} <span class="cnt">${esc(m)==="Autres"?"":""}</span></summary><p>${esc(t)}</p></details>`).join("")}</div>`;
-}
-const M=[...new Set(D.flatMap(i=>i.matieres))].sort(),T=[...new Set(D.map(i=>i.type))];
 const esc=s=>(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const M=[...new Set(D.flatMap(i=>i.matieres))].sort(),T=[...new Set(D.map(i=>i.type))];
 const IC={Jurisprudence:"⚖",Texte:"§",Doctrine:"✎"};
-const cut=Date.now()-7*864e5,isNew=i=>new Date(i.first_seen).getTime()>=cut;
+const cut7=Date.now()-7*864e5,isNew=i=>new Date(i.first_seen).getTime()>=cut7;
 $("n1").textContent=D.length;$("n2").textContent=D.filter(isNew).length;$("n3").textContent=M.length;
-function chips(){$("ch").innerHTML=["Tout",...T,...M].map(x=>`<button class="chip ${(x==="Tout"&&!mat&&!typ)||x===mat||x===typ?"on":""}" data-x="${esc(x)}">${esc(x)}</button>`).join("");
-document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{const x=b.dataset.x;if(x==="Tout"){mat="";typ=""}else if(M.includes(x)){mat=mat===x?"":x}else{typ=typ===x?"":x}chips();draw()})}
+
+function renderBrief(){
+  const b=$("brief-wrap"); if(!DIGEST||!DIGEST.by_matiere||!Object.keys(DIGEST.by_matiere).length){return}
+  const entries=Object.entries(DIGEST.by_matiere);
+  const fmt=t=>t.split(/\\n+/).map(s=>s.trim()).filter(Boolean).map(s=>`<p>• ${esc(s)}</p>`).join("");
+  b.innerHTML=`<div class="brief"><h2>📋 Brief de la semaine</h2><div class="sub2">Synthèse automatique (IA) des 7 derniers jours, par matière — généré le ${fd(DIGEST.date)} · à vérifier au besoin sur les fiches ci-dessous</div>
+  ${entries.map(([m,t],idx)=>`<details ${idx===0?"open":""}><summary>${esc(m)}</summary>${fmt(t)}</details>`).join("")}</div>`;
+}
+
+function chips(){
+  const cnt=k=>D.filter(i=>k==="__all"||i.matieres.includes(k)||i.type===k).length;
+  const list=["__all",...T,...M];
+  $("ch").innerHTML=list.map(x=>{
+    const label=x==="__all"?"Tout":x, on=(x==="__all"&&!mat&&!typ)||x===mat||x===typ;
+    return `<button class="chip ${on?"on":""}" data-x="${esc(x)}">${esc(label)} <span class="n">${cnt(x)}</span></button>`;
+  }).join("");
+  document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{const x=b.dataset.x;if(x==="__all"){mat="";typ=""}else if(M.includes(x)){mat=mat===x?"":x}else{typ=typ===x?"":x}chips();draw()});
+}
+
 const fd=d=>{try{return new Date(d).toLocaleDateString("fr-FR",{day:"numeric",month:"short",year:"numeric"})}catch(e){return d}};
 function important(i){return i.bulletin || i.matieres.includes("Texte majeur à examiner")}
 function absBlock(i){
@@ -454,24 +517,42 @@ function absBlock(i){
   if(important(i)||t.length<=220) return `<div class="abs">${t}</div>`;
   return `<div class="abssum abs">${t.slice(0,220)}…</div><div class="absfull abs">${t}</div><button class="toggle" data-t="1">Voir le sommaire complet ▾</button>`;
 }
-function aiBlock(i){
-  if(!i.ai) return "";
-  const a=i.ai;
-  let h=`<div class="ai"><b>Fiche automatique (IA), à vérifier :</b> ${esc(a.resume||"")}`;
-  if(a.contexte) h+=`<div class="fiche-sec"><div class="lbl3">Contexte</div><p>${esc(a.contexte)}</p></div>`;
-  if(a.points&&a.points.length) h+=`<div class="pts"><div class="lbl2">Ce qu'il faut retenir</div><ul>${a.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>`;
-  if(a.qui) h+=`<div class="fiche-sec"><div class="lbl3">Qui est concerné</div><p>${esc(a.qui)}</p></div>`;
-  if(a.portee) h+=`<div class="portee"><b>Vigilance pratique (IA) :</b> ${esc(a.portee)}</div>`;
+function ficheBlock(i){
+  if(!i.ai || !i.ai.resume) return "";
+  const a=i.ai; let h=`<div class="fiche"><span class="tag2">Fiche IA — à vérifier</span><p class="resume">${esc(a.resume)}</p>`;
+  if(a.contexte) h+=`<div class="fsec"><div class="h">🔍 Contexte</div><p>${esc(a.contexte)}</p></div>`;
+  if(a.points&&a.points.length) h+=`<div class="fsec"><div class="h">✓ Ce qu'il faut retenir</div><ul>${a.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>`;
+  if(a.qui) h+=`<div class="fsec"><div class="h">👤 Qui est concerné</div><p>${esc(a.qui)}</p></div>`;
+  if(a.portee) h+=`<div class="vig"><b>⚠ Vigilance pratique</b>${esc(a.portee)}</div>`;
   return h+"</div>";
 }
-function draw(){const q=$("q").value.toLowerCase();const r=D.filter(i=>(!mat||i.matieres.includes(mat))&&(!typ||i.type===typ)&&(!q||(i.title+i.abstract+(i.ai?i.ai.resume:"")).toLowerCase().includes(q))).slice(0,300);
-$("list").innerHTML=r.map(i=>{const k=i.type.split(" ")[0];return `<div class="card t-${esc(k)}${important(i)?" exp":""}"><div class="ico">${IC[k]||"§"}</div><div class="body"><div class="top"><span class="badge">${esc(i.type)}</span>${i.bulletin?'<span class="badge bull">Publiée au Bulletin</span>':""}${isNew(i)?'<span class="badge new">Nouveau</span>':""}<span class="date">${fd(i.date)}</span></div>
-<a class="t" href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)}</a><div class="src">${esc(i.source)}</div>
-${absBlock(i)}${aiBlock(i)}
-${i.articles&&i.articles.length?`<div class="artchips">${i.articles.map(a=>`<span class="artchip">${esc(a)}</span>`).join("")}</div>`:""}
-<div class="tags">${i.matieres.map(m=>`<span class="tag">${esc(m)}</span>`).join("")}</div><a class="more" href="${esc(i.url)}" target="_blank" rel="noopener">Consulter la source officielle →</a></div></div>`}).join("")||'<p style="color:var(--mut)">Aucun résultat.</p>';
-document.querySelectorAll(".toggle").forEach(b=>b.onclick=()=>{b.closest(".card").classList.toggle("exp");b.remove()})}
-$("q").oninput=draw;renderBrief();chips();draw();</script></body></html>"""
+function dayGroup(i){
+  const d=new Date(i.date), today=new Date(); today.setHours(0,0,0,0);
+  const diff=Math.round((today-new Date(d.getFullYear(),d.getMonth(),d.getDate()))/864e5);
+  if(diff<=0) return "Aujourd'hui"; if(diff===1) return "Hier"; if(diff<=7) return "Cette semaine";
+  if(diff<=31) return "Ce mois-ci"; return "Plus ancien";
+}
+function draw(){
+  const q=$("q").value.toLowerCase();
+  const r=D.filter(i=>(!mat||i.matieres.includes(mat))&&(!typ||i.type===typ)&&(!q||(i.title+i.abstract+(i.ai?i.ai.resume||"":"")).toLowerCase().includes(q))).slice(0,400);
+  let lastGroup=null, html="";
+  for(const i of r){
+    const g=dayGroup(i);
+    if(g!==lastGroup){ html+=`<div class="daysep"><span class="lbl">${g}</span></div>`; lastGroup=g; }
+    const k=i.type.split(" ")[0];
+    html+=`<div class="card t-${esc(k)}${important(i)?" exp":""}"><div class="ico">${IC[k]||"§"}</div><div class="body">
+    <div class="top"><span class="badge">${esc(i.type)}</span>${i.bulletin?'<span class="badge bull">Bulletin</span>':""}${isNew(i)?'<span class="badge new">Nouveau</span>':""}<span class="date">${fd(i.date)}</span></div>
+    <a class="t" href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)}</a><div class="src">${esc(i.source)}</div>
+    ${absBlock(i)}${ficheBlock(i)}
+    ${i.articles&&i.articles.length?`<div class="artchips">${i.articles.map(a=>`<span class="artchip">${esc(a)}</span>`).join("")}</div>`:""}
+    <div class="tags">${i.matieres.map(m=>`<span class="tag">${esc(m)}</span>`).join("")}</div>
+    <a class="more" href="${esc(i.url)}" target="_blank" rel="noopener">Consulter la source officielle →</a></div></div>`;
+  }
+  $("list").innerHTML=html||'<p style="color:var(--mut);grid-column:1/-1">Aucun résultat.</p>';
+  document.querySelectorAll(".toggle").forEach(b=>b.onclick=()=>{b.closest(".card").classList.toggle("exp");b.remove()});
+}
+$("q").oninput=draw; renderBrief(); chips(); draw();
+</script></body></html>"""
 
 def write_html(items, digest=None):
     dig = {"date": str(TODAY), "by_matiere": digest or {}}
