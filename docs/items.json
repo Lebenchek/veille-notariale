@@ -1,5 +1,25 @@
 [
  {
+  "id": "LF-CETATEXT000054882617",
+  "source": "Conseil d'État",
+  "type": "Jurisprudence",
+  "date": "2026-09-30",
+  "title": "CAA de BORDEAUX, 2ème chambre, 17/09/2026, 24BX00460, Inédit au recueil Lebon",
+  "abstract": "",
+  "url": "https://www.legifrance.gouv.fr/ceta/id/CETATEXT000054882617",
+  "matieres": [
+   "Profession, déontologie & actes"
+  ],
+  "first_seen": "2026-09-30",
+  "ai": {
+   "resume": "Arrêt de la Cour d'appel de Bordeaux, 2e chambre, rendu le 17 septembre 2026, sous le numéro 24BX00460, non publié dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
+ },
+ {
   "id": "LF-CONSTEXT000054300059",
   "source": "Conseil constitutionnel",
   "type": "Jurisprudence",
@@ -5622,7 +5642,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054416616",
@@ -5635,7 +5656,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la Cour d'appel de Nantes, 2e chambre, du 10 juillet 2026, n° 24NT01419, non publiée au recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054416529",
@@ -5648,7 +5676,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054434091",
@@ -5661,7 +5690,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la Cour administrative d'appel de Nantes, 2e chambre, en date du 10 juillet 2026, portant le numéro 24NT03313, non publiée au recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054434191",
@@ -5674,7 +5710,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054434174",
@@ -5687,7 +5724,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la Cour d'appel de Marseille, 5ème chambre, du 10 juillet 2026, sous le numéro 25MA00318, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054481884",
@@ -5700,7 +5744,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Le Conseil d'État, en tant que juge des référés, a rendu une décision le 22 juillet 2026, enregistrée sous le numéro 517839, qui n'est pas publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054386212",
@@ -5713,7 +5764,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision du Conseil d'État, 8ème chambre, rendue le 30 juin 2026, sous le numéro 513391, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054227711",
@@ -5726,7 +5784,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054148351",
@@ -5739,7 +5798,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054148352",
@@ -5752,7 +5812,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054117088",
@@ -5765,7 +5826,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la Cour d'appel de Lyon, 2e chambre, rendue le 13 mai 2026, sous le numéro 25LY02419, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000053951431",
@@ -5778,7 +5846,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la Cour d'appel de Bordeaux, 3ème chambre, du 22 avril 2026, n° 23BX01251, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054902061",
@@ -5791,7 +5866,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903611",
@@ -5804,7 +5880,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054893673",
@@ -5817,7 +5894,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054887066",
@@ -5830,7 +5908,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Arrêt de la Cour administrative d'appel de Nantes, 2e chambre, rendu le 22 septembre 2026, sous la référence 24NT02730, inédit au recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054887064",
@@ -5843,7 +5928,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054887059",
@@ -5856,7 +5942,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la Cour d'appel de Bordeaux, 5ème chambre, du 22 septembre 2026, n° 24BX01143, non publiée au recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054882599",
@@ -5869,7 +5962,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision du Conseil d'État rendue par la 5ème chambre, jugée seule, le 18 septembre 2026, sous le numéro 516055, inédite au recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054859648",
@@ -5882,7 +5982,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Arrêt de la Cour d'appel de Versailles, 3e chambre, rendu le 17 septembre 2026, sous la référence 24VE02036, non publié dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054859682",
@@ -5895,7 +6002,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054859647",
@@ -5908,7 +6016,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la Cour d'appel de Versailles, 3e chambre, du 17 septembre 2026, n° 24VE02035, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054893620",
@@ -5921,7 +6036,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054841689",
