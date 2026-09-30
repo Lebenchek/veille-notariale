@@ -86,8 +86,9 @@ def src_judilibre(tok):
     for q in JUDILIBRE_QUERIES:
         try:
             r = requests.get(url, headers=h, timeout=60, params={"query": q, "date_start": start, "date_type": "creation",
-                             "sort": "date", "order": "desc", "page_size": 50 if LOOKBACK_DAYS <= 30 else 100, "publication": ["b", "r", "l", "c"]})
-            r.raise_for_status()
+                             "sort": "date", "order": "desc", "page_size": 50, "publication": ["b", "r", "l", "c"]})
+            if r.status_code >= 400:
+                log(f"Judilibre '{q}' : échec {r.status_code} — {(r.text or '')[:200]}"); continue
         except Exception as e:
             log("Judilibre", q, e); continue
         for x in r.json().get("results", []):
@@ -235,10 +236,10 @@ def main():
         arts = extract_articles(it["title"] + " " + it.get("abstract", ""))
         if arts: it["articles"] = arts
         store[it["id"]] = it; added += 1
-    n = 0
+    n, ai_batch = 0, int(os.getenv("AI_BATCH", "25"))
     for it in sorted(store.values(), key=lambda i: i["date"], reverse=True):
-        if n >= 25: break
-        if "ai" not in it and it["first_seen"] == str(TODAY):
+        if n >= ai_batch: break
+        if "ai" not in it:
             it["ai"] = ai_summary(it); n += 1
     items = sorted(store.values(), key=lambda i: (i["date"], i["first_seen"]), reverse=True)
     json.dump(items, open(DATA, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
@@ -331,7 +332,7 @@ def call_ai(prompt, max_tokens=700):
 def weekly_digest(items):
     """Brief hebdomadaire : un paragraphe de synthèse par matière, sur les 7 derniers jours.
     Basé UNIQUEMENT sur les titres/sommaires déjà collectés ; regroupe sans inventer de fait nouveau."""
-    if not (os.getenv("GEMINI_API_KEY") or os.getenv("ANTHROPIC_API_KEY")): return None
+    if not (os.getenv("GROQ_API_KEY") or os.getenv("GEMINI_API_KEY") or os.getenv("ANTHROPIC_API_KEY")): return None
     cutoff = (TODAY - dt.timedelta(days=7)).isoformat()
     recent = [i for i in items if i["date"] >= cutoff or i["first_seen"] >= cutoff]
     if len(recent) < 3: return None
