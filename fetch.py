@@ -258,9 +258,14 @@ def main():
         store[it["id"]] = it; added += 1
     items_preview = sorted(store.values(), key=lambda i: (i["date"], i["first_seen"]), reverse=True)
     digest = weekly_digest(items_preview)  # en premier : c'est la fonctionnalité la plus utile, elle ne doit jamais manquer de quota
+    configured = [k for k in ("groq", "gemini", "anthropic")
+                  if os.getenv({"groq": "GROQ_API_KEY", "gemini": "GEMINI_API_KEY", "anthropic": "ANTHROPIC_API_KEY"}[k])]
     n, ai_batch = 0, int(os.getenv("AI_BATCH", "25"))
     for it in sorted(store.values(), key=lambda i: i["date"], reverse=True):
         if n >= ai_batch: break
+        if configured and set(configured) <= _DEAD_PROVIDERS:
+            log("Tous les fournisseurs IA configurés sont à quota ou en erreur : arrêt anticipé des fiches pour ce run.")
+            break
         if "ai" not in it:
             it["ai"] = ai_summary(it); n += 1
     items = sorted(store.values(), key=lambda i: (i["date"], i["first_seen"]), reverse=True)
@@ -304,8 +309,10 @@ def _post_with_retry(url, provider, **kw):
     if r.status_code >= 400:
         body = (r.text or "")[:300].replace("\n", " ")
         log(f"IA ({provider}) : échec {r.status_code} — {body}")
-        if r.status_code not in (429, 503):
-            _DEAD_PROVIDERS.add(provider)  # erreur de config : inutile de réessayer ce fournisseur ce run-ci
+        if r.status_code != 503:
+            # 400/401/404 (config) ET 429 persistant après nouvelles tentatives (quota épuisé, pas juste un pic
+            # de vitesse) : dans les deux cas, inutile de continuer à solliciter ce fournisseur pour ce run.
+            _DEAD_PROVIDERS.add(provider)
     return r
 
 def call_ai(prompt, max_tokens=700):
@@ -313,7 +320,7 @@ def call_ai(prompt, max_tokens=700):
     puis Gemini, puis Anthropic en dernier repli). Retourne le texte brut ou None.
     Un fournisseur qui échoue avec une erreur de configuration (pas un simple embouteillage) est
     écarté pour le reste du run, afin de ne pas perdre de temps à répéter le même échec."""
-    time.sleep(2)
+    time.sleep(4)
     qkey = os.getenv("GROQ_API_KEY")
     if qkey and "groq" not in _DEAD_PROVIDERS:
         try:
