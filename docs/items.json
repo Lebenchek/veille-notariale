@@ -20,6 +20,37 @@
   }
  },
  {
+  "id": "JUDI-6abb6dfcc27382d099e54f97",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-09-29",
+  "title": "Cass. cr — 2026-09-29 — n° 25-86.702",
+  "abstract": "Thèmes : peines | Sommaire officiel : Méconnaît les articles L. 4161-1, L. 4161-5, L. 4221-1 et L. 4223-1 du code de la santé publique, dont il résulte que les infractions d'exercice illégal des professions de médecin ou de pharmacien font encourir la peine complémentaire d'interdiction d'exercer toute activité professionnelle ou sociale à  l'occasion de l'exercice de laquelle elles ont été commises, la cour d'appel qui étend une telle interdiction aux activités en lien avec le sport alors que le prévenu, relaxé du délit d'aide ou incitation à l'usage de produits dopants, a été déclaré coupable des délits susmentionnés sans que ces derniers aient un quelconque lien avec le domaine sportif | Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6abb6dfcc27382d099e54f97",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-09-30",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6abb6dffc27382d099e54fcb",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-09-29",
+  "title": "Cass. cr — 2026-09-29 — n° 25-82.579",
+  "abstract": "Thèmes : responsabilite penale ; personne morale ; conditions ; fusion-absorption ; opération antérieure au 25 novembre 2020 ; fraude à la loi ; caractérisation ; conditions | Sommaire officiel : L'existence d'une fraude à la loi permet au juge de prononcer une sanction pénale à l'encontre de la société absorbante lorsque l'opération de fusion-absorption, intervenue avant le revirement de jurisprudence du 25 novembre 2020 (Crim., 25 novembre 2020, pourvoi n°18-86.955, publié), a eu pour objectif de faire échapper la société absorbée à sa responsabilité pénale.\nEncourt la cassation la décision qui qualifie de fraude à la loi une fusion-absorption, au seul motif que cette opération, intervenue après la mise en examen de la société absorbée, n'a eu pour objectif que de faire échapper cette dernière à sa responsabilité pénale, sans décrire précisément le faisceau d'indices, tels que la nature des liens existant entre les deux sociétés, les circonstances temporelles ou le contexte économique de l'opération, qui lui auraient permis de caractériser la fraude retenue | Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6abb6dffc27382d099e54fcb",
+  "bulletin": true,
+  "matieres": [
+   "Sociétés & patrimoine professionnel",
+   "Fiscalité"
+  ],
+  "first_seen": "2026-09-30",
+  "ai": null
+ },
+ {
   "id": "LF-CONSTEXT000054300059",
   "source": "Conseil constitutionnel",
   "type": "Jurisprudence",
@@ -6050,7 +6081,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054841681",
@@ -6063,7 +6095,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054850157",
@@ -6076,7 +6109,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054850165",
@@ -6089,7 +6123,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054850146",
@@ -6102,7 +6137,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054850154",
@@ -6115,7 +6151,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054850119",
@@ -6128,7 +6165,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la Cour d'appel de Marseille, 2e chambre, du 11 septembre 2026, n° 25MA01778, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054841733",
@@ -6141,7 +6185,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054841740",
@@ -6154,7 +6199,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054787196",
@@ -6167,7 +6213,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054787192",
@@ -6180,7 +6227,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054797557",
@@ -6193,7 +6241,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054797556",
@@ -6206,7 +6255,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054797552",
@@ -6219,7 +6269,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054787176",
@@ -6232,7 +6283,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054727684",
@@ -6245,7 +6297,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision du Conseil d'État rendue en référé le 19 août 2026, n° 518639, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054664835",
@@ -6258,7 +6317,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision du Conseil d'État rendue en référé le 10 août 2026 (numéro 518560), non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054644290",
@@ -6271,7 +6337,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054639059",
@@ -6284,7 +6351,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054616039",
@@ -6297,7 +6365,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision du Conseil d'État rendue le 3 août 2026 par les 6ᵉ et 5ᵉ chambres réunies, référencée 497092 et publiée au recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054616040",
@@ -6310,7 +6385,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054566563",
@@ -6323,7 +6399,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054551365",
@@ -6336,7 +6413,14 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision du Conseil d'État, 4ème chambre, rendue le 28 juillet 2026, n° 505933, non publiée au recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054903640",
@@ -6349,7 +6433,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903637",
@@ -6362,7 +6447,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903629",
@@ -6375,7 +6461,14 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la Cour administrative d'appel de Nantes, 4ème chambre, du 25 septembre 2026, sous le numéro 25NT02265, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054903638",
@@ -6388,7 +6481,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903625",
@@ -6401,7 +6495,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903622",
@@ -6414,7 +6509,14 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Arrêt de la Cour d'appel de Nantes, 4ème chambre, rendu le 25 septembre 2026, sous la référence 25NT01180, non publié dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054903632",
@@ -6427,7 +6529,14 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la Cour d'appel de Nancy, 2e chambre, rendue le 25 septembre 2026, sous le numéro 23NC01269, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054903626",
@@ -6440,7 +6549,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903631",
@@ -6453,7 +6563,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903630",
@@ -6466,7 +6577,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903623",
@@ -6479,7 +6591,14 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Il s'agit d'un arrêt de la Cour d'appel de Nantes, 4ème chambre, rendu le 25 septembre 2026, sous la référence 25NT01892, qui n'a pas été publié dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054903692",
@@ -6492,7 +6611,14 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision du Conseil d'État rendue en référé le 25 septembre 2026, sous le numéro 519834, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054903574",
@@ -6505,7 +6631,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903573",
@@ -6518,7 +6645,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903575",
@@ -6531,7 +6659,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903557",
@@ -6544,7 +6673,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903555",
@@ -6557,7 +6687,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903558",
@@ -6570,7 +6701,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054902072",
@@ -6583,7 +6715,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903602",
@@ -6596,7 +6729,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054902090",
@@ -6609,7 +6743,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903577",
@@ -6622,7 +6757,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903578",
@@ -6635,7 +6771,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903570",
@@ -6648,7 +6785,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903579",
@@ -6661,7 +6799,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903565",
@@ -6674,7 +6813,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903581",
@@ -6687,7 +6827,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903595",
@@ -6700,7 +6841,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903617",
@@ -6713,7 +6855,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903614",
@@ -6726,7 +6869,14 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la Cour d'appel de Bordeaux, 3e chambre, rendue le 24 septembre 2026, sous la référence 25BX03130, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054903641",
@@ -6739,7 +6889,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903628",
@@ -6752,7 +6903,14 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la Cour d'appel de Nantes, 4ème chambre, du 25 septembre 2026, sous le numéro 25NT02261, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054903688",
@@ -6765,7 +6923,14 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision du Conseil d'État, 6e chambre, rendue en formation seule le 25 septembre 2026, sous le numéro 514203, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054903689",
@@ -6778,7 +6943,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903687",
@@ -6791,7 +6957,14 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision du Conseil d'État rendue par la 6e chambre, jugée en formation monitaire le 25 septembre 2026, sous le numéro 509699, et non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054903691",
@@ -6804,7 +6977,14 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision du Conseil d'État rendue en référé le 25 septembre 2026, sous le numéro 519829, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054903618",
@@ -6817,7 +6997,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903619",
@@ -6830,7 +7011,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054902097",
@@ -6843,7 +7025,14 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision du Conseil d'État rendue le 24 septembre 2026 par la 10ᵉ chambre, jugée seule, portant le numéro 517139 et non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054903564",
@@ -6856,7 +7045,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903587",
@@ -6869,7 +7059,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903586",
@@ -6882,7 +7073,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903615",
@@ -6895,7 +7087,14 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la 3ème chambre de la Cour d'Appel de Bordeaux en date du 24 septembre 2026, référence 26BX00684, inédite au recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054850104",
@@ -6908,7 +7107,8 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054834433",
@@ -6921,7 +7121,8 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054467999",
@@ -6934,7 +7135,14 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la première chambre de la Cour d'Appel de Nantes en date du 21 juillet 2026, référence 26NT00452, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054416644",
@@ -6947,7 +7155,14 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la 4ème chambre de la Cour administrative d'appel de Nantes du 10 juillet 2026, référence 25NT02621, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054358559",
@@ -6960,7 +7175,8 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054273273",
@@ -6973,7 +7189,8 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054273278",
@@ -6986,7 +7203,14 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la Cour d'appel de Paris, 2e chambre, rendue le 15 juin 2026, sous le numéro 26PA00561, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054236084",
@@ -6999,7 +7223,8 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054236119",
@@ -7012,7 +7237,8 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054178417",
@@ -7025,7 +7251,8 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054148403",
@@ -7038,7 +7265,8 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054021863",
@@ -7051,7 +7279,8 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000053951451",
@@ -7064,7 +7293,8 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000053784874",
@@ -7077,7 +7307,8 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903588",
@@ -7090,7 +7321,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903561",
@@ -7103,7 +7335,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054902093",
@@ -7116,7 +7349,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903592",
@@ -7129,7 +7363,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903616",
@@ -7142,7 +7377,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903583",
@@ -7155,7 +7391,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903612",
@@ -7168,7 +7405,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903552",
@@ -7181,7 +7419,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903582",
@@ -7194,7 +7433,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054746294",
@@ -7207,7 +7447,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054398427",
@@ -7220,7 +7461,14 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la Cour administrative d'appel de Nantes, 3e chambre, rendue le 7 juillet 2026, sous la référence 24NT01764, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054387775",
@@ -7233,7 +7481,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054320990",
@@ -7246,7 +7495,14 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Arrêt de la Cour d'appel de Toulouse, première chambre, rendu le 25 juin 2026 sous la référence 24TL00289, non publié dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054178456",
@@ -7259,7 +7515,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054153172",
@@ -7272,7 +7529,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000053951613",
@@ -7285,7 +7543,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000053951540",
@@ -7298,7 +7557,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000053909405",
@@ -7311,7 +7571,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000053789994",
@@ -7324,7 +7585,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000053784893",
@@ -7337,7 +7599,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000053776595",
@@ -7350,7 +7613,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903572",
@@ -7363,7 +7627,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903553",
@@ -7376,7 +7641,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903604",
@@ -7389,7 +7655,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054887117",
@@ -7402,7 +7669,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054887104",
@@ -7415,7 +7683,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054887061",
@@ -7428,7 +7697,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054887115",
@@ -7441,7 +7711,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054893660",
@@ -7454,7 +7725,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054882597",
@@ -7467,7 +7739,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054859671",
@@ -7480,7 +7753,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054861207",
@@ -7493,7 +7767,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054859690",
@@ -7506,7 +7781,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903560",
@@ -7519,7 +7795,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903563",
@@ -7532,7 +7809,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054893599",
@@ -7545,7 +7823,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054902094",
@@ -7558,7 +7837,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054893593",
@@ -7571,7 +7851,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054893587",
@@ -7584,7 +7865,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054893578",
@@ -7597,7 +7879,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054893600",
@@ -7610,7 +7893,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054893596",
@@ -7623,7 +7907,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903593",
@@ -7636,7 +7921,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903562",
@@ -7649,7 +7935,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903597",
@@ -7662,7 +7949,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054449892",
@@ -7675,7 +7963,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903567",
@@ -7688,7 +7977,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903580",
@@ -7701,7 +7991,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054903590",
@@ -7714,7 +8005,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054859670",
@@ -7727,7 +8019,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054893602",
@@ -7740,7 +8033,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912217",
@@ -7753,7 +8047,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912218",
@@ -7766,7 +8061,8 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912213",
@@ -7779,7 +8075,14 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la Cour d'appel de Nantes, 4ème chambre, rendue le 25 septembre 2026, sous le numéro 25NT00327, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054912214",
@@ -7792,7 +8095,8 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912215",
@@ -7805,7 +8109,8 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912260",
@@ -7818,7 +8123,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912221",
@@ -7831,7 +8137,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912222",
@@ -7844,7 +8151,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912253",
@@ -7857,7 +8165,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912254",
@@ -7870,7 +8179,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912255",
@@ -7883,7 +8193,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912246",
@@ -7896,7 +8207,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912228",
@@ -7909,7 +8221,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912223",
@@ -7922,7 +8235,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912225",
@@ -7935,7 +8249,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912233",
@@ -7948,7 +8263,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912230",
@@ -7961,7 +8277,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912244",
@@ -7974,7 +8291,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912220",
@@ -7987,7 +8305,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912242",
@@ -8000,7 +8319,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912239",
@@ -8013,7 +8333,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912237",
@@ -8026,7 +8347,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912235",
@@ -8039,7 +8361,14 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Décision de la Cour d'appel de Marseille, 6ème chambre, rendue le 28 septembre 2026, sous la référence 25MA03502, non publiée dans le recueil Lebon.",
+   "contexte": null,
+   "points": [],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "LF-CETATEXT000054912216",
@@ -8052,7 +8381,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912219",
@@ -8065,7 +8395,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912245",
@@ -8078,7 +8409,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912243",
@@ -8091,7 +8423,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912241",
@@ -8104,7 +8437,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912212",
@@ -8117,7 +8451,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912248",
@@ -8130,7 +8465,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "LF-CETATEXT000054912210",
@@ -8143,7 +8479,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-39600 at https://www.notaires.fr",
@@ -8185,7 +8522,12 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": {
+   "resume": "{\n  \"resume\": \"La condition suspensive n'est réputée accomplie, au sens de l'article 1304-3, que comme sanction du débiteur qui a empê",
+   "points": [],
+   "portee": null
+  }
  },
  {
   "id": "JUDI-6ab4d725c27382d0992e8d32",
@@ -8199,7 +8541,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab4d710c27382d0992e884f",
@@ -8213,7 +8556,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab4d721c27382d0992e8c65",
@@ -8227,7 +8571,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab4d72bc27382d0992e8e8f",
@@ -8241,7 +8586,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab4d717c27382d0992e8a09",
@@ -8259,7 +8605,8 @@
   "first_seen": "2026-09-30",
   "articles": [
    "art. 1869 code civil"
-  ]
+  ],
+  "ai": null
  },
  {
   "id": "JUDI-6ab4d734c27382d0992e90cb",
@@ -8273,7 +8620,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab4d71ac27382d0992e8ac1",
@@ -8287,7 +8635,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab4d71ec27382d0992e8b9d",
@@ -8301,7 +8650,8 @@
   "matieres": [
    "Droit international privé & européen"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab4d728c27382d0992e8dd9",
@@ -8315,7 +8665,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab4d72ec27382d0992e8f50",
@@ -8329,7 +8680,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab4d731c27382d0992e9015",
@@ -8343,7 +8695,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab4d738c27382d0992e91a2",
@@ -8357,7 +8710,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab4d740c27382d0992e93c0",
@@ -8371,7 +8725,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab38331c27382d099072e9e",
@@ -8390,7 +8745,8 @@
   "articles": [
    "art. 1171 code civil",
    "art. 1171 code civil était applicable au litige | Solution"
-  ]
+  ],
+  "ai": null
  },
  {
   "id": "JUDI-6ab3833bc27382d09907300c",
@@ -8406,7 +8762,8 @@
    "Droit international privé & européen",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab3832dc27382d099072e0e",
@@ -8423,7 +8780,8 @@
   "first_seen": "2026-09-30",
   "articles": [
    "art. 1103 code civil"
-  ]
+  ],
+  "ai": null
  },
  {
   "id": "JUDI-6ab3821bc27382d09906e354",
@@ -8437,7 +8795,16 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": {
+   "resume": "La Cour de cassation a rejeté le pourvoi dans une affaire relevant de la cour d'assises.",
+   "contexte": null,
+   "points": [
+    "Rejet du pourvoi par la Cour de cassation"
+   ],
+   "qui": "Les parties d'une procédure devant la cour d'assises.",
+   "portee": null
+  }
  },
  {
   "id": "JUDI-6ab3831bc27382d099072b20",
@@ -8451,7 +8818,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab3831ec27382d099072bb3",
@@ -8468,7 +8836,8 @@
   "first_seen": "2026-09-30",
   "articles": [
    "art. 1240 code civil"
-  ]
+  ],
+  "ai": null
  },
  {
   "id": "JUDI-6ab38317c27382d099072a87",
@@ -8482,7 +8851,8 @@
   "matieres": [
    "Fiscalité"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab4d73bc27382d0992e9286",
@@ -8496,7 +8866,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab38322c27382d099072c57",
@@ -8510,7 +8881,8 @@
   "matieres": [
    "Fiscalité"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab3832ac27382d099072d96",
@@ -8524,7 +8896,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab38326c27382d099072d0e",
@@ -8538,7 +8911,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab38335c27382d099072f35",
@@ -8552,7 +8926,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab23031c27382d099dea5de",
@@ -8566,7 +8941,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab23024c27382d099dea505",
@@ -8580,7 +8956,12 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": {
+   "resume": "{\n  \"resume\": \"La Cour de cassation, dans un arrêt",
+   "points": [],
+   "portee": null
+  }
  },
  {
   "id": "JUDI-6ab4d503c27382d0992e1692",
@@ -8594,7 +8975,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6ab23029c27382d099dea553",
@@ -8608,7 +8990,8 @@
   "matieres": [
    "Droit international privé & européen"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6aabdc90c27382d09905f688",
@@ -8624,7 +9007,8 @@
    "Sociétés & patrimoine professionnel",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6aabdc8ac27382d09905f3b7",
@@ -8638,7 +9022,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6aabdc8dc27382d09905f4fb",
@@ -8657,7 +9042,8 @@
   "first_seen": "2026-09-30",
   "articles": [
    "art. 2224 code civil"
-  ]
+  ],
+  "ai": null
  },
  {
   "id": "JUDI-6aabdc87c27382d09905f260",
@@ -8672,7 +9058,8 @@
    "Immobilier & copropriété",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6aabdc93c27382d09905f802",
@@ -8687,7 +9074,8 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6aabdc9bc27382d09905fb6a",
@@ -8701,7 +9089,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null
  },
  {
   "id": "JUDI-6aabdca1c27382d09905fe2f",
