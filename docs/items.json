@@ -13552,7 +13552,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-37000 at https://www.notaires.fr",
@@ -13566,7 +13567,8 @@
    "Immobilier & copropriété",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36997 at https://www.notaires.fr",
@@ -13579,7 +13581,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36921 at https://www.notaires.fr",
@@ -13592,7 +13595,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36713 at https://www.notaires.fr",
@@ -13605,7 +13609,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36644 at https://www.notaires.fr",
@@ -13619,7 +13624,12 @@
    "Sociétés & patrimoine professionnel",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "{\"resume\": \"Les Notaires de France participent à l'événement Go Entrepreneurs 2025 les 9 et 10 avril pour",
+   "points": [],
+   "portee": null
+  }
  },
  {
   "id": "RSS-36550 at https://www.notaires.fr",
@@ -13633,7 +13643,8 @@
    "Droit international privé & européen",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36525 at https://www.notaires.fr",
@@ -13647,7 +13658,17 @@
    "Droit international privé & européen",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Les Notaires de France seront présents à la 3ᵉ édition du International Congress for all mediations, intitulée #Mediations2025, qui se tiendra à Angers du 12 au 14 mars.",
+   "contexte": null,
+   "points": [
+    "Présence des Notaires de France à la 3ᵉ édition #Mediations2025",
+    "Événement organisé à Angers du 12 au 14 mars"
+   ],
+   "qui": "Les Notaires de France",
+   "portee": null
+  }
  },
  {
   "id": "RSS-36524 at https://www.notaires.fr",
@@ -13660,7 +13681,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36510 at https://www.notaires.fr",
@@ -13674,7 +13696,8 @@
    "Droit international privé & européen",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36494 at https://www.notaires.fr",
@@ -13687,7 +13710,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36492 at https://www.notaires.fr",
@@ -13700,7 +13724,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36491 at https://www.notaires.fr",
@@ -13714,7 +13739,8 @@
    "Fiscalité",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36476 at https://www.notaires.fr",
@@ -13727,7 +13753,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36479 at https://www.notaires.fr",
@@ -13740,7 +13767,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36314 at https://www.notaires.fr",
@@ -13754,7 +13782,8 @@
    "Droit international privé & européen",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36302 at https://www.notaires.fr",
@@ -13767,7 +13796,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36162 at https://www.notaires.fr",
@@ -13780,7 +13810,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36094 at https://www.notaires.fr",
@@ -13793,7 +13824,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36078 at https://www.notaires.fr",
@@ -13806,7 +13838,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36086 at https://www.notaires.fr",
@@ -13819,7 +13852,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36039 at https://www.notaires.fr",
@@ -13833,7 +13867,8 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35939 at https://www.notaires.fr",
@@ -13846,7 +13881,12 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "{\n  \"resume\": \"Les Notaires de France organisent un événement intitulé « 3 Jours de la Famille » qui se tiendra les 11, 12",
+   "points": [],
+   "portee": null
+  }
  },
  {
   "id": "RSS-35949 at https://www.notaires.fr",
@@ -13860,7 +13900,8 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35948 at https://www.notaires.fr",
@@ -13873,7 +13914,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35933 at https://www.notaires.fr",
@@ -13886,7 +13928,8 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35850 at https://www.notaires.fr",
@@ -13899,7 +13942,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35819 at https://www.notaires.fr",
@@ -13912,7 +13956,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35818 at https://www.notaires.fr",
@@ -13925,7 +13970,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35817 at https://www.notaires.fr",
@@ -13938,7 +13984,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35790 at https://www.notaires.fr",
@@ -13952,7 +13999,8 @@
    "Immobilier & copropriété",
    "Fiscalité"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35764 at https://www.notaires.fr",
@@ -13965,7 +14013,12 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "{\n  \"resume\": \"Le notariat signale une augmentation des fraudes aux RIB, arnaques et escroqueries et invite à une vigilance accrue",
+   "points": [],
+   "portee": null
+  }
  },
  {
   "id": "RSS-35765 at https://www.notaires.fr",
@@ -13980,7 +14033,8 @@
    "Fiscalité",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35747 at https://www.notaires.fr",
@@ -13993,7 +14047,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35709 at https://www.notaires.fr",
@@ -14007,7 +14062,8 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35788 at https://www.notaires.fr",
@@ -14020,7 +14076,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35708 at https://www.notaires.fr",
@@ -14035,7 +14092,8 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35667 at https://www.notaires.fr",
@@ -14048,7 +14106,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35658 at https://www.notaires.fr",
@@ -14061,7 +14120,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35647 at https://www.notaires.fr",
@@ -14074,7 +14134,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35646 at https://www.notaires.fr",
@@ -14087,7 +14148,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35645 at https://www.notaires.fr",
@@ -14101,7 +14163,12 @@
    "Successions & libéralités",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "{\n  \"resume\": \"La dissolution d’une société civile immobilière constitue la première étape de sa disparition, entraînant de plein droit sa liquidation tout en maintenant la personnalité morale de la SCI, suivie du partage des biens entre les associés et, en dernier lieu, de la radiation de la société.\",\n  \"contexte\": \"\",\n  \"points_cles\": [\n    \"La dissolution est la première étape vers la disparit",
+   "points": [],
+   "portee": null
+  }
  },
  {
   "id": "RSS-35644 at https://www.notaires.fr",
@@ -14114,7 +14181,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35655 at https://www.notaires.fr",
@@ -14128,7 +14196,8 @@
    "Famille & régimes matrimoniaux",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35653 at https://www.notaires.fr",
@@ -14142,7 +14211,8 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35631 at https://www.notaires.fr",
@@ -14157,7 +14227,8 @@
    "Famille & régimes matrimoniaux",
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35621 at https://www.notaires.fr",
@@ -14171,7 +14242,8 @@
    "Successions & libéralités",
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35632 at https://www.notaires.fr",
@@ -14185,7 +14257,8 @@
    "Successions & libéralités",
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35629 at https://www.notaires.fr",
@@ -14199,7 +14272,8 @@
    "Famille & régimes matrimoniaux",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35468 at https://www.notaires.fr",
@@ -14213,7 +14287,8 @@
    "Immobilier & copropriété",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35374 at https://www.notaires.fr",
@@ -14226,7 +14301,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35314 at https://www.notaires.fr",
@@ -14239,7 +14315,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35282 at https://www.notaires.fr",
@@ -14252,7 +14329,8 @@
   "matieres": [
    "Fiscalité"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35269 at https://www.notaires.fr",
@@ -14267,7 +14345,8 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35281 at https://www.notaires.fr",
@@ -14280,7 +14359,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35276 at https://www.notaires.fr",
@@ -14294,7 +14374,8 @@
    "Famille & régimes matrimoniaux",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35271 at https://www.notaires.fr",
@@ -14308,7 +14389,8 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-34497 at https://www.notaires.fr",
@@ -14323,7 +14405,8 @@
    "Famille & régimes matrimoniaux",
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-34495 at https://www.notaires.fr",
@@ -14338,7 +14421,8 @@
    "Famille & régimes matrimoniaux",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-34489 at https://www.notaires.fr",
@@ -14352,7 +14436,8 @@
    "Famille & régimes matrimoniaux",
    "Fiscalité"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-34486 at https://www.notaires.fr",
@@ -14365,7 +14450,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-34434 at https://www.notaires.fr",
@@ -14378,7 +14464,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-34406 at https://www.notaires.fr",
@@ -14392,7 +14479,8 @@
    "Successions & libéralités",
    "Fiscalité"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-21547 at https://www.notaires.fr",
@@ -14407,7 +14495,8 @@
    "Sociétés & patrimoine professionnel",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-36268 at https://www.notaires.fr",
@@ -14422,7 +14511,18 @@
    "Immobilier & copropriété",
    "Fiscalité"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "La donation en démembrement de propriété permet de transmettre la nue‑propriété d’un bien tout en conservant l’usufruit, ce qui diminue la base taxable des droits de mutation à titre gratuit.",
+   "contexte": null,
+   "points": [
+    "La donation en démembrement de propriété est utilisée pour transmettre la nue‑propriété d’un bien.",
+    "Le donateur conserve l’usufruit du bien donné.",
+    "Cette opération réduit la base taxable des droits de mutation à titre gratuit."
+   ],
+   "qui": "Le donateur et le bénéficiaire de la nue‑propriété du bien.",
+   "portee": null
+  }
  },
  {
   "id": "RSS-34339 at https://www.notaires.fr",
@@ -14437,7 +14537,8 @@
    "Fiscalité",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-34333 at https://www.notaires.fr",
@@ -14450,7 +14551,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-34340 at https://www.notaires.fr",
@@ -14463,7 +14565,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-33670 at https://www.notaires.fr",
@@ -14478,7 +14581,8 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-35924 at https://www.notaires.fr",
@@ -14491,7 +14595,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-28739 at https://www.notaires.fr",
@@ -14505,7 +14610,8 @@
    "Droit international privé & européen",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-21460 at https://www.notaires.fr",
@@ -14518,7 +14624,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-28700 at https://www.notaires.fr",
@@ -14533,7 +14640,8 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-21544 at https://www.notaires.fr",
@@ -14547,7 +14655,8 @@
    "Sociétés & patrimoine professionnel",
    "Fiscalité"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-27317 at https://www.notaires.fr",
@@ -14561,7 +14670,8 @@
    "Successions & libéralités",
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-27289 at https://www.notaires.fr",
@@ -14575,7 +14685,8 @@
    "Immobilier & copropriété",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-27309 at https://www.notaires.fr",
@@ -14588,7 +14699,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-27300 at https://www.notaires.fr",
@@ -14603,7 +14715,8 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-27296 at https://www.notaires.fr",
@@ -14617,7 +14730,8 @@
    "Successions & libéralités",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-27293 at https://www.notaires.fr",
@@ -14631,7 +14745,8 @@
    "Successions & libéralités",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-27287 at https://www.notaires.fr",
@@ -14646,7 +14761,8 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-27253 at https://www.notaires.fr",
@@ -14660,7 +14776,8 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-27208 at https://www.notaires.fr",
@@ -14673,7 +14790,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-27177 at https://www.notaires.fr",
@@ -14687,7 +14805,8 @@
    "Successions & libéralités",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-27173 at https://www.notaires.fr",
@@ -14702,7 +14821,8 @@
    "Sociétés & patrimoine professionnel",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-27064 at https://www.notaires.fr",
@@ -14716,7 +14836,8 @@
    "Droit international privé & européen",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-26220 at https://www.notaires.fr",
@@ -14729,7 +14850,17 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Depuis le 1er janvier 2023, toutes les formalités des entreprises sont centralisées et doivent être accomplies exclusivement en ligne sur le site de l’INPI.",
+   "contexte": null,
+   "points": [
+    "Mise en place d’un guichet unique pour toutes les formalités des entreprises",
+    "Obligation d’effectuer ces formalités exclusivement en ligne via le site de l’INPI depuis le 1er janvier 2023"
+   ],
+   "qui": "Les entreprises soumises à des formalités administratives.",
+   "portee": "Le notaire devra s’assurer que les clients utilisent le portail en ligne de l’INPI pour toutes leurs formalités et vérifier la conformité à l’obligation d’exclusivité en ligne."
+  }
  },
  {
   "id": "RSS-25757 at https://www.notaires.fr",
@@ -14743,7 +14874,8 @@
    "Sociétés & patrimoine professionnel",
    "Fiscalité"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-24958 at https://www.notaires.fr",
@@ -14756,7 +14888,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-24819 at https://www.notaires.fr",
@@ -14769,7 +14902,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-24815 at https://www.notaires.fr",
@@ -14782,7 +14916,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-24729 at https://www.notaires.fr",
@@ -14795,7 +14930,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-21770 at https://www.notaires.fr",
@@ -14810,7 +14946,8 @@
    "Sociétés & patrimoine professionnel",
    "Fiscalité"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-21757 at https://www.notaires.fr",
@@ -14823,7 +14960,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-21392 at https://www.notaires.fr",
@@ -14837,7 +14975,8 @@
    "Sociétés & patrimoine professionnel",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-21390 at https://www.notaires.fr",
@@ -14851,7 +14990,12 @@
    "Sociétés & patrimoine professionnel",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "{\n  \"resume\": \"Les notaires participent au salon virtuel GO Entrepreneurs 2021, qui se tiendra les 9 et 10 juin en ligne, afin de rencontrer créateurs, repreneurs, franchisés, indépendants et dirigeants de TPE/PME.\",\n  \"contexte",
+   "points": [],
+   "portee": null
+  }
  },
  {
   "id": "RSS-21753 at https://www.notaires.fr",
@@ -14865,7 +15009,8 @@
    "Immobilier & copropriété",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-21623 at https://www.notaires.fr",
@@ -14878,7 +15023,8 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-21351 at https://www.notaires.fr",
@@ -14891,7 +15037,8 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-21334 at https://www.notaires.fr",
@@ -14906,7 +15053,8 @@
    "Fiscalité",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-21325 at https://www.notaires.fr",
@@ -14920,7 +15068,8 @@
    "Fiscalité",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-21319 at https://www.notaires.fr",
@@ -14935,7 +15084,8 @@
    "Sociétés & patrimoine professionnel",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-21700 at https://www.notaires.fr",
@@ -14950,7 +15100,8 @@
    "Sociétés & patrimoine professionnel",
    "Fiscalité"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": null
  },
  {
   "id": "RSS-21259 at https://www.notaires.fr",
@@ -14963,6 +15114,11 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "{\n  \"resume\": \"Le texte informe que les agriculteurs, pour des raisons économiques et environnementales, s’intéressent de plus en plus à la production d’énergies renouvelables via l’installation de panneaux solaires ou d’éoliennes, et propose un mode d’emploi publié dans La lettre Conseils des notaires.\",\n  \"contexte\": \"\",\n  \"points_cles\": [\n    \"Les agriculteurs manifestent un intérêt croissant p",
+   "points": [],
+   "portee": null
+  }
  }
 ]
