@@ -173,6 +173,83 @@ def src_fonds(tok):
                             "title": title, "abstract": "", "url": f"https://www.legifrance.gouv.fr/{path}/id/{tid}", "_hint": q})
     return out
 
+def fetch_full_text(url, max_chars=4000):
+    """Récupère et nettoie le texte intégral d'une page publique (sans authentification), pour donner à l'IA
+    une vraie matière au lieu du seul extrait court du flux RSS. Retourne None si l'accès échoue."""
+    try:
+        r = requests.get(url, headers=UA, timeout=25)
+        r.raise_for_status()
+        t = r.text
+        # Si la page a une balise <article> ou <main>, on se limite à son contenu : moins de menus/footer parasites.
+        m = re.search(r"(?is)<(article|main)[^>]*>(.*?)</\1>", t)
+        if m: t = m.group(2)
+        t = re.sub(r"(?is)<(script|style|nav|header|footer|noscript|aside).*?>.*?</\1>", " ", t)
+        t = re.sub(r"(?s)<[^>]+>", " ", t)
+        t = html.unescape(t)
+        t = re.sub(r"[ \t]+", " ", t)
+        t = re.sub(r"\n\s*\n+", "\n", t)
+        t = t.strip()
+        return t[:max_chars] if len(t) > 200 else None
+    except Exception as e:
+        log("Texte intégral", url, e); return None
+
+def src_sepaj():
+    """SEPAJ (Pierre Lasgleizes) : page publique d'actualités notariales, extraits librement consultables
+    (l'analyse complète reste réservée aux abonnés, que nous ne touchons pas). 100% ciblé pratique notariale."""
+    url = "https://www.sepaj.fr/actualites"
+    try:
+        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36", "Accept-Language": "fr-FR,fr;q=0.9"}, timeout=30); r.raise_for_status()
+    except Exception as e:
+        log("SEPAJ", e); return []
+    raw = r.text
+    out = []
+    blocks = re.split(r'(?=<a[^>]+href="[^"]*actualites/(?:actes|formalites)[^"]*"[^>]*>)', raw)
+    for b in blocks:
+        m = re.search(r'<a[^>]+href="([^"]*actualites/(?:actes|formalites)[^"]*)"[^>]*>(.*?)</a>', b, re.S)
+        if not m: continue
+        href, title_html = m.group(1), m.group(2)
+        title = html.unescape(re.sub(r"<[^>]+>", " ", title_html)); title = re.sub(r"\s+", " ", title).strip()
+        if len(title) < 10: continue
+        md = re.search(r"mise\s*à\s*jour\s*le\s*(\d{2})/(\d{2})/(\d{4})", b, re.I)
+        if not md: continue
+        date = f"{md.group(3)}-{md.group(2)}-{md.group(1)}"
+        teaser = html.unescape(re.sub(r"<[^>]+>", " ", b[md.end():])); teaser = re.sub(r"\s+", " ", teaser).strip()[:500]
+        full_url = href if href.startswith("http") else "https://www.sepaj.fr/" + href.lstrip("/")
+        out.append({"id": "SEPAJ-" + href, "source": "SEPAJ (actualités notariales)", "type": "Doctrine / actualité",
+                    "date": date, "title": title, "abstract": teaser, "url": full_url, "_keep": True})
+    return out[:120]
+
+def src_legalnews():
+    """LegalNews Notaires : page d'accueil publique, classée par catégories notariales, extraits librement
+    consultables (l'analyse complète reste réservée aux abonnés, que nous ne touchons pas)."""
+    url = "https://www.legalnewsnotaires.fr/home-lnn.html"
+    try:
+        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36", "Accept-Language": "fr-FR,fr;q=0.9"}, timeout=30); r.raise_for_status()
+    except Exception as e:
+        log("LegalNews Notaires", e); return []
+    raw = r.text
+    out = []
+    date_re = re.compile(r"(\d{2})\.(\d{2})\.(\d{2})\s*-\s*\d{2}:\d{2}")
+    matches = list(date_re.finditer(raw))
+    for idx, md in enumerate(matches):
+        end = matches[idx + 1].start() if idx + 1 < len(matches) else min(len(raw), md.end() + 2000)
+        chunk = raw[md.end():end]
+        m = re.search(r'<a[^>]+href="([^"]*-\d+(?:-\d+)?\.html)"[^>]*>(.*?)</a>', chunk, re.S)
+        if not m: continue
+        href, title_html = m.group(1), m.group(2)
+        title = html.unescape(re.sub(r"<[^>]+>", " ", title_html)); title = re.sub(r"\s+", " ", title).strip()
+        if len(title) < 10: continue
+        teaser = html.unescape(re.sub(r"<[^>]+>", " ", chunk[m.end():])); teaser = re.sub(r"\s+", " ", teaser).strip()[:500]
+        full_url = href if href.startswith("http") else "https://www.legalnewsnotaires.fr" + href
+        date = f"20{md.group(3)}-{md.group(2)}-{md.group(1)}"
+        out.append({"id": "LNN-" + href, "source": "LegalNews Notaires", "type": "Doctrine / actualité",
+                    "date": date, "title": title, "abstract": teaser, "url": full_url, "_keep": True})
+    seen, dedup = set(), []
+    for it in out:
+        if it["id"] in seen: continue
+        seen.add(it["id"]); dedup.append(it)
+    return dedup[:150]
+
 def src_rss():
     out, p = [], os.path.join(ROOT, "feeds.txt")
     if not os.path.exists(p): return out
@@ -280,6 +357,9 @@ def main():
     except Exception as e:
         log("PISTE :", e)
     new += src_rss()
+    for fn in (src_sepaj, src_legalnews):
+        try: new += fn()
+        except Exception as e: log(fn.__name__, "échec :", e)
     added = 0
     for it in new:
         if it["id"] in store: continue
@@ -289,6 +369,12 @@ def main():
         if not mats: continue
         it.pop("_keep", None); it.pop("_kind", None); it.pop("_hint", None)
         it["matieres"], it["first_seen"] = mats, str(TODAY)
+        if it.get("type") == "Doctrine / actualité" and any(d in it.get("url", "") for d in
+                ("notaires.fr", "sepaj.fr", "legalnewsnotaires.fr")):
+            # Le flux RSS ne donne qu'un court teaser ; on va chercher le texte intégral de la page (publique,
+            # sans abonnement) pour que la fiche IA ait une vraie matière à synthétiser, pas deux phrases.
+            full = fetch_full_text(it["url"])
+            if full: it["abstract"] = full
         arts = extract_articles(it["title"] + " " + it.get("abstract", ""))
         if arts: it["articles"] = arts
         store[it["id"]] = it; added += 1
@@ -421,14 +507,16 @@ def weekly_digest(items):
         if len(its) < 2: continue
         lst = "\n".join(f"- {i['title']} ({i['type']}, {i['date']})" + (f" : {i['abstract'][:180]}" if i.get("abstract") else "") for i in its[:12])
         prompt = ("Tu rédiges la synthèse hebdomadaire d'une veille juridique pour des notaires, sur la matière "
-                   f"« {mat} ». Voici la liste des publications de la semaine dans cette matière, avec leur type et leur "
-                   "date. En t'appuyant UNIQUEMENT sur les éléments listés ci-dessous — sans inventer aucun fait qui n'y "
-                   "figure pas —, réponds en 3 phrases COURTES et COMPLÈTES maximum (jamais coupée en milieu de phrase), "
-                   "chacune sur sa propre ligne, séparées par un retour à la ligne : la 1ère résume factuellement ce qui "
-                   "s'est passé, la 2e donne un détail concret marquant, la 3e (optionnelle) est une phrase de vigilance "
-                   "pratique pour un notaire. Reste concis : mieux vaut une phrase de moins qu'une phrase coupée. Réponds "
-                   "uniquement avec ces phrases, sans titre ni introduction.\n\n" + lst)
-        txt = call_ai(prompt, max_tokens=450)
+                   f"« {mat} ». Voici la liste des publications de la semaine dans cette matière, avec leur type, leur "
+                   "date et leur contenu disponible. En t'appuyant UNIQUEMENT sur les éléments listés ci-dessous — sans "
+                   "inventer aucun fait qui n'y figure pas —, liste 2 à 5 phrases COURTES, COMPLÈTES (jamais coupées en "
+                   "milieu de phrase) et surtout CONCRÈTES : va directement au fait juridique précis et à son implication "
+                   "pratique (qui est concerné, ce qui change, ce qu'il faut vérifier), sans aucune phrase d'accroche "
+                   "vague du type « cette semaine a abordé » ou « plusieurs questions ont été soulevées ». Chaque phrase "
+                   "doit pouvoir se lire seule et apporter une information actionnable, pas une annonce de sujet. Une "
+                   "ligne sur sa propre ligne, séparées par un retour à la ligne. Réponds uniquement avec ces phrases, "
+                   "sans titre ni introduction.\n\n" + lst)
+        txt = call_ai(prompt, max_tokens=900)
         if txt and not txt.startswith("INSUFFISANT"): digest[mat] = txt[:900]
     return digest or None
 
