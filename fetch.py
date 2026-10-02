@@ -43,15 +43,26 @@ def extract_articles(text):
 _MOIS = {"janvier":1,"février":2,"fevrier":2,"mars":3,"avril":4,"mai":5,"juin":6,"juillet":7,
          "août":8,"aout":8,"septembre":9,"octobre":10,"novembre":11,"décembre":12,"decembre":12}
 _DATE_TITRE_RE = re.compile(r"(\d{1,2})\s+(" + "|".join(_MOIS) + r")\s+(\d{4})", re.IGNORECASE)
+_DATE_NUM_RE = re.compile(r"\b(\d{2})/(\d{2})/(\d{4})\b")
 
 def date_from_title(title):
-    """Extrait une date française 'DD mois YYYY' directement du titre, en secours quand l'API ne la fournit pas."""
-    m = _DATE_TITRE_RE.search(title or "")
-    if not m: return None
-    try:
-        return f"{int(m.group(3)):04d}-{_MOIS[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
-    except Exception:
-        return None
+    """Extrait une date directement du titre ('DD mois YYYY' ou 'JJ/MM/AAAA'), en secours quand l'API ne la fournit pas."""
+    t = title or ""
+    m = _DATE_TITRE_RE.search(t)
+    if m:
+        try:
+            return f"{int(m.group(3)):04d}-{_MOIS[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
+        except Exception:
+            pass
+    m2 = _DATE_NUM_RE.search(t)
+    if m2:
+        try:
+            d, mo, y = int(m2.group(1)), int(m2.group(2)), int(m2.group(3))
+            if 1 <= mo <= 12 and 1 <= d <= 31:
+                return f"{y:04d}-{mo:02d}-{d:02d}"
+        except Exception:
+            pass
+    return None
 
 def log(*a): print("[veille]", *a, flush=True)
 
@@ -138,7 +149,12 @@ def src_fonds(tok):
     h = {"Authorization": f"Bearer {tok}", "Content-Type": "application/json", **UA}
     start = (TODAY - dt.timedelta(days=LOOKBACK_DAYS)).isoformat()
     out, seen = [], set()
-    for fond, label, path in (("CONSTIT", "Conseil constitutionnel", "cons"), ("CETAT", "Conseil d'État", "ceta")):
+    # Le Conseil d'État/CAA (fond CETAT) est écarté : il traite très majoritairement de droit public
+    # (administration, fonction publique, étrangers, urbanisme...), sans rapport avec la pratique notariale,
+    # et ses titres bruts ("CAA de X, 3e chambre, date, n°...") ne contiennent aucune information de contenu
+    # exploitable — un mot-clé qui matche ne garantit donc aucune pertinence réelle. Seul le Conseil constitutionnel
+    # (QPC), dont les titres précisent le sujet et qui touche parfois directement au droit civil/fiscal, est gardé.
+    for fond, label, path in (("CONSTIT", "Conseil constitutionnel", "cons"),):
         for q in JUDILIBRE_QUERIES:
             body = {"fond": fond, "recherche": {"champs": [{"typeChamp": "ALL", "operateur": "ET", "criteres": [
                 {"typeRecherche": "UN_DES_MOTS", "valeur": q, "operateur": "ET"}]}],
@@ -187,14 +203,14 @@ def parse_ai_json(txt):
     try:
         d = json.loads(txt.strip())
         if isinstance(d, dict) and d.get("resume"):
-            return {"resume": str(d.get("resume", ""))[:500],
-                    "contexte": (str(d.get("contexte", "")).strip()[:300] or None),
-                    "points": [str(p)[:180] for p in (d.get("points_cles") or []) if str(p).strip()][:5],
-                    "qui": (str(d.get("qui_est_concerne", "")).strip()[:200] or None),
-                    "portee": (str(d.get("vigilance", "")).strip()[:300] or None)}
+            return {"resume": str(d.get("resume", ""))[:1200],
+                    "contexte": (str(d.get("contexte", "")).strip()[:800] or None),
+                    "points": [str(p)[:300] for p in (d.get("points_cles") or []) if str(p).strip()][:6],
+                    "qui": (str(d.get("qui_est_concerne", "")).strip()[:600] or None),
+                    "portee": (str(d.get("vigilance", "")).strip()[:800] or None)}
     except Exception:
         pass
-    return None
+    return None  # JSON invalide ou incomplet (réponse tronquée) : on n'affiche jamais de JSON brut, on écarte la fiche
 
 def ai_summary(item):
     """Résumé structuré optionnel, basé UNIQUEMENT sur le texte fourni : un résumé court,
@@ -204,36 +220,56 @@ def ai_summary(item):
     Toujours étiqueté "IA, à vérifier" côté affichage ; jamais présenté comme le texte officiel."""
     if len(item["title"]) < 15: return None
     has_abstract = bool(item.get("abstract"))
-    consigne_min = ("Seul le titre est disponible ici, sans sommaire détaillé : limite-toi à ce que le titre permet "
-                     "raisonnablement de déduire. Remplis au minimum \"resume\" (reformulation factuelle du titre), et "
-                     "laisse les autres champs en chaîne vide ou liste vide si le titre seul ne suffit pas à les "
-                     "renseigner sans risque d'invention.") if not has_abstract else (
-                     "Sois aussi précis et complet que le texte source le permet, sans délayer.")
-    prompt = ("Tu prépares une fiche de synthèse à destination d'un notaire français, en t'appuyant STRICTEMENT et "
-              "UNIQUEMENT sur le texte ci-dessous (titre" + (" + sommaire officiel" if has_abstract else " seul, sans sommaire") +
-              "). N'invente et n'ajoute AUCUN fait, numéro d'article, date, chiffre, nom ou conséquence juridique qui n'y "
-              f"figure pas explicitement. {consigne_min} Chaque champ rempli doit apporter une information réelle, jamais "
-              "une reformulation vide. Laisse un champ en chaîne vide plutôt que d'inventer. Réponds STRICTEMENT en JSON, "
-              "sans aucun texte autour, avec exactement ces clés :\n"
-              '{"resume": "1-3 phrases reformulant précisément le contenu et sa portée juridique", '
-              '"contexte": "1-2 phrases sur ce que ce texte/cette décision modifie ou clarifie par rapport à l\'état du '
-              'droit antérieur, UNIQUEMENT si le texte source le précise explicitement, sinon chaîne vide", '
-              '"points_cles": ["fait précis et concret 1 (si disponible)", "fait précis 2 (si disponible)"], '
-              '"qui_est_concerne": "1 phrase courte sur les personnes, actes ou situations concernés, seulement si explicite, sinon chaîne vide", '
-              '"vigilance": "1-2 phrases au conditionnel sur ce qu\'un notaire devrait vérifier, adapter dans ses actes, ou '
-              'signaler à ses clients, seulement si le texte le permet clairement, sinon chaîne vide"}\n'
+    consigne_min = ("Seul le titre est disponible ici, sans sommaire détaillé : développe au maximum ce que le titre "
+                     "permet raisonnablement de déduire, mais sans jamais dépasser ce qu'il permet sans risque "
+                     "d'invention — un champ vide ou une liste vide valent mieux qu'un fait inventé.") if not has_abstract else (
+                     "Le texte source (sommaire officiel) contient en général plusieurs informations distinctes : "
+                     "développe CHAQUE champ en profondeur, avec plusieurs phrases si le contenu le justifie. Ne résume "
+                     "pas à l'extrême : un notaire doit pouvoir s'appuyer sur cette fiche sans relire la source en entier.")
+    prompt = ("Tu rédiges une fiche de synthèse DÉTAILLÉE ET CIRCONSTANCIÉE à destination d'un notaire français, d'un "
+              "niveau d'exigence professionnel élevé, en t'appuyant STRICTEMENT et UNIQUEMENT sur le texte ci-dessous "
+              "(titre" + (" + sommaire officiel" if has_abstract else " seul, sans sommaire") + "). N'invente et n'ajoute "
+              "AUCUN fait, numéro d'article, date, chiffre, nom ou conséquence juridique qui n'y figure pas explicitement : "
+              f"c'est une exigence absolue, jamais négociable. {consigne_min} Réponds STRICTEMENT en JSON valide et "
+              "complet, sans aucun texte autour, et sans jamais t'interrompre en cours de phrase, avec exactement ces clés :\n"
+              '{"resume": "3 à 5 phrases complètes et précises reformulant le contenu, son raisonnement juridique et sa '
+              'portée — pas une simple phrase d\'accroche, un vrai résumé substantiel", '
+              '"contexte": "2 à 4 phrases sur l\'état du droit antérieur et ce que ce texte/cette décision modifie, '
+              'clarifie ou tranche par rapport à lui, UNIQUEMENT si le texte source le précise explicitement, sinon chaîne vide", '
+              '"points_cles": ["fait précis et concret 1", "fait 2", "fait 3", "fait 4", "fait 5 (autant que le texte le permet, '
+              'jusqu\'à 6)"], '
+              '"qui_est_concerne": "2-3 phrases détaillant précisément les personnes, actes, situations ou professionnels '
+              'concernés et dans quelles circonstances, seulement si explicite, sinon chaîne vide", '
+              '"vigilance": "2-4 phrases concrètes et actionnables, au conditionnel, sur ce qu\'un notaire devrait '
+              'vérifier, adapter dans ses actes, ou signaler à ses clients — avec le niveau de détail d\'une note interne '
+              'd\'étude, seulement si le texte le permet clairement, sinon chaîne vide"}\n'
               "Réponds exactement INSUFFISANT seulement si le titre lui-même est trop vague pour en tirer un résumé factuel.\n\n"
               "Titre : " + item["title"] + "\n" + item.get("abstract", ""))
 
-    txt = call_ai(prompt, max_tokens=550)
+    txt = call_ai(prompt, max_tokens=1600)
     if not txt or txt.startswith("INSUFFISANT"): return None
-    return parse_ai_json(txt) or {"resume": txt[:400], "points": [], "portee": None}
+    parsed = parse_ai_json(txt)
+    if parsed: return parsed
+    log("Fiche IA : JSON invalide ou tronqué, fiche écartée plutôt qu'affichée cassée.")
+    return None
 
 def main():
     os.makedirs(DOCS, exist_ok=True)
     store = {}
     if os.path.exists(DATA):
         store = {i["id"]: i for i in json.load(open(DATA, encoding="utf-8"))}
+    # Nettoyage ponctuel : retire les décisions du Conseil d'État/CAA déjà collectées (source désormais écartée,
+    # cf. src_fonds) et efface les fiches IA mal formées d'un ancien bug (réponse tronquée affichée en JSON brut),
+    # pour qu'elles soient régénérées proprement.
+    purged = [k for k, i in store.items() if i.get("source") == "Conseil d'État"]
+    for k in purged: del store[k]
+    broken_ai = 0
+    for i in store.values():
+        a = i.get("ai")
+        if isinstance(a, dict) and (not a.get("resume") or a["resume"].strip().startswith("{") or a["resume"].strip().startswith('"resume"')):
+            del i["ai"]; broken_ai += 1
+    if purged or broken_ai:
+        log(f"Nettoyage : {len(purged)} décision(s) Conseil d'État retirée(s), {broken_ai} fiche(s) cassée(s) réinitialisée(s).")
     new = []
     try:
         tok = piste_token()
@@ -261,8 +297,12 @@ def main():
     configured = [k for k in ("groq", "gemini", "anthropic")
                   if os.getenv({"groq": "GROQ_API_KEY", "gemini": "GEMINI_API_KEY", "anthropic": "ANTHROPIC_API_KEY"}[k])]
     n, ai_batch = 0, int(os.getenv("AI_BATCH", "25"))
+    ai_deadline = time.time() + int(os.getenv("AI_TIME_BUDGET_S", "150"))  # 4 min par défaut : au-delà, on arrête plutôt que d'attendre un quota à la limite
     for it in sorted(store.values(), key=lambda i: i["date"], reverse=True):
         if n >= ai_batch: break
+        if time.time() >= ai_deadline:
+            log("Temps maximal alloué aux fiches IA atteint pour ce run (quota probablement saturé) : arrêt propre, la suite sera reprise au prochain lancement.")
+            break
         if configured and set(configured) <= _DEAD_PROVIDERS:
             log("Tous les fournisseurs IA configurés sont à quota ou en erreur : arrêt anticipé des fiches pour ce run.")
             break
@@ -293,26 +333,29 @@ def notify(new_items):
 
 _DEAD_PROVIDERS = set()  # fournisseurs déjà en échec définitif sur ce run : on ne les rappelle plus, pour ne pas perdre de temps
 
+_QUOTA_HINTS = ("quota", "tokens per day", "tpd", "requests per day", "rpd", "billing")
+
 def _post_with_retry(url, provider, **kw):
-    """Réessaie en cas de 429 (quota) ou 503 (serveur saturé) : 2 essais max, pause courte.
-    Toute autre erreur (400, 401, 404...) indique un problème de configuration, pas un aléa réseau :
-    on n'insiste pas, on marque le fournisseur mort pour le reste du run et on log le détail exact."""
+    """Réessaie en cas de 429/503 ambigu (embouteillage passager) : 2 essais max, pause courte.
+    Si le message d'erreur mentionne explicitement un quota/jour épuisé, on n'insiste PAS du tout :
+    un quota épuisé ne se résout pas en 6 secondes, ça ne sert qu'à perdre du temps pour rien."""
     delay = 6
-    r = None
-    for attempt in range(2):
-        r = requests.post(url, **kw)
-        if r.status_code not in (429, 503):
-            break
-        wait = delay * (attempt + 1)
-        log(f"IA ({provider}) : {r.status_code}, nouvel essai dans {wait}s ({attempt+1}/2)")
-        time.sleep(wait)
+    r = requests.post(url, **kw)
     if r.status_code >= 400:
-        body = (r.text or "")[:300].replace("\n", " ")
-        log(f"IA ({provider}) : échec {r.status_code} — {body}")
-        if r.status_code != 503:
-            # 400/401/404 (config) ET 429 persistant après nouvelles tentatives (quota épuisé, pas juste un pic
-            # de vitesse) : dans les deux cas, inutile de continuer à solliciter ce fournisseur pour ce run.
-            _DEAD_PROVIDERS.add(provider)
+        body = (r.text or "")[:300]
+        if r.status_code in (429, 503) and not any(h in body.lower() for h in _QUOTA_HINTS):
+            # Embouteillage sans mention de quota : vaut la peine de retenter une fois, rapidement.
+            for attempt in range(2):
+                wait = delay * (attempt + 1)
+                log(f"IA ({provider}) : {r.status_code}, nouvel essai dans {wait}s ({attempt+1}/2)")
+                time.sleep(wait)
+                r = requests.post(url, **kw)
+                if r.status_code < 400: break
+                body = (r.text or "")[:300]
+        if r.status_code >= 400:
+            log(f"IA ({provider}) : échec {r.status_code} — {body.replace(chr(10), ' ')}")
+            if r.status_code != 503:
+                _DEAD_PROVIDERS.add(provider)  # quota épuisé ou erreur de config : on arrête net pour ce fournisseur
     return r
 
 def call_ai(prompt, max_tokens=700):
@@ -370,7 +413,11 @@ def weekly_digest(items):
             if m in ("Texte majeur à examiner", "Autres"): continue
             by_mat.setdefault(m, []).append(i)
     digest = {}
+    digest_deadline = time.time() + 60  # 100s max pour le brief : il passe avant les fiches, ne doit pas monopoliser le run
     for mat, its in sorted(by_mat.items(), key=lambda kv: -len(kv[1]))[:8]:
+        if time.time() >= digest_deadline:
+            log("Temps maximal atteint pour le brief hebdomadaire : matières restantes reprises au prochain run.")
+            break
         if len(its) < 2: continue
         lst = "\n".join(f"- {i['title']} ({i['type']}, {i['date']})" + (f" : {i['abstract'][:180]}" if i.get("abstract") else "") for i in its[:12])
         prompt = ("Tu rédiges la synthèse hebdomadaire d'une veille juridique pour des notaires, sur la matière "
