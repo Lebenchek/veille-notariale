@@ -364,7 +364,21 @@
   "first_seen": "2026-10-02",
   "articles": [
    "art. 117 code de procédure civile"
-  ]
+  ],
+  "ai": {
+   "resume": "La Cour de cassation, chambre civile 2, a jugé que l'absence de mention de la qualité d'intimée de la seule partie opposée à l'appelant, bien que cette partie soit expressément identifiée dans la déclaration d'appel, constitue un vice de forme. Cette omission n'est pas couverte par l'article 117 du code de procédure civile. En conséquence, la Cour a cassé la décision attaquée. Le rappel porte sur le respect strict des exigences de forme lors de la rédaction d'une déclaration d'appel. Cette décision souligne l'importance de la précision nominative et qualitative des parties dans les actes d'appel.",
+   "contexte": "Le texte indique que l'article 117 du code de procédure civile ne prévoit pas la mention de la qualité d'intimée dans ce cas, mais que, malgré cela, l'omission est jugée irrégulière. Ainsi, la décision précise que le formalisme requis dépasse les seules dispositions de l'article 117.",
+   "points": [
+    "Omission de la mention de la qualité d'intimée dans la déclaration d'appel",
+    "La partie concernée est la seule à laquelle l'appelant est opposé",
+    "Cette partie est expressément identifiée dans l'acte d'appel",
+    "L'omission n'est pas prévue par l'article 117 du code de procédure civile",
+    "L'omission constitue un vice de forme",
+    "La Cour a prononcé la cassation de la décision"
+   ],
+   "qui": "La décision concerne l'appelant et la seule partie opposée, qui doit être désignée comme intimée dans la déclaration d'appel. Elle s'applique à toute procédure d'appel où la partie adverse est identifiée mais n'est pas qualifiée d'intimée, même en l'absence de référence à l'article 117 du CPC. Les praticiens du droit, notamment les avocats et notaires rédigeant des actes d'appel, sont directement concernés.",
+   "portee": "Le notaire devra vérifier que chaque déclaration d'appel mentionne explicitement la qualité d'intimée de toute partie opposée, même si l'article 117 du CPC ne l'exige pas expressément. Il conviendra de contrôler que l'identité de la partie est clairement indiquée et que la qualification juridique correspondante est indiquée, afin d'éviter un vice de forme susceptible d'entraîner la cassation. En cas d'omission, il serait prudent de recommander une rectification ou un complément d'acte avant le dépôt. Le notaire devra également informer son client du risque de nullité de l'appel en l'absence de cette mention."
+  }
  },
  {
   "id": "JUDI-6abe4b0cc27382d0995fc355",
@@ -378,7 +392,20 @@
   "matieres": [
    "Fiscalité"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation rappelle que les erreurs ou omissions matérielles dans un jugement rendu par une formation collégiale ne peuvent être corrigées que par une juridiction statuant également en formation collégiale. Elle précise que, lorsqu’une requête en rectification d’un jugement n’est pas clairement portée à la connaissance du défendeur, ni que ce dernier n’a été entendu ou appelé, le jugement qui y donne suite méconnaît les exigences des articles 14 et 462, alinéa 3, du code de procédure civile. En conséquence, la Cour a cassé le jugement de rectification. Cette décision confirme la nécessité du respect strict des règles de notification et d’audition du défendeur dans les procédures de rectification judiciaire.",
+   "contexte": null,
+   "points": [
+    "Seules les juridictions statuant en formation collégiale peuvent rectifier les erreurs ou omissions matérielles d’un jugement collégial.",
+    "Le jugement de rectification doit respecter les exigences des articles 14 et 462, alinéa 3, du code de procédure civile.",
+    "Il faut que la requête en rectification soit portée à la connaissance du défendeur.",
+    "Le défendeur doit être entendu ou appelé avant que le jugement de rectification ne soit rendu.",
+    "Le non-respect de ces exigences entraîne la cassation du jugement de rectification."
+   ],
+   "qui": "La décision concerne les jugements rendus par des formations collégiales ainsi que les parties à la procédure de rectification, en particulier le défendeur qui doit être informé et entendu. Elle s’applique aux juridictions qui envisagent de corriger un jugement collégial et aux avocats ou notaires qui assistent leurs clients dans de telles demandes.",
+   "portee": "Le notaire devra vérifier que toute requête en rectification d’un jugement collégial a bien été notifiée au défendeur et que ce dernier a été entendu ou appelé, sous peine de nullité. Il devra s’assurer que la juridiction saisie pour la rectification statue en formation collégiale, conformément à la règle énoncée. En cas de doute, il conviendra de demander confirmation écrite de la notification et de l’audition du défendeur avant de conseiller la poursuite de la procédure."
+  }
  },
  {
   "id": "JUDI-6abe4af0c27382d0995fb768",
@@ -392,7 +419,20 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "L'action en démolition prévue à l'article L.480-13 du code de l'urbanisme vise à réparer le préjudice personnel du demandeur en mettant fin à la situation illicite qui le cause. Le juge, dès lors qu'il constate l'existence de ce préjudice, doit, sauf impossibilité, ordonner la démolition de la construction dans la mesure nécessaire pour la rendre conforme à la règle d'urbanisme violée, quel que soit le degré de gravité du préjudice. La Cour de cassation a confirmé cette obligation en cassant la décision attaquée.",
+   "contexte": null,
+   "points": [
+    "L'action en démolition, prévue par l'article L.480-13 du code de l'urbanisme, a pour objet de réparer le préjudice personnel du demandeur en cessant la situation illicite.",
+    "Le juge qui reconnaît l'existence du préjudice, quel que soit son degré de gravité, est tenu d'ordonner la démolition, sauf si elle est impossible.",
+    "La démolition doit être effectuée dans la mesure suffisante pour mettre la construction en conformité avec la règle d'urbanisme méconnue.",
+    "L'obligation de démolition s'applique dès le jour où le juge statue, indépendamment de la gravité du préjudice.",
+    "La Cour de cassation a confirmé cette règle en prononçant la cassation de la décision contestée."
+   ],
+   "qui": "Le demandeur qui invoque un préjudice personnel du fait d'une construction illégale, le juge chargé de statuer sur la demande, ainsi que le propriétaire ou le constructeur de la construction concernée, sont directement concernés par l'application de l'article L.480-13.",
+   "portee": "Le notaire devra vérifier, avant la rédaction d'actes de vente ou de donation, l'existence éventuelle d'irrégularités d'urbanisme susceptibles de générer une action en démolition et d'entraîner un préjudice personnel. Il devra informer son client que, même en cas de préjudice léger, le juge peut ordonner la démolition, sauf impossibilité, et que la conformité à la règle d'urbanisme doit être assurée. Il conviendra également d'évaluer la faisabilité de la démolition et, le cas échéant, d'envisager des clauses de garantie ou de réserve dans l'acte notarié."
+  }
  },
  {
   "id": "JUDI-6abe4b01c27382d0995fbe6c",
@@ -409,7 +449,21 @@
   "first_seen": "2026-10-02",
   "articles": [
    "art. 468 code de procédure civile que"
-  ]
+  ],
+  "ai": {
+   "resume": "L'article 468 du code de procédure civile prévoit que, lorsqu'un appelant ne comparaît pas sans motif légitime, seul l'intimé peut solliciter une décision sur le fond ; le juge peut alors renvoyer l'affaire ou, d'office, déclarer l'appel caduc. Cette caducité peut être levée si l'appelant informe le greffe, dans un délai de quinze jours, du motif légitime qu'il n'a pu invoquer à temps. La Cour de cassation a cassé l'arrêt de la cour d'appel qui avait jugé irrecevable une demande de relevé de caducité présentée par courriel, en rappelant que le courriel est un moyen de transmission valable dans le délai imparti et que la cour devait vérifier la présence d'un motif légitime. Ainsi, la décision confirme la possibilité d'utiliser le courriel pour former la demande et impose à la juridiction d'examiner le contenu du courriel quant au motif légitime.",
+   "contexte": "Le texte indique que la jurisprudence antérieure de la cour d'appel excluait la transmission d'actes de procédure par courriel, position que la Cour de cassation corrige en reconnaissant la validité du courriel pour la demande de relevé de caducité, à condition que le délai de quinze jours soit respecté et que le motif légitime soit examiné.",
+   "points": [
+    "L'article 468 du CPC stipule que, sans motif légitime, l'absence de l'appelant empêche ce dernier de demander une décision sur le fond, seul l'intimé peut le faire.",
+    "Le juge peut soit renvoyer l'affaire à une audience ultérieure, soit déclarer d'office la caducité de la déclaration d'appel.",
+    "La caducité peut être levée si l'appelant communique au greffe, dans les quinze jours, le motif légitime qu'il n'a pu invoquer précédemment.",
+    "La cour d'appel a jugé irrecevable une demande de relevé de caducité transmise par courriel, considérant que aucun acte de procédure ne pouvait être envoyé ainsi.",
+    "La Cour de cassation a cassé cet arrêt, rappelant que le courriel constitue un moyen de transmission admissible dans le délai légal.",
+    "La Cour de cassation a indiqué que la cour d'appel aurait dû vérifier si le courriel contenait un motif légitime."
+   ],
+   "qui": "La règle s'applique aux appelants qui ne comparaissent pas sans motif légitime, aux intimés qui peuvent alors demander une décision sur le fond, ainsi qu'aux juges et greffes chargés de statuer sur la caducité et son éventuel relevé. Elle concerne également les parties qui souhaitent transmettre une demande de relevé de caducité par voie électronique dans le délai imparti.",
+   "portee": "Le notaire devra s'assurer que toute demande de relevé de caducité formulée par son client soit envoyée par courriel dans le délai de quinze jours et qu'elle comporte clairement le motif légitime invoqué. Il conviendra de vérifier que le greffe accuse réception du courriel et de conseiller le client de conserver une preuve de l'envoi et de la réception. En cas de doute sur la légitimité du motif, le notaire devra recommander d'accompagner la demande d'une explication détaillée afin d'éviter un rejet pour irrecevabilité."
+  }
  },
  {
   "id": "JUDI-6abcc20ac27382d09908d4f3",
@@ -471,7 +525,21 @@
   "first_seen": "2026-10-02",
   "articles": [
    "art. 954 code civil"
-  ]
+  ],
+  "ai": {
+   "resume": "L'article 954 du code civil prévoit que la révocation d'une donation pour inexécution des charges restitue les biens au donateur, libérés de toutes charges et hypothèques du donataire. Lorsque la donation est une donation‑partage cumulative, la révocation à l'encontre d'un copartagé entraîne la restitution d'une quote‑part calculée au prorata de la contribution du donateur à la masse unique des biens partagés, créant ainsi une indivision entre le donateur et le donataire sur l'ensemble du lot attribué. En matière de remembrement rural, la révocation d'une donation portant sur des parcelles agricoles échangées par le plan de remembrement fait revenir au donateur les terres attribuées par le remembrement, subrogées aux terres initialement données, et la quote‑part à restituer s'applique tant sur les biens conservés que sur ceux reçus en échange. La Cour de cassation a confirmé ces principes en cassant la décision contestée.",
+   "contexte": "Le texte rappelle la rédaction antérieure à la loi n°92-1283 du 11 décembre 1992 de l'article 31, alinéa 1er du code rural, qui disposait que les droits réels, autres que les servitudes, grevant les immeubles remembrés s'exercent sur les immeubles attribués par le remembrement. Cette disposition antérieure est mobilisée pour préciser l'effet de la révocation sur les parcelles agricoles concernées par un remembrement.",
+   "points": [
+    "La révocation d'une donation pour inexécution des charges, selon l'article 954 du code civil, restitue les biens au donateur libres de toutes charges du donataire.",
+    "Dans une donation‑partage cumulative, la révocation contre un copartagé oblige ce dernier à restituer une quote‑part proportionnelle à la contribution du donateur à la masse unique des biens partagés.",
+    "Cette restitution crée une indivision entre le donateur et le donataire sur l'ensemble du lot attribué, qui doit être partagée selon les règles du droit commun.",
+    "L'article 31, alinéa 1er du code rural, dans sa rédaction antérieure à la loi n°92-1283, prévoit que les droits réels grevant les immeubles remembrés s'exercent sur les immeubles attribués par le remembrement.",
+    "En cas de remembrement rural, la révocation d'une donation sur des parcelles agricoles fait revenir au donateur les terres attribuées par le remembrement, subrogées aux terres initialement données.",
+    "La quote‑part à restituer s'applique tant sur les biens restés en possession du donataire que sur les parcelles reçues en échange lors du remembrement."
+   ],
+   "qui": "La décision concerne le donateur et le donataire dans le cadre d'une donation‑partage cumulative, ainsi que les copartagés qui pourraient être sanctionnés pour inexécution des charges. Elle s'applique également aux propriétaires de parcelles agricoles soumises à un plan de remembrement rural, lorsque ces parcelles font partie du lot attribué par la donation‑partage. Les notaires intervenant dans la rédaction ou la révocation de telles donations doivent en tenir compte.",
+   "portee": "Le notaire devra vérifier si la donation revêt le caractère de donation‑partage cumulative et s'il existe une stipulation contraire à la restitution proportionnelle. Il devra calculer la quote‑part à restituer en fonction de la contribution du donateur à la masse unique des biens partagés, en incluant les parcelles obtenues par remembrement. Il devra également s'assurer que les droits réels grevant les immeubles remembrés sont correctement identifiés et que la subrogation des terres attribuées par le remembrement est prise en compte dans la restitution. Enfin, il devra informer les parties des conséquences d'une éventuelle indivision résultant de la révocation et des modalités de partage selon le droit commun."
+  }
  },
  {
   "id": "JUDI-6abcc20dc27382d09908d627",
@@ -828,7 +896,21 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation, première chambre civile, du 9 septembre 2026 (n° 24‑22.791), a jugé que les revenus tirés d’un bien propre, lorsqu’ils sont affectés au remboursement du prêt ayant financé l’acquisition de ce bien, ne sont pas considérés comme consommés par leur propriétaire. Cette absence de consommation ouvre droit à une récompense au profit de la communauté. Ainsi, la communauté matrimoniale peut réclamer une quote‑part des revenus ainsi employés. La décision précise que l’emploi des revenus au service du remboursement du financement constitue un acte ouvrant droit à la communauté. Elle confirme le principe selon lequel l’usage des revenus d’un bien propre pour rembourser l’emprunt ne prive pas la communauté de sa créance.",
+   "contexte": null,
+   "points": [
+    "Les revenus d’un bien propre affectés au remboursement du prêt qui a financé son acquisition ne sont pas considérés comme consommés par le propriétaire.",
+    "Cette non‑consommation ouvre droit à une récompense au profit de la communauté matrimoniale.",
+    "La décision a été rendue par la première chambre civile de la Cour de cassation le 9 septembre 2026, n° 24‑22.791.",
+    "Le principe s’applique uniquement lorsque le prêt a servi à acquérir le bien propre en question.",
+    "Le bien concerné est qualifié de « bien propre » au sens du régime matrimonial.",
+    "La communauté peut donc revendiquer une part des revenus ainsi employés."
+   ],
+   "qui": "Cette décision concerne le propriétaire d’un bien propre qui utilise les revenus de ce bien pour rembourser le prêt ayant financé son acquisition, ainsi que la communauté matrimoniale qui peut prétendre à une récompense sur ces revenus. Elle s’applique aux couples soumis à un régime de communauté où l’un des époux possède des biens propres. Les situations où les revenus sont effectivement affectés au remboursement du financement sont visées.",
+   "portee": "Le notaire devra vérifier que les revenus du bien propre sont effectivement affectés au remboursement du prêt et que cette affectation est clairement documentée. Il conviendra de s’assurer que la qualification de bien propre est correctement établie dans l’acte de mariage ou le contrat de société. Le notaire devra, le cas échéant, prévoir dans l’acte de liquidation ou de partage la quote‑part de la communauté sur les revenus ainsi employés, afin de garantir le droit à récompense reconnu par la Cour. Enfin, il sera prudent d’informer les parties de la possibilité pour la communauté de réclamer cette récompense et d’inscrire les modalités de calcul dans les conventions entre époux."
+  }
  },
  {
   "id": "JUDI-6abb6dfcc27382d099e54f97",
@@ -1528,7 +1610,20 @@
   "matieres": [
    "Fiscalité"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation, 3ᵉ chambre civile, du 24 /09 /2026 (n° 24‑16.732), interprète l’article 1304‑3 alinéa 1 du Code civil en précisant que la condition suspensive est réputée accomplie lorsque la personne qui en avait intérêt a elle‑même empêché son accomplissement, ce qui implique qu’il faut identifier le sujet ayant empêché la condition.",
+   "contexte": null,
+   "points": [
+    "Décision de la 3ᵉ chambre civile de la Cour de cassation en date du 24 /09 /2026 (n° 24‑16.732).",
+    "Référence à l’article 1304‑3 alinéa 1 du Code civil concernant la condition suspensive.",
+    "Principe posé : la condition suspensive est réputée accomplie si celui qui en avait intérêt en a empêché l’accomplissement.",
+    "Nécessité d’identifier précisément la personne qui a empêché l’accomplissement de la condition.",
+    "Publication de la décision au Bulletin."
+   ],
+   "qui": "Cette décision s’applique aux parties contractuelles soumises à une condition suspensive, en particulier à celle ou celui qui détient un intérêt direct dans la réalisation de la condition et qui pourrait, de fait, en empêcher l’accomplissement.",
+   "portee": "Le notaire devra, lors de la rédaction ou de la vérification d’actes contenant une condition suspensive, s’assurer d’identifier clairement le bénéficiaire de la condition et de vérifier si ce dernier pourrait, de manière volontaire ou non, empêcher son accomplissement ; il conviendra d’inscrire dans l’acte des clauses précisant les conséquences d’une telle entrave afin d’éviter toute contestation ultérieure."
+  }
  },
  {
   "id": "RSS-39600 at https://www.notaires.fr",
@@ -2056,7 +2151,20 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation, 3ᵉ chambre civile, du 17 septembre 2026, a confirmé que le syndicat des copropriétaires demeure responsable de plein droit des dommages dont l’origine se situe dans une partie commune à jouissance privative, même lorsque le règlement de copropriété impose l’entretien de cette partie au copropriétaire bénéficiaire. Cette responsabilité ne peut être écartée par une simple clause de répartition des charges d’entretien. La décision précise que la nature de la partie (commune, même à usage exclusif) impose une responsabilité inconditionnelle au syndicat. Ainsi, le fait d’attribuer l’obligation d’entretien à un copropriétaire n’exonère pas le syndicat de son devoir de garantie envers les tiers. Le jugement vient réaffirmer le principe de responsabilité du syndicat en matière de parties communes, indépendamment des stipulations internes de la copropriété.",
+   "contexte": null,
+   "points": [
+    "Un dommage provenant d’une partie commune à jouissance privative engage la responsabilité de plein droit du syndicat des copropriétaires.",
+    "Le règlement de copropriété qui charge l’entretien de cette partie au copropriétaire bénéficiaire n’exonère pas le syndicat de sa responsabilité.",
+    "La Cour de cassation a rappelé que la nature de la partie (commune, même à usage exclusif) impose une responsabilité inconditionnelle au syndicat.",
+    "La décision a été rendue par la 3ᵉ chambre civile le 17 septembre 2026 et publiée au Bulletin.",
+    "La responsabilité du syndicat subsiste indépendamment de toute clause interne de répartition des charges d’entretien."
+   ],
+   "qui": "Le syndicat des copropriétaires est directement concerné, de même que le copropriétaire bénéficiaire de la jouissance privative de la partie commune. Les tiers victimes d’un dommage lié à cette partie sont également concernés, car ils peuvent se retourner contre le syndicat malgré les clauses internes de la copropriété.",
+   "portee": "Le notaire devra vérifier que les actes de copropriété ne contiennent pas de clauses visant à exclure ou limiter la responsabilité du syndicat en matière de parties communes à jouissance privative, sous peine d’inopposabilité. Il conviendra d’informer les clients que, même si l’entretien est attribué à un copropriétaire, le syndicat reste garant des dommages et doit donc souscrire ou maintenir une assurance adéquate. En cas de rédaction de nouveaux règlements ou de modifications, il sera prudent d’insérer une mention explicite rappelant l’obligation de responsabilité du syndicat, afin d’éviter tout litige ultérieur."
+  }
  },
  {
   "id": "SEPAJ-actualites/actes,2/donation-avec-charges-revirement-de-jurisprudence-l-action-en-revocation-se-prescrit-desormais-par-cinq-ans-cass-civ-3eme-17-09-2026-n-24-21-632-publie-au-bulletin,385",
@@ -2071,7 +2179,20 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation, 3ᵉ chambre civile, a rendu le 17 septembre 2026 un arrêt (n° 24-21.632) qui modifie la jurisprudence relative à la révocation d’une donation. L’action en révocation pour inexécution des charges est désormais qualifiée d’action personnelle. Elle est soumise à un délai de prescription de cinq ans, quel que soit le type de bien donné, y compris lorsqu’il s’agit d’un immeuble. Cette décision, publiée au Bulletin, constitue un revirement de la jurisprudence antérieure. Elle fixe ainsi une règle uniforme de prescription pour toutes les donations assorties de charges.",
+   "contexte": null,
+   "points": [
+    "L’action en révocation d’une donation pour inexécution des charges est une action personnelle.",
+    "Le délai de prescription applicable à cette action est de cinq ans.",
+    "Cette prescription de cinq ans s’applique même lorsque la donation porte sur un immeuble.",
+    "L’arrêt a été rendu par la Cour de cassation, 3ᵉ chambre civile, le 17/09/2026, n° 24-21.632, publié au Bulletin.",
+    "Il s’agit d’un revirement de jurisprudence concernant la prescription de l’action en révocation."
+   ],
+   "qui": "Le dispositif concerne les parties à une donation assortie de charges, c’est‑à‑dire le donateur et le donataire, ainsi que les bénéficiaires d’une donation portant sur un bien immobilier. Il s’applique lorsque les charges prévues dans l’acte de donation ne sont pas exécutées, entraînant une éventuelle action en révocation.",
+   "portee": "Le notaire devra vérifier que les parties sont informées du nouveau délai de prescription de cinq ans pour toute action en révocation liée à l’inexécution des charges. Il conviendra de s’assurer que les clauses de charge sont rédigées de façon claire afin d’éviter tout litige ultérieur. Le notaire devra également conseiller les clients de déposer toute demande de révocation dans le délai de cinq ans, sous peine de forclusion. Enfin, il sera prudent de mentionner explicitement ce délai dans l’acte de donation ou dans un avenant, afin de sécuriser les parties."
+  }
  },
  {
   "id": "SEPAJ-actualites/formalites,1/le-maire-peut-refuser-la-delivrance-du-certificat-de-permis-tacite-avant-meme-son-retrait-ce-13-07-2026-n-504144,384",
@@ -2084,7 +2205,18 @@
   "matieres": [
    "Fiscalité"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "Le Conseil d'État, dans sa décision du 13 juillet 2026 (n° 504144), affirme que le maire peut refuser la délivrance du certificat de permis tacite avant même que le permis ne soit retiré. Le retrait d’un permis de construire, qu’il soit exprès ou tacite, entraîne sa disparition juridique tant pour l’avenir que pour le passé, conformément à l’article L. 240‑1 du Code des relations entre le public et l’administration (CRPA). Cette jurisprudence précise que, même en l’absence de retrait formel, le maire dispose d’un pouvoir de refus anticipé du certificat de permis tacite.",
+   "contexte": null,
+   "points": [
+    "Le maire peut refuser la délivrance du certificat de permis tacite avant le retrait du permis (CE, 13/07/2026, n° 504144).",
+    "Le retrait d’un permis de construire, exprès ou tacite, le fait disparaître juridiquement pour l’avenir comme pour le passé (CRPA, art. L. 240‑1).",
+    "La décision porte spécifiquement sur le certificat de permis tacite, distinct du permis lui‑même."
+   ],
+   "qui": "Cette décision concerne les maires, qui exercent le pouvoir de refus du certificat de permis tacite, ainsi que les porteurs de projets de construction qui attendent ce certificat pour valider la légalité de leurs travaux. Elle s’applique aux situations où le permis de construire a été accordé tacitement et n’a pas encore été retiré formellement.",
+   "portee": "Le notaire devra vérifier, avant de finaliser tout acte lié à un permis tacite, si le certificat a déjà été délivré ou s’il existe un risque de refus du maire avant le retrait du permis. Il conviendra d’informer le client de la possibilité d’un refus anticipé et d’envisager, le cas échéant, des garanties ou des clauses de sauvegarde dans l’acte. En cas de doute, il serait prudent de solliciter une confirmation écrite du service de l’urbanisme ou du maire quant à la délivrance du certificat."
+  }
  },
  {
   "id": "JUDI-6aabdc90c27382d09905f688",
@@ -2570,7 +2702,20 @@
    "Sociétés & patrimoine professionnel",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation, dans son arrêt du 17 juin 2026 (n° 25-13.855), confirme que, en application de l'article L.223-22 du Code de commerce, le gérant d'une SARL est soumis à une obligation de loyauté et de fidélité qui lui interdit, de plein droit, de créer une société concurrente pendant l'exercice de son mandat, indépendamment de toute autre considération juridique.",
+   "contexte": null,
+   "points": [
+    "L'article L.223-22 du Code de commerce impose une obligation de loyauté et de fidélité au gérant de SARL.",
+    "Cette obligation interdit au gérant de créer une société concurrente pendant son mandat.",
+    "L'interdiction s'applique par principe, sans dépendre d'autres dispositions ou circonstances.",
+    "La décision de la Cour de cassation du 17/06/2026 (n° 25-13.855) confirme et précise cette règle.",
+    "Le caractère prohibitif de l'acte de création d'une société concurrente est autonome et ne nécessite pas de justification supplémentaire."
+   ],
+   "qui": "L'arrêt concerne les gérants de sociétés à responsabilité limitée (SARL) qui, pendant la durée de leur mandat, envisagent ou mettent en œuvre la création d'une société exerçant une activité concurrente à celle de la SARL qu'ils dirigent.",
+   "portee": "Le notaire devra s'assurer, lors de la rédaction ou de la modification des statuts et des actes de nomination, que le futur ou l'actuel gérant ne prévoit pas de créer une société concurrente pendant son mandat, en rappelant l'obligation de loyauté prévue à l'article L.223-22. Il pourra également conseiller le client d'inclure une clause explicite de non-concurrence dans le mandat du gérant afin de prévenir tout risque de violation. Enfin, le notaire devra vérifier, le cas échéant, que les projets de création d'entreprise du gérant ne portent pas atteinte à cette interdiction avant de finaliser tout acte de société."
+  }
  },
  {
   "id": "SEPAJ-actualites/actes,2/transmission-des-exploitations-agricoles-france-services-agriculture-operationnel-a-compter-du-1er-janvier-2027-d-n-2026-852-du-9-septembre-2026,382",
@@ -2583,7 +2728,20 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "Le décret n° 2026‑852 du 9 septembre 2026 institue le dispositif France Services Agriculture, qui sera opérationnel à compter du 1er janvier 2027 pour la transmission des exploitations agricoles. Ce nouveau dispositif remplace l’ancien mécanisme d’inscription au Répertoire Départ Installation (RDI), qui servait à recenser les exploitations à céder. Ainsi, l’exploitant agricole ou le propriétaire souhaitant transmettre son exploitation devra désormais passer par France Services Agriculture. Le texte précise le cadre juridique de cette transition et fixe la date d’entrée en vigueur du nouveau dispositif.",
+   "contexte": "Auparavant, la transmission d’une exploitation agricole s’appuyait sur le Répertoire Départ Installation (RDI), permettant de recenser les exploitations à céder. Le présent décret modifie ce dispositif en créant France Services Agriculture, qui prend le relais à compter du 1er janvier 2027.",
+   "points": [
+    "Le décret n° 2026‑852 du 9 septembre 2026 crée le dispositif France Services Agriculture.",
+    "France Services Agriculture devient opérationnel le 1er janvier 2027.",
+    "Sous l’ancien dispositif, l’exploitant ou le propriétaire pouvait demander l’inscription au Répertoire Départ Installation (RDI).",
+    "Le RDI était destiné à recenser les exploitations agricoles à céder.",
+    "Le nouveau dispositif remplace le RDI pour la transmission des exploitations agricoles."
+   ],
+   "qui": "Le dispositif concerne les exploitants agricoles et les propriétaires qui envisagent de transmettre une exploitation. Il implique également les notaires qui interviennent dans les actes de transmission, ainsi que les services administratifs chargés de la mise en œuvre de France Services Agriculture.",
+   "portee": "Le notaire devra vérifier que la demande d’inscription à la transmission d’une exploitation est effectuée via France Services Agriculture à compter du 1er janvier 2027, et non plus via le RDI. Il conviendra d’informer les clients du changement de procédure et de s’assurer que les pièces requises par le nouveau dispositif sont réunies. Le notaire devra également contrôler que la date d’entrée en vigueur du dispositif est respectée dans le calendrier de la transmission."
+  }
  },
  {
   "id": "SEPAJ-actualites/actes,2/bail-rural-le-depot-de-garantie-est-prohibe-cass-civ-3eme-02-07-2026-n-24-12-681-publie-au-bulletin,381",
