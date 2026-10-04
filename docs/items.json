@@ -26,6 +26,21 @@
   }
  },
  {
+  "id": "JUDI-6abe4af4c27382d0995fb8b5",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-01",
+  "title": "Cass. civ2 — 2026-10-01 — n° 26-70.007",
+  "abstract": "Solution : avis",
+  "url": "https://www.courdecassation.fr/decision/6abe4af4c27382d0995fb8b5",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-04",
+  "ai": null
+ },
+ {
   "id": "RSS-39628 at https://www.notaires.fr",
   "source": "Notaires de France - Famille",
   "type": "Doctrine / actualité",
@@ -464,6 +479,21 @@
    "qui": "La règle s'applique aux appelants qui ne comparaissent pas sans motif légitime, aux intimés qui peuvent alors demander une décision sur le fond, ainsi qu'aux juges et greffes chargés de statuer sur la caducité et son éventuel relevé. Elle concerne également les parties qui souhaitent transmettre une demande de relevé de caducité par voie électronique dans le délai imparti.",
    "portee": "Le notaire devra s'assurer que toute demande de relevé de caducité formulée par son client soit envoyée par courriel dans le délai de quinze jours et qu'elle comporte clairement le motif légitime invoqué. Il conviendra de vérifier que le greffe accuse réception du courriel et de conseiller le client de conserver une preuve de l'envoi et de la réception. En cas de doute sur la légitimité du motif, le notaire devra recommander d'accompagner la demande d'une explication détaillée afin d'éviter un rejet pour irrecevabilité."
   }
+ },
+ {
+  "id": "JUDI-6abe4b17c27382d0995fc865",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-09-30",
+  "title": "Cass. civ1 — 2026-09-30 — n° 26-70.009",
+  "abstract": "Solution : avis",
+  "url": "https://www.courdecassation.fr/decision/6abe4b17c27382d0995fc865",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-04",
+  "ai": null
  },
  {
   "id": "JUDI-6abcc20ac27382d09908d4f3",
@@ -2755,7 +2785,21 @@
    "Immobilier & copropriété",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation, troisième chambre civile, a jugé le 2 juillet 2026 que le dépôt de garantie est prohibé dans le cadre d’un bail rural. Cette décision s’appuie sur l’article L. 411‑12 du code rural et de la pêche maritime qui interdit que le fermage comporte un montant supplémentaire au prix du bail tel que calculé par les dispositions applicables. En conséquence, toute clause prévoyant un dépôt de garantie en sus du loyer est nulle. La décision a été publiée au Bulletin, confirmant ainsi l’interprétation stricte de l’interdiction prévue par le texte législatif. Elle précise que le principe s’applique à toutes les formes de garantie assimilées à un dépôt de garantie.",
+   "contexte": null,
+   "points": [
+    "La Cour de cassation a déclaré le dépôt de garantie prohibé dans les baux ruraux (Cass. civ. 3e, 02/07/2026, n° 24‑12.681).",
+    "La décision se fonde sur l’article L. 411‑12 du code rural et de la pêche maritime.",
+    "Cet article stipule que le fermage ne peut comprendre, en sus du prix du bail calculé comme indiqué, aucun montant additionnel.",
+    "Toute clause contractuelle imposant un dépôt de garantie en plus du loyer est donc illégale.",
+    "La décision a été publiée au Bulletin, ce qui en fait une source officielle de droit.",
+    "L’interdiction s’applique à toutes les formes de garantie assimilées à un dépôt de garantie dans le bail rural."
+   ],
+   "qui": "Cette interdiction concerne les bailleurs et les preneurs de baux ruraux, ainsi que les notaires chargés de la rédaction de ces contrats. Elle s’applique à toute convention de bail agricole où serait prévue une garantie sous forme de dépôt de garantie. Les parties doivent donc se conformer à l’interdiction lors de la négociation et de la rédaction du bail.",
+   "portee": "Le notaire devra vérifier que le projet de bail rural ne comporte aucune clause prévoyant un dépôt de garantie ou tout autre paiement supplémentaire au loyer. Il conviendra d’informer les parties que toute disposition de ce type serait nulle et de proposer des garanties alternatives permises par la législation. En cas de contrat existant, le notaire devra conseiller une régularisation pour supprimer la clause illicite et, le cas échéant, envisager la mise en place d’une garantie conforme (caution bancaire, caution solidaire, etc.)."
+  }
  },
  {
   "id": "SEPAJ-actualites/formalites,1/tva-immobiliere-quand-un-assujetti-agit-il-en-tant-que-tel-ce-29-07-2006-n-499315,380",
@@ -2768,7 +2812,18 @@
   "matieres": [
    "Fiscalité"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "Le arrêt du Conseil d'État du 29 juillet 2006 (n° 499315) précise que la simple qualité d’assujetti à la TVA du vendeur ne suffit pas à rendre une mutation immobilière soumise à la TVA. Il faut également établir que le vendeur agit, à l’occasion de son activité économique, au moment de la transaction. Ainsi, la qualification de l’opération dépend de la nature de l’acte du vendeur et non uniquement de son statut fiscal.",
+   "contexte": null,
+   "points": [
+    "Le statut d’assujetti à la TVA du vendeur, à lui seul, n’entraîne pas l’assujettissement à la TVA d’une mutation immobilière.",
+    "Il est indispensable de déterminer si le vendeur agit à l’occasion de son activité économique lors de la mutation.",
+    "L’arrêt du CE du 29/07/2006 (n° 499315) constitue la référence jurisprudentielle pour cette appréciation."
+   ],
+   "qui": "Les vendeurs qui sont assujettis à la TVA et les notaires chargés de formaliser les mutations immobilières où le statut d’assujetti du vendeur est invoqué. La question s’applique également aux acquéreurs qui pourraient être soumis à la TVA en fonction du résultat de cette appréciation.",
+   "portee": "Le notaire devra vérifier, en plus du statut d’assujetti du vendeur, que la transaction est réalisée dans le cadre de son activité économique, en s’appuyant sur les éléments factuels (ex. nature de l’activité, fréquence des ventes, finalité commerciale). Il conviendra de demander au vendeur les justificatifs attestant de l’exercice d’une activité taxable liée à l’immeuble. En cas de doute, il sera prudent de recommander une consultation fiscale afin d’éviter une mauvaise qualification de la mutation au regard de la TVA."
+  }
  },
  {
   "id": "SEPAJ-actualites/formalites,1/lotissement-la-commune-beneficiaire-de-la-retrocession-des-voies-et-espaces-communs-n-est-pas-un-coloti-cass-civ-3eme-03-09-2026-n-24-16-968-publie-au-bulletin,378",
@@ -2781,7 +2836,20 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation, 3e chambre civile, a jugé le 3 septembre 2026 que la commune à qui est rétrocédée, en application du cahier des charges d’un lotissement, la totalité des voies et espaces communs n’acquiert pas le statut de coloti. Cette décision précise que la simple rétrocession de l’ensemble des parties communes à la collectivité ne crée pas de droit de copropriété entre la commune et les propriétaires du lotissement. En conséquence, la commune ne peut être considérée comme co‑propriétaire des voies et espaces communs rétrocedés. Le jugement, publié au Bulletin sous le numéro 24‑16‑968, tranche ainsi la question de la nature juridique de la rétrocession dans les lotissements.",
+   "contexte": null,
+   "points": [
+    "Le litige porte sur la rétrocession, prévue dans le cahier des charges d’un lotissement, de la totalité des voies et espaces communs à la commune.",
+    "La Cour de cassation (3e chambre civile) a déclaré que cette rétrocession n’entraîne pas l’acquisition du statut de coloti par la commune.",
+    "La décision a été rendue le 3 septembre 2026 et est référencée sous le n° 24‑16‑968, publiée au Bulletin.",
+    "Le jugement précise que la commune ne devient pas copropriétaire des parties communes rétrocedées.",
+    "Cette jurisprudence limite les effets juridiques de la rétrocession des parties communes dans les opérations de lotissement."
+   ],
+   "qui": "La décision concerne les communes qui reçoivent la rétrocession des voies et espaces communs d’un lotissement, ainsi que les promoteurs, les propriétaires de lots et les notaires chargés de la rédaction des actes de lotissement. Elle s’applique lorsque le cahier des charges prévoit la rétrocession de la totalité des parties communes à la collectivité territoriale.",
+   "portee": "Le notaire devra vérifier que les clauses de rétrocession dans le cahier des charges ne sont pas rédigées comme conférant à la commune un droit de copropriété, afin d’éviter de créer une situation de coloti. Il conviendra d’indiquer clairement dans l’acte que la commune ne détient que les droits prévus par la rétrocession, sans pouvoir exercer les prérogatives d’un copropriétaire (participation aux charges, droit de vote en assemblée). Le notaire devra également informer les parties que la commune ne pourra pas être sollicitée pour des contributions aux dépenses d’entretien des parties communes, conformément à la jurisprudence du 3 septembre 2026."
+  }
  },
  {
   "id": "SEPAJ-actualites/actes,2/baux-commerciaux-la-clause-de-hausse-automatique-et-illimitee-du-loyer-est-reputee-non-ecrite-cass-civ-3eme-03-09-2026-n-25-14-904-publie-au-bulletin,379",
@@ -2794,7 +2862,20 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation, 3ᵉ chambre civile, du 3 septembre 2026 (n° 25‑14.904), a déclaré non écrite la clause prévoyant une hausse automatique et illimitée du loyer dans les baux commerciaux. Elle rappelle que, même sous couvert de liberté contractuelle, les parties ne peuvent établir une modalité d’évolution du loyer qui contourne les règles d’ordre public relatives à la révision du loyer. En conséquence, toute clause de ce type est réputée non écrite et ne produit aucun effet juridique. Cette décision confirme la primauté du principe de révision du loyer encadré par le droit public sur les stipulations contractuelles dérogatoires.",
+   "contexte": null,
+   "points": [
+    "Clause de hausse automatique et illimitée du loyer dans les baux commerciaux déclarée non écrite.",
+    "Impossibilité pour les parties de déroger aux règles d’ordre public relatives à la révision du loyer, même au nom de la liberté contractuelle.",
+    "Décision rendue par la 3ᵉ chambre civile de la Cour de cassation le 3 septembre 2026, n° 25‑14.904.",
+    "Application spécifique aux baux commerciaux.",
+    "Les clauses contraires aux règles de révision du loyer sont réputées non écrites et donc inopposables."
+   ],
+   "qui": "La décision s’applique aux bailleurs et aux locataires de locaux commerciaux, ainsi qu’aux professionnels du droit qui rédigent ou révisent des baux commerciaux. Elle concerne toute situation où le contrat prévoit une augmentation du loyer automatique et sans plafond, quel que soit le mode de rédaction de la clause.",
+   "portee": "Le notaire devra vérifier que le projet de bail commercial ne comporte aucune clause prévoyant une hausse automatique et illimitée du loyer, sous peine de voir cette clause déclarée non écrite. Il devra conseiller les parties d’insérer une clause de révision du loyer conforme aux règles d’ordre public, par exemple en se référant aux indices légaux ou à une procédure de révision prévue par le Code de commerce. En cas de doute, il conviendra de signaler au client que toute disposition visant à contourner les mécanismes de révision légaux sera inopposable et pourra être écartée par le juge."
+  }
  },
  {
   "id": "SEPAJ-actualites/formalites,1/protection-des-haies-le-nouveau-regime-unique-devient-operationnel-au-1er-octobre-2026-d-n-2026-829-du-28-aout-2026,377",
@@ -2807,7 +2888,19 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "Le décret n° 2026‑829 du 28 août 2026 institue un régime unique de protection et de gestion durable des haies. Ce nouveau régime devient opérationnel le 1er octobre 2026, marquant une étape supplémentaire dans la réglementation des haies. Il vise à encadrer la préservation et l’exploitation durable de ces éléments végétaux selon des règles unifiées.",
+   "contexte": null,
+   "points": [
+    "Le décret n° 2026‑829 du 28 août 2026 établit un régime unique de protection et de gestion durable des haies.",
+    "Ce régime unique devient opérationnel le 1er octobre 2026.",
+    "Il constitue une nouvelle étape dans le cadre juridique de la protection des haies.",
+    "Le texte vise à harmoniser les exigences de préservation et de gestion durable des haies."
+   ],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "SEPAJ-actualites/formalites,1/permis-de-construire-illegal-un-plu-devenu-favorable-ne-suffit-pas-a-le-regulariser-ce-10-08-2026-n-502518,376",
@@ -2821,7 +2914,18 @@
    "Immobilier & copropriété",
    "Fiscalité"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "Le Conseil d'État, dans sa décision du 10 août 2026 (n° 502518), précise qu’un permis de construire délivré en méconnaissance d’une règle d’urbanisme constitue un permis illégal. La simple modification ultérieure du Plan local d’urbanisme (PLU) dans un sens favorable à la construction ne suffit pas à régulariser ce permis. Ainsi, la conformité du permis doit être appréciée au moment de sa délivrance, indépendamment des évolutions postérieures du PLU.",
+   "contexte": null,
+   "points": [
+    "Un permis de construire illégal est défini comme un permis délivré en méconnaissance d’une règle d’urbanisme.",
+    "La modification ultérieure du PLU dans un sens favorable ne permet pas de régulariser le permis illégal.",
+    "La décision du Conseil d'État du 10/08/2026 (n° 502518) confirme cette jurisprudence."
+   ],
+   "qui": null,
+   "portee": "Le notaire devra vérifier, lors de la rédaction d’actes portant sur des biens immobiliers, que le permis de construire était conforme aux règles d’urbanisme en vigueur à la date de sa délivrance, sans se fier à d’éventuelles modifications ultérieures du PLU. Il conviendra d’informer les parties que la simple évolution favorable du PLU ne régularise pas un permis déjà illégal et d’envisager, le cas échéant, des démarches de régularisation spécifiques."
+  }
  },
  {
   "id": "RSS-39501 at https://www.notaires.fr",
@@ -3428,7 +3532,21 @@
    "Immobilier & copropriété",
    "Fiscalité"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "Le décret n° 2026‑822 et l’arrêté du 25 août 2026, publiés au JO le 27 août 2026 et entrés en vigueur le 1er septembre 2026, modifient le dispositif MaPrimeRénov’ en prévoyant une aide financière majorée pour la rénovation d’une maison individuelle lorsque le système de chauffage au gaz est conservé. Cette aide demeure ouverte aux propriétaires occupants et, sous certaines conditions, aux propriétaires bailleurs. Elle vise à financer une rénovation d’ampleur, c’est‑à‑dire un ensemble de travaux qui améliore de façon significative le logement, tout en incitant à la conservation du chauffage au gaz.",
+   "contexte": "Le texte indique que, par rapport à la règle antérieure du dispositif MaPrimeRénov’, aucune distinction n’était faite quant au type de chauffage ; le présent décret introduit donc une différenciation en accordant une aide supplémentaire lorsque le chauffage au gaz est maintenu.",
+   "points": [
+    "Décret n° 2026‑822 et arrêté du 25 août 2026 publiés au JO le 27 août 2026, entrée en vigueur le 1er septembre 2026.",
+    "MaPrimeRénov’ prévoit désormais une aide financière majorée pour la rénovation d’une maison individuelle si le chauffage au gaz est conservé.",
+    "L’aide reste accessible aux propriétaires occupants.",
+    "L’aide est également accessible aux propriétaires bailleurs sous certaines conditions.",
+    "L’aide finance une rénovation d’ampleur, définie comme un ensemble de travaux améliorant significativement le logement.",
+    "Le dispositif encourage la conservation du chauffage au gaz dans le cadre de la rénovation."
+   ],
+   "qui": "Le dispositif s’adresse aux propriétaires de maisons individuelles, qu’ils soient occupants ou bailleurs, dès lors que le projet de rénovation prévoit le maintien du système de chauffage au gaz. Pour les bailleurs, l’éligibilité dépend de conditions supplémentaires qui ne sont pas détaillées dans le texte.",
+   "portee": "Le notaire devra vérifier que le projet de rénovation prévoit explicitement la conservation du chauffage au gaz afin de permettre au client de bénéficier de l’aide majorée. Il devra également s’assurer que le client est bien propriétaire occupant ou bailleur et, le cas échéant, vérifier le respect des conditions spécifiques applicables aux bailleurs. Il conviendra de confirmer que les travaux envisagés répondent à la définition de « rénovation d’ampleur » (amélioration significative du logement) et de rappeler que l’éligibilité n’est effective qu’à compter du 1er septembre 2026."
+  }
  },
  {
   "id": "SEPAJ-actualites/formalites,1/dpe-des-logements-diminution-du-facteur-de-conversion-de-l-electricite-a-compter-du-1er-janvier-2027-possibilite-de-telecharger-une-nouvelle-etiquette-de-classement-arr-19-aout-2026-jo-26-aout-2026-entree-en-vigueur-1er-janvier-2027,374",
@@ -3441,7 +3559,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": null
  },
  {
   "id": "SEPAJ-actualites/actes,2/successions-reunion-fictive-des-donations-et-rapport-successoral-deux-operations-a-ne-pas-confondre-cass-civ-1ere-10-06-2026-n-24-10-363-cassation-partielle-non-publie-au-bulletin,373",
@@ -3454,7 +3573,20 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La décision de la Cour de cassation du 10 juin 2026 (n° 24‑10.363) rappelle que, lorsqu’un legs est attribué à un légataire universel en présence d’héritiers réservataires, le legs doit être réduit en valeur et non en nature. Elle précise également qu’il ne faut pas confondre la réunion fictive des donations avec le rapport successoral, deux mécanismes distincts en matière de succession. Cette cassation partielle, non publiée au Bulletin, vient réaffirmer la jurisprudence constante sur la nature de la réduction du legs dans ce contexte.",
+   "contexte": null,
+   "points": [
+    "La Cour de cassation juge de manière constante que, en présence d’un légataire universel et d’héritiers réservataires, le legs est réductible en valeur et non en nature.",
+    "Le texte met en garde contre la confusion entre la réunion fictive des donations et le rapport successoral, deux opérations distinctes en droit des successions.",
+    "Il s’agit d’une cassation partielle rendue le 10/06/2026, n° 24‑10.363, non publiée au Bulletin.",
+    "La décision s’inscrit dans la jurisprudence qui précise les modalités de réduction du legs lorsqu’il y a des réservataires.",
+    "Le caractère « en principe » du legs réductible en valeur indique que la règle s’applique de façon générale, sauf exception explicite."
+   ],
+   "qui": "La décision concerne les légataires universels, les héritiers réservataires ainsi que les notaires et autres professionnels du droit qui interviennent dans la rédaction et la liquidation des successions où ces catégories de bénéficiaires sont présentes. Elle s’applique aux situations où un legs doit être ajusté en fonction des droits des réservataires.",
+   "portee": "Le notaire devra vérifier, avant la rédaction de l’acte de succession, que tout legs attribué à un légataire universel soit bien réduit en valeur et non en nature lorsqu’il existe des héritiers réservataires. Il devra également s’assurer de ne pas confondre la réunion fictive des donations avec le rapport successoral, en distinguant clairement les effets juridiques de chaque opération. En cas de doute, il conviendra de rappeler à ses clients la portée de la réduction en valeur du legs et d’ajuster les calculs de partage en conséquence."
+  }
  },
  {
   "id": "SEPAJ-actualites/actes,2/bail-rural-le-defaut-d-habitation-du-preneur-a-proximite-du-fonds-motif-de-refus-du-renouvellement-doit-etre-mentionne-dans-le-conge-cass-civ-3eme-21-05-2026-n-24-20-157-publie-au-bulletin,372",
@@ -3468,7 +3600,20 @@
    "Immobilier & copropriété",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation a jugé que, dans le cadre d’un bail rural, le fait que le preneur n’habite pas à proximité du fonds n’est pas une obligation d’exécution du bail, mais que ce défaut d’habitation peut constituer un motif légitime de refus de renouvellement, à condition que ce motif soit expressément indiqué dans le congé. Le preneur doit toutefois assurer une exploitation effective du fonds. La décision précise que le refus doit être motivé dans le congé sous forme d’une mention explicite du défaut d’habitation.",
+   "contexte": null,
+   "points": [
+    "Le preneur d’un bail rural n’est pas tenu d’avoir son domicile sur le fonds ou à proximité immédiate pendant l’exécution du bail.",
+    "Le preneur doit assurer une exploitation effective du fonds.",
+    "Le défaut d’habitation du preneur à proximité du fonds peut être invoqué comme motif de refus du renouvellement du bail.",
+    "Ce motif doit être mentionné de façon explicite dans le congé de non‑renouvellement.",
+    "La décision provient de la Cour de cassation, 3ᵉ chambre civile, 21/05/2026, n° 24‑20.157, publiée au Bulletin."
+   ],
+   "qui": "La décision concerne les preneurs de baux ruraux et les bailleurs lorsqu’ils envisagent le renouvellement du bail. Elle s’applique aux situations où le preneur n’habite pas à proximité du fonds et où le bailleur souhaite refuser le renouvellement en invoquant ce défaut d’habitation, à condition que le motif soit clairement indiqué dans le congé.",
+   "portee": "Le notaire devra vérifier que, le cas échéant, le congé de non‑renouvellement comporte une mention explicite du défaut d’habitation du preneur comme motif de refus. Il devra s’assurer que le bail prévoit l’obligation d’une exploitation effective du fonds et conseiller le bailleur sur la rédaction précise du congé afin d’éviter toute contestation. Il conviendra également d’informer le preneur que son absence de domicile à proximité n’est pas en soi une violation du bail, mais que cela peut être invoqué par le bailleur uniquement si le motif est formellement indiqué."
+  }
  },
  {
   "id": "SEPAJ-actualites/formalites,1/trait-de-cote-adoption-de-la-strategie-nationale-de-gestion-integree-2025-2030-d-n-2026-803-du-20-aout-2026,371",
@@ -3481,7 +3626,18 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "Le décret n° 2026‑803 du 20 août 2026, publié au Journal officiel le 21 août 2026, adopte la nouvelle stratégie nationale de gestion intégrée du trait de côte pour la période 2025‑2030. Cette décision officialise le cadre stratégique qui devra guider la gestion du littoral français pendant les cinq prochaines années.",
+   "contexte": null,
+   "points": [
+    "Le décret n° 2026‑803 du 20 août 2026 adopte la stratégie nationale de gestion intégrée du trait de côte.",
+    "Le décret a été publié au Journal officiel le 21 août 2026.",
+    "La stratégie couvre la période 2025‑2030 et porte sur la gestion intégrée du littoral."
+   ],
+   "qui": null,
+   "portee": null
+  }
  },
  {
   "id": "RSS-39457 at https://www.notaires.fr",
@@ -3510,7 +3666,20 @@
    "Fiscalité",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La loi n° 2026‑796 du 18 août 2026, entrée en vigueur le 20 août 2026, modifie le droit de préemption de la SAFER. Ces changements portent directement sur la pratique notariale, notamment lors des opérations immobilières agricoles où la SAFER intervient. La loi vise la protection et la souveraineté agricoles, ce qui implique une adaptation des procédures de préemption. Les notaires devront tenir compte de ces nouvelles dispositions dans leurs actes et conseils. Le texte indique que plusieurs modifications sont introduites, sans en préciser le contenu exact.",
+   "contexte": null,
+   "points": [
+    "Adoption de la loi n° 2026‑796 du 18 août 2026",
+    "Entrée en vigueur le 20 août 2026",
+    "Modification du droit de préemption de la SAFER",
+    "Impact direct sur la pratique notariale",
+    "Objectif déclaré de protection et souveraineté agricoles"
+   ],
+   "qui": "Les notaires intervenant dans les transactions immobilières agricoles où la SAFER exerce son droit de préemption sont concernés, ainsi que les parties à ces transactions (vendeurs, acquéreurs, exploitants agricoles) qui seront soumis aux nouvelles règles introduites par la loi.",
+   "portee": "Le notaire devrait vérifier les nouvelles dispositions de la loi n° 2026‑796 relatives au droit de préemption de la SAFER avant de finaliser tout acte de vente ou de cession agricole, afin d’ajuster les clauses contractuelles en conséquence. Il conviendrait d’informer les clients des éventuelles modifications de procédure ou de délai imposées par la loi. Le notaire devra également s’assurer que les formalités de notification à la SAFER respectent les nouvelles exigences légales. Enfin, il serait prudent de mettre à jour les modèles d’actes et les check‑lists internes pour intégrer ces changements dès que le texte détaillé sera disponible."
+  }
  },
  {
   "id": "SEPAJ-actualites/actes,2/testament-l-action-en-nullite-echappe-aux-exigences-de-l-action-en-partage-cass-civ-1ere-01-07-2026-n-24-15-933-publie-au-bulletin,368",
@@ -3524,7 +3693,20 @@
    "Successions & libéralités",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation, première chambre civile, a jugé le 1er juillet 2026 que l’action en nullité d’un testament n’est pas soumise aux exigences procédurales imposées à l’action en partage, à savoir la mention des diligences entreprises pour parvenir à un partage amiable. Ainsi, l’absence de ces précisions ne constitue pas une cause d’irrecevabilité pour une action en nullité. Cette distinction repose sur le fait que les règles du Code de procédure civile (art. 1360) s’appliquent uniquement aux assignations en partage.",
+   "contexte": "Avant cet arrêt, le Code de procédure civile imposait à toute assignation en partage de préciser les démarches accomplies en vue d’un partage amiable, sous peine d’irrecevabilité. La décision précise que cette exigence ne s’étend pas aux actions visant la nullité d’un testament, clarifiant ainsi la portée du dispositif de l’art. 1360.",
+   "points": [
+    "La Cour de cassation a rendu son arrêt le 1er juillet 2026 (n° 24-15.933).",
+    "L’arrêt porte sur la distinction entre l’action en nullité d’un testament et l’action en partage.",
+    "Le Code de procédure civile, art. 1360, impose à l’assignation en partage de détailler les diligences pour un partage amiable, sous peine d’irrecevabilité.",
+    "Dans l’espèce, une héritière avait introduit une demande relative à la nullité du testament.",
+    "La Cour a conclu que l’action en nullité échappe aux exigences de l’art. 1360 applicables à l’action en partage."
+   ],
+   "qui": "L’arrêt concerne les héritiers qui contestent la validité d’un testament, ainsi que les praticiens du droit (notaires, avocats) qui doivent distinguer une action en nullité d’une action en partage afin d’appliquer correctement les exigences de procédure. Il s’applique notamment lorsqu’une héritière saisit le tribunal pour faire déclarer nul un testament.",
+   "portee": "Le notaire devra vérifier, avant de rédiger ou de conseiller sur une action, si la demande de son client relève d’une action en nullité ou d’une action en partage, afin d’appliquer ou non les exigences de l’art. 1360. Il devra s’assurer que, le cas échéant, l’assignation en partage comporte la description précise des démarches amiables entreprises, sous peine d’irrecevabilité. En cas d’action en nullité, il pourra informer le client que ces mentions ne sont pas obligatoires, ce qui évite une forme de rejet procédural inutile."
+  }
  },
  {
   "id": "SEPAJ-actualites/actes,2/bail-emphyteotique-conclusion-ou-cession-de-nouvelle-obligation-d-information-de-la-safer-a-compter-du-20-aout-2026-l-n-2026-796-du-18-aout-2026,369",
