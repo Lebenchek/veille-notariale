@@ -3720,7 +3720,20 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "L'article 38 de la loi n° 2026‑796 du 18 août 2026 instaure, à compter du 20 août 2026, une nouvelle formalité imposée au notaire lors de la conclusion ou de la cession d’un bail emphytéotique, consistant à informer la SAFER. Cette obligation constitue une nouveauté juridique qui vient s’ajouter aux exigences déjà applicables aux actes notariés relatifs aux baux emphytéotiques. Elle vise à renforcer la protection et la souveraineté agricoles en assurant la prise en compte de la SAFER dans ces opérations.",
+   "contexte": null,
+   "points": [
+    "L'article 38 de la loi n° 2026‑796 du 18 août 2026 crée une nouvelle formalité pour le notaire.",
+    "Cette formalité consiste en une obligation d’information de la SAFER.",
+    "L’obligation s’applique lors de la conclusion ou de la cession d’un bail emphytéotique.",
+    "Elle entre en vigueur le 20 août 2026.",
+    "La charge de cette formalité incombe au notaire."
+   ],
+   "qui": "La disposition concerne les notaires qui rédigent ou transmettent les actes de conclusion ou de cession d’un bail emphytéotique, ainsi que les parties contractantes à ces baux, et la SAFER qui doit être informée conformément à la nouvelle formalité.",
+   "portee": "Le notaire devra vérifier, avant la signature de tout bail emphytéotique ou de sa cession, que l’information requise à destination de la SAFER a bien été transmise conformément à l’article 38. Il devra intégrer dans ses procédures un contrôle de conformité à cette nouvelle formalité dès le 20 août 2026, et informer ses clients de l’obligation supplémentaire afin d’éviter toute irrégularité susceptible d’affecter la validité de l’acte."
+  }
  },
  {
   "id": "SEPAJ-actualites/formalites,1/copropriete-a-quelle-date-apprecier-l-absence-de-syndic-pour-designer-un-administrateur-provisoire-cass-civ-3eme-09-07-2026-n-24-21-290-publie-au-bulletin,367",
@@ -3733,7 +3746,20 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation précise que, lorsqu’un syndicat de copropriétaires se trouve sans syndic, tout copropriétaire peut convoquer une assemblée générale afin de désigner un nouveau syndic. En l’absence de convocation de cette assemblée, le président du tribunal judiciaire peut intervenir en statuant sur la désignation d’un administrateur provisoire. La décision porte sur la date à laquelle l’absence de syndic doit être appréciée pour permettre cette désignation. Elle clarifie ainsi les conditions d’activation du pouvoir judiciaire en matière de gestion provisoire de la copropriété.",
+   "contexte": null,
+   "points": [
+    "Un syndicat de copropriétaires peut se retrouver dépourvu de syndic.",
+    "Tout copropriétaire a la faculté de convoquer une assemblée générale pour désigner un syndic.",
+    "Si aucune convocation n’est effectuée, le président du tribunal judiciaire peut statuer.",
+    "Le président du tribunal judiciaire peut désigner un administrateur provisoire en l’absence de syndic.",
+    "La décision précise la date à laquelle l’absence de syndic doit être appréciée pour déclencher la désignation."
+   ],
+   "qui": "La décision concerne les copropriétaires d’un immeuble en copropriété, le syndic (ou son absence), le président du tribunal judiciaire chargé de statuer, ainsi que l’éventuel administrateur provisoire qui pourrait être nommé en cas de vacance du poste de syndic.",
+   "portee": "Le notaire devra vérifier, avant la rédaction d’un acte, si le syndicat de copropriétaires dispose d’un syndic en fonction et, le cas échéant, s’il a été convoquée une assemblée générale pour en désigner un. Il devra également s’assurer que, en l’absence de convocation, le délai d’appréciation de l’absence de syndic a été respecté afin d’éviter une intervention judiciaire. Le notaire pourra conseiller le client de procéder rapidement à la convocation d’une assemblée générale ou, à défaut, de préparer les formalités nécessaires en cas de désignation d’un administrateur provisoire par le tribunal."
+  }
  },
  {
   "id": "RSS-39458 at https://www.notaires.fr",
@@ -3876,7 +3902,21 @@
    "Immobilier & copropriété",
    "Fiscalité"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "Le décret n° 2026‑596 du 6 juillet 2026, publié au Journal officiel le 7 juillet 2026, introduit une révision des contrats types relatifs aux baux d'habitation. Cette modification porte spécifiquement sur les locations nues, les locations meublées ainsi que les colocations à bail. Les nouveaux modèles contractuels entreront en vigueur à compter du 1er octobre 2026, remplaçant les versions antérieures. Le texte vise à actualiser les dispositions contractuelles afin de les aligner sur les exigences législatives et pratiques en vigueur. Il s’agit d’une mise à jour obligatoire pour tous les actes de location concernés à partir de cette date.",
+   "contexte": null,
+   "points": [
+    "Décret n° 2026‑596 du 6 juillet 2026 publié au Journal officiel le 7 juillet 2026",
+    "Modification des contrats types applicables aux locations nues",
+    "Modification des contrats types applicables aux locations meublées",
+    "Modification des contrats types applicables aux colocations à bail",
+    "Entrée en vigueur des nouveaux modèles contractuels le 1er octobre 2026",
+    "Remplacement des versions antérieures des contrats types pour les baux d'habitation"
+   ],
+   "qui": "Les bailleurs et les locataires (ou colocataires) concernés par les baux d'habitation, qu’il s’agisse de locations nues, meublées ou de colocations, sont directement impactés par la mise à jour des contrats types. Toute partie souhaitant conclure ou renouveler un bail d’habitation à compter du 1er octobre 2026 devra se référer aux nouveaux modèles prévus par le décret.",
+   "portee": "Le notaire devra s’assurer que le contrat de bail utilisé correspond bien au modèle révisé à compter du 1er octobre 2026, en vérifiant la conformité du texte aux exigences du décret. Il conviendra de comparer les clauses du modèle antérieur avec celles du nouveau modèle afin d’identifier d’éventuelles disparités à expliquer aux parties. Le notaire devra également informer ses clients de l’obligation d’utiliser les nouveaux contrats types pour toute location conclue ou renouvelée après la date d’entrée en vigueur. Enfin, il sera prudent de mettre à jour les modèles de documents internes et les procédures de rédaction de baux en conséquence."
+  }
  },
  {
   "id": "SEPAJ-actualites/formalites,1/safer-notification-de-la-preemption-a-l-acquereur-evince-une-adresse-incomplete-ou-erronee-indiquee-par-le-notaire-bouleverse-les-delais-de-notification-et-de-recours-cass-civ-3eme-19-03-2026-n-24-22-301-et-09-07-2026-n-25-15-423,365",
@@ -3891,7 +3931,20 @@
    "Fiscalité",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "Lorsque la SAFER exerce son droit de préemption, la décision doit être portée à la connaissance des intéressés sous peine de nullité (art. L 143-3 du Code rural). La Cour de cassation, par les arrêts du 19 /03 /2026 (n° 24‑22.301) et du 09 /07 /2026 (n° 25‑15.423), a confirmé que toute adresse incomplète ou erronée indiquée par le notaire pour l’acquéreur évincé rend la notification défectueuse, ce qui bouleverse les délais de notification et de recours. Ainsi, une notification irrégulière entraîne la suspension ou le recommencement des délais d’opposition, affectant la validité de la préemption.",
+   "contexte": null,
+   "points": [
+    "La décision de préemption de la SAFER doit être notifiée aux intéressés, faute de quoi elle est nulle (art. L 143-3 C. rur.)",
+    "Un notaire qui indique une adresse incomplète ou erronée pour l’acquéreur évincé crée une notification défectueuse",
+    "Les arrêts du 19/03/2026 (n° 24‑22.301) et du 09/07/2026 (n° 25‑15.423) précisent que cette irrégularité perturbe les délais de notification et de recours",
+    "La nullité de la notification entraîne la suspension ou le recommencement des délais d’opposition à la préemption",
+    "La responsabilité du notaire est engagée quant à la vérification de l’exactitude de l’adresse du bénéficiaire de la notification"
+   ],
+   "qui": "La SAFER, en tant que préempteur, l’acquéreur évincé qui doit recevoir la décision, et le notaire chargé de la rédaction et de l’envoi de la notification sont directement concernés. Toute partie intéressée par la préemption doit être informée correctement pour que les délais de recours soient valables.",
+   "portee": "Le notaire devrait vérifier scrupuleusement l’exactitude de l’adresse de l’acquéreur évincé avant d’envoyer la notification, en s’assurant de la complétude et de la conformité des coordonnées. Il conviendrait de demander une preuve de réception (avis de réception, courrier recommandé avec accusé de réception) afin de sécuriser la date de notification. En cas de doute sur l’exactitude de l’adresse, le notaire devrait recommander une vérification supplémentaire ou un moyen alternatif de notification pour éviter la nullité de la notification et la remise en cause des délais de recours."
+  }
  },
  {
   "id": "SEPAJ-actualites/actes,2/successions-vacantes-le-domaine-peut-desormais-vendre-l-immeuble-sans-vendre-d-abord-les-meubles-c-civ-810-2-modifie-par-l-n-2026-248-du-7-avril-2026-art-3-et-4,364",
@@ -3906,7 +3959,20 @@
    "Immobilier & copropriété",
    "Fiscalité"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La loi n° 2026‑248 du 7 avril 2026, qui modifie l’article 810‑2 du Code civil, autorise le Domaine à procéder à la vente d’un immeuble appartenant à une succession vacante sans qu’il soit d’abord nécessaire de vendre les meubles qui y sont associés, conformément aux articles 3 et 4 de la loi. Par ailleurs, les services du Domaine sont désignés en qualité de curateur par le juge pour administrer ces successions vacantes, en application de l’article 809‑1 du Code civil. Cette disposition crée ainsi un nouveau régime de gestion et de liquidation du patrimoine immobilier des successions vacantes.",
+   "contexte": null,
+   "points": [
+    "La loi n° 2026‑248 du 7 avril 2026 modifie l’article 810‑2 du Code civil.",
+    "Les articles 3 et 4 de cette loi autorisent la vente de l’immeuble sans vente préalable des meubles.",
+    "Les services du Domaine sont nommés curateur par le juge pour les successions vacantes.",
+    "Cette nomination repose sur l’article 809‑1 du Code civil.",
+    "La vente directe de l’immeuble s’applique aux successions vacantes administrées par le Domaine."
+   ],
+   "qui": "Les services du Domaine, désignés comme curateur par le juge, sont directement concernés, ainsi que les juges chargés de la nomination et les parties intéressées par la liquidation des successions vacantes, notamment les héritiers éventuels ou les créanciers.",
+   "portee": "Le notaire devra vérifier que le Domaine a bien été nommé curateur conformément à l’article 809‑1 avant d’entamer toute opération de vente. Il devra s’assurer que la vente de l’immeuble respecte les conditions prévues aux articles 3 et 4 de la loi n° 2026‑248, notamment l’absence d’obligation de vendre préalablement les meubles. Le notaire devra informer ses clients de la nouvelle possibilité de vendre l’immeuble séparément et vérifier que les actes de vente intègrent les références légales appropriées."
+  }
  },
  {
   "id": "RSS-39435 at https://www.notaires.fr",
@@ -3935,7 +4001,20 @@
    "Successions & libéralités",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation a jugé que, lorsqu’une somme d’argent donnée sert à financer la création d’une société et que le donateur reçoit en contrepartie des titres, le rapport de cette donation à la succession ne se limite pas au montant en numéraire versé mais suit la valeur des titres acquis. Ainsi, la valeur prise en compte pour le partage successoral correspond à la valeur des actions ou parts reçues, et non à la somme d’argent initialement donnée. Cette décision précise le critère d’évaluation applicable aux donations monétaires converties en participation sociale au moment du partage. Elle implique que le calcul de la part successorale du donateur doit intégrer la valorisation des titres au moment de la donation. Le principe s’applique dans le cadre d’une succession où le donateur est également héritier ou bénéficiaire d’une part de la succession.",
+   "contexte": null,
+   "points": [
+    "Une somme d’argent donnée est utilisée pour financer la création d’une société.",
+    "Le donateur reçoit en contrepartie des titres (actions ou parts sociales).",
+    "Le rapport à la succession de la donation n’est pas limité au montant en numéraire versé.",
+    "La valeur prise en compte pour le partage successoral suit la valeur des titres acquis.",
+    "Cette règle s’applique lors du partage de la succession du donateur."
+   ],
+   "qui": "La décision concerne le donateur qui a effectué la donation d’argent, le bénéficiaire qui reçoit les titres de la société créée, ainsi que les héritiers ou co‑successeurs du donateur qui participent au partage de la succession. Elle s’applique lorsque la donation monétaire est convertie en participation sociale au sein d’une société nouvellement constituée.",
+   "portee": "Le notaire devra vérifier que la valeur des titres attribués au donateur a été correctement évaluée au moment de la donation, afin de l’intégrer dans le calcul du rapport à la succession. Il devra s’assurer que le partage successoral reflète cette valeur et non simplement le montant en argent donné. Le notaire pourra conseiller les parties de faire appel à un expert en évaluation d’actions pour sécuriser la valorisation. Il devra également mentionner explicitement dans l’acte de partage que le rapport de la donation suit la valeur des titres, conformément à la jurisprudence du 01/07/2026."
+  }
  },
  {
   "id": "SEPAJ-actualites/actes,2/servitude-de-passage-l-etat-d-enclave-s-apprecie-a-l-echelle-du-fonds-et-non-parcelle-par-parcelle-cass-civ-3eme-09-07-2026-n-24-18493,363",
@@ -3948,7 +4027,19 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation, 3ᵉ chambre civile, du 9 juillet 2026, précise que l’état d’enclave d’un terrain soumis à une servitude de passage doit être apprécié à l’échelle du fonds lorsqu’il est constitué de plusieurs parcelles contiguës appartenant au même propriétaire, et non parcelle par parcelle. Ainsi, dès lors qu’une des parcelles du fonds permet l’accès, le fonds entier n’est plus considéré comme enclave. Cette appréciation globale modifie la manière dont le droit de passage est évalué et les obligations qui en découlent pour le propriétaire du fonds.",
+   "contexte": null,
+   "points": [
+    "L’état d’enclave doit être évalué au regard de l’ensemble du fonds lorsque plusieurs parcelles contiguës appartiennent au même propriétaire.",
+    "Le fonds est considéré comme non enclave dès qu’une des parcelles permet l’accès au domaine.",
+    "L’appréciation de l’enclave s’applique dans le cadre d’une servitude de passage.",
+    "La décision provient de la 3ᵉ chambre civile de la Cour de cassation, 9 juillet 2026, n° 24-18493."
+   ],
+   "qui": "Les propriétaires de plusieurs parcelles contiguës formant un fonds unique sont directement concernés, notamment lorsqu’ils souhaitent instaurer ou contester une servitude de passage. La décision s’applique également aux acquéreurs, aux créanciers et aux tiers qui invoquent le droit de passage sur un terrain potentiellement enclavé.",
+   "portee": "Le notaire devra vérifier que les parcelles concernées forment bien un fonds unique avant d’apprécier l’état d’enclave. Il devra s’assurer qu’au moins une parcelle du fonds offre un accès effectif, ce qui exclut le caractère d’enclave du fonds dans le cadre de la servitude de passage. En cas d’absence d’accès, il conviendra de préciser dans l’acte que le fonds reste enclavé et d’envisager les solutions juridiques appropriées (ex. servitude d’accès, acquisition d’un droit de passage)."
+  }
  },
  {
   "id": "SEPAJ-actualites/actes,2/baux-d-habitation-zones-tendues-reconduction-de-l-encadrement-des-loyers-jusqu-au-31-juillet-2027-d-n-2026-644-du-20-juillet-2026,361",
@@ -3961,7 +4052,21 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "Le décret n° 2026‑644 du 20 juillet 2026 prolonge d’une année le dispositif d’encadrement de l’évolution des loyers applicable aux baux d’habitation situés en zones tendues, repoussant ainsi son échéance au 31 juillet 2027. Cette reconduction maintient les règles de plafonnement et de révision des loyers qui étaient déjà en vigueur. Elle s’applique à l’ensemble des locations résidentielles concernées par le régime d’encadrement dans les zones définies comme tendues. Le texte ne modifie pas les modalités existantes, il ne fait que prolonger leur durée d’application. Les parties aux contrats de location doivent donc continuer à respecter les limites de hausse prévues par le dispositif pendant la période prolongée.",
+   "contexte": "Le dispositif d’encadrement des loyers était déjà en place avant le présent décret, et le texte vient le reconduire pour une nouvelle période d’un an, précisant ainsi la continuité de la mesure au-delà de son échéance précédente.",
+   "points": [
+    "Décret n° 2026‑644 du 20 juillet 2026",
+    "Prolongation du dispositif d’encadrement des loyers d’une année",
+    "Nouvelle date d’échéance fixée au 31 juillet 2027",
+    "Application aux baux d’habitation situés en zones tendues",
+    "Le dispositif concerne l’évolution des loyers (plafonnement et révision)",
+    "Il s’agit d’une reconduction du régime déjà existant"
+   ],
+   "qui": "Le texte concerne les bailleurs et les locataires de logements résidentiels situés dans les zones tendues, ainsi que les notaires qui rédigent ou renouvellent les contrats de location ou les actes de révision de loyer. Il s’applique à toute opération juridique portant sur la fixation ou la révision du loyer pendant la période prolongée.",
+   "portee": "Le notaire devra vérifier que le bien concerné se trouve bien dans une zone tendue avant d’appliquer le dispositif d’encadrement. Il devra s’assurer que les clauses de fixation ou de révision du loyer respectent les plafonds prévus par le dispositif pendant la période prolongée jusqu’au 31 juillet 2027. Il conviendra d’informer les parties que le régime d’encadrement reste en vigueur et d’adapter les mentions contractuelles en conséquence. Enfin, le notaire devra contrôler que les dates de renouvellement ou de révision du bail tombent bien dans le cadre de la période prolongée."
+  }
  },
  {
   "id": "RSS-39442 at https://www.notaires.fr",
@@ -4033,7 +4138,20 @@
    "Successions & libéralités",
    "Fiscalité"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation, chambre commerciale, du 8 juillet 2026 (n° 25‑13219), a jugé qu’en matière de représentation successorale, les donations consenties à l’auteur représenté ne sont pas soumises au rappel fiscal prévu à l’article 784 du CGI. Cette décision précise que, malgré le dispositif général de rappel pour les donations intervenues depuis moins de quinze ans, cette règle ne s’applique pas lorsqu’il s’agit de donations faites à la personne dont la succession est représentée. Elle a donc une portée restrictive sur l’application de l’article 784 lors de la liquidation des droits de mutation à titre gratuit. Le rappel fiscal habituel est donc exclu dans le cadre de la représentation successorale telle que présentée dans l’arrêt.",
+   "contexte": "Avant cet arrêt, l’article 784 du CGI organisait le rappel fiscal des donations antérieures réalisées dans les quinze années précédant le décès, sans distinction particulière. La décision du 8 juillet 2026 vient clarifier que, dans le cas d’une représentation successorale, les donations faites à l’auteur représenté ne sont pas concernées par ce rappel, créant ainsi une exception au régime général.",
+   "points": [
+    "L’article 784 du CGI prévoit le rappel fiscal des donations antérieures.",
+    "La Cour de cassation a déclaré que les donations consenties à l’auteur représenté ne sont pas soumises à ce rappel fiscal.",
+    "Le délai de quinze ans prévu par l’article 784 ne s’applique pas dans le cadre de la représentation successorale.",
+    "La décision porte sur la liquidation des droits de mutation à titre gratuit.",
+    "Référence de l’arrêt : Cass. com 08/07/2026, n° 25‑13219."
+   ],
+   "qui": "Cette décision concerne les personnes décédées dont la succession est gérée par un représentant (ex. un notaire ou un mandataire) ainsi que les héritiers ou légataires qui pourraient invoquer le rappel fiscal des donations. Elle s’applique aux notaires qui procèdent à la liquidation des droits de mutation à titre gratuit dans le cadre d’une représentation successorale, ainsi qu’aux fiscalistes intervenant sur ces dossiers.",
+   "portee": "Le notaire devra vérifier, avant de procéder à la liquidation des droits de mutation, si les donations concernées ont été consenties à l’auteur représenté, afin de déterminer l’applicabilité du rappel fiscal prévu à l’article 784 du CGI. Il conviendra d’examiner les actes de donation pour identifier la qualité de bénéficiaire et de s’assurer que la représentation successorale est bien établie, afin de pouvoir invoquer l’exclusion du rappel fiscal. En cas de doute, le notaire pourra recommander une consultation du texte intégral de l’arrêt ou d’une jurisprudence complémentaire pour sécuriser la rédaction de l’acte de liquidation."
+  }
  },
  {
   "id": "SEPAJ-actualites/formalites,1/t-v-a-le-basculement-de-la-tva-vers-le-cibs-reporte-au-1er-janvier-2027-ord-n-2026-671-du-27-07-2026,360",
@@ -4046,7 +4164,20 @@
   "matieres": [
    "Fiscalité"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "L’ordonnance n° 2026‑671 du 27 juillet 2026 reporte le basculement de la TVA vers le CIBS au 1er janvier 2027. Cette mesure vient modifier le calendrier initialement prévu par l’ordonnance n° 2025‑1247 du 17 décembre 2025, qui avait fixé le transfert des dispositions relatives à la TVA, notamment la TVA immobilière, au 1er septembre 2026. Le report implique que les règles de TVA applicables aux opérations concernées resteront en vigueur jusqu’à la nouvelle date. Cette décision s’inscrit dans le cadre de la recodification de la TVA et affecte la mise en œuvre du dispositif CIBS. Elle constitue une adaptation du calendrier législatif sans modification du contenu substantiel des dispositions transférées.",
+   "contexte": "Avant l’ordonnance du 27 juillet 2026, l’ordonnance n° 2025‑1247 du 17 décembre 2025 prévoyait le transfert des dispositions relatives à la TVA, y compris la TVA immobilière, à compter du 1er septembre 2026. Le nouveau texte reporte donc ce transfert, modifiant ainsi le calendrier initial de mise en œuvre du dispositif CIBS.",
+   "points": [
+    "L’ordonnance n° 2026‑671 du 27 juillet 2026 reporte le basculement de la TVA vers le CIBS au 1er janvier 2027.",
+    "L’ordonnance n° 2025‑1247 du 17 décembre 2025 avait prévu ce transfert à compter du 1er septembre 2026.",
+    "Le report concerne les dispositions relatives à la TVA, notamment la TVA immobilière.",
+    "Le dispositif CIBS, prévu initialement pour 2026, est donc décalé d’un an.",
+    "Le calendrier de mise en œuvre de la recodification de la TVA est ajusté sans modification du contenu des dispositions transférées."
+   ],
+   "qui": "Le report concerne les contribuables soumis à la TVA, en particulier les opérateurs du secteur immobilier soumis à la TVA immobilière, ainsi que l’administration fiscale qui devra appliquer le dispositif CIBS à partir du 1er janvier 2027.",
+   "portee": "Le notaire devra vérifier la nouvelle date d’entrée en vigueur du CIBS (1er janvier 2027) avant de finaliser des actes soumis à la TVA immobilière, afin d’ajuster le calcul de la TVA applicable. Il conviendra d’informer les clients des conséquences du report sur le régime de TVA applicable à leurs opérations immobilières. Le notaire devra également s’assurer que les mentions contractuelles et les déclarations fiscales reflètent le calendrier actualisé. Enfin, il sera prudent de contrôler que les documents de facturation et les modalités de paiement intègrent le report du basculement de la TVA vers le CIBS."
+  }
  },
  {
   "id": "RSS-39291 at https://www.notaires.fr",
@@ -4104,7 +4235,20 @@
    "Immobilier & copropriété",
    "Fiscalité"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation, troisième chambre civile, a jugé le 25 juin 2026 que le bailleur, lorsqu’il notifie au locataire commercial ou artisanal une offre de vente d’un local, conserve la faculté de rétracter cette offre tant que le locataire ne l’a pas acceptée. Le locataire dispose d’un délai d’un mois pour accepter l’offre, mais ce délai ne rend pas l’offre irrévocable. Cette décision précise que le droit de préférence du locataire ne crée pas d’obligation de maintien de l’offre par le bailleur avant son acceptation expresse.",
+   "contexte": null,
+   "points": [
+    "Le bailleur doit notifier au locataire une offre de vente lorsqu’il envisage de vendre un local à usage commercial ou artisanal.",
+    "Le locataire commercial ou artisanal dispose d’un délai d’un mois pour accepter l’offre de vente.",
+    "Le bailleur peut rétracter son offre avant que le locataire ne l’accepte.",
+    "La décision provient de la Cour de cassation, troisième chambre civile, du 25/06/2026, n° 25-10765.",
+    "Le droit de préférence du locataire ne rend pas l’offre de vente irrévocable tant qu’elle n’est pas acceptée."
+   ],
+   "qui": "Cette décision concerne les bailleurs de locaux à usage commercial ou artisanal qui souhaitent vendre leurs biens, ainsi que les locataires de ces locaux qui bénéficient d’un droit de préférence. Elle s’applique aux situations où le bailleur notifie une offre de vente et où le locataire doit décider de l’accepter dans le délai d’un mois prévu par la loi.",
+   "portee": "Le notaire devra vérifier que l’acte de vente ou le projet d’offre de vente comporte une clause explicite permettant la rétractation du bailleur avant l’acceptation du locataire. Il devra informer le bailleur que, malgré le droit de préférence du locataire, l’offre n’est pas irrévocable tant qu’elle n’est pas acceptée, afin d’éviter toute contestation ultérieure. Il conviendra également de rappeler au locataire le délai d’un mois pour manifester son acceptation, sous peine de perdre son droit de préférence."
+  }
  },
  {
   "id": "SEPAJ-actualites/actes,2/vente-d-immeuble-installations-classees-la-seule-consultation-des-bases-de-donnees-environnementales-peut-engager-la-responsabilite-du-notaire-cass-civ-1ere-28-05-2026-n-24-16354,358",
@@ -4118,7 +4262,20 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation précise que la seule consultation des bases de données environnementales peut engager la responsabilité du notaire dans le cadre d’une vente d’immeuble contenant des installations classées. Le vendeur, lorsqu’une installation soumise à autorisation ou à enregistrement a été exploitée sur le terrain, doit informer l’acquéreur par écrit et, s’il en a connaissance, signaler les dangers liés à ces installations. Cette obligation d’information écrite du vendeur constitue le fondement de la protection de l’acquéreur contre les risques environnementaux. Le notaire, en tant que conseil et garant de la validité de l’acte, doit veiller à ce que cette information soit correctement recueillée et transmise. Le manquement à la consultation des bases de données environnementales expose le notaire à une mise en cause de sa responsabilité professionnelle.",
+   "contexte": null,
+   "points": [
+    "Le notaire ne voit sa responsabilité engagée que s’il a consulté les bases de données environnementales relatives aux installations classées du bien vendu.",
+    "Le vendeur doit, par écrit, informer l’acquéreur de l’existence d’une installation soumise à autorisation ou enregistrement exploitée sur le terrain.",
+    "Le vendeur doit, s’il en a connaissance, signaler à l’acquéreur les dangers liés à ces installations.",
+    "L’obligation d’information du vendeur vise à protéger l’acquéreur contre les risques environnementaux associés aux installations classées.",
+    "Le notaire doit s’assurer que l’information écrite du vendeur est complète et que les bases de données environnementales ont été consultées."
+   ],
+   "qui": "Le texte concerne le vendeur, qui doit fournir une information écrite sur les installations classées et les dangers éventuels, l’acquéreur, qui doit recevoir cette information pour évaluer les risques, ainsi que le notaire, qui doit vérifier la consultation des bases de données environnementales et la conformité de l’information fournie dans l’acte de vente.",
+   "portee": "Le notaire devrait vérifier qu’il a bien consulté les bases de données environnementales applicables avant la rédaction de l’acte de vente. Il devrait s’assurer que le vendeur a remis une déclaration écrite mentionnant l’existence d’une installation soumise à autorisation ou enregistrement et, le cas échéant, les dangers connus. Le notaire devrait, le cas échéant, demander au vendeur de préciser ou de compléter les informations manquantes avant la signature. Enfin, il devrait informer l’acquéreur de la portée de ces informations et des éventuels risques résiduels."
+  }
  },
  {
   "id": "SEPAJ-actualites/formalites,1/servitude-de-residence-principale-extension-du-dispositif-et-adaptation-des-contrats-types-de-location-c-urb-art-l-151-14-1-modifie-par-l-n-2026-553-du-29-06-2026-d-n-2026-596-du-06-07-2026,356",
