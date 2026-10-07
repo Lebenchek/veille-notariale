@@ -5037,7 +5037,8 @@
    "Immobilier & copropriété",
    "Fiscalité"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": null
  },
  {
   "id": "RSS-39148 at https://www.notaires.fr",
@@ -5093,7 +5094,18 @@
    "Immobilier & copropriété",
    "Fiscalité"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "L'article 61 de la loi n° 2026‑403 du 26 mai 2026 modifie l'article L 145‑46‑1 du Code de commerce. Cette modification a pour objet de préciser le champ d'application du droit de préemption du locataire commercial, autrement dit le droit de préférence dont bénéficie le locataire en cas de cession du bail. Le texte se limite à indiquer que le champ d'application du droit de préférence est désormais clairement défini par la nouvelle disposition législative.",
+   "contexte": null,
+   "points": [
+    "L'article 61 de la loi n° 2026‑403 du 26 mai 2026 intervient en modification de l'article L 145‑46‑1 du Code de commerce.",
+    "La modification porte sur la précision du champ d'application du droit de préemption du locataire commercial.",
+    "Le texte vise à clarifier le droit de préférence dont bénéficie le locataire en cas de cession du bail commercial."
+   ],
+   "qui": "Le dispositif concerne les locataires commerciaux qui disposent d'un droit de préférence lors de la cession du bail, ainsi que les bailleurs ou acquéreurs potentiels qui doivent respecter ce droit dans les cas prévus par la nouvelle rédaction de l'article L 145‑46‑1.",
+   "portee": "Le notaire devra vérifier que les actes de cession de bail ou de vente d'immeuble soumis à la location commerciale sont conformes au champ d'application désormais précisé du droit de préemption du locataire. Il conviendra d'informer les parties de l'existence de ce droit tel que redéfini et de s'assurer que les clauses contractuelles tiennent compte de la nouvelle portée légale. En cas de doute sur l'application du droit, le notaire pourra recommander une consultation du texte modifié pour confirmer la pertinence du droit de préférence dans la situation envisagée."
+  }
  },
  {
   "id": "SEPAJ-actualites/actes,2/restitution-du-prix-consecutives-a-l-annulation-d-une-vente-pas-de-garantie-du-notaire-sans-preuve-d-insolvabilite-du-vendeur-cass-civ-1ere-06-05-2026-n-23-22454,346",
@@ -5106,7 +5118,20 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation, première chambre civile, du 6 mai 2026, précise que la résolution ou l’annulation d’une vente entraîne un effet rétroactif imposant à chaque partie de restituer à l’autre ce qu’elle a reçu en exécution du contrat. En conséquence, le vendeur doit restituer le prix perçu. Toutefois, le notaire ne peut garantir la restitution du prix au bénéficiaire que s’il dispose d’une preuve d’insolvabilité du vendeur ; à défaut de cette preuve, aucune garantie n’est due par le notaire.",
+   "contexte": null,
+   "points": [
+    "La résolution ou l’annulation d’une vente produit un effet rétroactif de restitution mutuelle des prestations exécutées.",
+    "Le vendeur est tenu de restituer le prix reçu lorsqu’une vente est annulée.",
+    "Le notaire ne peut offrir une garantie de restitution du prix qu’en présence d’une preuve d’insolvabilité du vendeur.",
+    "En l’absence de preuve d’insolvabilité, le notaire n’est pas tenu de garantir la restitution du prix au bénéficiaire.",
+    "La décision s’appuie sur le principe de l’effet rétroactif de la résolution ou de l’annulation du contrat de vente."
+   ],
+   "qui": "Cette décision concerne les parties à un contrat de vente (vendeur et acquéreur) ainsi que le notaire chargé de l’acte. Elle s’applique lorsque le vendeur se trouve en situation d’insolvabilité et que la vente est résolue ou annulée, conditionnant la garantie du notaire à la preuve de cette insolvabilité.",
+   "portee": "Le notaire devra vérifier l’existence d’une preuve d’insolvabilité du vendeur avant de s’engager à garantir la restitution du prix à l’acquéreur. Il devra informer son client que, sans cette preuve, aucune garantie de restitution ne pourra être accordée. Il sera également prudent de consigner dans l’acte les modalités de restitution mutuelle prévues par la résolution ou l’annulation du contrat."
+  }
  },
  {
   "id": "SEPAJ-actualites/formalites,1/preemption-les-conditions-de-la-promesse-de-vente-s-imposent-au-titulaire-du-droit-caa-paris-09-04-2026-n-25pa04050,347",
@@ -5119,7 +5144,20 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "Par un arrêt du 10 avril 2026 (CAA Paris, n° 25PA04050), la Cour administrative d’appel de Paris a jugé que les conditions stipulées dans une promesse de vente s’imposent au titulaire du droit de préemption lorsqu’il exerce ce droit. La décision précise que le préemptif ne peut se soustraire aux conditions attachées à la vente initiale. Cette interprétation renforce le principe selon lequel le préemptor doit respecter les obligations contractuelles prévues par le vendeur. Elle définit ainsi la portée juridique des conditions de la promesse de vente dans le cadre d’une acquisition préemptive.",
+   "contexte": null,
+   "points": [
+    "Les conditions de la promesse de vente sont obligatoires pour le titulaire du droit de préemption.",
+    "La CAA Paris a clarifié la portée de ces conditions lors de l’exercice du droit de préemption.",
+    "L’arrêt a été rendu le 10 avril 2026, sous le numéro 25PA04050.",
+    "Le jugement porte sur l’obligation du préemptor de se conformer aux conditions contractuelles de la vente initiale.",
+    "Il confirme que le préemptor ne peut ignorer les clauses conditionnelles prévues dans la promesse de vente."
+   ],
+   "qui": "La décision concerne le titulaire d’un droit de préemption (collectivité, État ou autre préemptor) ainsi que les parties à la promesse de vente initiale. Elle s’applique à toute situation où le préemptor envisage d’exercer son droit sur un bien faisant l’objet d’une promesse de vente contenant des conditions spécifiques.",
+   "portee": "Le notaire devra vérifier que les conditions de la promesse de vente sont clairement énoncées et portées à la connaissance du titulaire du droit de préemption. Il conviendra de s’assurer que le projet d’acte de préemption intègre explicitement ces conditions afin d’éviter toute contestation ultérieure. Le notaire pourra également conseiller le client préemptif de prendre acte de son obligation d’accepter lesdites conditions, voire d’envisager une renégociation si celles‑ci sont jugées excessives."
+  }
  },
  {
   "id": "RSS-39145 at https://www.notaires.fr",
@@ -5204,7 +5242,20 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "L'arrêt de la Cour de cassation, 3ᵉ chambre civile, du 9 avril 2026 (n° 24‑12979) précise que l'acquéreur bénéficiant d'une condition suspensive d'obtention de prêt n'est pas tenu, en l'absence de stipulation contraire dans l'avant‑contrat, de solliciter plusieurs établissements bancaires. Cette décision confirme que la simple mention de la condition suspensive suffit à libérer l'acheteur de l'obligation de multiplier les démarches de financement. Elle précise donc que, sauf clause explicite imposant le contraire, une seule demande de prêt conforme satisfait la condition suspensive. La portée de l'arrêt porte sur l'interprétation de la condition suspensive dans les avant‑contrats de vente immobilière. Il s'agit d'une clarification jurisprudentielle qui tranche le doute quant à l'exigence de démarches multiples.",
+   "contexte": null,
+   "points": [
+    "L'acquéreur n'est pas obligé de multiplier les demandes de prêt auprès de plusieurs banques lorsque la condition suspensive d'obtention de prêt est prévue dans l'avant‑contrat.",
+    "Cette absence d'obligation ne s'applique que si l'avant‑contrat ne comporte pas de stipulation contraire imposant plusieurs démarches.",
+    "La Cour de cassation, 3ᵉ chambre civile, a confirmé ce principe dans son arrêt du 9 avril 2026, n° 24‑12979.",
+    "La décision porte sur l'interprétation de la condition suspensive d'obtention de prêt dans les avant‑contrats de vente immobilière.",
+    "Elle libère l'acheteur d'une contrainte de solliciter plusieurs établissements bancaires, sauf clause explicite contraire."
+   ],
+   "qui": "L'arrêt concerne les acquéreurs qui ont inséré une condition suspensive d'obtention de prêt dans l'avant‑contrat de vente immobilière. Il s'applique également aux notaires et aux parties rédactrices du contrat, qui doivent veiller à la rédaction précise de la clause de condition suspensive. Les établissements bancaires sont indirectement concernés, dans la mesure où ils ne sont plus obligés d'être sollicités à plusieurs reprises par le même acquéreur, sauf disposition contractuelle contraire.",
+   "portee": "Le notaire devra vérifier, lors de la rédaction ou de la relecture de l'avant‑contrat, l'absence de toute clause imposant explicitement plusieurs demandes de prêt. Il conviendra d'informer l'acquéreur que, sans stipulation contraire, une seule demande de prêt suffit à satisfaire la condition suspensive. Le notaire devra également s'assurer que la formulation de la condition suspensive reflète clairement cette liberté, afin d'éviter tout litige ultérieur. Enfin, il sera prudent de rappeler à son client les implications pratiques de cette décision, notamment en matière de stratégie de financement."
+  }
  },
  {
   "id": "SEPAJ-actualites/formalites,1/parcelle-unique-cadastree-en-bois-la-presence-d-une-maison-ecarte-le-droit-de-preference-cass-civ-3eme-28-05-2026-n-24-10-202,345",
@@ -5217,7 +5268,20 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation précise que le droit de préférence, reconnu aux propriétaires de parcelles boisées contiguës, ne s’applique pas lorsqu’une parcelle, bien que cadastrée comme bois, comporte une maison. Cette décision rappelle que le droit de préférence est conditionné à la nature exclusive de la parcelle boisée, sans construction. En conséquence, la présence d’un bâtiment sur la parcelle exclut le bénéficiaire du droit de préférence. Cette clarification vient affiner la portée du droit de préférence dans le cadre des transactions immobilières portant sur des terrains boisés. La décision a été rendue par la 3ᵉ chambre civile le 28 mai 2026 (n° 24‑10202).",
+   "contexte": "Le droit de préférence était auparavant reconnu aux propriétaires de parcelles boisées contiguës, sans précision explicite quant à la présence éventuelle de constructions sur la parcelle concernée. La Cour de cassation vient préciser que la présence d’une maison sur une parcelle cadastrée en bois supprime ce droit, apportant ainsi une nuance importante à la jurisprudence antérieure.",
+   "points": [
+    "Le droit de préférence est reconnu aux propriétaires de parcelles boisées contiguës.",
+    "La présence d’une maison sur une parcelle cadastrée comme bois exclut le droit de préférence.",
+    "La parcelle doit être exclusivement boisée, sans construction, pour que le droit de préférence s’applique.",
+    "La décision a été rendue par la 3ᵉ chambre civile de la Cour de cassation le 28 mai 2026 (n° 24‑10202).",
+    "Le titre indique que la parcelle est « unique cadastrée en bois », soulignant l’exigence d’unicité de la nature boisée."
+   ],
+   "qui": "Cette décision concerne les propriétaires de parcelles boisées contiguës qui pourraient invoquer le droit de préférence, ainsi que les propriétaires de parcelles cadastrées comme bois mais comportant une maison. Elle s’applique également aux notaires et aux parties intervenant dans la vente ou la transmission de telles parcelles, qui doivent vérifier la présence ou l’absence de constructions.",
+   "portee": "Le notaire devra vérifier, au moment de la rédaction de l’acte, que la parcelle est bien exclusivement boisée et qu’aucune construction n’y est édifiée, en s’appuyant sur le cadastre et les diagnostics. Il devra informer son client que la présence d’une maison supprime le droit de préférence, afin d’éviter toute contestation ultérieure. Il conviendra de mentionner explicitement dans l’acte que le droit de préférence ne s’applique pas si la parcelle comporte un bâtiment, conformément à la jurisprudence du 28 mai 2026."
+  }
  },
  {
   "id": "RSS-21545 at https://www.notaires.fr",
@@ -5402,7 +5466,20 @@
    "Successions & libéralités",
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "Par acte sous seing privé du 9 juin 1989, un seul indivisaire s’est engagé à vendre à ses locataires un local commercial et une cave appartenant à une indivision. La Cour de cassation, 3ᵉ chambre civile, a jugé que l’action en vente forcée peut être exercée dans un délai de cinq ans, sans qu’il soit nécessaire d’attendre le partage de l’indivision. Cette décision précise le cadre temporel applicable à la mise en œuvre d’une vente forcée suite à une promesse unilatérale d’un co‑indivisaire, et confirme que le délai de prescription débute dès la promesse.",
+   "contexte": null,
+   "points": [
+    "Acte sous seing privé du 9 juin 1989 où un seul indivisaire promet de vendre un local commercial et une cave à ses locataires.",
+    "Le bien objet de la promesse fait partie d’une indivision.",
+    "La Cour de cassation (3ᵉ civ.) a fixé un délai de cinq ans pour agir en vente forcée.",
+    "L’action en vente forcée peut être intentée sans attendre le partage de l’indivision.",
+    "Arrêt rendu le 22 janvier 2026, n° 23‑21495."
+   ],
+   "qui": "Le co‑indivisaire qui a conclu la promesse de vente, les autres indivisaires de la même indivision, ainsi que les locataires acquéreurs potentiels du local commercial et de la cave. La décision s’applique aux situations où un seul indivisaire engage une vente sans l’accord préalable des autres co‑propriétaires.",
+   "portee": "Le notaire devra vérifier que la promesse de vente signée par un seul indivisaire précise clairement le régime de la vente forcée et informe les autres co‑indivisaires des conséquences. Il conviendra d’alerter le client sur le délai de cinq ans pour exercer une action en vente forcée, afin d’éviter toute prescription. Il sera prudent d’inclure dans l’acte une clause rappelant que le partage n’est pas une condition suspensive pour l’action en vente forcée. Enfin, le notaire devra s’assurer que le bien est correctement identifié comme appartenant à l’indivision et que les droits des tiers (locataires) sont respectés."
+  }
  },
  {
   "id": "RSS-39125 at https://www.notaires.fr",
@@ -5438,7 +5515,20 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "Par un arrêt du 7 mai 2026, la troisième chambre civile de la Cour de cassation confirme que le juge des référés n’est pas compétent pour prononcer la révocation judiciaire d’un gérant de société civile immobilière (SCI) lorsqu’elle repose sur une cause légitime. La décision rappelle que la révocation doit être examinée par la juridiction compétente, conformément à la procédure ordinaire. Cette précision vise à éviter que des mesures d’urgence soient prises en dehors du cadre juridictionnel approprié. L’arrêt réaffirme ainsi la nécessité de respecter les règles de compétence territoriale et matérielle en matière de gestion de SCI.",
+   "contexte": null,
+   "points": [
+    "Le juge des référés est déclaré incompétent pour statuer sur la révocation judiciaire d’un gérant de SCI pour cause légitime.",
+    "La révocation doit être examinée par la juridiction compétente, selon la procédure ordinaire prévue par le droit des sociétés civiles.",
+    "La Cour de cassation rappelle avec fermeté le respect des règles de compétence matérielle en matière de gestion de SCI.",
+    "L’arrêt vise à empêcher l’usage du référé pour des décisions qui requièrent un examen approfondi du fond.",
+    "Il s’agit d’une clarification de la jurisprudence concernant la procédure de révocation du gérant d’une SCI."
+   ],
+   "qui": "L’arrêt concerne les gérants de sociétés civiles immobilières (SCI) ainsi que les parties engagées dans un litige portant sur la révocation de ce gérant. Il s’applique également aux juridictions saisies, qui doivent respecter les compétences attribuées pour ce type de décision.",
+   "portee": "Le notaire devra vérifier que toute procédure de révocation d’un gérant de SCI soit introduite devant la juridiction compétente, et non devant le juge des référés. Il conviendra d’informer les parties que le référé ne peut être utilisé pour statuer sur la révocation pour cause légitime, afin d’éviter une contestation de compétence. Le notaire devra s’assurer que les statuts de la SCI prévoient clairement les modalités de révocation et que les actes rédigés respectent les exigences de procédure ordinaire. Enfin, il serait prudent de rappeler aux clients la nécessité de justifier la cause légitime de la révocation dans le cadre d’une procédure contentieuse appropriée."
+  }
  },
  {
   "id": "RSS-39113 at https://www.notaires.fr",
@@ -5597,7 +5687,20 @@
    "Immobilier & copropriété",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation, 3ᵉ chambre civile, a jugé le 5 mars 2026 (n° 24/11525) que le droit de préférence du locataire d’un bail commercial, prévu à l’article L 145‑46‑1 du code de commerce, s’applique même lorsqu’une vente des locaux est réalisée au profit d’une SCI familiale, tandis que ce droit ne s’applique pas en cas de cession des locaux au conjoint du bailleur.",
+   "contexte": null,
+   "points": [
+    "Le locataire d’un bail commercial bénéficie du droit de préférence prévu à l’article L 145‑46‑1 du code de commerce lors de la vente du bien loué.",
+    "Ce droit de préférence s’étend aux ventes réalisées à une SCI familiale, la forme juridique de l’acquéreur n’échappant pas au dispositif légal.",
+    "En revanche, le locataire ne bénéficie pas du droit de préférence lorsque la cession porte sur le conjoint du bailleur.",
+    "La décision précise que le dispositif légal doit être respecté quelle que soit la nature de l’acquéreur, sauf dans le cas d’une transmission au conjoint.",
+    "La Cour rappelle l’obligation pour le vendeur de notifier le locataire conformément aux exigences de l’article L 145‑46‑1."
+   ],
+   "qui": "Cette décision concerne les locataires de baux commerciaux, les bailleurs souhaitant céder leurs locaux à une SCI familiale ou à leur conjoint, ainsi que les notaires chargés de formaliser ces cessions et de veiller au respect du droit de préférence du locataire.",
+   "portee": "Le notaire devra vérifier que le vendeur a bien informé le locataire de son droit de préférence avant toute cession à une SCI familiale, en respectant les formes et délais prévus par l’article L 145‑46‑1 ; il devra également s’assurer que, le cas échéant, la cession au conjoint ne crée pas d’obligation de proposer le droit de préférence au locataire, et en informer clairement son client pour éviter tout litige ultérieur."
+  }
  },
  {
   "id": "SEPAJ-actualites/actes,2/reprise-pour-habiter-le-deces-du-beneficiaire-prive-le-conge-de-tout-effet-cass-civ-3eme-16-04-2026-n-24-13191,339",
@@ -5610,7 +5713,19 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation précise que les conditions de la reprise pour habiter doivent être appréciées exclusivement à l'égard du bénéficiaire désigné dans le congé. En conséquence, le décès du bénéficiaire entraîne la perte totale d'effet du congé de reprise. Cette décision confirme que le droit de reprise ne subsiste pas au-delà du décès du bénéficiaire nommé. Elle impose donc une analyse stricte de la personne bénéficiaire au moment de la notification du congé. La portée de l'arrêt est de clarifier que le droit de reprise est personnel et éteint par le décès du bénéficiaire.",
+   "contexte": null,
+   "points": [
+    "Les conditions de la reprise pour habiter sont évaluées uniquement en fonction du bénéficiaire désigné dans le congé.",
+    "Le décès du bénéficiaire prive le congé de tout effet juridique.",
+    "Le droit de reprise pour habiter est donc strictement personnel et ne se transmet pas par succession.",
+    "La Cour de cassation a confirmé ce principe dans son arrêt du 16 avril 2026, n° 24-13191."
+   ],
+   "qui": "Le bénéficiaire désigné dans le congé de reprise pour habiter est directement concerné, ainsi que le bailleur qui émet le congé. La décision s'applique lorsque le bénéficiaire décède avant d'exercer son droit de reprise, rendant le congé nul. Les parties contractantes doivent donc tenir compte de la condition de vie du bénéficiaire au moment de la mise en œuvre du congé.",
+   "portee": "Le notaire devra vérifier, avant la rédaction du congé, l'identité et la situation de vie du bénéficiaire désigné afin de s'assurer qu'il est en vie au moment de la notification. Il conviendra d'informer le bailleur que le décès du bénéficiaire entraîne la perte d'effet du congé, et d'envisager, le cas échéant, la désignation d'un nouveau bénéficiaire ou une nouvelle procédure. En cas de doute sur la situation du bénéficiaire, le notaire devrait recommander la suspension du congé jusqu'à confirmation de son état civil."
+  }
  },
  {
   "id": "SEPAJ-actualites/actes,2/sci-le-pacte-tontinier-portant-sur-toutes-les-parts-sociales-entraine-la-nullite-de-la-societe-cass-civ-3eme-09-04-2026-n-25-12992,340",
@@ -5625,7 +5740,19 @@
    "Sociétés & patrimoine professionnel",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation, 3ᵉ chambre civile, a jugé le 9 avril 2026 que la présence dans les statuts d’une SCI d’une clause d’accroissement ou de tontine portant sur l’intégralité des parts, et attribuant rétroactivement au dernier survivant la propriété de ces parts, entraîne la nullité de la société. Cette décision repose sur le caractère incompatible de la clause avec les exigences légales applicables aux sociétés civiles. En conséquence, la société est réputée nulle dès son immatriculation. La décision est identifiée sous le numéro 25-12992.",
+   "contexte": null,
+   "points": [
+    "Une clause statutaire d’accroissement ou de tontine porte sur l’intégralité des parts d’une société civile immobilière (SCI).",
+    "La clause prévoit que le dernier survivant acquiert rétroactivement la propriété des parts incluses dans le pacte tontinier.",
+    "La Cour de cassation a déclaré la nullité de la société en raison de cette clause.",
+    "Décision rendue par la 3ᵉ chambre civile le 09/04/2026, n° 25-12992."
+   ],
+   "qui": "Cette décision concerne les sociétés civiles immobilières dont les statuts contiennent une clause de tontine couvrant toutes les parts, ainsi que les associés qui seraient bénéficiaires de la transmission rétroactive au dernier survivant. Elle s’adresse également aux notaires et aux rédacteurs d’actes statutaires qui conçoivent ou valident de telles clauses, afin d’éviter la nullité de la société.",
+   "portee": "Le notaire devra vérifier que les statuts d’une SCI ne comportent pas de clause d’accroissement ou de tontine portant sur la totalité des parts, sous peine de nullité de la société. Il conviendra d’informer les clients que toute disposition attribuant rétroactivement la propriété des parts au dernier survivant est juridiquement prohibée. Le notaire devra proposer des alternatives compatibles avec le droit des sociétés civiles, telles que des clauses de tontine limitées à une partie des parts ou des mécanismes de transmission successorale classiques. Enfin, il sera prudent de mentionner explicitement dans l’acte de création que toute clause de ce type serait nulle, afin de sécuriser la validité de la société."
+  }
  },
  {
   "id": "RSS-39059 at https://www.notaires.fr",
@@ -5653,7 +5780,20 @@
    "Immobilier & copropriété",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation a rendu deux arrêts (18 / 09 / 2025, n° 23‑24005 et 05 / 03 / 2026, n° 24‑15820) qui précisent que le locataire d’un bail commercial peut suspendre le paiement du loyer dès que les locaux deviennent inutilisables, et ce, sans mise en demeure préalable. Cette suspension s’applique immédiatement dès la perte d’usage du bien. Les arrêts soulignent toutefois que recourir à cette mesure constitue une stratégie potentiellement dangereuse pour le locataire, du fait des conséquences juridiques qui peuvent en découler. La décision s’inscrit dans le cadre de la jurisprudence relative aux obligations du locataire en matière de paiement du loyer en cas de défaut d’aptitude du local à l’usage prévu.",
+   "contexte": null,
+   "points": [
+    "Le locataire de locaux commerciaux peut suspendre le paiement des loyers lorsque les locaux deviennent inutilisables.",
+    "Cette suspension peut être opérée sans mise en demeure préalable du bailleur.",
+    "La Cour de cassation a rendu deux arrêts distincts sur le sujet (18/09/2025, n°23-24005 et 05/03/2026, n°24-15820).",
+    "La suspension immédiate des loyers est présentée comme une arme risquée pour le locataire.",
+    "La décision s’applique dès la perte d’usage du bien, sans condition de notification préalable."
+   ],
+   "qui": "Les dispositions concernent les locataires de baux commerciaux dont les locaux deviennent inutilisables pour l’activité prévue. Elles s’appliquent aux situations où l’impossibilité d’utiliser les locaux résulte d’un événement rendant le local impropre à l’usage contractuel. Le bailleur est également concerné, dans la mesure où il pourra contester la suspension du loyer si les conditions d’inutilisabilité ne sont pas clairement établies.",
+   "portee": "Le notaire devra vérifier, avant la signature ou la modification d’un bail commercial, que les clauses relatives à la suspension du loyer précisent clairement les critères d’inutilisabilité du local. Il conviendra d’informer le client locataire des risques liés à une suspension du loyer sans mise en demeure, notamment en cas de contestation du bailleur. Il serait prudent de recommander la rédaction d’une procédure de constatation (expertise, rapport) afin de justifier l’inutilisabilité du bien avant toute suspension du paiement. Enfin, le notaire devra s’assurer que le bail prévoit éventuellement des garanties ou des modalités de reprise du paiement dès la remise en état du local."
+  }
  },
  {
   "id": "SEPAJ-actualites/actes,2/prestation-compensatoire-la-pension-versee-pour-les-enfants-reduit-les-ressources-du-debiteur-cass-civ-1ere-14-01-2026-n-23-21041,338",
@@ -5666,7 +5806,20 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation, première chambre civile, a jugé le 14 janvier 2026 (n° 23‑21041) que la pension versée pour l’entretien et l’éducation des enfants communs doit être déduite des ressources du débiteur lors du calcul de la prestation compensatoire due lors d’un divorce. Cette décision précise que la contribution d’un époux aux besoins des enfants constitue un élément à prendre en compte pour déterminer le montant de la compensation financière entre les époux. Ainsi, le revenu net du débiteur est réduit du montant de la pension alimentaire versée, ce qui influe directement sur le calcul de la prestation compensatoire.",
+   "contexte": null,
+   "points": [
+    "La pension alimentaire versée pour les enfants communs réduit les ressources du débiteur dans le calcul de la prestation compensatoire.",
+    "La Cour de cassation a confirmé que la contribution à l’entretien et à l’éducation des enfants doit être prise en compte lors de la détermination de la prestation compensatoire.",
+    "Le montant de la pension est déduit du revenu net du débiteur pour établir le montant de la compensation entre les époux.",
+    "Cette règle s’applique dans le cadre d’un divorce où une prestation compensatoire est à fixer.",
+    "La décision a été rendue par la première chambre civile le 14 janvier 2026, sous le numéro 23‑21041."
+   ],
+   "qui": "La décision concerne les époux en instance de divorce, en particulier le conjoint qui verse la pension alimentaire pour les enfants communs (débiteur) et le conjoint bénéficiaire de la prestation compensatoire. Elle s’applique également aux enfants concernés par la pension, dont la contribution financière influe sur le calcul de la compensation entre les époux.",
+   "portee": "Le notaire devra vérifier le montant exact de la pension alimentaire versée et s’assurer qu’il est correctement déduit des ressources du débiteur lors de l’établissement de la prestation compensatoire. Il conviendra de demander aux parties les justificatifs de paiement de la pension afin d’ajuster le calcul du revenu net du débiteur. Le notaire devra également informer ses clients que la contribution aux enfants influence le montant de la compensation, afin d’éviter toute contestation ultérieure."
+  }
  },
  {
   "id": "SEPAJ-actualites/formalites,1/plus-values-lmnp-pas-d-exemption-temporelle-pour-la-reintegration-des-amortissements-rep-min-10097-joan-24-03-2026,336",
