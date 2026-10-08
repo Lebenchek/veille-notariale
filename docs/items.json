@@ -1,5 +1,401 @@
 [
  {
+  "id": "JUDI-6ac607b9c27382d099f5a5f6",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. comm — 2026-10-07 — n° 25-17.146",
+  "abstract": "Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6ac607b9c27382d099f5a5f6",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac60641c27382d099f5573f",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. cr — 2026-10-07 — n° 26-81.370",
+  "abstract": "Thèmes : enquete ; perquisition | Solution : rejet",
+  "url": "https://www.courdecassation.fr/decision/6ac60641c27382d099f5573f",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac607d4c27382d099f5abaa",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. civ1 — 2026-10-07 — n° 25-11.954",
+  "abstract": "Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6ac607d4c27382d099f5abaa",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac60649c27382d099f558be",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. cr — 2026-10-07 — n° 26-80.496",
+  "abstract": "Thèmes : enquete ; perquisition | Solution : rejet",
+  "url": "https://www.courdecassation.fr/decision/6ac60649c27382d099f558be",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac607c9c27382d099f5a972",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. comm — 2026-10-07 — n° 25-14.170",
+  "abstract": "Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6ac607c9c27382d099f5a972",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac607bdc27382d099f5a6e2",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. comm — 2026-10-07 — n° 25-17.756",
+  "abstract": "Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6ac607bdc27382d099f5a6e2",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac607b2c27382d099f5a49f",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. comm — 2026-10-07 — n° 25-16.403",
+  "abstract": "Solution : rejet",
+  "url": "https://www.courdecassation.fr/decision/6ac607b2c27382d099f5a49f",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac607d1c27382d099f5aaf1",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. civ1 — 2026-10-07 — n° 24-21.655",
+  "abstract": "Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6ac607d1c27382d099f5aaf1",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac607c5c27382d099f5a874",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. comm — 2026-10-07 — n° 24-10.131",
+  "abstract": "Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6ac607c5c27382d099f5a874",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac607a9c27382d099f5a2c2",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. soc — 2026-10-07 — n° 25-22.243",
+  "abstract": "Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6ac607a9c27382d099f5a2c2",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac607a5c27382d099f5a204",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. soc — 2026-10-07 — n° 25-11.362",
+  "abstract": "Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6ac607a5c27382d099f5a204",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac607b5c27382d099f5a538",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. comm — 2026-10-07 — n° 25-14.479",
+  "abstract": "Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6ac607b5c27382d099f5a538",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac6063dc27382d099f5568e",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. cr — 2026-10-07 — n° 26-84.139",
+  "abstract": "Thèmes : jugements et arrets ; décision sur la culpabilité | Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6ac6063dc27382d099f5568e",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac60796c27382d099f59ed0",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. soc — 2026-10-07 — n° 24-60.207",
+  "abstract": "Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6ac60796c27382d099f59ed0",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac6079ec27382d099f5a06e",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. soc — 2026-10-07 — n° 25-10.664",
+  "abstract": "Solution : rejet",
+  "url": "https://www.courdecassation.fr/decision/6ac6079ec27382d099f5a06e",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac607a1c27382d099f5a15c",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. soc — 2026-10-07 — n° 25-10.107",
+  "abstract": "Solution : rejet",
+  "url": "https://www.courdecassation.fr/decision/6ac607a1c27382d099f5a15c",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac607c0c27382d099f5a7aa",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. comm — 2026-10-07 — n° 25-13.014",
+  "abstract": "Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6ac607c0c27382d099f5a7aa",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac60644c27382d099f557fc",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. cr — 2026-10-07 — n° 25-84.792",
+  "abstract": "Thèmes : peines | Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6ac60644c27382d099f557fc",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac607cdc27382d099f5aa27",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. civ1 — 2026-10-07 — n° 25-50.005",
+  "abstract": "Solution : rejet",
+  "url": "https://www.courdecassation.fr/decision/6ac607cdc27382d099f5aa27",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac607aec27382d099f5a3c6",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. comm — 2026-10-07 — n° 25-15.279",
+  "abstract": "Solution : rejet",
+  "url": "https://www.courdecassation.fr/decision/6ac607aec27382d099f5a3c6",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac6079ac27382d099f59f74",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-07",
+  "title": "Cass. soc — 2026-10-07 — n° 24-13.821",
+  "abstract": "Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6ac6079ac27382d099f59f74",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "SEPAJ-actualites/actes,2/bail-commercial-demander-le-renouvellement-avant-12-ans-ne-suffit-pas-a-eviter-le-deplafonnement-cass-civ-3eme-09-07-2026-n-25-11167,391",
+  "source": "SEPAJ (actualités notariales)",
+  "type": "Doctrine / actualité",
+  "date": "2026-10-07",
+  "title": "Bail commercial : demander le renouvellement avant 12 ans ne suffit pas à éviter le déplafonnement (Cass. civ. 3ème, 09/07/2026, n° 25-11167)",
+  "abstract": ") À défaut de congé délivré par le bailleur : - le locataire qui souhaite obtenir le renouvellement de son bail peut en faire la demande à tout...",
+  "url": "https://www.sepaj.fr/actualites/actes,2/bail-commercial-demander-le-renouvellement-avant-12-ans-ne-suffit-pas-a-eviter-le-deplafonnement-cass-civ-3eme-09-07-2026-n-25-11167,391",
+  "matieres": [
+   "Immobilier & copropriété",
+   "Sociétés & patrimoine professionnel"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La Cour de cassation rappelle que, dans le cadre d’un bail commercial, la simple demande de renouvellement faite par le locataire avant l’expiration de la douzième année d’occupation ne suffit pas à empêcher le déplafonnement du loyer. En l’absence de congé délivré par le bailleur, le locataire peut formuler sa demande de renouvellement à tout moment. Cette décision précise donc que le critère temporel de la demande n’est pas déterminant pour le maintien du plafonnement du loyer. Le jugement précise que le droit du locataire à obtenir le renouvellement subsiste même sans congé du bailleur, mais que le loyer pourra être révisé librement. Ainsi, le renouvellement ne garantit pas la préservation du loyer plafonné.",
+   "contexte": null,
+   "points": [
+    "Le locataire peut demander le renouvellement de son bail commercial à tout moment en l’absence de congé du bailleur.",
+    "Faire la demande de renouvellement avant la fin de la douzième année d’occupation ne suffit pas à éviter le déplafonnement du loyer.",
+    "Le déplafonnement du loyer reste possible même si le locataire a sollicité le renouvellement dans les délais précédemment considérés comme protecteurs.",
+    "Le droit du locataire à obtenir le renouvellement n’est pas conditionné à la réception d’un congé du bailleur.",
+    "La décision précise que le critère de timing de la demande n’est pas un facteur déterminant pour le maintien du plafonnement du loyer."
+   ],
+   "qui": "Cette décision concerne les parties aux baux commerciaux, à savoir les bailleurs et les locataires, ainsi que les professionnels du droit (notaires, avocats) intervenant dans la rédaction ou le renouvellement de ces baux. Elle s’applique aux situations où le bailleur n’a pas délivré de congé et où le locataire formule une demande de renouvellement, quel que soit le moment de la demande.",
+   "portee": "Le notaire devra vérifier, avant la rédaction ou la modification d’un acte de renouvellement, si le bailleur a effectivement délivré un congé et à quel moment le locataire a formulé sa demande. Il conviendra d’informer le client que, même en cas de demande anticipée, le loyer pourra être soumis à déplafonnement et d’envisager des clauses de révision ou de plafonnement spécifiques. Il sera prudent d’inclure dans l’acte une mention explicite des conséquences possibles du déplafonnement afin d’éviter toute contestation ultérieure."
+  }
+ },
+ {
+  "id": "JUDI-6ac4b233c27382d099b848c6",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-06",
+  "title": "Cass. cr — 2026-10-06 — n° 26-96.006",
+  "abstract": "Thèmes : action civile | Solution : avis",
+  "url": "https://www.courdecassation.fr/decision/6ac4b233c27382d099b848c6",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac4b23cc27382d099b84c4a",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-06",
+  "title": "Cass. cr — 2026-10-06 — n° 24-86.715",
+  "abstract": "Thèmes : travail | Solution : cassation",
+  "url": "https://www.courdecassation.fr/decision/6ac4b23cc27382d099b84c4a",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": null
+ },
+ {
+  "id": "JUDI-6ac4b240c27382d099b84dd5",
+  "source": "Cour de cassation (Judilibre)",
+  "type": "Jurisprudence",
+  "date": "2026-10-06",
+  "title": "Cass. cr — 2026-10-06 — n° 25-83.277",
+  "abstract": "Thèmes : crimes et delits commis a l'etranger | Solution : rejet",
+  "url": "https://www.courdecassation.fr/decision/6ac4b240c27382d099b84dd5",
+  "bulletin": true,
+  "matieres": [
+   "Autres"
+  ],
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La Cour de cassation, chambre criminelle, a rendu son arrêt le 6 octobre 2026 (n° 25‑83.277) au sujet des crimes et délits commis à l’étranger. L’arrêt porte sur le rejet de la demande présentée devant la Cour. Cette décision confirme le rejet de la voie de recours et maintient la solution adoptée par la juridiction inférieure. Elle indique que, dans le cadre de l’appréciation des faits commis hors du territoire français, la Cour n’a pas trouvé de motif suffisant pour renverser la décision antérieure. Par conséquent, la position juridique antérieure reste applicable.",
+   "contexte": null,
+   "points": [
+    "Le litige porte sur des crimes et délits commis à l’étranger.",
+    "La Cour de cassation a rejeté la demande, confirmant ainsi la décision de la juridiction inférieure."
+   ],
+   "qui": null,
+   "portee": null
+  }
+ },
+ {
   "id": "LF-CONSTEXT000054952965",
   "source": "Conseil constitutionnel",
   "type": "Jurisprudence",
