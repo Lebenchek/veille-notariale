@@ -1,7 +1,12 @@
-"""Veille juridique notariale : collecte des sources officielles, classement par
-mots-clés, page web + flux RSS. Aucun texte n'est réécrit : on affiche le titre,
-la date et le sommaire publiés par la source, avec lien vers l'original.
-Résumé IA : optionnel, désactivé sans ANTHROPIC_API_KEY, toujours étiqueté."""
+"""Veille juridique notariale.
+
+Sources (publiques uniquement) : Notaires de France (flux RSS), SEPAJ et LegalNews Notaires (pages d'actualités
+publiques). Aucun contenu réservé aux abonnés n'est lu, aucun identifiant n'est utilisé.
+
+Principe : le site affiche le titre, la date et un court extrait (celui que la source publie elle-même) avec un lien
+vers l'original, plus une fiche de synthèse reformulée par IA, toujours étiquetée "à vérifier". Le texte intégral
+d'une page n'est lu qu'en mémoire pour alimenter l'IA ; il n'est jamais enregistré ni republié.
+"""
 import os, json, html, re, time, datetime as dt
 import requests, feedparser
 
@@ -9,743 +14,674 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 DOCS = os.path.join(ROOT, "docs")
 DATA = os.path.join(DOCS, "items.json")
 TODAY = dt.date.today()
-LOOKBACK_DAYS = int(os.getenv("LOOKBACK_DAYS", "14"))  # 14 par défaut ; passez LOOKBACK_DAYS=180 pour un remplissage initial de 6 mois
-UA = {"User-Agent": "veille-notariale/1.0"}
+LOOKBACK_DAYS = int(os.getenv("LOOKBACK_DAYS", "45"))
+AI_VERSION = 3                      # change quand le format des fiches change : les anciennes sont régénérées
+ALLOWED_SOURCES = ("Notaires de France", "SEPAJ", "LegalNews")
+TEASER_MAX = 320                    # longueur maximale de l'extrait affiché (celui que publie la source)
+UA_BOT = {"User-Agent": "veille-notariale/2.0"}
+UA_WEB = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
+                        "Chrome/124.0 Safari/537.36", "Accept-Language": "fr-FR,fr;q=0.9"}
 
+
+def log(*a):
+    print("[veille]", *a, flush=True)
+
+
+# --------------------------------------------------------------------------------------------------
+# Classement par matière (transparent, par mots-clés ; toutes les sources sont déjà ciblées notariat)
+# --------------------------------------------------------------------------------------------------
 MATIERES = {
- "Successions & libéralités": ["succession", "donation", "testament", "legs", "héritier", "hériter", "libéralité", "réserve héréditaire", "assurance-vie", "assurance vie", "indivision", "partage", "usufruit", "nue-propriété", "défunt", "de cujus", "mandat à effet posthume", "fiducie"],
- "Famille & régimes matrimoniaux": ["régime matrimonial", "contrat de mariage", "divorce", "pacs", "concubinage", "mariage", "époux", "conjoint", "filiation", "adoption", "autorité parentale", "mineur", "majeur protégé", "tutelle", "curatelle", "habilitation familiale", "mandat de protection future", "prestation compensatoire", "communauté"],
- "Immobilier & copropriété": ["vente immobilière", "immobilier", "immeuble", "copropriété", "syndic", "bail", "hypothèque", "publicité foncière", "cadastre", "urbanisme", "préemption", "servitude", "lotissement", "vefa", "vente en l'état futur", "promesse de vente", "compromis", "diagnostic", "terrain", "propriété", "foncier", "usucapion", "mitoyenn", "construction", "état descriptif de division"],
- "Sociétés & patrimoine professionnel": ["société civile", "sci ", "sarl", "sas ", "société", "cession de parts", "cession de titres", "fonds de commerce", "holding", "pacte d'associés", "associé", "gérant", "dirigeant", "entreprise", "transmission d'entreprise", "bail commercial", "bail rural", "gfa", "gaec", "exploitant agricole"],
- "Fiscalité": ["droits de mutation", "droits d'enregistrement", "plus-value", "impôt", "fiscal", "ifi", "taxe", "bofip", "dmto", "exonération", "abattement", "pinel", "lmnp", "tva", "csg", "prélèvements sociaux", "donation-partage", "pacte dutreil", "dutreil", "abus de droit"],
- "Droit international privé & européen": ["international", "règlement (ue)", "règlement ue", "européen", "certificat successoral européen", "loi applicable", "conflit de lois", "exequatur", "convention de la haye", "étranger", "non-résident", "nationalité", "apostille"],
- "Profession, déontologie & actes": ["notaire", "notarial", "office notarial", "acte authentique", "authentique", "acte notarié", "minutier", "déontologie", "csn", "chambre des notaires", "fichier central", "tracfin", "blanchiment", "devoir de conseil", "responsabilité du notaire", "signature électronique", "procuration", "vente à distance", "clause", "mandat", "sûreté", "cautionnement", "gage", "saisie", "surendettement", "prescription", "responsabilité civile"],
+    "Successions & libéralités": ["succession", "donation", "testament", "legs", "héritier", "hériter", "libéralité",
+        "réserve héréditaire", "assurance-vie", "assurance vie", "clause bénéficiaire", "indivision", "partage",
+        "usufruit", "nue-propriété", "défunt", "de cujus", "fiducie", "déshérence", "sans maître", "représentation"],
+    "Famille & régimes matrimoniaux": ["régime matrimonial", "contrat de mariage", "divorce", "pacs", "concubinage",
+        "mariage", "époux", "conjoint", "filiation", "adoption", "autorité parentale", "majeur protégé", "tutelle",
+        "curatelle", "habilitation familiale", "mandat de protection", "prestation compensatoire", "communauté",
+        "récompense", "obligation alimentaire", "aliments", "séparation de biens"],
+    "Immobilier & copropriété": ["vente immobilière", "immobilier", "immeuble", "copropriété", "syndic", "bail",
+        "locataire", "hypothèque", "publicité foncière", "cadastre", "urbanisme", "préemption", "servitude",
+        "lotissement", "vefa", "promesse de vente", "compromis", "diagnostic", "terrain", "foncier", "usucapion",
+        "mitoyen", "construction", "lot de copropriété", "congé", "saisie", "safer", "rural"],
+    "Sociétés & patrimoine professionnel": ["société civile", "sci ", "sarl", "sas ", "société", "cession de parts",
+        "cession de titres", "fonds de commerce", "holding", "pacte d'associés", "associé", "gérant", "dirigeant",
+        "entreprise", "transmission d'entreprise", "bail commercial", "bail rural", "gfa", "gaec"],
+    "Fiscalité": ["droits de mutation", "dmtg", "dmto", "droits d'enregistrement", "plus-value", "impôt", "fiscal",
+        "ifi", "taxe", "bofip", "exonération", "abattement", "cgi", "tva", "csg", "prélèvements sociaux",
+        "dutreil", "abus de droit", "rappel fiscal"],
+    "Droit international privé & européen": ["international", "règlement (ue)", "européen", "certificat successoral",
+        "loi applicable", "conflit de lois", "exequatur", "étranger", "non-résident", "nationalité", "apostille"],
+    "Profession, déontologie & actes": ["notaire", "notarial", "office notarial", "acte authentique", "déontologie",
+        "csn", "chambre des notaires", "tracfin", "blanchiment", "devoir de conseil", "responsabilité du notaire",
+        "signature électronique", "procuration", "tarif", "émoluments", "formalité", "fichier central"],
+    "Droit public & collectivités": ["commune", "collectivité", "domaine public", "cg3p", "expropriation",
+        "préemption urbaine", "service public"],
 }
-ALWAYS_TYPES = ("loi", "ordonnance")  # toujours conservées (à examiner) si pas de mot-clé
+# Rubriques de LegalNews Notaires (début du chemin de l'URL) -> matière
+LNN_HINTS = {"personnes-famille": "Famille & régimes matrimoniaux", "patrimoine-successions": "Successions & libéralités",
+             "patrimoine": "Successions & libéralités", "fiscalite": "Fiscalité", "affaires": "Sociétés & patrimoine professionnel",
+             "immobilier": "Immobilier & copropriété", "droit-public": "Droit public & collectivités",
+             "profession": "Profession, déontologie & actes"}
 
-def classify(text):
+
+def classify(text, url=""):
     t = (text or "").lower()
-    return [m for m, kws in MATIERES.items() if any(k in t for k in kws)]
+    found = [m for m, kws in MATIERES.items() if any(k in t for k in kws)]
+    for k, m in LNN_HINTS.items():
+        if f"/{k}" in (url or "") and m not in found:
+            found.append(m)
+    return found or ["Autres"]
 
-ARTICLE_RE = re.compile(
-    r"articles?\s+((?:\d+(?:-\d+)?(?:\s*(?:,|et)\s*)?)+)\s+(?:du|de la|des)\s+(code[^,.;\n]{0,45})",
-    re.IGNORECASE)
+
+ARTICLE_RE = re.compile(r"articles?\s+((?:\d+(?:-\d+)*(?:\s*(?:,|et)\s*)?)+)\s+(?:du|de la|des)\s+(code[^,.;\n]{0,45})", re.I)
+
 
 def extract_articles(text):
     found, seen = [], set()
     for m in ARTICLE_RE.finditer(text or ""):
-        label = f"art. {m.group(1).strip()} {m.group(2).strip().rstrip(chr(39)+chr(46))}"
-        label = re.sub(r"\s+", " ", label)[:60]
+        label = re.sub(r"\s+", " ", f"art. {m.group(1).strip()} {m.group(2).strip()}")[:60]
         if label.lower() not in seen:
             seen.add(label.lower()); found.append(label)
-    return found[:5]
-
-_MOIS = {"janvier":1,"février":2,"fevrier":2,"mars":3,"avril":4,"mai":5,"juin":6,"juillet":7,
-         "août":8,"aout":8,"septembre":9,"octobre":10,"novembre":11,"décembre":12,"decembre":12}
-_DATE_TITRE_RE = re.compile(r"(\d{1,2})\s+(" + "|".join(_MOIS) + r")\s+(\d{4})", re.IGNORECASE)
-_DATE_NUM_RE = re.compile(r"\b(\d{2})/(\d{2})/(\d{4})\b")
-
-def date_from_title(title):
-    """Extrait une date directement du titre ('DD mois YYYY' ou 'JJ/MM/AAAA'), en secours quand l'API ne la fournit pas."""
-    t = title or ""
-    m = _DATE_TITRE_RE.search(t)
-    if m:
-        try:
-            return f"{int(m.group(3)):04d}-{_MOIS[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
-        except Exception:
-            pass
-    m2 = _DATE_NUM_RE.search(t)
-    if m2:
-        try:
-            d, mo, y = int(m2.group(1)), int(m2.group(2)), int(m2.group(3))
-            if 1 <= mo <= 12 and 1 <= d <= 31:
-                return f"{y:04d}-{mo:02d}-{d:02d}"
-        except Exception:
-            pass
-    return None
-
-def log(*a): print("[veille]", *a, flush=True)
-
-def piste_token():
-    cid, sec = os.getenv("PISTE_CLIENT_ID"), os.getenv("PISTE_CLIENT_SECRET")
-    if not (cid and sec):
-        log("Identifiants PISTE absents : Légifrance et Judilibre ignorés."); return None
-    r = requests.post("https://oauth.piste.gouv.fr/api/oauth/token", data={
-        "grant_type": "client_credentials", "client_id": cid, "client_secret": sec, "scope": "openid"}, timeout=30)
-    r.raise_for_status(); return r.json()["access_token"]
-
-def src_legifrance(tok):
-    base = "https://api.piste.gouv.fr/dila/legifrance/lf-engine-app"
-    h = {"Authorization": f"Bearer {tok}", "Content-Type": "application/json", **UA}
-    out = []
-    nb_jo = min(max(LOOKBACK_DAYS, 7) + 5, 200)  # marge de sécurité, plafonné pour ne pas saturer l'API
-    conts = requests.post(f"{base}/consult/lastNJo", headers=h, json={"nbElement": nb_jo}, timeout=60).json()
-    for c in conts.get("containers", []):
-        cid = c.get("id")
-        d = c.get("dateParution") or c.get("datePubli")
-        date = dt.datetime.utcfromtimestamp(d/1000).date().isoformat() if isinstance(d, (int, float)) else str(TODAY)
-        try:
-            jo = requests.post(f"{base}/consult/jorfCont", headers=h, json={"id": cid, "pageNumber": 1, "pageSize": 200}, timeout=60).json()
-        except Exception as e:
-            log("jorfCont", cid, e); continue
-        for it in jo.get("items", []) or []:
-            tid = it.get("id") or ""
-            title = it.get("title") or it.get("titre") or ""
-            if not tid.startswith("JORFTEXT") or not title: continue
-            kind = title.split(" ")[0].lower()
-            out.append({"id": tid, "source": "Légifrance (JORF)", "type": "Texte officiel", "date": date,
-                        "title": title, "abstract": "", "url": f"https://www.legifrance.gouv.fr/jorf/id/{tid}",
-                        "_kind": kind})
-    return out
-
-JUDILIBRE_QUERIES = ["notaire", "succession", "donation", "testament", "régime matrimonial", "divorce", "partage indivision",
-                     "vente immobilière", "copropriété", "bail", "hypothèque", "publicité foncière", "société civile",
-                     "cession de parts", "PACS", "assurance-vie", "usufruit", "prescription acquisitive", "acte authentique", "devoir de conseil"]
-
-def src_judilibre(tok):
-    h = {"Authorization": f"Bearer {tok}", **UA}
-    url = "https://api.piste.gouv.fr/cassation/judilibre/v1.0/search"
-    start = (TODAY - dt.timedelta(days=LOOKBACK_DAYS)).isoformat()
-    seen, out = set(), []
-    for q in JUDILIBRE_QUERIES:
-        try:
-            r = requests.get(url, headers=h, timeout=60, params={"query": q, "date_start": start, "date_type": "creation",
-                             "sort": "date", "order": "desc", "page_size": 50, "publication": ["b", "r", "l", "c"]})
-            if r.status_code >= 400:
-                log(f"Judilibre '{q}' : échec {r.status_code} — {(r.text or '')[:200]}"); continue
-        except Exception as e:
-            log("Judilibre", q, e); continue
-        for x in r.json().get("results", []):
-            if x["id"] in seen: continue
-            themes = x.get("themes") or []
-            title = f'Cass. {x.get("chamber","")} — {x.get("decision_date","")} — n° {x.get("number","")}'.replace("  ", " ")
-            summ = x.get("summary") or ""
-            chamber = (x.get("chamber") or "").lower()
-            mentions_notaire = "notair" in (title + " " + summ + " " + " ".join(themes)).lower()
-            # Hors sujet pour un notaire : décisions purement pénales, sociales ou prud'homales,
-            # sauf si un notaire est explicitement en cause (ex : faute professionnelle).
-            if any(k in chamber for k in ("crim", "sociale", "prud")) and not mentions_notaire:
-                continue
-            seen.add(x["id"])
-            ab = " | ".join(filter(None, [("Thèmes : " + " ; ".join(themes)) if themes else "", "Sommaire officiel : " + summ if summ else "",
-                                          "Solution : " + x["solution"] if x.get("solution") else ""]))
-            pub = x.get("publication") or []
-            out.append({"id": "JUDI-" + x["id"], "source": "Cour de cassation (Judilibre)", "type": "Jurisprudence",
-                        "date": x.get("decision_date", str(TODAY)), "title": title, "abstract": ab,
-                        "url": f"https://www.courdecassation.fr/decision/{x['id']}", "_keep": True,
-                        "bulletin": bool(pub) and any(p in ("b", "r") for p in pub)})
-    return out
+    return found[:6]
 
 
-def _d(v):
+def clean_text(s, limit=None):
+    s = html.unescape(re.sub(r"<[^>]+>", " ", s or ""))
+    s = re.sub(r"\s+", " ", s).strip()
+    return s[:limit] if limit else s
+
+
+def cut_teaser(s):
+    s = clean_text(s)
+    if len(s) <= TEASER_MAX:
+        return s
+    cut = s[:TEASER_MAX]
+    return cut[:cut.rfind(" ")].rstrip(" ,;:") + "…"
+
+
+def trim_to_sentence(s):
+    """Évite d'afficher une phrase coupée net : on s'arrête à la dernière phrase complète."""
+    s = (s or "").strip()
+    if not s or s[-1] in ".!?»)":
+        return s
+    k = max(s.rfind(". "), s.rfind("! "), s.rfind("? "))
+    return s[:k + 1] if k > 40 else s
+
+
+# --------------------------------------------------------------------------------------------------
+# Sources
+# --------------------------------------------------------------------------------------------------
+def fetch_full_text(url, max_chars=7000):
+    """Lit le texte public d'une page, en mémoire uniquement (jamais enregistré ni republié), pour alimenter l'IA."""
     try:
-        if isinstance(v, (int, float)): return dt.datetime.fromtimestamp(v/1000, dt.timezone.utc).date().isoformat()
-        return str(v)[:10] if v else None
-    except Exception: return None
-
-def src_fonds(tok):
-    """Conseil constitutionnel et Conseil d'Etat via l'API Légifrance (même compte PISTE)."""
-    base = "https://api.piste.gouv.fr/dila/legifrance/lf-engine-app"
-    h = {"Authorization": f"Bearer {tok}", "Content-Type": "application/json", **UA}
-    start = (TODAY - dt.timedelta(days=LOOKBACK_DAYS)).isoformat()
-    out, seen = [], set()
-    # Le Conseil d'État/CAA (fond CETAT) est écarté : il traite très majoritairement de droit public
-    # (administration, fonction publique, étrangers, urbanisme...), sans rapport avec la pratique notariale,
-    # et ses titres bruts ("CAA de X, 3e chambre, date, n°...") ne contiennent aucune information de contenu
-    # exploitable — un mot-clé qui matche ne garantit donc aucune pertinence réelle. Seul le Conseil constitutionnel
-    # (QPC), dont les titres précisent le sujet et qui touche parfois directement au droit civil/fiscal, est gardé.
-    for fond, label, path in (("CONSTIT", "Conseil constitutionnel", "cons"),):
-        for q in JUDILIBRE_QUERIES:
-            body = {"fond": fond, "recherche": {"champs": [{"typeChamp": "ALL", "operateur": "ET", "criteres": [
-                {"typeRecherche": "UN_DES_MOTS", "valeur": q, "operateur": "ET"}]}],
-                "filtres": [{"facette": "DATE_DECISION", "dates": {"start": start, "end": str(TODAY)}}],
-                "pageNumber": 1, "pageSize": 50, "operateur": "ET", "sort": "DATE_DESC", "typePagination": "DEFAUT"}}
-            try:
-                r = requests.post(f"{base}/search", headers=h, json=body, timeout=60); r.raise_for_status()
-            except Exception as e:
-                log(label, q, e); continue
-            for x in r.json().get("results", []) or []:
-                t = (x.get("titles") or [{}])[0]; tid, title = t.get("id"), t.get("title")
-                if not tid or not title or tid in seen: continue
-                seen.add(tid)
-                out.append({"id": "LF-" + tid, "source": label, "type": "Jurisprudence",
-                            "date": date_from_title(title) or _d(x.get("date")) or str(TODAY),
-                            "title": title, "abstract": "", "url": f"https://www.legifrance.gouv.fr/{path}/id/{tid}", "_hint": q})
-    return out
-
-def fetch_full_text(url, max_chars=4000):
-    """Récupère et nettoie le texte intégral d'une page publique (sans authentification), pour donner à l'IA
-    une vraie matière au lieu du seul extrait court du flux RSS. Retourne None si l'accès échoue."""
-    try:
-        r = requests.get(url, headers=UA, timeout=25)
+        r = requests.get(url, headers=UA_WEB, timeout=25)
         r.raise_for_status()
         t = r.text
-        # Si la page a une balise <article> ou <main>, on se limite à son contenu : moins de menus/footer parasites.
         m = re.search(r"(?is)<(article|main)[^>]*>(.*?)</\1>", t)
-        if m: t = m.group(2)
-        t = re.sub(r"(?is)<(script|style|nav|header|footer|noscript|aside).*?>.*?</\1>", " ", t)
-        t = re.sub(r"(?s)<[^>]+>", " ", t)
-        t = html.unescape(t)
-        t = re.sub(r"[ \t]+", " ", t)
-        t = re.sub(r"\n\s*\n+", "\n", t)
-        t = t.strip()
-        return t[:max_chars] if len(t) > 200 else None
+        if m:
+            t = m.group(2)
+        t = re.sub(r"(?is)<(script|style|nav|header|footer|noscript|aside|form).*?>.*?</\1>", " ", t)
+        t = re.sub(r"(?i)</(p|div|li|h[1-6]|tr)>", "\n", t)
+        t = clean_text_keep_lines(t)
+        return t[:max_chars] if len(t) > 150 else None
     except Exception as e:
-        log("Texte intégral", url, e); return None
+        log("Lecture page", url[:80], e)
+        return None
 
-def src_sepaj():
-    """SEPAJ (Pierre Lasgleizes) : page publique d'actualités notariales, extraits librement consultables
-    (l'analyse complète reste réservée aux abonnés, que nous ne touchons pas). 100% ciblé pratique notariale."""
-    url = "https://www.sepaj.fr/actualites"
-    try:
-        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36", "Accept-Language": "fr-FR,fr;q=0.9"}, timeout=30); r.raise_for_status()
-    except Exception as e:
-        log("SEPAJ", e); return []
-    raw = r.text
-    out = []
-    blocks = re.split(r'(?=<a[^>]+href="[^"]*actualites/(?:actes|formalites)[^"]*"[^>]*>)', raw)
-    for b in blocks:
-        m = re.search(r'<a[^>]+href="([^"]*actualites/(?:actes|formalites)[^"]*)"[^>]*>(.*?)</a>', b, re.S)
-        if not m: continue
-        href, title_html = m.group(1), m.group(2)
-        title = html.unescape(re.sub(r"<[^>]+>", " ", title_html)); title = re.sub(r"\s+", " ", title).strip()
-        if len(title) < 10: continue
-        md = re.search(r"mise\s*à\s*jour\s*le\s*(\d{2})/(\d{2})/(\d{4})", b, re.I)
-        if not md: continue
-        date = f"{md.group(3)}-{md.group(2)}-{md.group(1)}"
-        teaser = html.unescape(re.sub(r"<[^>]+>", " ", b[md.end():])); teaser = re.sub(r"\s+", " ", teaser).strip()[:500]
-        full_url = href if href.startswith("http") else "https://www.sepaj.fr/" + href.lstrip("/")
-        out.append({"id": "SEPAJ-" + href, "source": "SEPAJ (actualités notariales)", "type": "Doctrine / actualité",
-                    "date": date, "title": title, "abstract": teaser, "url": full_url, "_keep": True})
-    return out[:120]
 
-def src_legalnews():
-    """LegalNews Notaires : page d'accueil publique, classée par catégories notariales, extraits librement
-    consultables (l'analyse complète reste réservée aux abonnés, que nous ne touchons pas)."""
-    url = "https://www.legalnewsnotaires.fr/home-lnn.html"
-    try:
-        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36", "Accept-Language": "fr-FR,fr;q=0.9"}, timeout=30); r.raise_for_status()
-    except Exception as e:
-        log("LegalNews Notaires", e); return []
-    raw = r.text
-    out = []
-    date_re = re.compile(r"(\d{2})\.(\d{2})\.(\d{2})\s*-\s*\d{2}:\d{2}")
-    matches = list(date_re.finditer(raw))
-    for idx, md in enumerate(matches):
-        end = matches[idx + 1].start() if idx + 1 < len(matches) else min(len(raw), md.end() + 2000)
-        chunk = raw[md.end():end]
-        m = re.search(r'<a[^>]+href="([^"]*-\d+(?:-\d+)?\.html)"[^>]*>(.*?)</a>', chunk, re.S)
-        if not m: continue
-        href, title_html = m.group(1), m.group(2)
-        title = html.unescape(re.sub(r"<[^>]+>", " ", title_html)); title = re.sub(r"\s+", " ", title).strip()
-        if len(title) < 10: continue
-        teaser = html.unescape(re.sub(r"<[^>]+>", " ", chunk[m.end():])); teaser = re.sub(r"\s+", " ", teaser).strip()[:500]
-        full_url = href if href.startswith("http") else "https://www.legalnewsnotaires.fr" + href
-        date = f"20{md.group(3)}-{md.group(2)}-{md.group(1)}"
-        out.append({"id": "LNN-" + href, "source": "LegalNews Notaires", "type": "Doctrine / actualité",
-                    "date": date, "title": title, "abstract": teaser, "url": full_url, "_keep": True})
-    seen, dedup = set(), []
-    for it in out:
-        if it["id"] in seen: continue
-        seen.add(it["id"]); dedup.append(it)
-    return dedup[:150]
+def clean_text_keep_lines(t):
+    t = html.unescape(re.sub(r"<[^>]+>", " ", t))
+    t = re.sub(r"[ \t\r\f\v]+", " ", t)
+    t = re.sub(r"\n\s*", "\n", t)
+    return t.strip()
+
 
 def src_rss():
+    """Notaires de France : flux RSS officiels listés dans feeds.txt (Nom|URL)."""
     out, p = [], os.path.join(ROOT, "feeds.txt")
-    if not os.path.exists(p): return out
+    if not os.path.exists(p):
+        return out
     for line in open(p, encoding="utf-8"):
         line = line.strip()
-        if not line or line.startswith("#"): continue
-        try: name, url, keep = (line.split("|") + ["0"])[:3]
-        except ValueError: continue
+        if not line or line.startswith("#"):
+            continue
+        parts = line.split("|")
+        if len(parts) < 2:
+            continue
+        name, url = parts[0].strip(), parts[1].strip()
         try:
-            f = feedparser.parse(url, agent=UA["User-Agent"])
-            if not f.entries: log("Flux vide/inaccessible :", name); continue
+            f = feedparser.parse(url, agent=UA_WEB["User-Agent"])
         except Exception as e:
             log("RSS", name, e); continue
+        if not f.entries:
+            log("Flux vide ou inaccessible :", name); continue
         for e in f.entries[:60]:
-            t = struct = e.get("published_parsed") or e.get("updated_parsed")
+            t = e.get("published_parsed") or e.get("updated_parsed")
             date = dt.date(*t[:3]).isoformat() if t else str(TODAY)
-            out.append({"id": "RSS-" + (e.get("id") or e.get("link")), "source": name, "type": "Doctrine / actualité",
-                        "date": date, "title": e.get("title", ""), "abstract": html.unescape(e.get("summary", ""))[:600],
-                        "url": e.get("link", ""), "_keep": keep.strip() == "1"})
+            link = e.get("link", "")
+            out.append({"id": "NDF-" + (e.get("id") or link), "source": "Notaires de France", "date": date,
+                        "title": clean_text(e.get("title", "")), "abstract": cut_teaser(e.get("summary", "")), "url": link})
     return out
 
-def parse_ai_json(txt):
-    """Extrait un objet JSON de la réponse du modèle, même s'il est entouré de ```json ... ```."""
-    txt = txt.strip()
-    if txt.startswith("```"):
-        txt = txt.strip("`")
-        if txt.lower().startswith("json"): txt = txt[4:]
+
+def src_sepaj():
+    """SEPAJ : page publique d'actualités (titre + extrait). L'analyse complète est réservée aux abonnés : non lue."""
+    url = "https://www.sepaj.fr/actualites"
     try:
-        d = json.loads(txt.strip())
-        if isinstance(d, dict) and d.get("resume"):
-            return {"resume": str(d.get("resume", ""))[:1200],
-                    "contexte": (str(d.get("contexte", "")).strip()[:800] or None),
-                    "points": [str(p)[:300] for p in (d.get("points_cles") or []) if str(p).strip()][:6],
-                    "qui": (str(d.get("qui_est_concerne", "")).strip()[:600] or None),
-                    "portee": (str(d.get("vigilance", "")).strip()[:800] or None)}
-    except Exception:
-        pass
-    return None  # JSON invalide ou incomplet (réponse tronquée) : on n'affiche jamais de JSON brut, on écarte la fiche
+        r = requests.get(url, headers=UA_WEB, timeout=30); r.raise_for_status()
+    except Exception as e:
+        log("SEPAJ", e); return []
+    out = []
+    blocks = re.split(r'(?=<a[^>]+href="[^"]*actualites/(?:actes|formalites)[^"]*"[^>]*>)', r.text)
+    for b in blocks:
+        m = re.search(r'<a[^>]+href="([^"]*actualites/(?:actes|formalites)[^"]*)"[^>]*>(.*?)</a>', b, re.S)
+        if not m:
+            continue
+        href, title = m.group(1), clean_text(m.group(2))
+        md = re.search(r"mise\s*à\s*jour\s*le\s*(\d{2})/(\d{2})/(\d{4})", b, re.I)
+        if len(title) < 10 or not md:
+            continue
+        full = href if href.startswith("http") else "https://www.sepaj.fr/" + href.lstrip("/")
+        out.append({"id": "SEPAJ-" + href, "source": "SEPAJ", "date": f"{md.group(3)}-{md.group(2)}-{md.group(1)}",
+                    "title": title, "abstract": cut_teaser(b[md.end():]), "url": full})
+    return out[:150]
 
-def ai_summary(item):
-    """Résumé structuré optionnel, basé UNIQUEMENT sur le texte fourni : un résumé court,
-    2-4 points clés factuels, et une phrase de portée pratique pour un notaire.
-    Utilise Google Gemini (niveau gratuit) si GEMINI_API_KEY est présent,
-    sinon l'API Anthropic si ANTHROPIC_API_KEY est présent (payant), sinon rien.
-    Toujours étiqueté "IA, à vérifier" côté affichage ; jamais présenté comme le texte officiel."""
-    if len(item["title"]) < 15: return None
-    has_abstract = bool(item.get("abstract"))
-    consigne_min = ("Seul le titre est disponible ici, sans sommaire détaillé : développe au maximum ce que le titre "
-                     "permet raisonnablement de déduire, mais sans jamais dépasser ce qu'il permet sans risque "
-                     "d'invention — un champ vide ou une liste vide valent mieux qu'un fait inventé.") if not has_abstract else (
-                     "Le texte source (sommaire officiel) contient en général plusieurs informations distinctes : "
-                     "développe CHAQUE champ en profondeur, avec plusieurs phrases si le contenu le justifie. Ne résume "
-                     "pas à l'extrême : un notaire doit pouvoir s'appuyer sur cette fiche sans relire la source en entier.")
-    prompt = ("Tu rédiges une fiche de synthèse DÉTAILLÉE ET CIRCONSTANCIÉE à destination d'un notaire français, d'un "
-              "niveau d'exigence professionnel élevé, en t'appuyant STRICTEMENT et UNIQUEMENT sur le texte ci-dessous "
-              "(titre" + (" + sommaire officiel" if has_abstract else " seul, sans sommaire") + "). N'invente et n'ajoute "
-              "AUCUN fait, numéro d'article, date, chiffre, nom ou conséquence juridique qui n'y figure pas explicitement : "
-              f"c'est une exigence absolue, jamais négociable. {consigne_min} Réponds STRICTEMENT en JSON valide et "
-              "complet, sans aucun texte autour, et sans jamais t'interrompre en cours de phrase, avec exactement ces clés :\n"
-              '{"resume": "3 à 5 phrases complètes et précises reformulant le contenu, son raisonnement juridique et sa '
-              'portée — pas une simple phrase d\'accroche, un vrai résumé substantiel", '
-              '"contexte": "2 à 4 phrases sur l\'état du droit antérieur et ce que ce texte/cette décision modifie, '
-              'clarifie ou tranche par rapport à lui, UNIQUEMENT si le texte source le précise explicitement, sinon chaîne vide", '
-              '"points_cles": ["fait précis et concret 1", "fait 2", "fait 3", "fait 4", "fait 5 (autant que le texte le permet, '
-              'jusqu\'à 6)"], '
-              '"qui_est_concerne": "2-3 phrases détaillant précisément les personnes, actes, situations ou professionnels '
-              'concernés et dans quelles circonstances, seulement si explicite, sinon chaîne vide", '
-              '"vigilance": "2-4 phrases concrètes et actionnables, au conditionnel, sur ce qu\'un notaire devrait '
-              'vérifier, adapter dans ses actes, ou signaler à ses clients — avec le niveau de détail d\'une note interne '
-              'd\'étude, seulement si le texte le permet clairement, sinon chaîne vide"}\n'
-              "Réponds exactement INSUFFISANT seulement si le titre lui-même est trop vague pour en tirer un résumé factuel.\n\n"
-              "Titre : " + item["title"] + "\n" + item.get("abstract", ""))
 
-    txt = call_ai(prompt, max_tokens=1600)
-    if not txt or txt.startswith("INSUFFISANT"): return None
-    parsed = parse_ai_json(txt)
-    if parsed: return parsed
-    log("Fiche IA : JSON invalide ou tronqué, fiche écartée plutôt qu'affichée cassée.")
+def src_legalnews():
+    """LegalNews Notaires : page d'accueil publique (titre + extrait). Le contenu abonné n'est pas lu."""
+    url = "https://www.legalnewsnotaires.fr/home-lnn.html"
+    try:
+        r = requests.get(url, headers=UA_WEB, timeout=30); r.raise_for_status()
+    except Exception as e:
+        log("LegalNews Notaires", e); return []
+    raw, out = r.text, []
+    matches = list(re.finditer(r"(\d{2})\.(\d{2})\.(\d{2})\s*-\s*\d{2}:\d{2}", raw))
+    for idx, md in enumerate(matches):
+        end = matches[idx + 1].start() if idx + 1 < len(matches) else min(len(raw), md.end() + 2500)
+        chunk = raw[md.end():end]
+        m = re.search(r'<a[^>]+href="([^"]*-\d+(?:-\d+)?\.html)"[^>]*>(.*?)</a>', chunk, re.S)
+        if not m:
+            continue
+        href, title = m.group(1), clean_text(m.group(2))
+        if len(title) < 10:
+            continue
+        full = href if href.startswith("http") else "https://www.legalnewsnotaires.fr" + href
+        out.append({"id": "LNN-" + href, "source": "LegalNews", "date": f"20{md.group(3)}-{md.group(2)}-{md.group(1)}",
+                    "title": title, "abstract": cut_teaser(chunk[m.end():]), "url": full})
+    seen, dedup = set(), []
+    for it in out:
+        if it["id"] not in seen:
+            seen.add(it["id"]); dedup.append(it)
+    return dedup[:150]
+
+
+# --------------------------------------------------------------------------------------------------
+# IA : fournisseurs gratuits en cascade, arrêt immédiat quand un quota est épuisé
+# --------------------------------------------------------------------------------------------------
+_DEAD = set()
+_QUOTA_HINTS = ("per day", "tokens per day", "tpd", "requests per day", "rpd", "billing", "exceeded your current quota")
+
+
+def _providers():
+    p = []
+    if os.getenv("GROQ_API_KEY"):
+        p += [("groq-120b", "groq", "openai/gpt-oss-120b"), ("groq-20b", "groq", "openai/gpt-oss-20b")]
+    if os.getenv("GEMINI_API_KEY"):
+        p.append(("gemini", "gemini", "gemini-flash-latest"))
+    if os.getenv("ANTHROPIC_API_KEY"):
+        p.append(("anthropic", "anthropic", "claude-haiku-4-5-20251001"))
+    return p
+
+
+def _retry_after(body):
+    m = re.search(r"try again in\s*(?:(\d+)m)?\s*(\d+(?:\.\d+)?)s", body or "", re.I)
+    return (int(m.group(1) or 0) * 60 + float(m.group(2))) if m else None
+
+
+def _request(kind, model, prompt, max_tokens):
+    if kind == "groq":
+        body = {"model": model, "temperature": 0.2, "max_completion_tokens": max_tokens, "reasoning_effort": "low",
+                "messages": [{"role": "user", "content": prompt}]}
+        return requests.post("https://api.groq.com/openai/v1/chat/completions", timeout=120, json=body,
+                             headers={"Authorization": f"Bearer {os.getenv('GROQ_API_KEY', '').strip()}"})
+    if kind == "gemini":
+        return requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent", timeout=120,
+                             headers={"x-goog-api-key": os.getenv("GEMINI_API_KEY", "").strip()},
+                             json={"contents": [{"parts": [{"text": prompt}]}],
+                                   "generationConfig": {"maxOutputTokens": max_tokens, "temperature": 0.2}})
+    return requests.post("https://api.anthropic.com/v1/messages", timeout=120,
+                         headers={"x-api-key": os.getenv("ANTHROPIC_API_KEY", "").strip(), "anthropic-version": "2023-06-01"},
+                         json={"model": model, "max_tokens": max_tokens, "messages": [{"role": "user", "content": prompt}]})
+
+
+def _extract(kind, r):
+    j = r.json()
+    if kind == "groq":
+        return (j["choices"][0]["message"].get("content") or "").strip()
+    if kind == "gemini":
+        return j["candidates"][0]["content"]["parts"][0]["text"].strip()
+    return j["content"][0]["text"].strip()
+
+
+def call_ai(prompt, max_tokens=2800):
+    """Essaie les fournisseurs dans l'ordre. Quota journalier épuisé ou erreur de configuration -> fournisseur écarté
+    pour tout le run, sans nouvel essai. Simple limite par minute -> une seule attente courte, puis on continue."""
+    time.sleep(1.5)
+    for name, kind, model in _providers():
+        if name in _DEAD:
+            continue
+        try:
+            r = _request(kind, model, prompt, max_tokens)
+            if r.status_code == 400 and kind == "groq" and "reasoning" in (r.text or "").lower():
+                r = requests.post("https://api.groq.com/openai/v1/chat/completions", timeout=120,
+                                  headers={"Authorization": f"Bearer {os.getenv('GROQ_API_KEY', '').strip()}"},
+                                  json={"model": model, "temperature": 0.2, "max_completion_tokens": max_tokens,
+                                        "messages": [{"role": "user", "content": prompt}]})
+            if r.status_code in (429, 503) and not any(h in (r.text or "").lower() for h in _QUOTA_HINTS):
+                wait = _retry_after(r.text)
+                wait = min(wait + 1, 75) if wait is not None else 12
+                log(f"IA ({name}) : limite de débit, attente {wait:.0f}s puis nouvel essai")
+                time.sleep(wait)
+                r = _request(kind, model, prompt, max_tokens)
+            if r.status_code >= 400:
+                log(f"IA ({name}) : échec {r.status_code} — {(r.text or '')[:220].replace(chr(10), ' ')}")
+                if r.status_code != 503:
+                    _DEAD.add(name)          # quota épuisé ou erreur de configuration : on ne réessaie plus ce run-ci
+                continue
+            return _extract(kind, r)
+        except Exception as e:
+            log(f"IA ({name}) : exception", e)
+            _DEAD.add(name)
     return None
 
+
+def all_ai_dead():
+    p = [n for n, _, _ in _providers()]
+    return bool(p) and all(n in _DEAD for n in p)
+
+
+def _json_from(txt):
+    if not txt:
+        return None
+    s = txt.strip()
+    a, b = s.find("{"), s.rfind("}")
+    if a < 0 or b <= a:
+        return None
+    try:
+        d = json.loads(s[a:b + 1])
+        return d if isinstance(d, dict) else None
+    except Exception:
+        return None
+
+
+def _lst(v, n, each):
+    return [str(x).strip()[:each] for x in (v or []) if str(x).strip()][:n] if isinstance(v, list) else []
+
+
+def parse_fiche(txt):
+    d = _json_from(txt)
+    if not d or not str(d.get("resume", "")).strip():
+        return None                                   # JSON invalide ou tronqué : on n'affiche jamais de JSON brut
+    sch = _lst(d.get("schema_etapes"), 8, 220)
+    return {"resume": str(d["resume"]).strip()[:1600],
+            "contexte": str(d.get("contexte", "")).strip()[:1200] or None,
+            "points": _lst(d.get("points_cles"), 12, 420),
+            "regles": _lst(d.get("regles"), 10, 420),
+            "qui": str(d.get("qui_est_concerne", "")).strip()[:700] or None,
+            "a_verifier": _lst(d.get("a_verifier"), 10, 360),
+            "vigilance": str(d.get("vigilance", "")).strip()[:900] or None,
+            "references": _lst(d.get("references"), 12, 160),
+            "schema": {"titre": str(d.get("schema_titre", "")).strip()[:120], "etapes": sch} if len(sch) >= 3 else None}
+
+
+def fiche_prompt(title, text, partial):
+    note = ("ATTENTION : seul un extrait public est disponible (l'article complet est réservé aux abonnés). Restitue "
+            "précisément ce que l'extrait permet, sans extrapoler ; laisse vides les champs que l'extrait ne permet pas "
+            "de renseigner." if partial else
+            "Le texte ci-dessous est l'article complet : n'omets AUCUN point juridique substantiel (règles, conditions, "
+            "exceptions, délais, seuils, montants, textes, jurisprudence citée, solutions pratiques).")
+    return ("Tu rédiges, pour un notaire français très exigeant, une fiche de synthèse RIGOUREUSE ET TRÈS DÉTAILLÉE d'une "
+            "actualité juridique, en t'appuyant STRICTEMENT et UNIQUEMENT sur le texte fourni. Règles absolues : (1) n'invente "
+            "et n'ajoute aucun fait, article, date, chiffre, nom, arrêt ou conséquence absent du texte ; (2) REFORMULE avec "
+            "tes propres mots, ne recopie jamais de phrases entières (citation exceptionnelle de 15 mots maximum) ; (3) pas de "
+            "formules vagues (« pourrait », « dans certains cas ») quand le texte est précis : donne la règle, la condition, "
+            "le chiffre, la référence ; (4) chaque champ rempli doit être substantiel ; champ vide plutôt qu'invention. "
+            f"{note}\n\nRéponds UNIQUEMENT par un objet JSON valide et COMPLET (jamais coupé), avec exactement ces clés :\n"
+            '{"resume": "5 à 8 phrases : sujet, solution ou règle retenue, raisonnement, portée pratique",\n'
+            ' "contexte": "état du droit ou du litige avant, ce qui change ou est tranché (si le texte le dit), sinon vide",\n'
+            ' "points_cles": ["8 à 12 points précis et autonomes quand le texte le permet : règles, conditions, exceptions, délais, seuils, chiffres, textes et arrêts visés"],\n'
+            ' "regles": ["conditions d\'application / régime juridique, une règle par élément, avec sa base légale quand le texte la donne"],\n'
+            ' "qui_est_concerne": "personnes, actes et situations visés, avec leurs limites",\n'
+            ' "a_verifier": ["actions concrètes pour le notaire UNIQUEMENT si le texte les donne ou les implique directement : vérifications, clauses, mentions, informations à donner aux parties"],\n'
+            ' "vigilance": "pièges, divergences de jurisprudence, points non tranchés signalés par le texte, sinon vide",\n'
+            ' "references": ["textes, articles et décisions cités dans le texte, au format court (ex. Cass. 3e civ., 24 oct. 2024, n° 23-18.067)"],\n'
+            ' "schema_titre": "titre court d\'un schéma, seulement si le texte décrit une procédure, une chronologie ou un enchaînement de conditions, sinon vide",\n'
+            ' "schema_etapes": ["3 à 8 étapes ou conditions successives, formulées brièvement, dans l\'ordre ; liste vide s\'il n\'y a pas de séquence réelle"]}\n'
+            "Réponds exactement INSUFFISANT si le texte ne permet de rien dire d'utile.\n\n"
+            f"TITRE : {title}\n\nTEXTE :\n{text}")
+
+
+def make_fiche(it):
+    """Retourne (fiche ou None, statut) ; statut : 'ok', 'vide' (rien d'exploitable) ou 'erreur' (à retenter)."""
+    full = fetch_full_text(it["url"]) if it.get("url") else None
+    text = full or it.get("abstract", "")
+    if len(text) < 60:
+        return None, "vide"
+    partial = len(text) < 1800
+    out = call_ai(fiche_prompt(it["title"], text, partial))
+    if out is None:
+        return None, "erreur"
+    if out.strip().upper().startswith("INSUFFISANT"):
+        return None, "vide"
+    f = parse_fiche(out)
+    if not f:
+        log("Fiche IA : JSON invalide ou tronqué, fiche écartée.")
+        return None, "erreur"
+    f["partielle"] = partial
+    return f, "ok"
+
+
+def weekly_digest(items):
+    """Brief : par matière, quelques phrases factuelles sur les 7 derniers jours (titres et extraits publics)."""
+    if not _providers():
+        return None
+    cutoff = (TODAY - dt.timedelta(days=7)).isoformat()
+    by = {}
+    for i in items:
+        if i["date"] >= cutoff:
+            for m in i["matieres"]:
+                if m != "Autres":
+                    by.setdefault(m, []).append(i)
+    digest, deadline = {}, time.time() + 150
+    for mat, its in sorted(by.items(), key=lambda kv: -len(kv[1]))[:8]:
+        if len(its) < 2:
+            continue
+        if time.time() > deadline or all_ai_dead():
+            log("Brief hebdomadaire : arrêt (temps ou quota)."); break
+        lst = "\n".join(f"- {i['title']} ({i['source']}, {i['date']}) : {(i['ai']['resume'] if i.get('ai') else i.get('abstract', ''))[:420]}"
+                        for i in its[:12])
+        txt = call_ai(
+            f"Tu rédiges la synthèse hebdomadaire d'une veille juridique pour des notaires, matière « {mat} ». Voici les "
+            "publications de la semaine. En t'appuyant UNIQUEMENT sur elles (aucun fait inventé), écris 3 à 6 lignes, une "
+            "idée par ligne, chaque ligne étant une phrase COMPLÈTE et CONCRÈTE : la règle ou solution précise, qui est "
+            "concerné, ce qu'il faut vérifier. Interdit : « cette semaine a abordé », « plusieurs sujets ». Pas de titre, "
+            "pas d'introduction, pas de puces.\n\n" + lst, max_tokens=1500)
+        if txt and not txt.upper().startswith("INSUFFISANT"):
+            lines = [trim_to_sentence(l.strip(" •-*\t")) for l in txt.splitlines() if len(l.strip()) > 25]
+            if lines:
+                digest[mat] = "\n".join(lines[:6])
+    return digest or None
+
+
+# --------------------------------------------------------------------------------------------------
+# Sorties : JSON, page web, flux RSS, notification
+# --------------------------------------------------------------------------------------------------
+def notify(new_items):
+    topic = os.getenv("NTFY_TOPIC")
+    if not topic or not new_items:
+        return
+    top = sorted(new_items, key=lambda i: i["date"], reverse=True)[:5]
+    body = "\n".join(f"• {i['title'][:90]}" for i in top)
+    if len(new_items) > 5:
+        body += f"\n… et {len(new_items) - 5} de plus"
+    try:
+        requests.post(f"https://ntfy.sh/{topic}", timeout=20, data=body.encode("utf-8"),
+                      headers={"Title": f"Veille notariale : {len(new_items)} nouveauté(s)".encode("utf-8"), "Tags": "scales"})
+    except Exception as e:
+        log("Notification ntfy", e)
+
+
+def write_rss(items):
+    e = html.escape
+    rows = "".join(f"<item><title>{e(i['title'])}</title><link>{e(i['url'])}</link><guid>{e(i['id'])}</guid>"
+                   f"<description>{e(i.get('abstract', ''))}</description></item>" for i in items[:100])
+    open(os.path.join(DOCS, "feed.xml"), "w", encoding="utf-8").write(
+        '<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Veille juridique notariale</title>'
+        f'<link>.</link><description>Actualités juridiques pour notaires</description>{rows}</channel></rss>')
+
+
+def write_html(items, digest=None):
+    dig = {"date": str(TODAY), "by_matiere": digest or {}}
+    page = (PAGE.replace("__UPD__", dt.datetime.now(dt.timezone.utc).strftime("%d/%m/%Y %H:%M UTC"))
+            .replace("__DATA__", json.dumps(items, ensure_ascii=False).replace("</", "<\\/"))
+            .replace("__DIGEST__", json.dumps(dig, ensure_ascii=False).replace("</", "<\\/")))
+    open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(page)
+
+
+# --------------------------------------------------------------------------------------------------
+# Programme principal
+# --------------------------------------------------------------------------------------------------
 def main():
     os.makedirs(DOCS, exist_ok=True)
     store = {}
     if os.path.exists(DATA):
         store = {i["id"]: i for i in json.load(open(DATA, encoding="utf-8"))}
-    # Nettoyage ponctuel : retire les décisions du Conseil d'État/CAA déjà collectées (source désormais écartée,
-    # cf. src_fonds) et efface les fiches IA mal formées d'un ancien bug (réponse tronquée affichée en JSON brut),
-    # pour qu'elles soient régénérées proprement.
-    purged = [k for k, i in store.items() if i.get("source") == "Conseil d'État"]
-    for k in purged: del store[k]
-    broken_ai = 0
+
+    # Nettoyage : seules les 3 sources retenues sont conservées ; les extraits sont ramenés à leur longueur publique ;
+    # les fiches d'un ancien format (ou cassées) sont effacées pour être régénérées.
+    kept = {k: i for k, i in store.items() if str(i.get("source", "")).startswith(ALLOWED_SOURCES)}
+    if len(kept) != len(store):
+        log(f"Nettoyage : {len(store) - len(kept)} élément(s) d'anciennes sources retiré(s).")
+    store = kept
     for i in store.values():
-        a = i.get("ai")
-        if isinstance(a, dict) and (not a.get("resume") or a["resume"].strip().startswith("{") or a["resume"].strip().startswith('"resume"')):
-            del i["ai"]; broken_ai += 1
-    if purged or broken_ai:
-        log(f"Nettoyage : {len(purged)} décision(s) Conseil d'État retirée(s), {broken_ai} fiche(s) cassée(s) réinitialisée(s).")
-    new = []
-    try:
-        tok = piste_token()
-        if tok:
-            for fn in (src_legifrance, src_judilibre, src_fonds):
-                try: new += fn(tok)
-                except Exception as e: log(fn.__name__, "échec :", e)
-    except Exception as e:
-        log("PISTE :", e)
-    new += src_rss()
-    for fn in (src_sepaj, src_legalnews):
-        try: new += fn()
-        except Exception as e: log(fn.__name__, "échec :", e)
+        i["abstract"] = cut_teaser(i.get("abstract", ""))
+        i.pop("type", None); i.pop("bulletin", None)
+        if i.get("ai_v") != AI_VERSION:
+            i.pop("ai", None); i.pop("ai_v", None)
+
+    cutoff = (TODAY - dt.timedelta(days=LOOKBACK_DAYS)).isoformat()
     added = 0
-    for it in new:
-        if it["id"] in store: continue
-        mats = classify(it["title"] + " " + it.get("abstract", "")) or (classify(it.get("_hint", "")) if it.get("_hint") else [])
-        if not mats and it.get("_kind") in ALWAYS_TYPES: mats = ["Texte majeur à examiner"]
-        if not mats and it.pop("_keep", False): mats = ["Autres"]
-        if not mats: continue
-        it.pop("_keep", None); it.pop("_kind", None); it.pop("_hint", None)
-        it["matieres"], it["first_seen"] = mats, str(TODAY)
-        if it.get("type") == "Doctrine / actualité" and any(d in it.get("url", "") for d in
-                ("notaires.fr", "sepaj.fr", "legalnewsnotaires.fr")):
-            # Le flux RSS ne donne qu'un court teaser ; on va chercher le texte intégral de la page (publique,
-            # sans abonnement) pour que la fiche IA ait une vraie matière à synthétiser, pas deux phrases.
-            full = fetch_full_text(it["url"])
-            if full: it["abstract"] = full
+    for it in src_rss() + src_sepaj() + src_legalnews():
+        if it["id"] in store or it["date"] < cutoff or not it["title"]:
+            continue
+        it["matieres"] = classify(it["title"] + " " + it.get("abstract", ""), it.get("url", ""))
+        it["first_seen"] = str(TODAY)
         arts = extract_articles(it["title"] + " " + it.get("abstract", ""))
-        if arts: it["articles"] = arts
-        store[it["id"]] = it; added += 1
-    items_preview = sorted(store.values(), key=lambda i: (i["date"], i["first_seen"]), reverse=True)
-    digest = weekly_digest(items_preview)  # en premier : c'est la fonctionnalité la plus utile, elle ne doit jamais manquer de quota
-    configured = [k for k in ("groq", "gemini", "anthropic")
-                  if os.getenv({"groq": "GROQ_API_KEY", "gemini": "GEMINI_API_KEY", "anthropic": "ANTHROPIC_API_KEY"}[k])]
-    n, ai_batch = 0, int(os.getenv("AI_BATCH", "25"))
-    ai_deadline = time.time() + int(os.getenv("AI_TIME_BUDGET_S", "150"))  # 4 min par défaut : au-delà, on arrête plutôt que d'attendre un quota à la limite
-    for it in sorted(store.values(), key=lambda i: i["date"], reverse=True):
-        if n >= ai_batch: break
-        if time.time() >= ai_deadline:
-            log("Temps maximal alloué aux fiches IA atteint pour ce run (quota probablement saturé) : arrêt propre, la suite sera reprise au prochain lancement.")
+        if arts:
+            it["articles"] = arts
+        store[it["id"]] = it
+        added += 1
+
+    items = sorted(store.values(), key=lambda i: (i["date"], i["first_seen"]), reverse=True)
+    digest = weekly_digest(items)                      # en premier : c'est le plus utile, il ne doit pas manquer de quota
+
+    batch = int(os.getenv("AI_BATCH", "40"))
+    deadline = time.time() + int(os.getenv("AI_TIME_BUDGET_S", "900"))
+    done = 0
+    for it in items:
+        if done >= batch:
             break
-        if configured and set(configured) <= _DEAD_PROVIDERS:
-            log("Tous les fournisseurs IA configurés sont à quota ou en erreur : arrêt anticipé des fiches pour ce run.")
-            break
-        if "ai" not in it:
-            it["ai"] = ai_summary(it); n += 1
+        if it.get("ai_v") == AI_VERSION or it.get("ai_tries", 0) >= 3:
+            continue
+        if time.time() > deadline:
+            log("Temps alloué aux fiches atteint : le reste sera repris au prochain lancement."); break
+        if _providers() and all_ai_dead():
+            log("Tous les fournisseurs IA sont à quota ou en erreur : arrêt immédiat des fiches pour ce run."); break
+        if not _providers():
+            log("Aucune clé IA configurée : pas de fiches."); break
+        fiche, status = make_fiche(it)
+        if status == "ok":
+            it["ai"], it["ai_v"] = fiche, AI_VERSION; done += 1
+        elif status == "vide":
+            it["ai"], it["ai_v"] = None, AI_VERSION
+        else:
+            it["ai_tries"] = it.get("ai_tries", 0) + (0 if all_ai_dead() else 1)
+
     items = sorted(store.values(), key=lambda i: (i["date"], i["first_seen"]), reverse=True)
     json.dump(items, open(DATA, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    json.dump({"date": str(TODAY), "by_matiere": digest or {}}, open(os.path.join(DOCS, "digest.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    write_html(items, digest); write_rss(items)
-    new_today = [i for i in items if i["first_seen"] == str(TODAY)]
-    notify(new_today)
-    log(f"{added} nouveaux éléments, {len(items)} au total.")
+    json.dump({"date": str(TODAY), "by_matiere": digest or {}}, open(os.path.join(DOCS, "digest.json"), "w", encoding="utf-8"),
+              ensure_ascii=False, indent=1)
+    write_html(items, digest)
+    write_rss(items)
+    notify([i for i in items if i["first_seen"] == str(TODAY)] if added else [])
+    log(f"{added} nouveaux éléments, {len(items)} au total, {done} fiche(s) générée(s).")
 
-def notify(new_items):
-    """Envoie une notification gratuite via ntfy.sh si NTFY_TOPIC est configuré.
-    ntfy.sh est un service gratuit et open-source : voir https://ntfy.sh"""
-    topic = os.getenv("NTFY_TOPIC")
-    if not topic or not new_items: return
-    top = sorted(new_items, key=lambda i: i["date"], reverse=True)[:5]
-    body = "\n".join(f"• {i['title'][:90]}" for i in top)
-    if len(new_items) > 5: body += f"\n… et {len(new_items) - 5} de plus"
-    try:
-        requests.post(f"https://ntfy.sh/{topic}", timeout=20, data=body.encode("utf-8"),
-            headers={"Title": f"Veille notariale : {len(new_items)} nouveauté(s)".encode("utf-8"),
-                     "Tags": "scales", "Click": "https://ntfy.sh"})
-    except Exception as e:
-        log("Notification ntfy", e)
 
-_DEAD_PROVIDERS = set()  # fournisseurs déjà en échec définitif sur ce run : on ne les rappelle plus, pour ne pas perdre de temps
-
-_QUOTA_HINTS = ("quota", "tokens per day", "tpd", "requests per day", "rpd", "billing")
-
-def _post_with_retry(url, provider, **kw):
-    """Réessaie en cas de 429/503 ambigu (embouteillage passager) : 2 essais max, pause courte.
-    Si le message d'erreur mentionne explicitement un quota/jour épuisé, on n'insiste PAS du tout :
-    un quota épuisé ne se résout pas en 6 secondes, ça ne sert qu'à perdre du temps pour rien."""
-    delay = 6
-    r = requests.post(url, **kw)
-    if r.status_code >= 400:
-        body = (r.text or "")[:300]
-        if r.status_code in (429, 503) and not any(h in body.lower() for h in _QUOTA_HINTS):
-            # Embouteillage sans mention de quota : vaut la peine de retenter une fois, rapidement.
-            for attempt in range(2):
-                wait = delay * (attempt + 1)
-                log(f"IA ({provider}) : {r.status_code}, nouvel essai dans {wait}s ({attempt+1}/2)")
-                time.sleep(wait)
-                r = requests.post(url, **kw)
-                if r.status_code < 400: break
-                body = (r.text or "")[:300]
-        if r.status_code >= 400:
-            log(f"IA ({provider}) : échec {r.status_code} — {body.replace(chr(10), ' ')}")
-            if r.status_code != 503:
-                _DEAD_PROVIDERS.add(provider)  # quota épuisé ou erreur de config : on arrête net pour ce fournisseur
-    return r
-
-def call_ai(prompt, max_tokens=700):
-    """Appel générique au modèle disponible (Groq prioritaire — quota gratuit généreux et stable —,
-    puis Gemini, puis Anthropic en dernier repli). Retourne le texte brut ou None.
-    Un fournisseur qui échoue avec une erreur de configuration (pas un simple embouteillage) est
-    écarté pour le reste du run, afin de ne pas perdre de temps à répéter le même échec."""
-    time.sleep(4)
-    qkey = os.getenv("GROQ_API_KEY")
-    if qkey and "groq" not in _DEAD_PROVIDERS:
-        try:
-            r = _post_with_retry("https://api.groq.com/openai/v1/chat/completions", "Groq", timeout=60,
-                headers={"content-type": "application/json", "Authorization": f"Bearer {qkey.strip()}"},
-                json={"model": "openai/gpt-oss-120b", "temperature": 0.2, "max_tokens": max_tokens,
-                      "messages": [{"role": "user", "content": prompt}]})
-            if r.status_code < 400:
-                return r.json()["choices"][0]["message"]["content"].strip()
-        except Exception as e:
-            log("IA (Groq) exception", e); _DEAD_PROVIDERS.add("groq")
-
-    gkey = os.getenv("GEMINI_API_KEY")
-    if gkey and "gemini" not in _DEAD_PROVIDERS:
-        try:
-            r = _post_with_retry("https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent",
-                "Gemini", timeout=60, headers={"content-type": "application/json", "x-goog-api-key": gkey.strip()},
-                json={"contents": [{"parts": [{"text": prompt}]}],
-                      "generationConfig": {"maxOutputTokens": max_tokens, "temperature": 0.2}})
-            if r.status_code < 400:
-                return r.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
-        except Exception as e:
-            log("IA (Gemini) exception", e); _DEAD_PROVIDERS.add("gemini")
-
-    akey = os.getenv("ANTHROPIC_API_KEY")
-    if akey and "anthropic" not in _DEAD_PROVIDERS:
-        try:
-            r = _post_with_retry("https://api.anthropic.com/v1/messages", "Anthropic", timeout=60,
-                headers={"x-api-key": akey.strip(), "anthropic-version": "2023-06-01", "content-type": "application/json"},
-                json={"model": "claude-haiku-4-5-20251001", "max_tokens": max_tokens, "messages": [{"role": "user", "content": prompt}]})
-            if r.status_code < 400:
-                return r.json()["content"][0]["text"].strip()
-        except Exception as e:
-            log("IA (Anthropic) exception", e); _DEAD_PROVIDERS.add("anthropic")
-    return None
-
-def weekly_digest(items):
-    """Brief hebdomadaire : un paragraphe de synthèse par matière, sur les 7 derniers jours.
-    Basé UNIQUEMENT sur les titres/sommaires déjà collectés ; regroupe sans inventer de fait nouveau."""
-    if not (os.getenv("GROQ_API_KEY") or os.getenv("GEMINI_API_KEY") or os.getenv("ANTHROPIC_API_KEY")): return None
-    cutoff = (TODAY - dt.timedelta(days=7)).isoformat()
-    recent = [i for i in items if i["date"] >= cutoff or i["first_seen"] >= cutoff]
-    if len(recent) < 3: return None
-    by_mat = {}
-    for i in recent:
-        for m in i["matieres"]:
-            if m in ("Texte majeur à examiner", "Autres"): continue
-            by_mat.setdefault(m, []).append(i)
-    digest = {}
-    digest_deadline = time.time() + 60  # 100s max pour le brief : il passe avant les fiches, ne doit pas monopoliser le run
-    for mat, its in sorted(by_mat.items(), key=lambda kv: -len(kv[1]))[:8]:
-        if time.time() >= digest_deadline:
-            log("Temps maximal atteint pour le brief hebdomadaire : matières restantes reprises au prochain run.")
-            break
-        if len(its) < 2: continue
-        lst = "\n".join(f"- {i['title']} ({i['type']}, {i['date']})" + (f" : {i['abstract'][:180]}" if i.get("abstract") else "") for i in its[:12])
-        prompt = ("Tu rédiges la synthèse hebdomadaire d'une veille juridique pour des notaires, sur la matière "
-                   f"« {mat} ». Voici la liste des publications de la semaine dans cette matière, avec leur type, leur "
-                   "date et leur contenu disponible. En t'appuyant UNIQUEMENT sur les éléments listés ci-dessous — sans "
-                   "inventer aucun fait qui n'y figure pas —, liste 2 à 5 phrases COURTES, COMPLÈTES (jamais coupées en "
-                   "milieu de phrase) et surtout CONCRÈTES : va directement au fait juridique précis et à son implication "
-                   "pratique (qui est concerné, ce qui change, ce qu'il faut vérifier), sans aucune phrase d'accroche "
-                   "vague du type « cette semaine a abordé » ou « plusieurs questions ont été soulevées ». Chaque phrase "
-                   "doit pouvoir se lire seule et apporter une information actionnable, pas une annonce de sujet. Une "
-                   "ligne sur sa propre ligne, séparées par un retour à la ligne. Réponds uniquement avec ces phrases, "
-                   "sans titre ni introduction.\n\n" + lst)
-        txt = call_ai(prompt, max_tokens=900)
-        if txt and not txt.startswith("INSUFFISANT"): digest[mat] = txt[:900]
-    return digest or None
-
-def write_rss(items):
-    e = html.escape
-    rows = "".join(f"<item><title>{e(i['title'])}</title><link>{e(i['url'])}</link><guid>{e(i['id'])}</guid>"
-                   f"<description>{e(i.get('abstract',''))}</description><category>{e(', '.join(i['matieres']))}</category></item>" for i in items[:100])
-    open(os.path.join(DOCS, "feed.xml"), "w", encoding="utf-8").write(
-        f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Veille juridique notariale</title>'
-        f'<link>.</link><description>Textes, jurisprudence et doctrine</description>{rows}</channel></rss>')
-
-PAGE = """<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+PAGE = r"""<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Veille juridique notariale</title><link rel="alternate" type="application/rss+xml" href="feed.xml">
 <link rel="manifest" href="manifest.json"><meta name="theme-color" content="#14213d">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Veille notariale"><link rel="apple-touch-icon" href="icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f2f0e9;--fg:#1d2433;--card:#fff;--mut:#666f80;--bd:#e3e0d3;--navy:#14213d;--navy2:#26426b;--gold:#b8893b;--jur:#26426b;--txt:#8c2f39;--doc:#2f7a5b;--ring:#b8893b55;--side:#181f30}
-:root[data-theme="dark"]{--bg:#0e1320;--fg:#e9ecf3;--card:#171f33;--mut:#9aa3b5;--bd:#28324a;--gold:#d9a95a;--jur:#7fa6e0;--txt:#e58a94;--doc:#6fcfa3;--ring:#d9a95a55;--side:#0b0f1a}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1320;--fg:#e9ecf3;--card:#171f33;--mut:#9aa3b5;--bd:#28324a;--gold:#d9a95a;--jur:#7fa6e0;--txt:#e58a94;--doc:#6fcfa3;--ring:#d9a95a55;--side:#0b0f1a}}
+:root{--bg:#f2f0e9;--fg:#1d2433;--card:#fff;--mut:#667085;--bd:#e3e0d3;--navy:#14213d;--navy2:#26426b;--gold:#b8893b;--nd:#2f7a5b;--sp:#26426b;--ln:#8c2f39;--ring:#b8893b55;--side:#181f30;--soft:rgba(38,66,107,.06)}
+:root[data-theme="dark"]{--bg:#0e1320;--fg:#e9ecf3;--card:#171f33;--mut:#9aa3b5;--bd:#28324a;--gold:#d9a95a;--nd:#6fcfa3;--sp:#7fa6e0;--ln:#e58a94;--ring:#d9a95a55;--side:#0b0f1a;--soft:rgba(127,166,224,.08)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1320;--fg:#e9ecf3;--card:#171f33;--mut:#9aa3b5;--bd:#28324a;--gold:#d9a95a;--nd:#6fcfa3;--sp:#7fa6e0;--ln:#e58a94;--ring:#d9a95a55;--side:#0b0f1a;--soft:rgba(127,166,224,.08)}}
 *{box-sizing:border-box}html{scroll-padding-top:70px}
-body{margin:0;background:var(--bg);color:var(--fg);font:14.5px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}
-a{color:inherit} button{font-family:inherit}
-::-webkit-scrollbar{width:9px;height:9px}::-webkit-scrollbar-thumb{background:var(--bd);border-radius:99px}
-
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 Inter,system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit}button{font-family:inherit}
 .shell{display:flex;min-height:100vh}
-
-/* ===== Sidebar ===== */
-.sidebar{width:252px;flex:none;background:var(--side);color:#dfe4ee;position:sticky;top:0;height:100vh;overflow-y:auto;padding:18px 14px calc(18px + env(safe-area-inset-bottom,0px));z-index:40}
-.brandmini{display:flex;align-items:center;gap:9px;margin-bottom:16px;padding:0 4px}
-.brandmini .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--gold),#8a5f22);display:flex;align-items:center;justify-content:center;font:700 16px 'Playfair Display',Georgia,serif;color:#1d1400;flex:none}
-.brandmini .tt{font:700 15px 'Playfair Display',Georgia,serif;line-height:1.1}.brandmini .tt small{display:block;font:500 10px Inter;color:#8b93a8;letter-spacing:.04em;text-transform:uppercase}
-.ministats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:16px}
+.sidebar{width:262px;flex:none;background:var(--side);color:#dfe4ee;position:sticky;top:0;height:100vh;overflow-y:auto;padding:18px 14px calc(18px + env(safe-area-inset-bottom,0px));z-index:40}
+.brand{display:flex;align-items:center;gap:10px;margin:0 4px 16px}
+.mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--gold),#8a5f22);display:flex;align-items:center;justify-content:center;font:700 17px 'Playfair Display',Georgia,serif;color:#1d1400;flex:none}
+.brand b{font:700 15px 'Playfair Display',Georgia,serif;display:block;line-height:1.1}.brand small{font:500 10px Inter;color:#8b93a8;letter-spacing:.05em;text-transform:uppercase}
+.ministats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px}
 .mstat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:7px 4px;text-align:center}
 .mstat b{display:block;font:700 15px 'Playfair Display',Georgia,serif;color:#f1d9a6}.mstat span{font-size:8.5px;color:#8b93a8;text-transform:uppercase;letter-spacing:.04em}
 .navlbl{font:700 10px Inter;letter-spacing:.1em;text-transform:uppercase;color:#6b7690;margin:16px 6px 6px}
 .navitem{display:flex;width:100%;align-items:center;gap:8px;text-align:left;background:none;border:none;color:#c7cede;padding:7px 8px;border-radius:8px;cursor:pointer;font:600 13px Inter}
-.navitem:hover{background:rgba(255,255,255,.06)}
-.navitem.on{background:linear-gradient(135deg,var(--gold),#8a5f22);color:#1d1400}
-.navitem .n{margin-left:auto;font:700 11px Inter;opacity:.65}.navitem.on .n{opacity:.8}
-.navitem .dot{width:7px;height:7px;border-radius:99px;flex:none}
-.themebtn{margin-top:18px;display:flex;gap:7px;align-items:center;justify-content:center;width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:#c7cede;padding:8px;border-radius:9px;cursor:pointer;font:600 12px Inter}
-.themebtn:hover{background:rgba(255,255,255,.12)}
-
-/* ===== Backdrop mobile ===== */
-.backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:35}
-.backdrop.show{display:block}
-
-/* ===== Colonne principale ===== */
+.navitem:hover{background:rgba(255,255,255,.06)}.navitem.on{background:linear-gradient(135deg,var(--gold),#8a5f22);color:#1d1400}
+.navitem .n{margin-left:auto;font:700 11px Inter;opacity:.65}.navitem .dot{width:8px;height:8px;border-radius:99px;flex:none}
+.themebtn{margin-top:18px;width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:#c7cede;padding:8px;border-radius:9px;cursor:pointer;font:600 12px Inter}
+.backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:35}.backdrop.show{display:block}
 .content{flex:1;min-width:0}
-.topbar{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--bd);padding:11px 20px;display:flex;gap:10px;align-items:center;box-shadow:0 2px 8px rgba(20,33,61,.04)}
+.topbar{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--bd);padding:10px 20px;display:flex;gap:10px;align-items:center}
 .burger{display:none;background:none;border:1px solid var(--bd);border-radius:8px;padding:8px 10px;cursor:pointer;color:var(--fg);font-size:15px}
-.search{position:relative;flex:1;max-width:480px}
-.search input{width:100%;padding:10px 13px 10px 38px;border:1px solid var(--bd);border-radius:10px;font:14.5px Inter,system-ui;background:var(--card);color:var(--fg);outline:none}
+.search{position:relative;flex:1;max-width:460px}
+.search input{width:100%;padding:10px 13px 10px 36px;border:1px solid var(--bd);border-radius:10px;font:14.5px Inter,system-ui;background:var(--card);color:var(--fg);outline:none}
 .search input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--ring)}
 .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:15px;height:15px;stroke:var(--mut);fill:none;stroke-width:2}
-.breadcrumb{font:600 12px Inter;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.breadcrumb b{color:var(--fg)}
-.rssmini{margin-left:auto;flex:none;font:600 12px Inter;color:var(--gold);text-decoration:none;white-space:nowrap}
-
-main{max-width:920px;margin:0;padding:18px 20px 34px}
-#brief-wrap{margin-bottom:4px}
-.brief{background:linear-gradient(160deg,var(--navy),var(--navy2));border-radius:16px;padding:18px 18px 6px;margin-bottom:18px;box-shadow:0 8px 22px rgba(20,33,61,.16);color:#fff}
-.brief h2{font:700 18px 'Playfair Display',Georgia,serif;margin:0 0 2px}
-.brief .sub2{font-size:11.5px;color:#cbd5e6;margin-bottom:10px}
+.crumb{font:600 12px Inter;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.crumb b{color:var(--fg)}
+.tbtn{margin-left:auto;flex:none;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:9px;padding:7px 11px;font:600 12px Inter;cursor:pointer;white-space:nowrap}
+.rss{flex:none;font:600 12px Inter;color:var(--gold);text-decoration:none}
+main{max-width:980px;padding:18px 20px 34px}
+.brief{background:linear-gradient(160deg,var(--navy),var(--navy2));border-radius:16px;padding:18px 20px 8px;margin-bottom:20px;color:#fff;box-shadow:0 8px 22px rgba(20,33,61,.16)}
+.brief h2{font:700 19px 'Playfair Display',Georgia,serif;margin:0 0 2px}.brief .s2{font-size:12px;color:#cbd5e6;margin-bottom:10px}
 .brief details{border-top:1px solid rgba(255,255,255,.15);padding:10px 0}
-.brief summary{cursor:pointer;font:600 13.5px Inter;list-style:none;display:flex;justify-content:space-between;align-items:center}
-.brief summary::-webkit-details-marker{display:none}.brief summary:after{content:"+";font-size:16px;color:#e3c58c}
-.brief details[open] summary:after{content:"–"}
-.brief p{font-size:12.5px;line-height:1.55;color:#e7ecf5;margin:6px 0 2px 2px}
-
-.daysep{display:flex;align-items:center;gap:9px;margin:18px 2px 2px;color:var(--mut)}
-.daysep:first-of-type{margin-top:0}
-.daysep .lbl{font:700 11px Inter;letter-spacing:.09em;text-transform:uppercase;color:var(--gold)}
+.brief summary{cursor:pointer;font:600 14px Inter;list-style:none;display:flex;justify-content:space-between}.brief summary::-webkit-details-marker{display:none}
+.brief summary:after{content:"+";color:#e3c58c;font-size:17px}.brief details[open] summary:after{content:"–"}
+.brief p{font-size:13.5px;line-height:1.6;color:#e7ecf5;margin:6px 0 2px}
+.daysep{display:flex;align-items:center;gap:10px;margin:22px 2px 4px}.daysep:first-child{margin-top:0}
+.daysep .l{font:700 11px Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
 .daysep:before,.daysep:after{content:"";height:1px;flex:1;background:var(--bd)}
-
-#list{display:flex;flex-direction:column;gap:11px}
-
-.card{background:var(--card);border:1px solid var(--bd);border-radius:13px;padding:14px;box-shadow:0 2px 8px rgba(20,33,61,.04);position:relative;overflow:hidden;display:flex;gap:11px;align-items:flex-start}
+#list{display:flex;flex-direction:column;gap:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px 18px;position:relative;overflow:hidden;box-shadow:0 2px 8px rgba(20,33,61,.04)}
 .card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
-.card.t-Jurisprudence{--c:var(--jur)}.card.t-Texte{--c:var(--txt)}.card.t-Doctrine{--c:var(--doc)}
-.ico{flex:none;width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font:700 16px 'Playfair Display',Georgia,serif;color:#fff;background:var(--c)}
-.body{min-width:0;overflow-wrap:anywhere;flex:1}
-.top{display:flex;flex-wrap:wrap;gap:5px 7px;align-items:center;margin-bottom:6px}
-.badge{font:700 9.5px Inter;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:99px;color:var(--c);border:1px solid var(--c)}
-.badge.bull{background:linear-gradient(135deg,var(--gold),#8a5f22);border-color:transparent;color:#1d1400}
+.s-nd{--c:var(--nd)}.s-sp{--c:var(--sp)}.s-ln{--c:var(--ln)}
+.top{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-bottom:7px}
+.badge{font:700 9.5px Inter;text-transform:uppercase;letter-spacing:.06em;padding:2px 9px;border-radius:99px;color:var(--c);border:1px solid var(--c)}
 .badge.new{background:var(--gold);border-color:var(--gold);color:#14213d}
-.date{font-size:11px;color:var(--mut);font-weight:600;margin-left:auto}
-.card a.t{display:block;font:700 15.5px/1.32 'Playfair Display',Georgia,serif;color:var(--fg);text-decoration:none}.card a.t:hover{color:var(--gold)}
-.src{font-size:11px;color:var(--mut);margin-top:3px}
-.abs{font-size:13px;margin-top:7px;opacity:.92}
-.toggle{background:none;border:none;color:var(--gold);font:600 11.5px Inter;cursor:pointer;padding:4px 0;margin-top:2px}
-.absfull{display:none}.card.exp .absfull{display:block}.card.exp .abssum{display:none}
-
-.fiche{margin-top:9px;border-radius:10px;background:linear-gradient(180deg,rgba(47,122,91,.07),rgba(47,122,91,.03));border:1px solid rgba(47,122,91,.28);padding:10px 11px}
-.fiche .tag2{display:inline-block;font:700 9.5px Inter;letter-spacing:.06em;text-transform:uppercase;color:var(--doc);background:rgba(47,122,91,.14);padding:2px 8px;border-radius:6px;margin-bottom:6px}
-.fiche .resume{font-size:13px;margin:0 0 7px}
-.fsec{margin-top:6px;padding-top:6px;border-top:1px dashed var(--bd)}
-.fsec .h{font:700 10.5px Inter;color:var(--fg);display:flex;align-items:center;gap:5px;margin-bottom:2px}
-.fsec p{margin:0;font-size:12.5px}.fsec ul{margin:2px 0 0;padding-left:16px}.fsec li{font-size:12.5px;margin:1px 0}
-.vig{margin-top:7px;padding:7px 9px;border-radius:8px;background:rgba(184,137,59,.12);border-left:3px solid var(--gold);font-size:12px}
-.vig b{color:var(--gold);display:block;font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
-
-.artchips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
-.artchip{font:700 10px Inter;padding:2px 8px;border-radius:6px;background:var(--bg);border:1px solid var(--bd);color:var(--mut)}
-.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.badge.part{color:var(--mut);border-color:var(--bd);text-transform:none;letter-spacing:0;font-weight:600}
+.date{margin-left:auto;font-size:11.5px;color:var(--mut);font-weight:600}
+.card a.t{display:block;font:700 18px/1.3 'Playfair Display',Georgia,serif;text-decoration:none}.card a.t:hover{color:var(--gold)}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
 .tag{font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:99px;background:rgba(184,137,59,.13);border:1px solid rgba(184,137,59,.35)}
-.more{display:inline-flex;align-items:center;gap:4px;margin-top:9px;font:700 11.5px Inter;color:var(--gold);text-decoration:none}
-footer{padding:16px 20px calc(24px + env(safe-area-inset-bottom,0px));font-size:11px;color:var(--mut);border-top:1px solid var(--bd)}
-
-@media(max-width:860px){
-  .sidebar{position:fixed;left:0;top:0;transform:translateX(-100%);transition:transform .2s ease;width:78vw;max-width:290px;box-shadow:6px 0 24px rgba(0,0,0,.3)}
-  .sidebar.open{transform:translateX(0)}
-  .burger{display:inline-block}
-  main{padding:14px 14px 28px}
-}
+.abs{font-size:14px;margin:10px 0 0;color:var(--mut)}
+.resume{font-size:14.5px;margin:12px 0 0}
+.aitag{display:inline-block;font:700 9.5px Inter;letter-spacing:.06em;text-transform:uppercase;color:var(--nd);background:rgba(47,122,91,.13);padding:2px 8px;border-radius:6px;margin-top:12px}
+details.fiche{margin-top:10px;border:1px solid var(--bd);border-radius:11px;background:var(--soft)}
+details.fiche>summary{cursor:pointer;list-style:none;padding:10px 14px;font:700 13px Inter;display:flex;justify-content:space-between;align-items:center}
+details.fiche>summary::-webkit-details-marker{display:none}
+details.fiche>summary:after{content:"Déplier ▾";font:600 11.5px Inter;color:var(--gold)}details.fiche[open]>summary:after{content:"Replier ▴"}
+.fbody{padding:2px 16px 14px}
+.sec{margin-top:14px}.sec h4{margin:0 0 5px;font:700 11px Inter;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.sec p{margin:0;font-size:14px}.sec ul,.sec ol{margin:0;padding-left:20px}.sec li{font-size:14px;margin:4px 0}
+.chk{list-style:none;padding:0!important}.chk li{position:relative;padding-left:24px}.chk li:before{content:"☐";position:absolute;left:0;color:var(--gold);font-size:15px;line-height:1.4}
+.vig{margin-top:14px;padding:11px 13px;border-radius:9px;background:rgba(184,137,59,.12);border-left:3px solid var(--gold);font-size:13.5px}
+.vig b{display:block;color:var(--gold);font:700 10.5px Inter;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.flow{margin-top:4px}.step{display:flex;gap:10px;align-items:flex-start;position:relative;padding-bottom:12px}
+.step:not(:last-child):before{content:"";position:absolute;left:12px;top:26px;bottom:0;width:2px;background:var(--bd)}
+.step .n{flex:none;width:26px;height:26px;border-radius:99px;background:var(--navy2);color:#fff;font:700 12px Inter;display:flex;align-items:center;justify-content:center}
+:root[data-theme="dark"] .step .n{background:var(--gold);color:#14213d}
+.step div{font-size:13.5px;padding-top:2px}
+.refs{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.ref{font:600 11px Inter;padding:3px 9px;border-radius:7px;background:var(--bg);border:1px solid var(--bd);color:var(--mut)}
+.src{display:inline-block;margin-top:12px;font:700 12.5px Inter;color:var(--gold);text-decoration:none}
+.note{font-size:12px;color:var(--mut);margin-top:8px}
+footer{padding:16px 20px calc(24px + env(safe-area-inset-bottom,0px));font-size:11.5px;color:var(--mut);border-top:1px solid var(--bd);max-width:980px}
+@media(max-width:860px){.sidebar{position:fixed;left:0;top:0;transform:translateX(-100%);transition:transform .2s;width:80vw;max-width:300px}.sidebar.open{transform:none}.burger{display:inline-block}main{padding:14px}.crumb{display:none}}
 </style></head><body>
-<div class="shell">
-<div class="backdrop" id="backdrop"></div>
-<aside class="sidebar" id="sidebar">
-  <div class="brandmini"><div class="mark">§</div><div class="tt">Veille notariale<small>Actualité juridique</small></div></div>
-  <div class="ministats"><div class="mstat"><b id="n1">0</b><span>Total</span></div><div class="mstat"><b id="n2">0</b><span>7j</span></div><div class="mstat"><b id="n3">0</b><span>Matières</span></div></div>
-  <div class="navlbl">Type de source</div><div id="navtype"></div>
-  <div class="navlbl">Matière</div><div id="navmat"></div>
-  <button class="themebtn" id="themebtn">🌗 <span id="themelabel">Thème auto</span></button>
+<div class="shell"><div class="backdrop" id="bd"></div>
+<aside class="sidebar" id="sb">
+ <div class="brand"><div class="mark">§</div><div><b>Veille notariale</b><small>Actualité juridique</small></div></div>
+ <div class="ministats"><div class="mstat"><b id="n1">0</b><span>Total</span></div><div class="mstat"><b id="n2">0</b><span>7 jours</span></div><div class="mstat"><b id="n3">0</b><span>Fiches</span></div></div>
+ <div class="navlbl">Source</div><div id="navsrc"></div>
+ <div class="navlbl">Matière</div><div id="navmat"></div>
+ <button class="themebtn" id="themebtn">🌗 <span id="themelbl">Thème auto</span></button>
 </aside>
 <div class="content">
-  <div class="topbar">
-    <button class="burger" id="burger">☰</button>
-    <div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input id="q" placeholder="Rechercher : donation, indivision, Cass.…"></div>
-    <div class="breadcrumb" id="breadcrumb"></div>
-    <a class="rssmini" href="feed.xml">Flux RSS</a>
-  </div>
-  <main><div id="brief-wrap"></div><div id="list"></div></main>
-  <footer>Mise à jour <span id="upd">__UPD__</span>. Contenus repris des sources officielles (titre, date, sommaire publiés par la source). Seul le texte du lien fait foi : vérifiez toujours sur Légifrance, Judilibre ou la source d'origine avant tout usage professionnel. Les fiches automatiques sont générées par IA à partir du seul texte de la source et peuvent contenir des erreurs.</footer>
-</div>
-</div>
-<script>const D=__DATA__;const DIGEST=__DIGEST__;let mat="",typ="";const $=id=>document.getElementById(id);
-const esc=s=>(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const M=[...new Set(D.flatMap(i=>i.matieres))].sort(),T=[...new Set(D.map(i=>i.type))];
-const IC={Jurisprudence:"⚖",Texte:"§",Doctrine:"✎"};
-const DOT={Jurisprudence:"var(--jur)",Texte:"var(--txt)",Doctrine:"var(--doc)"};
-const cut7=Date.now()-7*864e5,isNew=i=>new Date(i.first_seen).getTime()>=cut7;
-$("n1").textContent=D.length;$("n2").textContent=D.filter(isNew).length;$("n3").textContent=M.length;
+ <div class="topbar"><button class="burger" id="burger">☰</button>
+  <div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input id="q" placeholder="Rechercher : donation, bail, indivision, article 784…"></div>
+  <div class="crumb" id="crumb"></div><button class="tbtn" id="expand">Tout déplier</button><a class="rss" href="feed.xml">RSS</a></div>
+ <main><div id="brief"></div><div id="list"></div></main>
+ <footer>Mise à jour <span>__UPD__</span>. Sources publiques : Notaires de France, SEPAJ, LegalNews Notaires (titres et extraits que ces sites publient eux-mêmes ; leurs contenus réservés aux abonnés ne sont pas lus). Les fiches sont des synthèses reformulées par IA à partir du texte public de la source : elles peuvent comporter des erreurs et ne remplacent jamais la lecture de la source. Vérifiez toujours avant tout usage professionnel.</footer>
+</div></div>
+<script>
+const D=__DATA__, DIGEST=__DIGEST__; let src="",mat="",allOpen=false; const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const CLS={"Notaires de France":"nd","SEPAJ":"sp","LegalNews":"ln"}, COL={nd:"var(--nd)",sp:"var(--sp)",ln:"var(--ln)"};
+const SRC=[...new Set(D.map(i=>i.source))].sort(), MAT=[...new Set(D.flatMap(i=>i.matieres))].sort();
+const cut7=Date.now()-7*864e5, isNew=i=>new Date(i.first_seen).getTime()>=cut7;
+function fd(d){try{return new Date(d).toLocaleDateString("fr-FR",{day:"numeric",month:"short",year:"numeric"})}catch(e){return d}}
+$("n1").textContent=D.length;$("n2").textContent=D.filter(i=>new Date(i.date).getTime()>=cut7).length;$("n3").textContent=D.filter(i=>i.ai).length;
 
-/* Thème : auto / clair / sombre, mémorisé */
-const THEMES=["auto","light","dark"],LBL={auto:"Thème auto",light:"Thème clair",dark:"Thème sombre"};
-let theme="auto"; try{theme=localStorage.getItem("veille-theme")||"auto"}catch(e){}
-function applyTheme(){document.documentElement.setAttribute("data-theme",theme==="auto"?"":theme);$("themelabel").textContent=LBL[theme];}
-applyTheme();
-$("themebtn").onclick=()=>{theme=THEMES[(THEMES.indexOf(theme)+1)%3];try{localStorage.setItem("veille-theme",theme)}catch(e){}applyTheme();};
+let theme="auto";try{theme=localStorage.getItem("veille-theme")||"auto"}catch(e){}
+const TL={auto:"Thème auto",light:"Thème clair",dark:"Thème sombre"};
+function applyTheme(){document.documentElement.setAttribute("data-theme",theme==="auto"?"":theme);$("themelbl").textContent=TL[theme]}
+applyTheme();$("themebtn").onclick=()=>{theme={auto:"light",light:"dark",dark:"auto"}[theme];try{localStorage.setItem("veille-theme",theme)}catch(e){}applyTheme()};
+$("burger").onclick=()=>{$("sb").classList.add("open");$("bd").classList.add("show")};
+function closeSb(){$("sb").classList.remove("open");$("bd").classList.remove("show")}$("bd").onclick=closeSb;
 
-/* Sidebar mobile */
-function openSidebar(){$("sidebar").classList.add("open");$("backdrop").classList.add("show")}
-function closeSidebar(){$("sidebar").classList.remove("open");$("backdrop").classList.remove("show")}
-$("burger").onclick=openSidebar; $("backdrop").onclick=closeSidebar;
-
-function renderBrief(){
-  const b=$("brief-wrap"); if(!DIGEST||!DIGEST.by_matiere||!Object.keys(DIGEST.by_matiere).length){return}
-  const entries=Object.entries(DIGEST.by_matiere);
-  const fmt=t=>t.split(/\\n+/).map(s=>s.trim()).filter(Boolean).map(s=>`<p>• ${esc(s)}</p>`).join("");
-  b.innerHTML=`<div class="brief"><h2>📋 Brief de la semaine</h2><div class="sub2">Synthèse automatique (IA) des 7 derniers jours, par matière — généré le ${fd(DIGEST.date)} · à vérifier au besoin sur les fiches ci-dessous</div>
-  ${entries.map(([m,t],idx)=>`<details ${idx===0?"open":""}><summary>${esc(m)}</summary>${fmt(t)}</details>`).join("")}</div>`;
+function brief(){
+ const e=DIGEST&&DIGEST.by_matiere?Object.entries(DIGEST.by_matiere):[]; if(!e.length)return;
+ $("brief").innerHTML=`<div class="brief"><h2>📋 Brief de la semaine</h2><div class="s2">Synthèse automatique (IA) des 7 derniers jours, par matière — généré le ${fd(DIGEST.date)} · à vérifier sur les fiches</div>
+ ${e.map(([m,t],k)=>`<details ${k===0?"open":""}><summary>${esc(m)}</summary>${t.split(/\n+/).filter(Boolean).map(s=>`<p>• ${esc(s)}</p>`).join("")}</details>`).join("")}</div>`;
 }
-
 function nav(){
-  const cntType=k=>D.filter(i=>i.type===k).length, cntMat=k=>D.filter(i=>i.matieres.includes(k)).length;
-  $("navtype").innerHTML = `<button class="navitem ${!mat&&!typ?"on":""}" data-k="__all" data-v="">Toutes les sources <span class="n">${D.length}</span></button>` +
-    T.map(t=>`<button class="navitem ${typ===t?"on":""}" data-k="type" data-v="${esc(t)}"><span class="dot" style="background:${DOT[t.split(' ')[0]]||'var(--mut)'}"></span>${esc(t)} <span class="n">${cntType(t)}</span></button>`).join("");
-  $("navmat").innerHTML = M.map(m=>`<button class="navitem ${mat===m?"on":""}" data-k="mat" data-v="${esc(m)}">${esc(m)} <span class="n">${cntMat(m)}</span></button>`).join("");
-  document.querySelectorAll(".navitem").forEach(b=>b.onclick=()=>{
-    const k=b.dataset.k,v=b.dataset.v;
-    if(k==="__all"){mat="";typ=""}else if(k==="type"){typ=(typ===v?"":v);mat=""}else{mat=(mat===v?"":v);typ=""}
-    nav(); draw(); if(window.innerWidth<=860) closeSidebar();
-  });
-  $("breadcrumb").innerHTML = (mat||typ) ? `Filtré : <b>${esc(mat||typ)}</b>` : `<b>Toutes les publications</b>`;
+ $("navsrc").innerHTML=`<button class="navitem ${!src&&!mat?"on":""}" data-k="all">Toutes les sources <span class="n">${D.length}</span></button>`+
+  SRC.map(s=>`<button class="navitem ${src===s?"on":""}" data-k="src" data-v="${esc(s)}"><span class="dot" style="background:${COL[CLS[s]]||"var(--mut)"}"></span>${esc(s)} <span class="n">${D.filter(i=>i.source===s).length}</span></button>`).join("");
+ $("navmat").innerHTML=MAT.map(m=>`<button class="navitem ${mat===m?"on":""}" data-k="mat" data-v="${esc(m)}">${esc(m)} <span class="n">${D.filter(i=>i.matieres.includes(m)).length}</span></button>`).join("");
+ document.querySelectorAll(".navitem").forEach(b=>b.onclick=()=>{const k=b.dataset.k,v=b.dataset.v;
+  if(k==="all"){src="";mat=""}else if(k==="src"){src=src===v?"":v}else{mat=mat===v?"":v}
+  nav();draw();if(innerWidth<=860)closeSb()});
+ $("crumb").innerHTML=(src||mat)?`Filtre : <b>${esc([src,mat].filter(Boolean).join(" · "))}</b>`:`<b>Toutes les publications</b>`;
 }
-
-const fd=d=>{try{return new Date(d).toLocaleDateString("fr-FR",{day:"numeric",month:"short",year:"numeric"})}catch(e){return d}};
-function important(i){return i.bulletin || i.matieres.includes("Texte majeur à examiner")}
-function absBlock(i){
-  const t=esc(i.abstract||""); if(!t) return "";
-  if(important(i)||t.length<=220) return `<div class="abs">${t}</div>`;
-  return `<div class="abssum abs">${t.slice(0,220)}…</div><div class="absfull abs">${t}</div><button class="toggle" data-t="1">Voir le sommaire complet ▾</button>`;
-}
-function ficheBlock(i){
-  if(!i.ai || !i.ai.resume) return "";
-  const a=i.ai; let h=`<div class="fiche"><span class="tag2">Fiche IA — à vérifier</span><p class="resume">${esc(a.resume)}</p>`;
-  if(a.contexte) h+=`<div class="fsec"><div class="h">🔍 Contexte</div><p>${esc(a.contexte)}</p></div>`;
-  if(a.points&&a.points.length) h+=`<div class="fsec"><div class="h">✓ Ce qu'il faut retenir</div><ul>${a.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>`;
-  if(a.qui) h+=`<div class="fsec"><div class="h">👤 Qui est concerné</div><p>${esc(a.qui)}</p></div>`;
-  if(a.portee) h+=`<div class="vig"><b>⚠ Vigilance pratique</b>${esc(a.portee)}</div>`;
-  return h+"</div>";
-}
-function dayGroup(i){
-  const d=new Date(i.date), today=new Date(); today.setHours(0,0,0,0);
-  const diff=Math.round((today-new Date(d.getFullYear(),d.getMonth(),d.getDate()))/864e5);
-  if(diff<=0) return "Aujourd'hui"; if(diff===1) return "Hier"; if(diff<=7) return "Cette semaine";
-  if(diff<=31) return "Ce mois-ci"; return "Plus ancien";
+function group(i){const d=new Date(i.date),t=new Date();t.setHours(0,0,0,0);const n=Math.round((t-new Date(d.getFullYear(),d.getMonth(),d.getDate()))/864e5);
+ return n<=0?"Aujourd'hui":n===1?"Hier":n<=7?"Cette semaine":n<=31?"Ce mois-ci":"Plus ancien"}
+const ul=(a,c)=>a&&a.length?`<ul class="${c||""}">${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"";
+function sec(t,body){return body?`<div class="sec"><h4>${t}</h4>${body}</div>`:""}
+function fiche(i){
+ const a=i.ai; if(!a)return"";
+ const flow=a.schema&&a.schema.etapes&&a.schema.etapes.length?sec("Schéma — "+esc(a.schema.titre||"enchaînement"),`<div class="flow">${a.schema.etapes.map((s,k)=>`<div class="step"><span class="n">${k+1}</span><div>${esc(s)}</div></div>`).join("")}</div>`):"";
+ const refs=(a.references&&a.references.length?a.references:(i.articles||[]));
+ return `<details class="fiche" ${allOpen?"open":""}><summary>Fiche détaillée</summary><div class="fbody">
+  ${sec("Contexte",a.contexte?`<p>${esc(a.contexte)}</p>`:"")}
+  ${sec("Ce qu'il faut retenir",a.points&&a.points.length?`<ol>${a.points.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`:"")}
+  ${sec("Règles et conditions",ul(a.regles))}
+  ${sec("Qui est concerné",a.qui?`<p>${esc(a.qui)}</p>`:"")}
+  ${sec("À vérifier dans la pratique",ul(a.a_verifier,"chk"))}
+  ${a.vigilance?`<div class="vig"><b>⚠ Vigilance</b>${esc(a.vigilance)}</div>`:""}
+  ${flow}
+  ${refs&&refs.length?sec("Références citées",`<div class="refs">${refs.map(r=>`<span class="ref">${esc(r)}</span>`).join("")}</div>`):""}
+  ${a.partielle?`<p class="note">Source partielle : seul l'extrait public a pu être exploité (l'article complet est réservé aux abonnés). Cette fiche ne couvre donc pas tout l'article.</p>`:""}
+ </div></details>`;
 }
 function draw(){
-  const q=$("q").value.toLowerCase();
-  const r=D.filter(i=>(!mat||i.matieres.includes(mat))&&(!typ||i.type===typ)&&(!q||(i.title+i.abstract+(i.ai?i.ai.resume||"":"")).toLowerCase().includes(q))).slice(0,400);
-  let lastGroup=null, html="";
-  for(const i of r){
-    const g=dayGroup(i);
-    if(g!==lastGroup){ html+=`<div class="daysep"><span class="lbl">${g}</span></div>`; lastGroup=g; }
-    const k=i.type.split(" ")[0];
-    html+=`<div class="card t-${esc(k)}${important(i)?" exp":""}"><div class="ico">${IC[k]||"§"}</div><div class="body">
-    <div class="top"><span class="badge">${esc(i.type)}</span>${i.bulletin?'<span class="badge bull">Bulletin</span>':""}${isNew(i)?'<span class="badge new">Nouveau</span>':""}<span class="date">${fd(i.date)}</span></div>
-    <a class="t" href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)}</a><div class="src">${esc(i.source)}</div>
-    ${absBlock(i)}${ficheBlock(i)}
-    ${i.articles&&i.articles.length?`<div class="artchips">${i.articles.map(a=>`<span class="artchip">${esc(a)}</span>`).join("")}</div>`:""}
-    <div class="tags">${i.matieres.map(m=>`<span class="tag">${esc(m)}</span>`).join("")}</div>
-    <a class="more" href="${esc(i.url)}" target="_blank" rel="noopener">Consulter la source officielle →</a></div></div>`;
-  }
-  $("list").innerHTML=html||'<p style="color:var(--mut)">Aucun résultat.</p>';
-  document.querySelectorAll(".toggle").forEach(b=>b.onclick=()=>{b.closest(".card").classList.toggle("exp");b.remove()});
+ const q=$("q").value.toLowerCase();
+ const r=D.filter(i=>(!src||i.source===src)&&(!mat||i.matieres.includes(mat))&&(!q||(i.title+" "+i.abstract+" "+(i.ai?i.ai.resume+" "+(i.ai.points||[]).join(" "):"")).toLowerCase().includes(q))).slice(0,300);
+ let last=null,h="";
+ for(const i of r){const g=group(i);if(g!==last){h+=`<div class="daysep"><span class="l">${g}</span></div>`;last=g}
+  const c=CLS[i.source]||"sp";
+  h+=`<article class="card s-${c}"><div class="top"><span class="badge">${esc(i.source)}</span>${isNew(i)?'<span class="badge new">Nouveau</span>':""}${i.ai&&i.ai.partielle?'<span class="badge part">Extrait public</span>':""}<span class="date">${fd(i.date)}</span></div>
+  <a class="t" href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)}</a>
+  <div class="tags">${i.matieres.map(m=>`<span class="tag">${esc(m)}</span>`).join("")}</div>
+  ${i.ai?`<span class="aitag">Fiche IA — à vérifier</span><p class="resume">${esc(i.ai.resume)}</p>`:`<p class="abs">${esc(i.abstract)}</p>`}
+  ${fiche(i)}<a class="src" href="${esc(i.url)}" target="_blank" rel="noopener">Consulter la source →</a></article>`}
+ $("list").innerHTML=h||'<p style="color:var(--mut)">Aucun résultat.</p>';
 }
-$("q").oninput=draw; renderBrief(); nav(); draw();
-</script></body></html>"""
-
-def write_html(items, digest=None):
-    dig = {"date": str(TODAY), "by_matiere": digest or {}}
-    page = PAGE.replace("__UPD__", dt.datetime.now(dt.timezone.utc).strftime("%d/%m/%Y %H:%M UTC")).replace(
-        "__DATA__", json.dumps(items, ensure_ascii=False).replace("</", "<\\/")).replace(
-        "__DIGEST__", json.dumps(dig, ensure_ascii=False).replace("</", "<\\/"))
-    open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(page)
+$("expand").onclick=()=>{allOpen=!allOpen;document.querySelectorAll("details.fiche").forEach(d=>d.open=allOpen);$("expand").textContent=allOpen?"Tout replier":"Tout déplier"};
+$("q").oninput=draw;brief();nav();draw();
+</script></body></html>
+"""
 
 if __name__ == "__main__":
     main()
