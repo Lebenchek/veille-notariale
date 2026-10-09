@@ -656,7 +656,37 @@
    "Immobilier & copropriété"
   ],
   "first_seen": "2026-10-08",
-  "ai_tries": 1
+  "ai_tries": 1,
+  "ai": {
+   "resume": "Le bail de trois ans signé il y a un an ne permet pas une hausse libre du loyer. Une augmentation n’est possible que si le contrat comporte une clause autorisant une révision annuelle. Cette révision doit être plafonnée à la variation de l’indice de référence des loyers (IRL) publié chaque trimestre par l’INSEE, calculé sur les douze derniers mois de l’évolution des prix à la consommation hors tabac et hors loyers, conformément à l’article 17‑1 de la loi du 6 juillet 1989.",
+   "contexte": null,
+   "points": [
+    "Le bail est d’une durée de trois ans et a été signé il y a un an.",
+    "Une hausse du loyer n’est pas librement possible.",
+    "L’augmentation est conditionnée à la présence d’une clause de révision annuelle dans le bail.",
+    "Le plafond d’augmentation correspond à la variation de l’indice de référence des loyers (IRL).",
+    "L’IRL est publié chaque trimestre par l’INSEE.",
+    "L’IRL se calcule sur la moyenne des douze derniers mois de l’évolution des prix à la consommation hors tabac et hors loyers.",
+    "La référence légale est l’article 17‑1 de la loi n° 89‑462 du 6 juillet 1989."
+   ],
+   "regles": [
+    "Une hausse du loyer ne peut être appliquée que si le bail prévoit une clause de révision annuelle (art. 17‑1 loi 89‑462).",
+    "Le montant de l’augmentation est limité à la variation de l’IRL publiée par l’INSEE (art. 17‑1 loi 89‑462)."
+   ],
+   "qui": "Le propriétaire et le locataire liés par un bail de trois ans signé il y a un an, lorsque le bail comporte une clause de révision annuelle du loyer.",
+   "a_verifier": [
+    "Vérifier la présence d’une clause de révision annuelle dans le contrat de bail.",
+    "Consulter l’IRL publié le trimestre précédent pour calculer le plafond d’augmentation.",
+    "Informer le locataire de l’augmentation en respectant les formes prévues par la clause et la loi."
+   ],
+   "vigilance": null,
+   "references": [
+    "art. 17‑1 loi n° 89‑462 du 6 juillet 1989"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39622 at https://www.notaires.fr",
@@ -712,7 +742,32 @@
    "Sociétés & patrimoine professionnel"
   ],
   "first_seen": "2026-10-08",
-  "ai_tries": 1
+  "ai_tries": 1,
+  "ai": {
+   "resume": "Le bail commercial, sauf s'il s'agit d'un bail précaire ou dérogatoire, doit obligatoirement durer au moins neuf ans, conformément à l'article L145‑4 du Code de commerce. Cette règle fixe le seuil minimal de durée pour les baux classiques, excluant les formes spécifiques de bail précaires ou dérogatoires qui peuvent prévoir d'autres durées.",
+   "contexte": null,
+   "points": [
+    "Durée minimale du bail commercial classique : 9 ans",
+    "Exception : bail précaire ou dérogatoire",
+    "Référence légale : art. L145‑4 C. com"
+   ],
+   "regles": [
+    "Le bail commercial standard ne peut être conclu pour une durée inférieure à neuf ans (art. L145‑4 C. com).",
+    "Les baux qualifiés de précaire ou de dérogatoire sont exclus de cette règle de durée minimale."
+   ],
+   "qui": "Tout bailleur et locataire d'un local à usage commercial, sauf si le contrat est qualifié de bail précaire ou dérogatoire.",
+   "a_verifier": [
+    "Vérifier que le contrat n'est pas qualifié de bail précaire ou dérogatoire avant d'appliquer la durée minimale de 9 ans.",
+    "Mentionner explicitement la durée du bail dans l'acte, en respectant le seuil de 9 ans si le bail n'est pas précaire ou dérogatoire."
+   ],
+   "vigilance": null,
+   "references": [
+    "art. L145‑4 C. com"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39618 at https://www.notaires.fr",
@@ -815,7 +870,37 @@
    "Immobilier & copropriété"
   ],
   "first_seen": "2026-10-08",
-  "ai_tries": 1
+  "ai_tries": 1,
+  "ai": {
+   "resume": "En indivision, tout indivisaire qui perçoit des revenus ou engage des dépenses pour le compte de la communauté est tenu de tenir un état des comptes. Cette obligation, prévue à l'article 815‑8 du Code civil, impose de mettre cet état à la disposition de tous les indivisaires. Ainsi, le frère qui n’a pas participé à la gestion peut légitimement demander à consulter les comptes détaillés. Le gestionnaire doit donc fournir ces informations, sous forme d’un état comptable, afin de respecter son devoir de transparence.",
+   "contexte": null,
+   "points": [
+    "Obligation de tenir un état des comptes pour l’indivision",
+    "L’obligation s’applique à tout indivisaire percevant des revenus ou supportant des frais",
+    "L’état des comptes doit être mis à disposition de tous les indivisaires",
+    "Base légale : article 815‑8 du Code civil",
+    "Le droit de consultation des comptes n’est pas conditionné à la participation antérieure à la gestion",
+    "L’obligation concerne les revenus perçus et les frais engagés pour le compte de l’indivision",
+    "Le gestionnaire doit fournir les comptes sur simple demande de l’autre indivisaire",
+    "Aucune mention de forme ou de délai précis dans le texte fourni"
+   ],
+   "regles": [
+    "Tout indivisaire qui perçoit des revenus ou engage des dépenses pour l’indivision doit établir un état des comptes (art. 815‑8 C. civ.)",
+    "Cet état des comptes doit être accessible à tous les indivisaires (art. 815‑8 C. civ.)"
+   ],
+   "qui": "Tous les indivisaires d’un bien en indivision, notamment celui qui perçoit les revenus ou supporte les frais et celui qui en fait la demande.",
+   "a_verifier": [
+    "Vérifier que le gestionnaire a bien établi un état détaillé des recettes et dépenses de l’indivision",
+    "Mettre cet état à disposition du co‑indivisaire dès sa demande"
+   ],
+   "vigilance": null,
+   "references": [
+    "Code civil, art. 815‑8"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39614 at https://www.notaires.fr",
@@ -828,7 +913,40 @@
    "Profession, déontologie & actes"
   ],
   "first_seen": "2026-10-08",
-  "ai_tries": 1
+  "ai_tries": 1,
+  "ai": {
+   "resume": "Le notaire est généralement tenu d'établir tout acte demandé, conformément aux articles 5 et 22 du code de déontologie notariale. Il doit refuser uniquement les actes contraires à la loi, frauduleux, manifestement inefficaces ou inutiles, selon l'article 5 du décret n° 2023‑1297 du 28 décembre 2023. Il peut aussi interrompre son office pour des motifs justes et raisonnables énumérés à l'article 22 du même décret, tels que perte de confiance, manque de respect du client, rétention d'informations essentielles ou non‑respect des lois. En pratique, le notaire doit vérifier la légalité et la pertinence de chaque acte et surveiller le comportement du client.",
+   "contexte": null,
+   "points": [
+    "Obligation générale de prêter son ministère (art. 5 et 22 du code de déontologie notariale)",
+    "Refus obligatoire pour actes illégaux, frauduleux, inefficaces ou inutiles (art. 5 du décret n° 2023‑1297)",
+    "Possibilité d’interruption d’office pour perte de confiance",
+    "Possibilité d’interruption d’office pour manque de respect caractérisé du client",
+    "Possibilité d’interruption d’office pour rétention réitérée d’informations ou documents essentiels",
+    "Possibilité d’interruption d’office pour non‑respect par le client des lois et règlements",
+    "Référence de l’arrêté du 29 janvier 2024 approuvant les règles professionnelles",
+    "Le notaire ne peut refuser que dans les cas précisés, aucune autre motif n’est admis"
+   ],
+   "regles": [
+    "Le notaire doit toujours accepter d’établir un acte, sauf si l’acte est contraire à la loi, frauduleux, manifestement inefficace ou inutile (décret n° 2023‑1297, art. 5).",
+    "Il doit interrompre son office pour perte de confiance, manque de respect du client, rétention d’informations essentielles ou non‑respect des lois (décret n° 2023‑1297, art. 22)."
+   ],
+   "qui": "Tous les notaires français, leurs clients et toute partie souhaitant la rédaction d’un acte ou d’une convention.",
+   "a_verifier": [
+    "Contrôler que l’acte demandé n’est pas illégal, frauduleux, inefficace ou inutile avant de le rédiger.",
+    "S’assurer que le client fournit toutes les informations et documents indispensables.",
+    "Évaluer le respect et la confiance du client ; en cas de manquement, envisager l’interruption d’office."
+   ],
+   "vigilance": null,
+   "references": [
+    "Code de déontologie notariale, arts. 5 et 22",
+    "Décret n° 2023‑1297 du 28 décembre 2023, arts. 5 et 22",
+    "Arrêté du 29 janvier 2024 portant approbation des règles professionnelles des notaires"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39611 at https://www.notaires.fr",
@@ -893,7 +1011,48 @@
    "Autres"
   ],
   "first_seen": "2026-10-08",
-  "ai_tries": 1
+  "ai_tries": 1,
+  "ai": {
+   "resume": "Le texte expose les règles applicables aux pouvoirs du maire en matière d’urbanisme et de préemption. Il précise que l’installation d’un mobile‑home temporaire pendant les travaux est exemptée de formalité si elle ne dépasse pas trois mois et est indispensable aux travaux (art. R421‑5 C. urb.). Il indique les conditions de retrait d’une déclaration d’intention d’aliéner (DIA) tant que la commune n’a pas exercé son droit de préemption (art. L213‑7 C. urb.). Il rappelle que la commune dispose de deux mois pour exercer ou renoncer à son droit de préemption (art. L213‑2 C. urb.) et que, en cas d’exercice, elle n’est pas tenue au prix initialement fixé. Enfin, il précise que la vente d’un chemin rural impose une mise en demeure des riverains, avec un délai d’un mois avant vente libre.",
+   "contexte": null,
+   "points": [
+    "Installation d’un mobile‑home temporaire pendant la construction : dispense de formalité si durée ≤ 3 mois et nécessité directe aux travaux (art. R421‑5 C. urb.).",
+    "Retrait possible d’une DIA tant que la commune n’a pas exercé son droit de préemption (art. L213‑7 C. urb.).",
+    "Droit de préemption communal : la commune doit répondre dans un délai de 2 mois à la DIA (art. L213‑2 C. urb.).",
+    "En cas d’exercice du droit de préemption, la commune peut proposer un prix inférieur au prix initial du vendeur.",
+    "La proposition de prix doit être faite par lettre recommandée avec avis de réception.",
+    "Vente d’un chemin rural : la commune doit mettre en demeure les propriétaires riverains d’acquérir les terrains attenants.",
+    "Délai d’un mois après mise en demeure pour que les riverains répondent, faute de quoi la commune peut vendre à tout acquéreur.",
+    "Le maire peut déléguer ses fonctions à des adjoints ou membres du conseil municipal par arrêté, sous sa surveillance et responsabilité."
+   ],
+   "regles": [
+    "Installation temporaire de mobile‑home : autorisée sans autorisation si durée ≤ 3 mois et indispensable aux travaux (art. R421‑5 C. urb.).",
+    "Retrait de la DIA : possible tant que la commune n’a pas exercé son droit de préemption (art. L213‑7 C. urb.).",
+    "Délai de réponse de la commune à la DIA : 2 mois pour exercer ou renoncer au droit de préemption (art. L213‑2 C. urb.).",
+    "Prix d’acquisition en préemption : la commune n’est pas obligée de respecter le prix initial du vendeur.",
+    "Forme de la proposition de prix : lettre recommandée avec avis de réception.",
+    "Mise en demeure des riverains pour vente de chemin rural : obligatoire avant toute vente libre.",
+    "Délai de réponse des riverains à la mise en demeure : 1 mois.",
+    "Délégation de fonctions du maire : arrêtée par le maire, sous sa surveillance et responsabilité."
+   ],
+   "qui": "Propriétaires de terrains en construction (mobile‑home), vendeurs d’immeubles soumis au droit de préemption, communes exerçant le droit de préemption, riverains d’un chemin rural, adjoints et membres du conseil municipal pouvant recevoir une délégation du maire.",
+   "a_verifier": [
+    "Vérifier la durée prévue de l’installation du mobile‑home et sa nécessité directe aux travaux.",
+    "Confirmer que la DIA a bien été adressée à la mairie et que la commune n’a pas encore exercé son droit de préemption avant toute rétractation.",
+    "Contrôler le respect du délai de 2 mois de la commune pour répondre à la DIA.",
+    "S’assurer que la proposition de prix de la commune est formalisée par lettre recommandée avec AR.",
+    "Vérifier l’envoi de la mise en demeure aux riverains en cas de vente d’un chemin rural et le respect du délai d’un mois."
+   ],
+   "vigilance": null,
+   "references": [
+    "art. R421‑5 C. urb.",
+    "art. L213‑7 C. urb.",
+    "art. L213‑2 C. urb."
+   ],
+   "schema": null,
+   "partielle": false
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-21979 at https://www.notaires.fr",
@@ -921,7 +1080,41 @@
    "Immobilier & copropriété"
   ],
   "first_seen": "2026-09-30",
-  "ai_tries": 1
+  "ai_tries": 1,
+  "ai": {
+   "resume": "Les parents souhaitent faire une donation immobilière conditionnée à l'inscription et à l'admission du bénéficiaire dans une école d'ingénieur. À la signature de l'acte, seul le droit fixe de 125 € s'applique, car la transmission n'est pas encore réalisée. Les droits de mutation deviennent exigibles uniquement à la réalisation de la condition, avec une valeur taxable déterminée à ce moment. Le droit fixe payé initialement ne peut pas être imputé sur les droits de mutation ultérieurs.",
+   "contexte": null,
+   "points": [
+    "Le droit fixe de 125 € s'applique à la signature de l'acte de donation conditionnelle.",
+    "La transmission du bien n'est pas considérée comme réalisée avant la condition d'inscription et d'admission.",
+    "Les droits de mutation sont exigibles à la date de réalisation de la condition.",
+    "La valeur taxable des droits de mutation est déterminée au moment de la réalisation de la condition.",
+    "Le droit fixe payé initialement n'est pas imputable sur les droits de mutation futurs.",
+    "Référence légale : CGI, art. 676, al. 1 pour l'exigibilité des droits de mutation.",
+    "Jurisprudence : Cass. civ. 1re, 7 octobre 2020, n°19 18.543 confirmant l'absence d'imputation du droit fixe."
+   ],
+   "regles": [
+    "À la signature de l'acte, le bénéficiaire ne paie que le droit fixe de 125 € (CGI art. 676, al. 1).",
+    "Les droits de mutation deviennent exigibles uniquement lorsque la condition d'inscription et d'admission est remplie.",
+    "La valeur taxable des droits de mutation est calculée à la date de réalisation de la condition.",
+    "Le droit fixe versé initialement ne peut pas être déduit des droits de mutation ultérieurs (Cass. civ. 1re, 7 oct. 2020)."
+   ],
+   "qui": "Le bénéficiaire de la donation conditionnelle (l'enfant), les parents donateurs, le bien immobilier concerné, la condition d'inscription et d'admission dans une école d'ingénieur.",
+   "a_verifier": [
+    "Vérifier que la condition d'inscription et d'admission est clairement stipulée dans l'acte de donation.",
+    "S'assurer du paiement du droit fixe de 125 € à la signature de l'acte.",
+    "Déterminer la valeur taxable du bien au moment de la réalisation de la condition pour le calcul des droits de mutation.",
+    "Informer le bénéficiaire que les droits de mutation seront exigibles à la réalisation de la condition et que le droit fixe ne sera pas imputé."
+   ],
+   "vigilance": null,
+   "references": [
+    "CGI art. 676 al. 1",
+    "Cass. civ. 1re, 7 oct. 2020, n°19 18.543"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "RSS-39608 at https://www.notaires.fr",
@@ -1078,7 +1271,32 @@
    "Autres"
   ],
   "first_seen": "2026-09-30",
-  "ai_tries": 1
+  "ai_tries": 1,
+  "ai": {
+   "resume": "Le mariage n’impose pas de changement de nom de famille. Chaque époux conserve son nom propre. Cependant, l’époux peut choisir d’utiliser le nom de l’autre époux, soit en substitution, soit en adjonction, et peut le placer dans l’ordre qu’il souhaite.",
+   "contexte": "Avant le mariage, chaque époux porte son propre nom. Le texte ne mentionne pas de changement automatique.",
+   "points": [
+    "Le mariage n’a pas d’effet sur le nom de famille.",
+    "Chaque époux conserve son nom propre.",
+    "Un époux peut porter le nom de l’autre époux à titre d’usage.",
+    "Il peut le faire par substitution ou par adjonction.",
+    "Il peut choisir l’ordre dans lequel le nom est placé.",
+    "Cette possibilité est prévue par l’article 225‑1 du Code civil."
+   ],
+   "regles": [
+    "Le mariage ne modifie pas le nom de famille (art. 225‑1 C. civ.).",
+    "Un époux peut porter le nom de l’autre époux à titre d’usage, par substitution ou adjonction, dans l’ordre qu’il choisit (art. 225‑1 C. civ.)."
+   ],
+   "qui": "Les époux, chacun portant son nom propre, mais pouvant choisir d’utiliser le nom de l’autre à titre d’usage.",
+   "a_verifier": [],
+   "vigilance": null,
+   "references": [
+    "art. 225‑1 C. civ."
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "RSS-39624 at https://www.notaires.fr",
@@ -1091,7 +1309,29 @@
    "Autres"
   ],
   "first_seen": "2026-09-30",
-  "ai_tries": 0
+  "ai_tries": 0,
+  "ai": {
+   "resume": "La question de l’âge minimum pour adopter un enfant est clairement tranchée par la loi française. L’article 343 du Code civil fixe l’âge minimal de l’adoptant à 26 ans. Ainsi, toute personne souhaitant adopter doit être âgée d’au moins 26 ans au moment de la demande. Cette règle s’applique sans exception aux procédures d’adoption, qu’elles soient nationales ou internationales. Le respect de cette condition est indispensable pour que la procédure d’adoption soit recevable et que le jugement d’adoption soit valide.",
+   "contexte": null,
+   "points": [
+    "Âge minimal de l’adoptant : 26 ans",
+    "Article applicable : 343 du Code civil"
+   ],
+   "regles": [
+    "L’adoptant doit avoir au moins 26 ans au moment de la demande d’adoption (art. 343 C. civ.)"
+   ],
+   "qui": "Personnes souhaitant adopter un enfant, adoptants potentiels",
+   "a_verifier": [
+    "Vérifier que l’adoptant a au moins 26 ans au moment de la demande"
+   ],
+   "vigilance": null,
+   "references": [
+    "Art. 343 C. civ."
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "RSS-39621 at https://www.notaires.fr",
@@ -1104,7 +1344,30 @@
    "Famille & régimes matrimoniaux",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": {
+   "resume": "La loi prévoit que, lors de la liquidation d’un régime matrimonial, si l’actif de la communauté est insuffisant, les prélèvements de chaque époux sont proportionnels aux récompenses qui lui sont dues (art. 1472 alinéa 1er du Code civil).",
+   "contexte": null,
+   "points": [
+    "1. Actif de la communauté insuffisant",
+    "2. Prélèvements proportionnels aux récompenses dues à chaque époux",
+    "3. Référence à l’article 1472 alinéa 1er du Code civil"
+   ],
+   "regles": [
+    "Si l’actif de la communauté est insuffisant, les prélèvements de chaque époux sont proportionnels aux récompenses qui lui sont dues (art. 1472 alinéa 1er C. civ.)"
+   ],
+   "qui": "Les époux concernés par la liquidation du régime matrimonial, dans le cadre d’une répartition des biens communs et des héritages.",
+   "a_verifier": [
+    "Vérifier le montant de l’actif de la communauté et le calcul des prélèvements proportionnels aux récompenses dues à chaque époux."
+   ],
+   "vigilance": null,
+   "references": [
+    "art. 1472 alinéa 1er C. civ."
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "RSS-39620 at https://www.notaires.fr",
@@ -1116,7 +1379,27 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": {
+   "resume": "Dans un mariage, chaque époux peut contracter seul pour l'entretien du ménage ou l'éducation des enfants. Toute dette contractée par l'un oblige l'autre solidairement. Le texte ne précise pas d'exclusion pour les travaux de rénovation de la cuisine.",
+   "contexte": null,
+   "points": [
+    "Chaque époux a le pouvoir de contracter seul pour l'entretien du ménage ou l'éducation des enfants.",
+    "Toute dette ainsi contractée par l'un oblige l'autre solidairement."
+   ],
+   "regles": [
+    "Art. 220 C. civ. : pouvoir de contracter seul pour l'entretien du ménage ou l'éducation des enfants, dette solidaire pour l'autre."
+   ],
+   "qui": "Les époux mariés, dans le cadre d'un contrat portant sur l'entretien du ménage ou l'éducation des enfants.",
+   "a_verifier": [],
+   "vigilance": null,
+   "references": [
+    "Art. 220 C. civ."
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "RSS-39613 at https://www.notaires.fr",
@@ -1128,7 +1411,36 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": {
+   "resume": "En régime de communauté de biens, tout bien acquis durant le mariage est commun. Pour que le prix de vente d’un bien propre (acquis avant le mariage) soit entièrement utilisé pour l’achat d’une maison et que cette maison vous appartienne totalement, le notaire doit mentionner dans l’acte d’achat une déclaration d’emploi ou de remploi de fonds propres. Cette formalité garantit la pleine propriété du bien acheté.",
+   "contexte": null,
+   "points": [
+    "1. Régime de communauté de biens : tout bien acquis durant le mariage est commun.",
+    "2. Bien vendu : acquis avant le mariage, donc propre au vendeur.",
+    "3. Utilisation du prix de vente : doit être entièrement employé pour l’achat d’une maison.",
+    "4. Formalité notariale : déclaration d’emploi ou de remploi de fonds propres dans l’acte d’achat.",
+    "5. Conséquence : la maison devient pleine propriété du vendeur.",
+    "6. Référence légale : Code civil, art. 1434."
+   ],
+   "regles": [
+    "En régime de communauté, tout bien acquis durant le mariage est commun (art. 1434 C. civ.).",
+    "Pour que le prix de vente d’un bien propre soit entièrement utilisé pour l’achat d’une maison et que celle-ci vous appartienne totalement, le notaire doit insérer une déclaration d’emploi ou de remploi de fonds propres dans l’acte d’achat."
+   ],
+   "qui": "Le mari (ou la femme) marié sous régime de communauté de biens, qui possède un bien acquis avant le mariage et souhaite l’utiliser pour acheter une maison.",
+   "a_verifier": [
+    "Vérifier que le bien vendu est bien un bien propre (acquis avant le mariage).",
+    "S’assurer que le notaire insère la déclaration d’emploi ou de remploi de fonds propres dans l’acte d’achat.",
+    "Confirmer que le prix de vente est entièrement affecté à l’achat de la maison."
+   ],
+   "vigilance": null,
+   "references": [
+    "C. civ., art. 1434"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "RSS-39627 at https://www.notaires.fr",
@@ -1142,7 +1454,29 @@
    "Immobilier & copropriété",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": {
+   "resume": "En tant qu'usufruitière d'un local commercial, vous ne pouvez pas conclure un bail commercial seule. La loi exige le consentement du ou des nu-propriétaires, conformément à l'article 595 du Code civil.",
+   "contexte": "Avant la conclusion du bail, l'usufruitier doit obtenir l'accord du nu-propriétaire.",
+   "points": [
+    "1. L'usufruitier ne peut pas conclure un bail commercial sans le consentement du nu-propriétaire.",
+    "2. La règle est prévue par l'article 595 du Code civil."
+   ],
+   "regles": [
+    "Le consentement du nu-propriétaire est obligatoire pour la conclusion d'un bail commercial par l'usufruitier (art. 595 C. civ.)."
+   ],
+   "qui": "Usufruitière d'un local commercial et le ou les nu-propriétaires du même local.",
+   "a_verifier": [
+    "Vérifier que le nu-propriétaire a donné son consentement écrit avant la conclusion du bail."
+   ],
+   "vigilance": null,
+   "references": [
+    "art. 595 C. civ."
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "RSS-39625 at https://www.notaires.fr",
@@ -1154,7 +1488,32 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": {
+   "resume": "Le texte indique que tout acquéreur non professionnel disposant d’un compromis de vente pour un bien immobilier à usage d’habitation bénéficie d’un droit de rétractation. Ce droit est prévu par l’article L 271‑1 du Code civil. La durée de la période de rétractation n’est pas précisée dans l’extrait fourni. La règle s’applique uniquement aux acquisitions de biens destinés à l’habitation et exclut les professionnels.",
+   "contexte": null,
+   "points": [
+    "Droit de rétractation accordé aux acquéreurs non professionnels",
+    "Appliqué à l’achat d’un bien immobilier à usage d’habitation",
+    "Référence : art. L 271‑1 CCH"
+   ],
+   "regles": [
+    "Appliquer le droit de rétractation aux acquéreurs non professionnels pour un bien à usage d’habitation (art. L 271‑1 CCH)"
+   ],
+   "qui": "Acquéreurs non professionnels, contrats de compromis de vente portant sur un bien immobilier à usage d’habitation",
+   "a_verifier": [
+    "Vérifier le statut professionnel de l’acquéreur",
+    "S’assurer que le bien est destiné à l’habitation",
+    "Consulter l’article L 271‑1 CCH pour la durée exacte du droit de rétractation"
+   ],
+   "vigilance": null,
+   "references": [
+    "art. L 271‑1 CCH"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "RSS-39623 at https://www.notaires.fr",
@@ -1166,7 +1525,38 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": {
+   "resume": "Un bail de trois ans signé il y a un an ne permet pas une augmentation libre du loyer. Si le contrat contient une clause d’augmentation annuelle, celle‑ci est applicable, mais elle est limitée par la variation d’un indice de référence des loyers (IRL) publié trimestriellement par l’INSEE. Cette limitation est prévue à l’article 17‑1 de la loi n° 89‑462 du 6 juillet 1989.",
+   "contexte": "Avant l’augmentation, le loyer était fixé par le bail initial. Le texte indique que l’augmentation n’est possible que si une clause est prévue, sinon elle est interdite.",
+   "points": [
+    "Bail de 3 ans signé il y a 1 an",
+    "Augmentation possible uniquement si clause prévue dans le bail",
+    "Clause d’augmentation annuelle",
+    "Plafonnement par variation d’un indice de référence des loyers (IRL)",
+    "IRL publié chaque trimestre par l’INSEE",
+    "IRL correspond à la moyenne sur 12 mois de l’évolution des prix à la consommation hors tabac et hors loyers",
+    "Référence à l’article 17‑1 de la loi n° 89‑462 du 6 juillet 1989"
+   ],
+   "regles": [
+    "Clause d’augmentation annuelle : si présente, l’augmentation est autorisée",
+    "Plafonnement : l’augmentation ne peut excéder la variation de l’IRL",
+    "Base légale : article 17‑1 de la loi n° 89‑462 du 6 juillet 1989"
+   ],
+   "qui": "Propriétaire et locataire d’un logement soumis à la loi du 6 juillet 1989",
+   "a_verifier": [
+    "Vérifier la présence d’une clause d’augmentation annuelle dans le bail",
+    "Calculer la variation de l’IRL depuis le dernier indexation",
+    "S’assurer que l’augmentation ne dépasse pas cette variation"
+   ],
+   "vigilance": "Le texte ne précise pas les modalités de mise en œuvre de la clause ni les conséquences d’une non‑conformité. Il ne mentionne pas les délais de notification ni les sanctions éventuelles en cas de dépassement de l’IRL.",
+   "references": [
+    "Art. 17‑1 loi n° 89‑462 du 6 juillet 1989"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "RSS-39622 at https://www.notaires.fr",
@@ -1178,7 +1568,33 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": {
+   "resume": "Le texte indique que l’entretien d’une allée servant une servitude de passage est à la charge du propriétaire du fond dominant, c’est‑à‑dire du voisin qui bénéficie du droit de passage. Cette obligation peut être modifiée uniquement par une clause contraire inscrite dans l’acte constitutif de la servitude. En l’absence de telle clause, le propriétaire du terrain ne peut refuser d’entretenir l’allée.",
+   "contexte": null,
+   "points": [
+    "1. L’entretien de l’allée est à la charge du propriétaire du fond dominant.",
+    "2. Le propriétaire du terrain ne peut pas refuser d’entretenir l’allée.",
+    "3. Une clause contraire dans l’acte constitutif de la servitude peut modifier cette règle.",
+    "4. Les articles applicables sont l’article 697 et l’article 698 du Code civil."
+   ],
+   "regles": [
+    "L’entretien de l’allée est à la charge du propriétaire du fond dominant (art 697 C. civ.).",
+    "Une clause contraire dans l’acte constitutif de la servitude peut modifier cette obligation (art 698 C. civ.)."
+   ],
+   "qui": "Propriétaire du terrain (fond récepteur) et propriétaire du voisin (fond dominant) bénéficiant de la servitude de passage.",
+   "a_verifier": [
+    "Vérifier l’acte constitutif de la servitude pour détecter une clause contraire à l’obligation d’entretien."
+   ],
+   "vigilance": null,
+   "references": [
+    "art 697 C. civ.",
+    "art 698 C. civ."
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "RSS-39619 at https://www.notaires.fr",
@@ -1191,7 +1607,9 @@
    "Immobilier & copropriété",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": null,
+  "ai_v": 3
  },
  {
   "id": "RSS-39618 at https://www.notaires.fr",
@@ -1203,7 +1621,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai_tries": 0
  },
  {
   "id": "RSS-39615 at https://www.notaires.fr",
