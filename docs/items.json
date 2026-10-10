@@ -1622,7 +1622,37 @@
    "Immobilier & copropriété"
   ],
   "first_seen": "2026-09-30",
-  "ai_tries": 0
+  "ai_tries": 0,
+  "ai": {
+   "resume": "Le texte rappelle que, lors de la vente d’un logement, le nouveau bailleur doit obligatoirement informer le locataire de son identité et de son adresse (ou du siège social et, le cas échéant, de son mandataire) conformément à l’article 3 de la loi n°89‑462 du 6 juillet 1989. Cette notification est la condition légale pour que le locataire puisse verser le loyer au nouveau propriétaire. En l’absence de cette information, le locataire n’est pas en faute et ne peut pas être considéré comme ayant manqué à son obligation de paiement. La règle vise à protéger le locataire et à assurer la continuité du paiement du loyer.",
+   "contexte": null,
+   "points": [
+    "Obligation de notification du nouveau bailleur au locataire",
+    "Information à communiquer : nom ou dénomination, domicile ou siège social",
+    "Mention du mandataire le cas échéant",
+    "Base légale : article 3 de la loi n°89‑462 du 6 juillet 1989",
+    "Application en cas de mutation à titre gratuit ou onéreux du logement",
+    "Le locataire doit payer le loyer au nouveau bailleur dès réception de la notification",
+    "Absence de notification = impossibilité pour le locataire de s’acquitter du loyer au nouveau propriétaire"
+   ],
+   "regles": [
+    "Le nouveau bailleur doit notifier au locataire son nom ou sa dénomination ainsi que son domicile ou siège social (art. 3 loi n°89‑462 du 6 juillet 1989)",
+    "Si le bailleur agit par l’intermédiaire d’un mandataire, les coordonnées de ce mandataire doivent également être communiquées (art. 3 loi n°89‑462 du 6 juillet 1989)",
+    "Cette obligation s’applique tant aux mutations à titre gratuit qu’à titre onéreux du logement (art. 3 loi n°89‑462 du 6 juillet 1989)"
+   ],
+   "qui": "Locataires d’un logement dont le bailleur a cédé le bien, ainsi que le nouveau propriétaire (ou son mandataire) qui doit fournir les informations de contact.",
+   "a_verifier": [
+    "Vérifier que le nouveau bailleur a bien envoyé une notification écrite contenant les coordonnées exigées",
+    "Conserver les copies des courriers envoyés par le locataire pour justifier de la demande d’information"
+   ],
+   "vigilance": null,
+   "references": [
+    "art. 3 loi n°89-462 du 6 juillet 1989"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "RSS-39615 at https://www.notaires.fr",
@@ -1634,7 +1664,34 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": {
+   "resume": "Le texte indique que les biens mobiliers confiés à un professionnel pour diverses raisons et non retirés dans un délai compris entre trois mois et un an peuvent être vendus. Cette règle repose sur l'article 1 de la loi du 31 décembre 1903 relative à la vente de certains objets abandonnés. Ainsi, si le locataire d'un garde-meubles ne paie plus le loyer depuis trois mois et ne récupère pas ses meubles dans le délai maximal d'un an, le propriétaire est autorisé à les vendre.",
+   "contexte": null,
+   "points": [
+    "Les objets mobiliers sont déposés chez un professionnel pour réparation, entretien, conservation ou garde.",
+    "Le délai d'absence de retrait est fixé entre trois mois et un an.",
+    "Passé ce délai, le propriétaire peut procéder à la vente des biens.",
+    "La disposition applicable est l'article 1 de la loi du 31 décembre 1903.",
+    "La loi concerne la vente d'objets abandonnés."
+   ],
+   "regles": [
+    "Si les biens ne sont pas retirés dans un délai de 3 mois à 1 an, le propriétaire peut les vendre (article 1 loi du 31/12/1903)."
+   ],
+   "qui": "Les personnes ayant laissé des meubles chez un professionnel (ex. garde-meubles) et qui ne les ont pas récupérés dans le délai prévu.",
+   "a_verifier": [
+    "Vérifier la date du dernier paiement du loyer et la date de dépôt des meubles.",
+    "Confirmer que le délai d'absence de retrait dépasse trois mois mais reste inférieur à un an.",
+    "S'assurer que le professionnel est bien un garde-meubles relevant de la loi du 31/12/1903."
+   ],
+   "vigilance": null,
+   "references": [
+    "Loi du 31 décembre 1903, art. 1"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "RSS-39610 at https://www.notaires.fr",
@@ -1647,7 +1704,37 @@
    "Successions & libéralités",
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": {
+   "resume": "En indivision, tout indivisaire qui perçoit des revenus ou engage des dépenses pour le compte de la société doit établir un état des comptes. Cette obligation découle de l'article 815‑8 du Code civil. Ainsi, le frère qui n’a pas participé à la gestion peut légitimement demander à consulter les comptes détaillés de l’administration du bien.",
+   "contexte": null,
+   "points": [
+    "Obligation de tenir un état des comptes pour l’indivision",
+    "L’obligation s’applique à tout indivisaire percevant des revenus ou supportant des frais",
+    "L’état des comptes doit être mis à la disposition de tous les indivisaires",
+    "Base légale : article 815‑8 du Code civil",
+    "Le droit d’accès aux comptes n’est pas conditionné à la participation à la gestion",
+    "L’obligation concerne les revenus perçus et les frais exposés pour l’indivision",
+    "Aucun délai précis n’est indiqué dans le texte fourni",
+    "Le texte ne précise pas de forme ou de contenu détaillé de l’état des comptes"
+   ],
+   "regles": [
+    "Tout indivisaire qui perçoit des revenus ou engage des frais pour l’indivision doit établir un état des comptes (art. 815‑8 C. civ.)",
+    "Cet état des comptes doit être mis à la disposition de l’ensemble des indivisaires (art. 815‑8 C. civ.)"
+   ],
+   "qui": "Tous les indivisaires d’un même bien immobilier, y compris celui qui ne participe pas à la gestion mais qui a des droits sur les revenus ou les frais de l’indivision.",
+   "a_verifier": [
+    "Vérifier que le gestionnaire a bien établi un état détaillé des recettes et dépenses liées à l’indivision",
+    "S’assurer que cet état est communiqué à chaque indivisaire sur demande"
+   ],
+   "vigilance": null,
+   "references": [
+    "Code civil, art. 815‑8"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "RSS-39614 at https://www.notaires.fr",
@@ -1659,7 +1746,41 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-09-30"
+  "first_seen": "2026-09-30",
+  "ai": {
+   "resume": "Le notaire est généralement tenu d'établir tout acte demandé, conformément aux articles 5 et 22 du code de déontologie notariale. Il doit refuser uniquement les actes contraires à la loi, frauduleux, manifestement inefficaces ou inutiles, selon l'article 5 du décret n° 2023‑1297 du 28 décembre 2023. Il peut aussi interrompre son office pour des motifs justes et raisonnables énumérés à l'article 22 du même décret, tels que perte de confiance, manque de respect du client, rétention d'informations essentielles ou non‑respect des lois. En pratique, le notaire doit vérifier la légalité et la pertinence de chaque acte et surveiller le comportement du client.",
+   "contexte": null,
+   "points": [
+    "Obligation générale de prêter son ministère (art. 5 et 22 du code de déontologie notariale)",
+    "Refus obligatoire pour actes illégaux, frauduleux, inefficaces ou inutiles (art. 5 du décret n° 2023‑1297)",
+    "Possibilité d’interrompre l’office pour perte de confiance",
+    "Possibilité d’interrompre l’office pour manque de respect caractérisé du client",
+    "Possibilité d’interrompre l’office pour rétention réitérée d’informations ou documents essentiels",
+    "Possibilité d’interrompre l’office pour non‑respect des lois et règlements par le client",
+    "Référence à l’arrêté du 29 janvier 2024 approuvant les règles professionnelles",
+    "Décret n° 2023‑1297 du 28 décembre 2023 comme source des obligations de refus et d’interruption"
+   ],
+   "regles": [
+    "Le notaire doit accepter d’établir un acte sauf s’il est contraire à la loi, frauduleux, ou manifestement inefficace ou inutile (art. 5 du décret n° 2023‑1297).",
+    "Il doit interrompre son office pour perte de confiance, manque de respect, rétention d’informations essentielles ou non‑respect des lois par le client (art. 22 du décret n° 2023‑1297)."
+   ],
+   "qui": "Tous les notaires français et leurs clients lorsqu’un acte ou une convention est demandé.",
+   "a_verifier": [
+    "Vérifier la conformité légale de l’acte demandé avant rédaction.",
+    "S’assurer que l’acte n’est pas frauduleux, inefficace ou inutile.",
+    "Contrôler que le client fournit toutes les informations et documents requis.",
+    "Évaluer le respect mutuel et la confiance dans la relation client‑notaire."
+   ],
+   "vigilance": null,
+   "references": [
+    "Arrêté du 29 janvier 2024 portant approbation des règles professionnelles des notaires et du règlement professionnel du notariat",
+    "Décret n° 2023‑1297 du 28 décembre 2023, art. 5",
+    "Décret n° 2023‑1297 du 28 décembre 2023, art. 22"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "SEPAJ-actualites/actes,2/employer-n-est-pas-consommer-recompense-est-due-a-la-communaute-lorsque-les-revenus-d-un-bien-propre-sont-affectes-au-remboursement-de-l-emprunt-contracte-pour-son-acquisition-cass-civ-1ere-09-09-2026-n-24-22-791-publie-au-bulletin,389",
@@ -1671,7 +1792,27 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "Les revenus provenant d’un bien propre, lorsqu’ils sont affectés au remboursement de l’emprunt ayant servi à son acquisition, ne sont pas qualifiés de consommation par le propriétaire. Cette qualification entraîne l’ouverture d’un droit, précisé dans la décision de la Cour de cassation du 9 septembre 2026. La règle modifie la qualification juridique des revenus affectés au service de la dette liée au bien propre.",
+   "contexte": null,
+   "points": [
+    "Les revenus d’un bien propre sont exclus de la notion de consommation lorsqu’ils sont destinés au remboursement du prêt ayant financé ce bien.",
+    "Cette qualification juridique ouvre un droit, tel que reconnu par la Cour de cassation le 9/09/2026."
+   ],
+   "regles": [
+    "Les revenus tirés d’un bien propre, affectés au remboursement de l’emprunt d’acquisition, ne sont pas considérés comme consommés par le propriétaire (Cass. civ. 1ère, 09/09/2026)."
+   ],
+   "qui": "Propriétaire d’un bien propre qui perçoit des revenus de ce bien et utilise ces revenus pour rembourser l’emprunt contracté pour son acquisition.",
+   "a_verifier": [],
+   "vigilance": null,
+   "references": [
+    "Cass. civ. 1ère, 09/09/2026, n° 24-22.791"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "SEPAJ-actualites/actes,2/condition-suspensive-encore-faut-il-identifier-qui-l-a-empechee-cass-civ-3eme-24-09-2026-n-24-16-732-publie-au-bulletin,388",
@@ -1683,7 +1824,32 @@
   "matieres": [
    "Fiscalité"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "L'article 1304-3 alinéa 1er du Code civil précise que la condition suspensive est réputée accomplie lorsque la personne qui en avait intérêt a elle‑même empêché son accomplissement. Cette règle renverse la charge de la preuve et considère que l’obstacle créé par l’intéressé satisfait la condition. Elle s’applique dès lors que l’intéressé a pu empêcher la réalisation de la condition. En pratique, le notaire doit vérifier qui a entravé l’événement conditionnel pour déterminer si la condition est remplie.",
+   "contexte": null,
+   "points": [
+    "Article 1304-3 al. 1er du Code civil",
+    "La condition suspensive est réputée accomplie si l’intéressé l’a empêchée",
+    "L’intéressé est la personne qui possède un intérêt direct à la condition",
+    "L’obstacle doit être imputable à l’intéressé"
+   ],
+   "regles": [
+    "Si la personne qui bénéficie de la condition suspensive empêche son accomplissement, la condition est considérée comme remplie (art. 1304-3 al. 1er C. civ.)"
+   ],
+   "qui": "Toute personne qui possède un intérêt direct à la réalisation d’une condition suspensive dans un contrat.",
+   "a_verifier": [
+    "Identifier la partie qui avait intérêt à la condition",
+    "Vérifier si cette partie a empêché l’accomplissement de la condition"
+   ],
+   "vigilance": null,
+   "references": [
+    "Code civil art. 1304-3 al. 1er"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39600 at https://www.notaires.fr",
@@ -1695,7 +1861,43 @@
   "matieres": [
    "Fiscalité"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "Actuellement, deux taxes distinctes frappent les logements vacants selon leur localisation : la TLV en zone tendue et la THLV hors zone tendue mais instaurée par la commune. La loi de finances 2026 (art. 108) crée, à compter de 2027, la taxe sur la vacance des locaux d’habitation (TVLH) en fusionnant ces deux prélèvements. La TVLH sera obligatoire pour les biens en zone tendue, tandis que son application hors zone tendue dépendra d’une délibération municipale. Le champ d’assujettissement s’étend aux propriétaires, usufruitiers, preneurs à bail à construction, à réhabilitation et au bail emphytéotique. Cette réforme simplifie le régime fiscal des logements vacants et introduit une condition d’adoption locale hors zone tendue.",
+   "contexte": null,
+   "points": [
+    "Deux taxes actuelles : TLV (zone tendue, logement vacant ≥1 an au 1er janvier) et THLV (hors zone tendue, vacant ≥2 ans au 1er janvier, si la commune l’a instaurée)",
+    "Fusion prévue par la loi de finances 2026, article 108",
+    "Création, à partir de 2027, de la taxe sur la vacance des locaux d’habitation (TVLH), article 1406 bis du CGI",
+    "Assujettis à la TVLH : propriétaire, usufruitier, preneur à bail à construction ou à réhabilitation, preneur du bail emphytéotique",
+    "TVLH obligatoire pour les biens situés en zone tendue",
+    "TVLH facultative hors zone tendue, conditionnée à une délibération du conseil municipal",
+    "Liste des communes en zone tendue fixée par décret",
+    "THLV n’est applicable que si la commune hors zone tendue a décidé de l’instaurer"
+   ],
+   "regles": [
+    "TLV s’applique aux propriétaires ou usufruitiers d’un logement vacant depuis au moins un an au 1er janvier, uniquement en zone tendue (décret)",
+    "THLV s’applique aux mêmes personnes lorsque le logement est vacant depuis plus de deux ans au 1er janvier, hors zone tendue, à condition que la commune l’ait instaurée",
+    "À compter de 2027, la TVLH remplace TLV et THLV et est due par les propriétaires, usufruitiers, preneurs à bail à construction, à réhabilitation ou emphytéotiques",
+    "TVLH est automatiquement applicable aux biens en zone tendue",
+    "TVLH est applicable hors zone tendue uniquement après adoption d’une délibération municipale"
+   ],
+   "qui": "Propriétaires, usufruitiers, preneurs à bail à construction, preneurs à bail à réhabilitation et preneurs de bail emphytéotique de logements vacants, selon la localisation du bien (zone tendue ou hors zone tendue).",
+   "a_verifier": [
+    "Vérifier la date de vacance du logement au 1er janvier de l'année d'imposition",
+    "Confirmer si le bien se situe en zone tendue (consultation du décret listant les communes)",
+    "S’assurer de l’existence d’une délibération municipale d’instauration de la TVLH hors zone tendue",
+    "Identifier le statut du détenteur (propriétaire, usufruitier, preneur à bail à construction, à réhabilitation ou emphytéotique) pour déterminer l’assujettissement"
+   ],
+   "vigilance": null,
+   "references": [
+    "Loi de finances 2026, loi 2026-103 du 19 février 2026, art. 108",
+    "Article 1406 bis du CGI"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "RSS-39600 at https://www.notaires.fr",
@@ -1707,7 +1909,44 @@
   "matieres": [
    "Fiscalité"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Actuellement, deux taxes distinctes frappent les logements vacants selon leur localisation : la TLV en zone tendue et la THLV hors zone tendue. La loi de finances 2026 (art. 108) crée, à compter de 2027, la taxe sur la vacance des locaux d’habitation (TVLH) qui remplace les deux taxes. La TVLH s’applique automatiquement aux biens situés en zone tendue, tandis que son application hors zone tendue dépend d’une délibération du conseil municipal. Le champ d’assujettissement s’élargit aux propriétaires, usufruitiers, preneurs à bail à construction, à réhabilitation ou emphytéotiques. Cette fusion simplifie le régime fiscal des logements vacants et introduit une condition d’adoption locale hors zone tendue.",
+   "contexte": null,
+   "points": [
+    "Deux taxes actuelles : TLV (zone tendue, logement vacant ≥1 an au 1er janvier) et THLV (hors zone tendue, vacant ≥2 ans au 1er janvier).",
+    "Liste des communes en zone tendue fixée par décret.",
+    "THLV n’est applicable que si la commune hors zone tendue a décidé de l’instaurer.",
+    "Fusion prévue par la loi de finances 2026, art. 108, entrée en vigueur en 2027.",
+    "Création de la TVLH, article 1406 bis du CGI.",
+    "Assujettis à la TVLH : propriétaire, usufruitier, preneur à bail à construction ou à réhabilitation, preneur du bail emphytéotique.",
+    "TVLH appliquée automatiquement dans les zones tendues.",
+    "TVLH appliquée hors zone tendue uniquement après délibération du conseil municipal."
+   ],
+   "regles": [
+    "TLV : due par tout propriétaire ou usufruitier d’un logement vacant depuis au moins un an au 1er janvier, si le bien se trouve en zone tendue (décret).",
+    "THLV : due par le propriétaire ou usufruitier d’un logement vacant depuis plus de deux ans au 1er janvier, si le bien est dans une commune hors zone tendue ayant instauré la taxe.",
+    "TVLH : remplace TLV et THLV à compter de 2027, prévue par la loi de finances 2026 (art. 108) et codifiée à l’article 1406 bis du CGI.",
+    "Champ d’assujettissement TVLH : propriétaire, usufruitier, preneur à bail à construction, preneur à bail de réhabilitation, preneur du bail emphytéotique.",
+    "Application TVLH en zone tendue : automatique.",
+    "Application TVLH hors zone tendue : conditionnée à une délibération du conseil municipal."
+   ],
+   "qui": "Propriétaires, usufruitiers, preneurs à bail à construction, à réhabilitation ou emphytéotiques de logements vacants, selon que le bien se situe en zone tendue ou hors zone tendue.",
+   "a_verifier": [
+    "Vérifier la localisation du bien (zone tendue ou hors zone tendue) selon le décret en vigueur.",
+    "Contrôler la durée de vacance au 1er janvier de l'année d'imposition (≥1 an ou ≥2 ans selon le régime précédent).",
+    "S’assurer de l’existence d’une délibération municipale d’instauration de la TVLH pour les biens hors zone tendue.",
+    "Mettre à jour les actes et déclarations fiscales pour refléter la TVLH à partir de 2027."
+   ],
+   "vigilance": null,
+   "references": [
+    "Loi de finances 2026 (loi 2026-103 du 19 fév. 2026), art. 108",
+    "CGI, article 1406 bis"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "RSS-39046 at https://www.notaires.fr",
@@ -1719,7 +1958,45 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "Le Conseil supérieur du notariat publie chaque mois le nombre de transactions de logements anciens en France, en cumul sur douze mois, à l’échelle nationale (hors Mayotte) et départementale (hors Mayotte). Les volumes sont calculés à partir de la Base des Références Immobilières (BRI) et incluent les biens vendus par les marchands de biens. Pour l’Alsace‑Moselle, les données notariales sont complétées par les données fiscales MEDOC. Les volumes nationaux sont extrapolés pour le dernier mois et arrondis au millier, tandis que les volumes départementaux sont arrondis à la dizaine. La diffusion mensuelle permet aux professionnels et au grand public de suivre l’évolution du marché immobilier.",
+   "contexte": null,
+   "points": [
+    "1. Publication mensuelle du nombre de transactions de logements anciens en France (hors Mayotte).",
+    "2. Diffusion à l’échelle nationale et départementale (100 départements, hors Mayotte).",
+    "3. Données basées sur la Base des Références Immobilières (BRI) alimentée par l’ensemble des notaires de France.",
+    "4. Inclusion des biens vendus par les marchands de biens comme logements anciens.",
+    "5. Pour l’Alsace‑Moselle, estimation des transactions par ajustement des données notariales avec les données fiscales MEDOC.",
+    "6. Volumes nationaux calculés sur 12 mois glissants et extrapolés pour le dernier mois.",
+    "7. Arrondissement des volumes : national au millier près, départemental à la dizaine près.",
+    "8. Différence d’environ +/- 0,1 % entre la somme des volumes départementaux arrondis et le volume national.",
+    "9. Sources : BRI, Notaires de France – ADSN, DGFiP (MEDOC)."
+   ],
+   "regles": [
+    "Publication mensuelle des volumes de transactions de logements anciens (BRI).",
+    "Les volumes sont calculés sur 12 mois glissants.",
+    "Les données notariales brutes sont utilisées hors Alsace‑Moselle.",
+    "En Alsace‑Moselle, les données notariales sont complétées par les données fiscales MEDOC.",
+    "Les volumes nationaux sont extrapolés pour le dernier mois.",
+    "Arrondissement : national au millier près, départemental à la dizaine près."
+   ],
+   "qui": "Notaires, professionnels de l’immobilier, investisseurs, vendeurs et acheteurs de logements anciens, ainsi que le grand public intéressé par les tendances du marché immobilier.",
+   "a_verifier": [
+    "Vérifier la mise à jour mensuelle des volumes de transactions dans la BRI.",
+    "S’assurer que les données de l’Alsace‑Moselle sont ajustées par les données MEDOC.",
+    "Confirmer l’arrondissement des volumes (millier pour la France, dizaine pour les départements)."
+   ],
+   "vigilance": null,
+   "references": [
+    "Base des Références Immobilières (BRI)",
+    "Notaires de France – ADSN",
+    "DGFiP (MEDOC)"
+   ],
+   "schema": null,
+   "partielle": false
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-21544 at https://www.notaires.fr",
@@ -1732,7 +2009,8 @@
    "Sociétés & patrimoine professionnel",
    "Fiscalité"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai_tries": 1
  },
  {
   "id": "SEPAJ-actualites/actes,2/partie-commune-a-jouissance-privative-l-entretien-a-la-charge-du-coproprietaire-beneficiaire-n-exonere-pas-le-syndicat-de-sa-responsabilite-cass-civ-3eme-17-09-2026-publie-au-bulletin,387",
@@ -1744,7 +2022,9 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": null,
+  "ai_v": 3
  },
  {
   "id": "SEPAJ-actualites/actes,2/donation-avec-charges-revirement-de-jurisprudence-l-action-en-revocation-se-prescrit-desormais-par-cinq-ans-cass-civ-3eme-17-09-2026-n-24-21-632-publie-au-bulletin,385",
@@ -1758,7 +2038,8 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai_tries": 1
  },
  {
   "id": "SEPAJ-actualites/formalites,1/le-maire-peut-refuser-la-delivrance-du-certificat-de-permis-tacite-avant-meme-son-retrait-ce-13-07-2026-n-504144,384",
@@ -1770,7 +2051,9 @@
   "matieres": [
    "Fiscalité"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": null,
+  "ai_v": 3
  },
  {
   "id": "NDF-37828 at https://www.notaires.fr",
@@ -1782,7 +2065,9 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": null,
+  "ai_v": 3
  },
  {
   "id": "NDF-21565 at https://www.notaires.fr",
@@ -1794,7 +2079,8 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai_tries": 0
  },
  {
   "id": "RSS-37828 at https://www.notaires.fr",
