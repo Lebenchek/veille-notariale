@@ -2010,7 +2010,58 @@
    "Fiscalité"
   ],
   "first_seen": "2026-10-08",
-  "ai_tries": 1
+  "ai_tries": 1,
+  "ai": {
+   "resume": "Les plus-values professionnelles sont en principe imposables, mais plusieurs régimes d'exonération existent selon le montant des recettes, la valeur des éléments transmis, le type d'opération (apport, transmission gratuite ou départ à la retraite) et la durée d'activité. L'article 151 septies du CGI prévoit une exonération totale ou partielle selon des seuils de recettes distincts pour les exploitants agricoles, les activités d'achat‑revente ou de fourniture de logement, et les autres entreprises non agricoles. L'article 238 quindecies du CGI offre une exonération totale ou partielle selon la valeur des éléments transmis, avec des majorations pour les transmissions à un jeune agriculteur. Les apports en société sont soumis à un report d'imposition selon l'article 151 octies, différant selon que les biens sont amortissables ou non. La transmission à titre gratuit bénéficie d'un report d'imposition (article 41) qui devient exonération définitive si l'activité se poursuit cinq ans. Enfin, l'article 151 septies A prévoit une exonération pour les cessions à titre onéreux lors du départ à la retraite.",
+   "contexte": null,
+   "points": [
+    "Exonération totale si recettes ≤ 450 000 € pour exploitants agricoles cédant à un jeune agriculteur (loi de finances 2025).",
+    "Exonération totale si recettes ≤ 350 000 € pour autres exploitants agricoles.",
+    "Exonération totale si recettes ≤ 250 000 € pour activités d'achat‑revente ou de fourniture de logement.",
+    "Exonération totale si recettes ≤ 90 000 € pour autres entreprises non agricoles ou BNC.",
+    "Exonération partielle selon recettes entre 350 000 € et 450 000 € (agricoles) ou 250 000‑350 000 € (achat‑revente) ou 90 000‑126 000 € (BNC) avec formules de taux précis.",
+    "Exonération totale si valeur des éléments transmis (hors immeubles) < 500 000 € (article 238 quindecies).",
+    "Exonération partielle si valeur entre 500 000 € et 1 000 000 € avec taux (1 000 000‑valeur)/500 000.",
+    "Seuils majorés à 700 000 € et 1 200 000 € lorsqu’il s’agit d’une transmission à un jeune agriculteur (article 73 B).",
+    "Report d'imposition pour apport en société (article 151 octies) : report jusqu’à cession/rachat/annulation des droits sociaux pour biens non amortissables ; imposition immédiate pour biens amortissables au nom de la société bénéficiaire.",
+    "Report d'imposition pour transmission gratuite (article 41) : report jusqu’à cession ou cessation, exonération définitive si activité poursuivie 5 ans.",
+    "Exonération pour départ à la retraite (article 151 septies A) : cession onéreuse d’une entreprise individuelle ou de l’ensemble des parts, applicable aux entreprises soumises à l’IR."
+   ],
+   "regles": [
+    "Recettes annuelles ≤ 450 000 € → exonération totale pour exploitants agricoles cédant à un jeune agriculteur (art. 151 septies CG).",
+    "Recettes annuelles ≤ 350 000 € → exonération totale pour autres exploitants agricoles (art. 151 septies CG).",
+    "Recettes annuelles ≤ 250 000 € → exonération totale pour activités d'achat‑revente ou de fourniture de logement (art. 151 septies CG).",
+    "Recettes annuelles ≤ 90 000 € → exonération totale pour autres entreprises non agricoles ou BNC (art. 151 septies CG).",
+    "Recettes entre 350 000 € et 450 000 € (agricoles) → exonération partielle proportionnelle (450 000‑recettes)/100 000 (art. 151 septies CG).",
+    "Recettes entre 250 000 € et 350 000 € (achat‑revente) → taux (350 000‑recettes)/100 000 (art. 151 septies CG).",
+    "Recettes entre 90 000 € et 126 000 € (BNC) → taux (126 000‑recettes)/36 000 (art. 151 septies CG).",
+    "Valeur des éléments transmis < 500 000 € → exonération totale (art. 238 quindecies CG).",
+    "Valeur entre 500 000 € et 1 000 000 € → exonération partielle, taux (1 000 000‑valeur)/500 000 (art. 238 quindecies CG).",
+    "Transmission à un jeune agriculteur → seuils relevés à 700 000 € et 1 200 000 € (art. 73 B CG)."
+   ],
+   "qui": "Entreprises individuelles et sociétés de personnes (SNC, SCS, sociétés civiles) soumises à l'IR, ainsi que les sociétés soumises à l'IS, les organismes sans but lucratif, les collectivités territoriales et les EPCI, lorsqu'elles cèdent un actif professionnel immobilisé ou transmettent une entreprise/branche d'activité.",
+   "a_verifier": [
+    "Vérifier le montant des recettes annuelles de l’entreprise pour appliquer le bon seuil d’exonération.",
+    "Évaluer la valeur des éléments transmis (hors immeubles) afin de déterminer le taux d’exonération ou la totalité de l’exonération.",
+    "Confirmer que l’activité a été exercée pendant au moins 5 ans pour les régimes de report d’imposition (apport, transmission gratuite, départ à la retraite).",
+    "S’assurer que le bénéficiaire d’une transmission agricole répond aux conditions de l’article 73 B du CGI pour bénéficier des seuils majorés.",
+    "Identifier si les biens transmis sont amortissables ou non afin de choisir le régime de report d’imposition applicable (article 151 octies).",
+    "Dans le cas d’un apport, vérifier la nature du régime d’imposition de la société bénéficiaire (régime réel).",
+    "Pour une transmission à titre gratuit, confirmer que l’ensemble des éléments de l’actif immobilisé est transmis."
+   ],
+   "vigilance": null,
+   "references": [
+    "art. 151 septies CG",
+    "art. 238 quindecies CG",
+    "art. 151 octies CG",
+    "art. 41 CG",
+    "art. 151 septies A CG",
+    "art. 73 B CG"
+   ],
+   "schema": null,
+   "partielle": false
+  },
+  "ai_v": 3
  },
  {
   "id": "SEPAJ-actualites/actes,2/partie-commune-a-jouissance-privative-l-entretien-a-la-charge-du-coproprietaire-beneficiaire-n-exonere-pas-le-syndicat-de-sa-responsabilite-cass-civ-3eme-17-09-2026-publie-au-bulletin,387",
@@ -2039,7 +2090,33 @@
    "Profession, déontologie & actes"
   ],
   "first_seen": "2026-10-02",
-  "ai_tries": 1
+  "ai_tries": 1,
+  "ai": {
+   "resume": "L'action en révocation d'une donation pour inexécution des charges est désormais soumise à une prescription de cinq ans. Cette règle s'applique même lorsque la donation porte sur un immeuble. La décision de la Cour de cassation (3e civ., 17/09/2026, n° 24-21.632) fixe le délai de prescription applicable à cette action personnelle.",
+   "contexte": null,
+   "points": [
+    "Prescription de cinq ans pour l'action en révocation d'une donation pour inexécution des charges",
+    "L'action est de nature personnelle",
+    "Le délai de prescription s'applique même si la donation porte sur un immeuble"
+   ],
+   "regles": [
+    "L'action en révocation d'une donation pour inexécution des charges se prescrit par cinq ans (Cass. civ. 3e, 17/09/2026, n° 24-21.632)",
+    "Cette action est qualifiée d'action personnelle",
+    "Le délai de prescription de cinq ans s'applique également aux donations portant sur des immeubles"
+   ],
+   "qui": "Le donateur et le bénéficiaire d'une donation assortie de charges, y compris lorsque le bien donné est un immeuble",
+   "a_verifier": [
+    "Vérifier la date de la donation afin de calculer le délai de cinq ans pour l'action en révocation",
+    "S'assurer que les charges de la donation n'ont pas été exécutées avant d'engager la procédure de révocation"
+   ],
+   "vigilance": null,
+   "references": [
+    "Cass. civ. 3e, 17/09/2026, n° 24-21.632"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "SEPAJ-actualites/formalites,1/le-maire-peut-refuser-la-delivrance-du-certificat-de-permis-tacite-avant-meme-son-retrait-ce-13-07-2026-n-504144,384",
@@ -2080,7 +2157,62 @@
    "Autres"
   ],
   "first_seen": "2026-10-08",
-  "ai_tries": 0
+  "ai_tries": 0,
+  "ai": {
+   "resume": "L’assainissement, qu’il soit collectif ou individuel, relève d’une compétence communale exercée comme SPIC, pouvant être transférée aux EPCI. La loi NOTRe imposait un transfert obligatoire avant 2020, mais la loi du 11 avril 2025 a rendu ce transfert facultatif, laissant aux communes le choix de déléguer tout ou partie de la compétence. Les communes doivent établir un schéma d’assainissement collectif, contrôler les raccordements et les installations individuelles, et mettre en place un SPANC avec contrôle périodique (max 10 ans) et obligatoire lors de la vente. Le notaire doit informer l’acquéreur du type d’assainissement, vérifier la conformité et, dans le mois suivant la signature, transmettre une attestation aux autorités compétentes.",
+   "contexte": null,
+   "points": [
+    "Compétence d’assainissement (eaux usées et pluviales) attribuée aux communes, service public industriel et commercial (SPIC).",
+    "Article L.2224-8 CGCT : les communes doivent établir un schéma d’assainissement collectif et contrôler les raccordements, le transport, l’épuration et l’élimination des boues.",
+    "Les communes contrôlent également les installations d’assainissement individuel (fosses septiques).",
+    "Le service public peut être exercé en régie ou délégué à des entreprises privées pour 20 ans (38 % des usagers en collectif, 10 % en individuel, selon le rapport 2022).",
+    "Transfert obligatoire à un EPCI avant 2020 (loi NOTRe) supprimé par la loi du 11 avril 2025, qui rend le transfert facultatif.",
+    "Modalités de transfert prévues à l’article L5211-17 CGCT ; si déjà transféré avant le 11 avril 2025, la communauté continue d’exercer la compétence de plein droit (art. L.5214-16).",
+    "Le SPANC doit contrôler les installations individuelles au moins tous les 10 ans ; le contrôle est obligatoire lors de la vente, le rapport doit dater de moins de 3 ans (art. L1331-11-1 CSP).",
+    "L’acquéreur doit réaliser les travaux de mise aux normes dans l’année suivant l’acquisition (art. L271-4 II CCH).",
+    "En assainissement collectif, le propriétaire doit se raccorder dans les 2 ans suivant la mise en œuvre du réseau, à ses frais (Code de la santé publique).",
+    "En cas de non‑raccordement, la commune ou l’EPCI peut procéder d’office au raccordement et facturer le propriétaire (art. L1331-6 CSP).",
+    "Le notaire doit informer l’acquéreur du type d’assainissement, vérifier conformité et, dans le mois suivant la signature, adresser une attestation aux autorités compétentes en ANC."
+   ],
+   "regles": [
+    "Les communes sont tenues d’établir un schéma d’assainissement collectif (L.2224-8 CGCT).",
+    "Elles assurent le contrôle des raccordements, du transport, de l’épuration et de l’élimination des boues (L.2224-8 CGCT).",
+    "Elles contrôlent les installations d’assainissement individuel (fosses septiques) (L.2224-8 CGCT).",
+    "Le service public d’assainissement peut être exercé en régie ou délégué à un privé pour 20 ans (rapport 2022).",
+    "Le transfert de compétence aux EPCI était obligatoire avant 2020, mais la loi du 11 avril 2025 le rend facultatif (loi 2025‑327).",
+    "Le transfert, lorsqu’il a lieu, suit les règles de droit commun (L5211-17 CGCT).",
+    "Le SPANC doit réaliser un contrôle périodique au plus tard tous les 10 ans (L.2224-8 III al.2 CGCT).",
+    "Le contrôle d’ANC est obligatoire à la vente ; le rapport doit être de moins de 3 ans (L1331-11-1 CSP).",
+    "L’acquéreur doit mettre aux normes l’installation dans l’année suivant l’achat (L271-4 II CCH).",
+    "Le propriétaire doit se raccorder au tout‑à‑égout dans les 2 ans suivant la mise en service du réseau (Code de la santé publique)."
+   ],
+   "qui": "Toutes les communes françaises, les établissements publics de coopération intercommunale (syndicats, communautés de communes, communautés d’agglomération, communautés urbaines, métropoles), les propriétaires d’immeubles raccordés ou non au réseau public, les acquéreurs d’immeubles, les entreprises privées délégataires du service d’assainissement, et les notaires intervenant dans les ventes immobilières.",
+   "a_verifier": [
+    "Vérifier que le schéma d’assainissement collectif de la commune est à jour et conforme à L.2224-8.",
+    "S’assurer que le contrôle du raccordement au réseau collectif a été effectué dans le délai de 2 ans.",
+    "Confirmer l’existence d’un SPANC et la date du dernier contrôle de l’installation individuelle (max 10 ans).",
+    "Obtenir le rapport de visite ANC datant de moins de 3 ans et le joindre au dossier de diagnostic technique.",
+    "Informer l’acquéreur du type d’assainissement (collectif ou individuel) et de ses obligations.",
+    "Dans le mois suivant la signature, transmettre à l’autorité compétente en ANC une attestation contenant les informations requises."
+   ],
+   "vigilance": null,
+   "references": [
+    "CGCT art. L.2224-8",
+    "CGCT art. L5210-1-1A",
+    "CGCT art. L5216-5",
+    "CGCT art. L5211-17",
+    "CGCT art. L.5214-16",
+    "CSP art. L1331-1-1",
+    "CSP art. L1331-11-1",
+    "CCH art. L271-4 II",
+    "Code de la santé publique (article relatif au raccordement)",
+    "Loi NOTRe du 7 août 2015",
+    "Loi n°2025‑327 du 11 avril 2025"
+   ],
+   "schema": null,
+   "partielle": false
+  },
+  "ai_v": 3
  },
  {
   "id": "RSS-37828 at https://www.notaires.fr",
@@ -2092,7 +2224,37 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-09-29"
+  "first_seen": "2026-09-29",
+  "ai": {
+   "resume": "La Semaine internationale de la médiation, du 10 au 18 octobre 2026, voit le salon virtuel des Notaires de France dédié à la médiation. Le salon est ouvert en visioconférence le mardi 13 octobre de 9h à 13h et le jeudi 15 octobre de 13h à 19h, sans nécessité de rendez‑vous. Les participants peuvent échanger gratuitement avec des médiateurs notaires et s’informer sur l’intérêt de la médiation pour les litiges de successions, d’immobilier, de voisinage ou d’activité commerciale. Le mercredi 14 octobre, un live est diffusé sur les pages Facebook et Instagram des Notaires de France. Le salon propose également un programme détaillé et un site dédié à la médiation par les notaires.",
+   "contexte": null,
+   "points": [
+    "Salon virtuel dédié à la médiation du 10 au 18 octobre 2026",
+    "Ouverture du salon le mardi 13 octobre de 9h à 13h",
+    "Ouverture du salon le jeudi 15 octobre de 13h à 19h",
+    "Accès sans rendez‑vous",
+    "Échanges gratuits en visioconférence avec des médiateurs notaires",
+    "Information sur la médiation pour les litiges de successions, d’immobilier, de voisinage, d’activité commerciale",
+    "Live sur Facebook et Instagram le mercredi 14 octobre de 12h à 14h",
+    "Programme de la semaine disponible",
+    "Site dédié à la médiation par les notaires"
+   ],
+   "regles": [
+    "Le salon est accessible en visioconférence sans rendez‑vous",
+    "Les échanges sont gratuits"
+   ],
+   "qui": "Particuliers et professionnels souhaitant résoudre des litiges en successions, immobilier, voisinage ou activité commerciale via la médiation",
+   "a_verifier": [
+    "Vérifier les horaires exacts du salon virtuel",
+    "S’assurer de la gratuité des échanges",
+    "Informer les parties sur la disponibilité des médiateurs notaires"
+   ],
+   "vigilance": null,
+   "references": [],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-21561 at https://www.notaires.fr",
@@ -2104,7 +2266,66 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "Les droits de préemption en matière d’urbanisme sont des facultés d’acquisition prioritaire accordées à l’État, aux collectivités publiques ou aux établissements de coopération intercommunale sur des biens immobiliers situés dans des zones de préemption. Le Code de l’urbanisme (art. L210‑1) fixe l’objectif général de ces droits : réaliser des opérations d’intérêt général, anticiper l’érosion littorale, protéger les espaces naturels, les domaines nationaux et le commerce de proximité. Parmi les droits existants, on distingue le droit de préemption urbain (DPU) institué par délibération municipale ou intercommunale (art. L211‑1), le droit de préemption dans les zones d’aménagement différé (ZAD) (arts. L212‑1 à L212‑5), le droit de préemption commercial des communes, le droit de préemption des espaces sensibles naturels (ENS) (arts. L215‑1 à L215‑24), le droit de préemption pour l’érosion littorale (art. L219‑1), le droit de préemption pour la préservation des ressources en eau (arts. L218‑1 et R218‑1) et le droit de préemption « ZAN » (art. L211‑1‑1). Chaque droit possède des conditions d’application, des titulaires spécifiques et des exclusions précises, notamment l’exclusion du DPU dans les ZAD ou l’exclusion du droit de préemption littoral du droit de préemption des espaces sensibles naturels.",
+   "contexte": "Avant la mise à jour, les droits de préemption étaient régis par les articles L210‑1 et L211‑1 du Code de l’urbanisme, sans distinction claire entre les différents types de préemption. La mise à jour introduit la création du droit de préemption pour l’érosion littorale (art. L219‑1) et du droit de préemption « ZAN » (art. L211‑1‑1), ainsi que des précisions sur les titulaires et les exclusions.",
+   "points": [
+    "Droit de préemption urbain (DPU) institué par délibération municipale ou intercommunale (art. L211‑1)",
+    "DPU ne peut être instauré s’il existe une ZAD sur le même territoire",
+    "Droit de préemption dans les ZAD régi par les arts. L212‑1 à L212‑5",
+    "Le préfet ou l’établissement de coopération intercommunale crée les ZAD par arrêté",
+    "ZAD créée pour le Grand Paris, un projet d’intérêt majeur (art. L350‑4) ou une grande opération d’urbanisme (GOU)",
+    "Droit de préemption commercial des communes pour les locaux commerciaux à la vente",
+    "Droit de préemption ENS (arts. L215‑1 à L215‑24) exercé par le département sur les ventes (art. L215‑9) et les donations entre vifs (art. L215‑13‑1)",
+    "Biens préemptibles : terrains ou droits sociaux, terrain avec construction sous conditions (art. L215‑11)",
+    "Conservatoire de l’espace littoral et des rivages lacustres gère les zones de préemption pour la valeur écologique, paysagère et patrimoniale (art. L215‑2)",
+    "Droit de préemption littoral (art. L219‑1) exclusif du DPU, des ZAD et du droit commercial, mais non prévalant sur l’ENS",
+    "Droit de préemption pour la préservation des ressources en eau (arts. L218‑1 et R218‑1) créé par la loi n° 2019‑1461 et modifié par la loi 3DS de 2022",
+    "Droit de préemption « ZAN » (art. L211‑1‑1) créé par la loi n° 2023‑630 pour prioriser l’usage du foncier existant"
+   ],
+   "regles": [
+    "DPU exercé par la commune ou l’EPCI, délégué à des tiers compétents (art. L211‑2‑3)",
+    "ZAD créé par arrêté du préfet ou de l’EPCI, titulaire désigné",
+    "ENS exercé par le département sur ventes et donations, sauf donations familiales ou conjugales",
+    "Droit de préemption littoral exclusif du DPU, des ZAD et du droit commercial",
+    "Droit de préemption eau exige la demande du préfet du département concerné"
+   ],
+   "qui": "Commune, EPCI, préfet, département, Conservatoire de l’espace littoral, collectivités locales, propriétaires de biens immobiliers situés dans les zones de préemption, vendeurs de locaux commerciaux, détenteurs de droits sociaux, sociétés civiles immobilières, parties à des donations entre vifs, acteurs de projets d’intérêt majeur ou de GOU",
+   "a_verifier": [
+    "Vérifier la présence d’une ZAD avant d’instaurer un DPU",
+    "S’assurer que le bien est situé dans une zone de préemption définie par le POS ou le PLU",
+    "Vérifier la délibération municipale ou intercommunale pour le DPU",
+    "Vérifier l’arrêté préfectoral ou intercommunal pour la création d’une ZAD",
+    "Vérifier la demande de préemption auprès du préfet pour les droits de préemption eau",
+    "Vérifier la conformité du terrain avec les critères de l’ENS (dimension suffisante, nécessité de mise en œuvre de la politique)",
+    "Vérifier la présence d’une zone de préemption gérée par le Conservatoire pour les biens à valeur écologique"
+   ],
+   "vigilance": "Les règles de préemption sont parfois contradictoires : le droit de préemption littoral est exclusif du DPU mais ne prévaut pas sur l’ENS ; le DPU ne peut être instauré s’il existe une ZAD, mais les règles communes (art. L213‑1 et suivants) s’appliquent aux deux droits.",
+   "references": [
+    "Code de l’urbanisme, art. L210‑1",
+    "Code de l’urbanisme, art. L211‑1",
+    "Code de l’urbanisme, art. L212‑1 à L212‑5",
+    "Code de l’urbanisme, art. L215‑1 à L215‑24",
+    "Code de l’urbanisme, art. L219‑1",
+    "Code de l’urbanisme, art. L218‑1 et R218‑1",
+    "Loi n° 2019‑1461 du 27 décembre 2019",
+    "Loi 3DS de 2022",
+    "Loi n° 2023‑630 du 20 juillet 2023"
+   ],
+   "schema": {
+    "titre": "Séquence d’application des droits de préemption",
+    "etapes": [
+     "1. Vérifier la zone de préemption (POS/PLU, ZAD, ENS, littoral, eau)",
+     "2. Identifier le titulaire du droit (commune, EPCI, département, Conservatoire)",
+     "3. Vérifier la délibération ou l’arrêté créant le droit",
+     "4. Appliquer les exclusions spécifiques (ex. DPU exclu par ZAD)",
+     "5. Exercer le droit de préemption (acquisition prioritaire)"
+    ]
+   },
+   "partielle": false
+  },
+  "ai_v": 3
  },
  {
   "id": "SEPAJ-actualites/actes,2/sarl-le-gerant-ne-peut-pas-creer-une-societe-concurrente-pendant-son-mandat-cass-com-17-06-2026-n-25-13-855-publie-au-bulletin,383",
@@ -2117,7 +2338,9 @@
    "Sociétés & patrimoine professionnel",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": null,
+  "ai_v": 3
  },
  {
   "id": "NDF-21569 at https://www.notaires.fr",
@@ -2129,7 +2352,8 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai_tries": 1
  },
  {
   "id": "SEPAJ-actualites/actes,2/transmission-des-exploitations-agricoles-france-services-agriculture-operationnel-a-compter-du-1er-janvier-2027-d-n-2026-852-du-9-septembre-2026,382",
@@ -2141,7 +2365,9 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": null,
+  "ai_v": 3
  },
  {
   "id": "SEPAJ-actualites/actes,2/bail-rural-le-depot-de-garantie-est-prohibe-cass-civ-3eme-02-07-2026-n-24-12-681-publie-au-bulletin,381",
@@ -2154,7 +2380,8 @@
    "Immobilier & copropriété",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai_tries": 0
  },
  {
   "id": "SEPAJ-actualites/formalites,1/tva-immobiliere-quand-un-assujetti-agit-il-en-tant-que-tel-ce-29-07-2006-n-499315,380",
