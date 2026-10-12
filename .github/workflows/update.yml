@@ -5,31 +5,41 @@ on:
   workflow_dispatch:
     inputs:
       lookback_days:
-        description: "Jours à couvrir pour les nouveautés (45 par défaut)"
+        description: "Jours à couvrir pour les actualités publiques (45 par défaut)"
         required: false
         default: "45"
       ai_batch:
-        description: "Nombre maximum de fiches IA générées ce run (40 par défaut)"
+        description: "Nombre maximum de fiches IA d'actualités générées ce run (40 par défaut)"
         required: false
         default: "40"
       ai_time_budget:
-        description: "Temps maximum alloué aux fiches IA, en secondes (900 par défaut)"
+        description: "Temps maximum alloué aux fiches d'actualités, en secondes (900 par défaut)"
         required: false
         default: "900"
+      cridon_max_issues:
+        description: "Nombre de NOTA-BENE du CRIDON à traiter (3 par défaut ; 12 pour rattraper l'année)"
+        required: false
+        default: "3"
 permissions:
   contents: write
+concurrency:
+  group: veille
+  cancel-in-progress: false
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install -r requirements.txt
+      - run: pip install requests feedparser pdfplumber cryptography beautifulsoup4
       - run: python fetch.py
         env:
+          DATA_PASSPHRASE: ${{ secrets.DATA_PASSPHRASE }}
+          CRIDON_USER: ${{ secrets.CRIDON_USER }}
+          CRIDON_PASS: ${{ secrets.CRIDON_PASS }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -37,6 +47,7 @@ jobs:
           LOOKBACK_DAYS: ${{ github.event.inputs.lookback_days || '45' }}
           AI_BATCH: ${{ github.event.inputs.ai_batch || '40' }}
           AI_TIME_BUDGET_S: ${{ github.event.inputs.ai_time_budget || '900' }}
+          CRIDON_MAX_ISSUES: ${{ github.event.inputs.cridon_max_issues || '3' }}
       - run: |
           git config user.name "veille-bot"
           git config user.email "bot@users.noreply.github.com"
