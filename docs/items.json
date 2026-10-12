@@ -2353,7 +2353,72 @@
    "Successions & libéralités"
   ],
   "first_seen": "2026-10-08",
-  "ai_tries": 1
+  "ai_tries": 1,
+  "ai": {
+   "resume": "Les biens sans maître, définis par le CG3P, peuvent être appropriés par les communes ou les EPCI sous conditions précises. Un bien est considéré sans maître s’il provient d’une succession ouverte depuis plus de trente ans (dix ans dans certaines zones prioritaires) sans successible, ou s’il n’a pas de propriétaire connu et que les taxes foncières restent impayées depuis plus de trois ans. Les successions vacantes et en déshérence sont exclues : elles restent sous la tutelle de l’État. L’acquisition communale nécessite constat, avis de la commission des impôts, arrêté d’abandon, publication, notification et délibération dans un délai de six mois, faute de quoi le bien revient à l’État. Le propriétaire réel peut réclamer la restitution dans trente ans, sous paiement des charges et frais de conservation, ou recevoir une indemnité si le bien a été vendu ou aménagé à l’intérêt général.",
+   "contexte": null,
+   "points": [
+    "Définition du bien sans maître : succession >30 ans (ou >10 ans en zones prioritaires) sans successible, ou absence de propriétaire connu avec taxes impayées >3 ans (CG3P art. L.1123-1).",
+    "Exclusion des successions vacantes et en déshérence, qui restent la propriété de l’État (art. L1122-1 CG3P, art. 724 C. civ.).",
+    "Délai réduit à dix ans pour les biens situés dans les quartiers prioritaires de la politique de la ville (loi n°2014-173 art. 5).",
+    "Procédure d’acquisition communale : constat, avis de la commission communale des impôts, arrêté d’abandon, publication, notification au dernier propriétaire connu, à l’occupant et au préfet (art. L.1123-3 CG3P).",
+    "Transmission d’informations par l’administration fiscale sur demande du maire ou du président de l’EPCI (art. L.1123-4 CG3P).",
+    "Intégration du bien au domaine communal par délibération du conseil municipal et arrêté d’entrée (art. 713 C. civ.).",
+    "Absence de délibération dans les six mois entraîne la transmission de la propriété à l’État.",
+    "Possibilité pour la commune de renoncer à ses droits au profit de l’EPCI (C. civ. art. 713).",
+    "Restitution possible par le propriétaire réel dans un délai de trente ans, sous paiement des charges impayées et des frais de conservation (CG3P art. L2222-20).",
+    "Indemnité due au propriétaire si le bien a été vendu ou aménagé à des fins d’intérêt général, selon la loi 3 DS du 21/02/2022."
+   ],
+   "regles": [
+    "Un bien est sans maître s’il provient d’une succession ouverte depuis plus de trente ans sans successible, ou depuis dix ans dans les quartiers prioritaires, ou s’il n’a pas de propriétaire connu et que les taxes foncières sont impayées depuis plus de trois ans (CG3P art. L.1123-1).",
+    "Les successions vacantes et en déshérence ne sont pas concernées ; elles restent la propriété de l’État (art. L1122-1 CG3P, art. 724 C. civ.).",
+    "L’acquisition communale requiert le constat de conformité, l’avis de la commission des impôts, un arrêté d’abandon, sa publication, et la notification aux parties intéressées (art. L.1123-3 CG3P).",
+    "L’administration fiscale doit fournir les informations nécessaires à la commune ou à l’EPCI sur demande (art. L.1123-4 CG3P).",
+    "Le bien entre dans le domaine communal après délibération du conseil municipal et arrêté d’entrée ; faute de délibération sous six mois, le bien revient à l’État.",
+    "La commune peut céder ses droits à l’EPCI par délibération (C. civ. art. 713).",
+    "Le propriétaire réel peut revendiquer la restitution dans un délai de trente ans, à condition de régler les charges impayées et les frais de conservation (CG3P art. L2222-20).",
+    "Si le bien a été vendu ou aménagé à l’intérêt général, le propriétaire ne peut plus exiger la restitution mais reçoit une indemnité équivalente à la valeur du bien (loi 3 DS)."
+   ],
+   "qui": "Les communes, les établissements publics de coopération intercommunale à fiscalité propre, les propriétaires éventuels ou leurs ayants droit, ainsi que l’État pour les successions en déshérence.",
+   "a_verifier": [
+    "Vérifier que le bien répond aux critères de l’article L.1123-1 (délai de succession ou absence de propriétaire et impayés fiscaux).",
+    "Obtenir l’avis de la commission communale des impôts directs.",
+    "Rédiger et signer l’arrêté constatant l’abandon du bien.",
+    "Publier et afficher l’arrêté conformément aux exigences légales.",
+    "Notifier l’arrêté au dernier propriétaire connu, à l’occupant et au préfet.",
+    "S’assurer que la délibération du conseil municipal est adoptée dans les six mois suivant la présomption de vacance.",
+    "En cas de renonciation, préparer la décision de transfert de droits à l’EPCI.",
+    "Informer le propriétaire réel de son droit de restitution et des conditions de paiement des charges et frais de conservation."
+   ],
+   "vigilance": "Le texte ne précise pas de jurisprudence contradictoire, mais il faut veiller à appliquer le délai réduit de dix ans uniquement dans les zones définies par la loi de 2014 sur la politique de la ville, sous peine d’invalidité de l’acquisition.",
+   "references": [
+    "CG3P art. L.1123-1",
+    "CG3P art. L.1123-3",
+    "CG3P art. L.1123-4",
+    "CG3P art. L.1122-1",
+    "Code civil art. 713",
+    "Code civil art. 809",
+    "Code civil art. 724",
+    "Code civil art. 539",
+    "Loi n°2014-173 art. 5",
+    "Loi n°2022-217 du 21/02/2022 (loi 3 DS)",
+    "CG3P art. L2222-20"
+   ],
+   "schema": {
+    "titre": "Procédure d’acquisition d’un bien sans maître",
+    "etapes": [
+     "Constat du bien conforme aux critères L.1123-1",
+     "Avis de la commission communale des impôts",
+     "Arrêté d’abandon (signature, publication, affichage)",
+     "Notification au propriétaire connu, à l’occupant et au préfet",
+     "Délibération du conseil municipal dans les 6 mois",
+     "Entrée du bien dans le domaine communal (ou transmission à l’État si délai dépassé)",
+     "Possibilité de restitution par le propriétaire réel dans 30 ans, sous paiement des charges"
+    ]
+   },
+   "partielle": false
+  },
+  "ai_v": 3
  },
  {
   "id": "SEPAJ-actualites/actes,2/transmission-des-exploitations-agricoles-france-services-agriculture-operationnel-a-compter-du-1er-janvier-2027-d-n-2026-852-du-9-septembre-2026,382",
@@ -2381,7 +2446,9 @@
    "Sociétés & patrimoine professionnel"
   ],
   "first_seen": "2026-10-02",
-  "ai_tries": 0
+  "ai_tries": 0,
+  "ai": null,
+  "ai_v": 3
  },
  {
   "id": "SEPAJ-actualites/formalites,1/tva-immobiliere-quand-un-assujetti-agit-il-en-tant-que-tel-ce-29-07-2006-n-499315,380",
@@ -2393,7 +2460,9 @@
   "matieres": [
    "Fiscalité"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": null,
+  "ai_v": 3
  },
  {
   "id": "SEPAJ-actualites/formalites,1/lotissement-la-commune-beneficiaire-de-la-retrocession-des-voies-et-espaces-communs-n-est-pas-un-coloti-cass-civ-3eme-03-09-2026-n-24-16-968-publie-au-bulletin,378",
@@ -2405,7 +2474,9 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": null,
+  "ai_v": 3
  },
  {
   "id": "SEPAJ-actualites/actes,2/baux-commerciaux-la-clause-de-hausse-automatique-et-illimitee-du-loyer-est-reputee-non-ecrite-cass-civ-3eme-03-09-2026-n-25-14-904-publie-au-bulletin,379",
@@ -2417,7 +2488,29 @@
   "matieres": [
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": {
+   "resume": "La Cour de cassation confirme que les parties à un bail commercial ne peuvent contractuellement instaurer une clause de hausse du loyer qui contournerait les règles d'ordre public relatives à la révision du loyer. Toute modalité d'évolution du loyer qui rendrait impossible l'application de ces règles est réputée non écrite.",
+   "contexte": null,
+   "points": [
+    "Interdiction de prévoir une clause de hausse du loyer qui violerait les règles d'ordre public de révision",
+    "Application du principe de liberté contractuelle limitée par l'ordre public"
+   ],
+   "regles": [
+    "Une clause de révision du loyer qui empêche l'application des règles d'ordre public est réputée non écrite (Cass. civ. 3e, 03/09/2026, n° 25-14.904)"
+   ],
+   "qui": "Les parties à un bail commercial, notamment le bailleur et le locataire, lorsqu'elles négocient la révision du loyer.",
+   "a_verifier": [
+    "Vérifier que les clauses de révision du loyer ne contournent pas les exigences d'ordre public"
+   ],
+   "vigilance": null,
+   "references": [
+    "Cass. civ. 3e, 03/09/2026, n° 25-14.904"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "SEPAJ-actualites/formalites,1/protection-des-haies-le-nouveau-regime-unique-devient-operationnel-au-1er-octobre-2026-d-n-2026-829-du-28-aout-2026,377",
@@ -2429,7 +2522,9 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-10-02"
+  "first_seen": "2026-10-02",
+  "ai": null,
+  "ai_v": 3
  },
  {
   "id": "NDF-39501 at https://www.notaires.fr",
@@ -2443,7 +2538,34 @@
    "Immobilier & copropriété",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "Le texte indique que le dossier de diagnostic technique (DDT) n’est pas obligatoire pour une donation de nue‑propriété, contrairement à la vente immobilière prévue à l’article L.271‑4 du Code de la construction et de l’habitation. Toutefois, il est recommandé d’en établir un afin que le bénéficiaire dispose de toutes les informations nécessaires et accepte la donation en connaissance de cause.",
+   "contexte": null,
+   "points": [
+    "Le DDT est obligatoire pour les ventes immobilières (art. L.271‑4 CCH).",
+    "La donation de nue‑propriété n’est pas soumise à cette obligation.",
+    "Le texte suggère que le DDT peut être utile pour informer le donataire.",
+    "Aucune mention d’un délai ou d’une sanction en cas d’absence de DDT pour donation.",
+    "Le texte ne précise pas d’autres formalités spécifiques à la donation de nue‑propriété."
+   ],
+   "regles": [
+    "Obligation du DDT en cas de vente immobilière, fondée sur l’article L.271‑4 du Code de la construction et de l’habitation.",
+    "Absence d’obligation du DDT pour une donation de nue‑propriété, le texte ne prévoyant aucune disposition légale contraire."
+   ],
+   "qui": "Le propriétaire qui souhaite donner la nue‑propriété de son bien immobilier et le bénéficiaire de la donation (le fils).",
+   "a_verifier": [
+    "Vérifier que la transaction envisagée est bien une donation et non une vente.",
+    "Envisager, au besoin, l’établissement d’un DDT pour informer le donataire, même si ce n’est pas légalement requis."
+   ],
+   "vigilance": null,
+   "references": [
+    "art. L.271‑4 CCH"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39500 at https://www.notaires.fr",
@@ -2456,7 +2578,49 @@
    "Famille & régimes matrimoniaux",
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "Sous le régime de la communauté d’acquêts, un époux peut transformer un bien propre en bien commun en prévoyant une clause d’apport dans le contrat de mariage. Cette opération n’entraîne pas automatiquement de droit à récompense pour l’époux apporteur, mais la récompense peut être prévue contractuellement, l’article 1433 n’étant pas d’ordre impératif. La clause doit être rédigée par le notaire et intégrée au contrat de mariage.",
+   "contexte": null,
+   "points": [
+    "Un époux peut apporter un bien propre à la communauté.",
+    "L’apport doit être prévu par une clause dans le contrat de mariage.",
+    "La rédaction de la clause relève du notaire.",
+    "L’article 1497 du Code civil autorise cet apport.",
+    "Par défaut, l’apport n’ouvre pas droit à récompense.",
+    "La récompense peut être prévue contractuellement.",
+    "L’article 1433 du Code civil n’est pas impératif.",
+    "Cass. 1e civ., 3‑10‑2019, n° 18‑20.430 FS‑PBI confirme la faculté de prévoir la récompense."
+   ],
+   "regles": [
+    "Un époux peut faire entrer un bien propre dans la communauté via une clause d’apport (C. civ., art. 1497).",
+    "L’apport n’entraîne pas de droit à récompense, sauf si le contrat le prévoit (art. 1433 non impératif)."
+   ],
+   "qui": "Époux mariés sous le régime de la communauté d’acquêts souhaitant transformer un bien propre (ex. terrain reçu de leurs parents) en bien commun, ainsi que le notaire chargé de rédiger le contrat de mariage.",
+   "a_verifier": [
+    "Vérifier que le contrat de mariage comporte une clause d’apport du terrain.",
+    "S’assurer que la clause précise, le cas échéant, les modalités de récompense éventuelle.",
+    "Informer les parties que, sans clause spécifique, aucune récompense n’est due."
+   ],
+   "vigilance": "L’article 1433 ne crée pas d’obligation de récompense ; il faut donc prévoir explicitement la récompense si les époux le désirent, faute de quoi le bénéficiaire de l’apport ne pourra pas en réclamer.",
+   "references": [
+    "C. civ., art. 1497",
+    "C. civ., art. 1433",
+    "Cass. 1e civ., 3‑10‑2019, n° 18‑20.430 FS‑PBI"
+   ],
+   "schema": {
+    "titre": "Processus d’apport d’un bien propre à la communauté",
+    "etapes": [
+     "Déterminer le bien propre à apporter (ex. terrain).",
+     "Rédiger une clause d’apport dans le contrat de mariage (notaire).",
+     "Intégrer la clause au contrat de mariage signé.",
+     "Décider, le cas échéant, d’inclure une disposition de récompense.",
+     "Enregistrer le contrat de mariage auprès des autorités compétentes."
+    ]
+   },
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39477 at https://www.notaires.fr",
@@ -2468,7 +2632,34 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "Le donateur peut réaliser une donation devant notaire portant à la fois le bien immobilier et une somme d'argent, en imposant la condition que cette somme soit utilisée pour des travaux. Le texte indique que le non‑respect de cette charge constitue un motif de révocation de la donation, conformément à l'article 953 du Code civil. Ainsi, le donateur dispose d'un moyen de contraindre le bénéficiaire à respecter l'affectation prévue. La portée pratique est la possibilité de prévoir une clause conditionnelle et de recourir à la révocation en cas de manquement.",
+   "contexte": null,
+   "points": [
+    "Donation devant notaire incluant bien immobilier et somme d'argent",
+    "Condition d'emploi de la somme pour des travaux",
+    "Non‑exécution de la charge = cause de révocation",
+    "Référence à l'article 953 du Code civil"
+   ],
+   "regles": [
+    "Le donateur peut imposer, dans l'acte notarié, la condition que la somme d'argent soit exclusivement utilisée pour réaliser des travaux (art. 953 C. civ.)",
+    "Si le bénéficiaire ne respecte pas cette condition, le donateur peut demander la révocation de la donation (art. 953 C. civ.)"
+   ],
+   "qui": "Le donateur (parent) et le bénéficiaire (fils) dans le cadre d'une donation immobilière assortie d'une charge d'affectation de fonds.",
+   "a_verifier": [
+    "Vérifier que la charge d'emploi des fonds pour les travaux est clairement stipulée dans l'acte de donation notarié",
+    "Mentionner la référence à l'article 953 du Code civil dans l'acte",
+    "Prévoir, le cas échéant, les modalités de contrôle de l'utilisation des fonds"
+   ],
+   "vigilance": null,
+   "references": [
+    "art. 953 C. civ."
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39498 at https://www.notaires.fr",
@@ -2481,7 +2672,27 @@
    "Successions & libéralités",
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "Le Pacs ne confère pas automatiquement la qualité d’héritier au partenaire survivant. Pour que votre ami puisse hériter de vos biens, il faut qu’un testament vous désigne explicitement comme légataire. Sans testament, le partenaire survivant n’a aucun droit d’héritage.",
+   "contexte": null,
+   "points": [
+    "Le Pacs ne crée pas de lien d’héritage entre partenaires",
+    "Un testament est nécessaire pour désigner un partenaire survivant comme héritier"
+   ],
+   "regles": [
+    "Le Pacs n’attribue pas la qualité d’héritier ; le partenaire survivant doit être désigné par testament"
+   ],
+   "qui": "Partenaires du Pacs, notamment le partenaire survivant qui souhaite hériter",
+   "a_verifier": [
+    "Rédiger un testament précisant la transmission des biens au partenaire survivant"
+   ],
+   "vigilance": null,
+   "references": [],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39497 at https://www.notaires.fr",
@@ -2493,7 +2704,35 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "En l’absence de descendants, le conjoint survivant non divorcé est héritier réservataire du quart de la succession de son/sa défunte époux/se (C. civ., art. 914‑1). Le texte précise qu’il n’est pas possible de supprimer ce droit. Ainsi, même si le futur époux souhaite léguer tout son patrimoine à ses neveux, la part réservataire du conjoint survivant reste garantie et ne peut être exclue.",
+   "contexte": "Avant le mariage, le conjoint survivant n’était pas concerné. Après le mariage, le droit du conjoint survivant à la réserve du quart est tranché par l’article 914‑1 du Code civil.",
+   "points": [
+    "1. Absence de descendants ;",
+    "2. Conjoint survivant non divorcé ;",
+    "3. Héritier réservataire du quart de la succession ;",
+    "4. Impossibilité de supprimer ce droit ;",
+    "5. Réserve du quart prévue par l’article 914‑1 du Code civil."
+   ],
+   "regles": [
+    "Le conjoint survivant non divorcé hérite du quart de la succession en l’absence de descendants (C. civ., art. 914‑1).",
+    "Il n’est pas possible de supprimer ce droit de réserve."
+   ],
+   "qui": "Le conjoint survivant non divorcé du défunt, et les neveux du défunt qui souhaitent recevoir le reste de la succession.",
+   "a_verifier": [
+    "Vérifier l’absence de descendants du défunt ;",
+    "Vérifier le statut marital du conjoint survivant (non divorcé) ;",
+    "S’assurer que le testament ne contredit pas la réserve du quart, ce qui serait nul."
+   ],
+   "vigilance": "Le texte ne mentionne pas de divergences jurisprudentielles ou de points non tranchés.",
+   "references": [
+    "C. civ., art. 914‑1"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39492 at https://www.notaires.fr",
@@ -2506,7 +2745,31 @@
    "Successions & libéralités",
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "Vous pouvez renoncer à votre part d’une succession immobilière conformément à l’article 768 du Code civil. Cette renonciation permet à vos enfants de devenir héritiers à votre place, via le mécanisme de représentation. La renonciation se fait soit au greffe du tribunal judiciaire du dernier domicile du défunt, soit devant notaire.",
+   "contexte": null,
+   "points": [
+    "Renonciation à la succession : article 768 du Code civil",
+    "Effet de la renonciation : vos enfants deviennent héritiers à votre place (représentation)",
+    "Mode de formalisation : greffe du tribunal judiciaire du dernier domicile du défunt ou notaire"
+   ],
+   "regles": [
+    "Renonciation à la succession : article 768 du Code civil",
+    "Effet de la renonciation : représentation des enfants"
+   ],
+   "qui": "Héritière souhaitant renoncer à sa part de la succession ; ses enfants qui deviennent héritiers à sa place",
+   "a_verifier": [
+    "Déposer la renonciation au greffe du tribunal judiciaire du dernier domicile du défunt ou auprès d’un notaire"
+   ],
+   "vigilance": null,
+   "references": [
+    "C. civ., art. 768"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39489 at https://www.notaires.fr",
@@ -2519,7 +2782,31 @@
    "Successions & libéralités",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "L’acte de notoriété peut être signé par les héritiers qui le demandent, sans l’accord du tiers héritier, conformément à l’article 730‑1, alinéa 3 du Code civil. Le notaire, toutefois, recommande la participation de tous les héritiers afin d’éviter les blocages ultérieurs du dossier.",
+   "contexte": null,
+   "points": [
+    "Acte de notoriété signé uniquement par les héritiers qui le demandent",
+    "Article 730‑1, alinéa 3 du Code civil",
+    "Notaire privilégie la participation de tous les héritiers pour éviter les blocages"
+   ],
+   "regles": [
+    "Les héritiers qui demandent l’acte de notoriété peuvent le signer sans la présence de l’autre héritier (C. civ. art. 730‑1, al. 3)"
+   ],
+   "qui": "Héritiers d’un défunt, notamment ceux qui demandent l’acte de notoriété",
+   "a_verifier": [
+    "Vérifier que les héritiers qui souhaitent signer l’acte de notoriété ont bien formulé leur demande au notaire",
+    "S’assurer que le notaire a bien noté l’absence de participation de l’héritier non réceptif"
+   ],
+   "vigilance": null,
+   "references": [
+    "C. civ. art. 730‑1, al. 3"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39484 at https://www.notaires.fr",
@@ -2531,7 +2818,39 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "L’ASPA n’est pas récupérable sur le capital d’une assurance‑vie en principe. Cependant, l’organisme peut demander la réintégration dans l’actif successoral des libéralités post‑demandes d’allocation si elles sont manifestement incompatibles avec les ressources déclarées et visent à empêcher le recouvrement sur la succession (CSS art. D 815‑6). L’ASPA peut être récupérée sur la part de l’actif net successoral qui dépasse 105 300 € (150 000 € en outre‑mer), dans la limite d’un montant révisé chaque année.",
+   "contexte": "Avant le décès, l’allocataire bénéficiait de l’ASPA. Le texte ne précise pas d’état de droit antérieur ni de changement de règle.",
+   "points": [
+    "L’ASPA n’est pas récupérable sur le capital d’une assurance‑vie en principe",
+    "Les organismes peuvent demander la réintégration des libéralités post‑demandes d’allocation",
+    "Réintégration possible si libéralités manifestement incompatibles avec ressources déclarées",
+    "Réintégration visée à empêcher le recouvrement sur la succession",
+    "Réintégration prévue par CSS art. D 815‑6",
+    "ASPA récupérable sur la part de l’actif net successoral dépassant 105 300 € (150 000 € outre‑mer)",
+    "Limite d’un montant révisé chaque année"
+   ],
+   "regles": [
+    "L’ASPA n’est pas récupérable sur le capital d’une assurance‑vie (principe)",
+    "Les organismes peuvent demander la réintégration des libéralités post‑demandes d’allocation si elles sont manifestement incompatibles avec les ressources déclarées et visent à empêcher le recouvrement sur la succession (CSS art. D 815‑6)",
+    "L’ASPA est récupérable sur la part de l’actif net successoral qui dépasse 105 300 € (150 000 € outre‑mer), dans la limite d’un montant révisé chaque année"
+   ],
+   "qui": "Allocataire décédée bénéficiant de l’ASPA, bénéficiaire d’une assurance‑vie, héritiers ou légataires de l’actif successoral",
+   "a_verifier": [
+    "Vérifier si des libéralités post‑demandes d’allocation ont été consenties et si elles sont manifestement incompatibles avec les ressources déclarées",
+    "Évaluer la part de l’actif net successoral dépassant 105 300 € (150 000 € outre‑mer) pour déterminer la récupération éventuelle de l’ASPA",
+    "Considérer la limite annuelle révisée du montant récupérable",
+    "Informer les parties concernées de la possibilité de réintégration selon CSS art. D 815‑6"
+   ],
+   "vigilance": "Le texte ne précise pas les critères exacts de « manifestement incompatibles » ni la procédure exacte de réintégration ; il reste donc à vérifier la jurisprudence et les pratiques des organismes de sécurité sociale",
+   "references": [
+    "CSS art. D 815‑6"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39482 at https://www.notaires.fr",
@@ -2543,7 +2862,29 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "Vous avez renoncé à la succession de votre père en 2018, mais cette renonciation n’affecte pas la succession de votre grand-mère, décédée après son fils. En vertu de l’article 752 du Code civil, vous avez désormais le droit de participer à la succession de votre grand-mère en tant que représentant de votre père prédécédé. La renonciation à la succession de votre père ne crée aucune restriction ou condition supplémentaire sur votre participation à la succession de votre grand-mère. Vous êtes donc pleinement habilité à recevoir votre part d’héritage, conformément aux règles de la succession de votre grand-mère.",
+   "contexte": null,
+   "points": [
+    "Renonciation à la succession du père en 2018",
+    "Succession de la grand-mère décédée après son fils",
+    "Article 752 du Code civil : représentation de l’héritier prédécédé",
+    "Renonciation au niveau d’un héritage n’affecte pas les successions ultérieures"
+   ],
+   "regles": [
+    "Renonciation à la succession du père n’affecte pas la succession de la grand-mère (C. civ. art. 752)"
+   ],
+   "qui": "Vous, en tant qu’héritier de votre père, représentant de votre père décédé, participant à la succession de votre grand-mère",
+   "a_verifier": [],
+   "vigilance": null,
+   "references": [
+    "C. civ. art. 752"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39480 at https://www.notaires.fr",
@@ -2555,7 +2896,36 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "Lorsqu'un enfant renonce à la succession, il n'est pas libéré de l'obligation alimentaire envers ses parents. Les frais d'obsèques, s'ils ne sont pas couverts par l'actif successoral, sont assimilés à une dette alimentaire. Les enfants doivent donc contribuer à ces frais proportionnellement à leurs ressources, même après renonciation. Cette règle repose sur les articles 205 et 371 du Code civil.",
+   "contexte": "Avant la renonciation, l'enfant était déjà tenu de contribuer aux frais d'obsèques. La renonciation ne modifie pas cette obligation alimentaire.",
+   "points": [
+    "1. Les frais d'obsèques non couverts par l'actif successoral sont assimilés à une obligation alimentaire.",
+    "2. L'enfant doit contribuer à ces frais même après renonciation.",
+    "3. La contribution est proportionnelle aux ressources de l'enfant.",
+    "4. La base légale est l'article 205 du Code civil.",
+    "5. La base légale est l'article 371 du Code civil."
+   ],
+   "regles": [
+    "Les frais d'obsèques non couverts par l'actif successoral sont assimilés à une obligation alimentaire (C. civ. art. 205).",
+    "Les enfants doivent contribuer à ces frais proportionnellement à leurs ressources, même s'ils ont renoncé à la succession (C. civ. art. 371)."
+   ],
+   "qui": "Enfants du défunt, même après renonciation à la succession, visés par l'obligation alimentaire envers les parents.",
+   "a_verifier": [
+    "Vérifier que l'actif successoral ne couvre pas les frais d'obsèques.",
+    "Évaluer les ressources de chaque enfant pour déterminer la part à verser.",
+    "Informer les parties concernées de l'obligation alimentaire malgré la renonciation."
+   ],
+   "vigilance": "Aucune divergence de jurisprudence ou point non tranché n'est mentionné dans le texte.",
+   "references": [
+    "C. civ. art. 205",
+    "C. civ. art. 371"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39473 at https://www.notaires.fr",
@@ -2567,7 +2937,30 @@
   "matieres": [
    "Successions & libéralités"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "L’adoption plénière crée une filiation exclusive et irrévocable avec la famille adoptive, rompant tous les liens juridiques avec la famille d’origine (art. 356 C.civ.). En conséquence, l’adopté ne possède aucun droit d’héritage dans la succession de sa mère biologique, sauf si cette dernière l’a désigné comme légataire dans son testament.",
+   "contexte": null,
+   "points": [
+    "Adoption plénière crée filiation exclusive et irrévocable",
+    "Rupture des liens juridiques avec la famille d’origine",
+    "Art. 356 Code civil",
+    "Absence de droit d’héritage sauf testament"
+   ],
+   "regles": [
+    "Adoption plénière => filiation exclusive et irrévocable (art. 356 C.civ.)",
+    "Rupture des liens juridiques avec la famille d’origine"
+   ],
+   "qui": "Adopté de façon plénière, mère biologique décédée",
+   "a_verifier": [],
+   "vigilance": null,
+   "references": [
+    "Art. 356 C.civ."
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39508 at https://www.notaires.fr",
@@ -2579,7 +2972,29 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La loi française impose un âge minimal de 26 ans pour l’adoptant, conformément à l’article 343 du Code civil.",
+   "contexte": null,
+   "points": [
+    "Âge minimal de l’adoptant : 26 ans",
+    "Référence légale : art. 343 du Code civil"
+   ],
+   "regles": [
+    "L’adoptant doit avoir au moins 26 ans, conformément à l’article 343 du Code civil"
+   ],
+   "qui": "Personnes souhaitant adopter, dont l’âge doit être vérifié",
+   "a_verifier": [
+    "Vérifier que l’adoptant a au moins 26 ans"
+   ],
+   "vigilance": null,
+   "references": [
+    "art. 343 C. civ."
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39506 at https://www.notaires.fr",
@@ -2591,7 +3006,34 @@
   "matieres": [
    "Autres"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "Le mariage n’impose pas de changement de nom de famille. Chaque époux conserve son nom propre. Toutefois, l’époux peut choisir d’utiliser le nom de l’autre époux, soit en substitution (remplacement complet) soit en adjonction (ajout), et peut décider de l’ordre dans lequel ces noms apparaissent. Cette faculté est prévue par l’article 225‑1 du Code civil.",
+   "contexte": "Avant le mariage, chaque personne portait son nom de naissance ou civil. Le mariage ne modifie pas ce nom.",
+   "points": [
+    "Le mariage n’a aucun effet sur le nom de famille.",
+    "Chaque époux conserve son nom propre.",
+    "L’époux a la faculté de porter le nom de l’autre époux.",
+    "Cette faculté peut se manifester par substitution ou par adjonction.",
+    "L’époux choisit l’ordre des noms.",
+    "La disposition est prévue par l’article 225‑1 du Code civil."
+   ],
+   "regles": [
+    "Le mariage ne modifie pas le nom de famille (art. 225‑1 C. civ.).",
+    "Chaque époux conserve son nom propre (art. 225‑1 C. civ.).",
+    "L’époux peut porter le nom de l’autre époux par substitution ou adjonction (art. 225‑1 C. civ.).",
+    "L’époux choisit l’ordre des noms (art. 225‑1 C. civ.)."
+   ],
+   "qui": "Les époux, chacun portant son nom propre, et la possibilité pour l’un d’entre eux d’utiliser le nom de l’autre.",
+   "a_verifier": [],
+   "vigilance": null,
+   "references": [
+    "art. 225‑1 C. civ."
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39503 at https://www.notaires.fr",
@@ -2604,7 +3046,37 @@
    "Successions & libéralités",
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La présente consultation traite du désaccord entre deux époux séparés de biens concernant le choix de leur futur domicile conjugal. Alors que l'un des conjoints souhaite faire l'acquisition d'une maison de modeste dimension, l'autre désire acheter un grand appartement. Il s'agit de déterminer si la loi offre un moyen juridique de trancher ce litige entre eux. La réponse apportée est négative, la loi ne permettant pas de départager les conjoints dans cette situation. En vertu de l'article 215 alinéa 2 du Code civil, la fixation de la résidence familiale requiert obligatoirement un commun accord. Les époux doivent par conséquent trouver ensemble un terrain d'entente pour convenir de leur futur lieu de vie.",
+   "contexte": null,
+   "points": [
+    "Consultation relative à des époux mariés sous le régime de la séparation de biens.",
+    "Existence d'un litige quant au choix du bien immobilier destiné à abriter le domicile familial.",
+    "Volonté d'un conjoint d'acquérir une petite maison pour y fixer la résidence conjugale.",
+    "Volonté divergente de l'autre conjoint qui préfère faire l'achat d'un grand appartement.",
+    "Absence de mécanisme légal permettant de trancher le différend ou de départager les conjoints.",
+    "Exigence légale d'un commun accord entre époux pour déterminer la résidence de la famille.",
+    "Fondement juridique tiré expressément de l'article 215 alinéa 2 du Code civil.",
+    "Nécessité impérative pour les époux de résoudre amiablement leur divergence pour fixer ce choix."
+   ],
+   "regles": [
+    "Le choix du lieu de la résidence de la famille doit impérativement être arrêté d'un commun accord par les conjoints (art. 215 al. 2 C. civ.).",
+    "La loi ne fournit pas de solution permettant de départager deux époux en situation de désaccord quant au choix de leur résidence de famille."
+   ],
+   "qui": "Époux mariés, notamment sous le régime de la séparation de biens, envisageant l'acquisition d'un logement pour y établir la résidence de la famille mais opposés sur le choix du bien.",
+   "a_verifier": [
+    "S'assurer de l'existence d'un consentement mutuel et effectif des deux époux quant au choix du bien retenu pour la résidence familiale.",
+    "Informer les époux que la loi ne prévoit pas de procédure pour imposer le choix d'un bien à l'autre en l'absence de commun accord."
+   ],
+   "vigilance": "Le régime matrimonial de séparation de biens ne dispense pas de la règle impérative exigeant un commun accord pour déterminer la résidence familiale, aucun arbitrage légal n'étant prévu en cas de désaccord sur ce choix.",
+   "references": [
+    "Art. 215 al. 2 C. civ."
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39494 at https://www.notaires.fr",
@@ -2616,7 +3088,44 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La consultation porte sur la situation d'un débiteur divorcé astreint au paiement d'une prestation compensatoire sous la forme d'une rente. Confronté à une accumulation d'arriérés financiers, en particulier des impayés locatifs, l'intéressé s'interroge sur l'opportunité de réduire sa charge. Il est précisé qu'une démarche judiciaire est ouverte afin de réclamer la diminution du montant versé. Le débiteur a également la possibilité de solliciter l'extinction pure et simple de cette rente. L'action doit être obligatoirement portée devant le juge aux affaires familiales. Le succès de cette prétention impose de rapporter la preuve d'une évolution substantielle touchant les ressources ou les charges de l'une des parties. Cette voie de droit repose spécifiquement sur le fondement de l'article 276-3 du Code civil.",
+   "contexte": null,
+   "points": [
+    "Situation initiale : existence d'une prestation compensatoire exécutée sous forme de rente au bénéfice de l'ex-époux.",
+    "Circonstance financière invoquée : survenance de dettes multiples, notamment d'impayés de loyer par le débiteur.",
+    "Admissibilité de la demande : ouverture d'une action en révision tendant à la réduction du montant de la rente.",
+    "Option élargie : faculté pour le débiteur de solliciter également la suppression intégrale de la prestation compensatoire.",
+    "Autorité judiciaire compétente : attribution exclusive de la demande au juge aux affaires familiales.",
+    "Condition juridique déterminante : nécessité d'établir l'existence d'un changement important.",
+    "Périmètre du changement exigé : variation notable caractérisée dans les ressources ou dans les besoins de l'une ou de l'autre des parties.",
+    "Base légale applicable : dispositions expresses de l'article 276-3 du Code civil."
+   ],
+   "regles": [
+    "Le débiteur ou le créancier d'une prestation compensatoire fixée en rente peut saisir le juge aux affaires familiales pour en demander la révision ou la suppression à condition d'établir un changement important dans les ressources ou les besoins de l'un des ex-époux (art. 276-3 C. civ.)."
+   ],
+   "qui": "Personnes divorcées débitrices ou créancières d'une prestation compensatoire versée sous forme de rente, connaissant une modification substantielle de leur état de fortune ou de leurs charges (notamment par l'accumulation de dettes locatives).",
+   "a_verifier": [
+    "Vérifier que la prestation compensatoire a bien été arrêtée sous forme de rente.",
+    "Contrôler la réalité et la qualification du changement important invoqué au travers des justificatifs de ressources et de passif (notamment les dettes de loyer).",
+    "Informer la partie concernée de la compétence du juge aux affaires familiales pour ordonner la révision ou la suppression de la mesure."
+   ],
+   "vigilance": null,
+   "references": [
+    "Art. 276-3 C. civ."
+   ],
+   "schema": {
+    "titre": "Démarche de révision ou de suppression de la rente compensatoire",
+    "etapes": [
+     "Survenance d'une modification notable affectant les ressources ou les besoins de l'une des parties (notamment l'accumulation d'arriérés de loyer).",
+     "Rassemblement des preuves démontrant le caractère important de ce changement financier.",
+     "Saisine du juge aux affaires familiales d'une demande tendant à la réduction ou à la suppression de la rente compensatoire (art. 276-3 C. civ.)."
+    ]
+   },
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39487 at https://www.notaires.fr",
@@ -2628,7 +3137,32 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La question posée concerne le sort d'un bien propre apporté à la communauté conjugale en cas de survenance d'un divorce. Il est confirmé que l'époux apporteur a la possibilité de récupérer ce bien lors de la rupture du mariage. Cette restitution s'opère par le biais d'une stipulation spécifique dénommée « clause alsacienne ». Cette convention de reprise doit être directement intégrée dans l'acte d'apport formalisé par contrat de mariage. Sur le plan textuel, ce mécanisme protecteur est fondé sur les prévisions de l'article 265 du Code civil.",
+   "contexte": null,
+   "points": [
+    "Possibilité reconnue à l'époux apporteur de recouvrer son bien propre lors d'un divorce.",
+    "Nécessité de stipuler une convention spécifique désignée sous le nom de « clause alsacienne ».",
+    "Intégration requise de cette clause au sein de l'acte d'apport d'un bien propre à la communauté matrimoniale.",
+    "Qualification de l'acte d'apport comme devant intervenir par contrat de mariage.",
+    "Fondement textuel de la reprise rattaché à l'article 265 du Code civil."
+   ],
+   "regles": [
+    "La reprise du bien propre apporté à la communauté est permise au profit de l'époux apporteur en cas de divorce si la « clause alsacienne » a été insérée dans l'acte d'apport (contrat de mariage) (C. civ., art. 265)."
+   ],
+   "qui": "Les époux mariés sous un régime communautaire procédant à l'apport d'un bien propre à la communauté par contrat de mariage et confrontés au divorce.",
+   "a_verifier": [
+    "Prévoir et insérer la « clause alsacienne » directement dans le contrat de mariage contenant apport du bien propre à la communauté afin de sécuriser sa reprise en cas de divorce."
+   ],
+   "vigilance": null,
+   "references": [
+    "C. civ., art. 265"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39486 at https://www.notaires.fr",
@@ -2640,7 +3174,30 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La consultation porte sur la compétence juridictionnelle en matière d'autorité parentale lorsque les père et mère ne sont pas mariés. Le juge aux affaires familiales est déclaré pleinement compétent pour connaître d'un tel litige. En effet, l'office de ce magistrat n'est nullement circonscrit aux contestations survenant entre époux. Sa compétence matérielle englobe toute prétention relative à l'exercice de l'autorité parentale sur des enfants mineurs. Cette attribution s'applique dès lors de manière générale, sans égard au statut matrimonial unissant ou non les parents.",
+   "contexte": null,
+   "points": [
+    "Compétence du juge aux affaires familiales affirmée en matière de différends relatifs à l'autorité parentale.",
+    "Absence de condition tenant au mariage des parents pour saisir cette juridiction.",
+    "Non-limitation de l'office du juge aux affaires familiales aux seuls différends entre conjoints.",
+    "Prise en charge par ce juge de toute demande portant sur l'exercice de l'autorité parentale relative aux enfants mineurs.",
+    "Consécration de cette compétence par l'article L213-3 3° b) du Code de l'organisation judiciaire."
+   ],
+   "regles": [
+    "Le juge aux affaires familiales est compétent pour statuer sur toute demande afférente à l'exercice de l'autorité parentale, indépendamment de l'existence d'un lien matrimonial entre les parents (art. L213-3 3° b) C. oj.)."
+   ],
+   "qui": "Parents non mariés en situation de désaccord sur l'exercice de l'autorité parentale à l'égard de leurs enfants mineurs.",
+   "a_verifier": [],
+   "vigilance": null,
+   "references": [
+    "Art. L213-3 3° b) C. oj."
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39485 at https://www.notaires.fr",
@@ -2652,7 +3209,32 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La question posée concerne l'obligation de faire appel à un avocat lors d'une procédure de divorce lorsque les conjoints s'entendent parfaitement sur l'ensemble de ses conséquences. La réponse fournie confirme sans équivoque le caractère obligatoire de cette assistance. En effet, la présence d'un avocat est expressément exigée aux côtés de chacun des époux. Cette règle a pour justification la préservation et la défense des intérêts respectifs des deux parties. Dès lors, le fait de s'être arrangé amiablement ne permet en aucun cas de s'affranchir de ce double accompagnement professionnel.",
+   "contexte": null,
+   "points": [
+    "Obligation pour chaque époux d'être assisté par un avocat dans le cadre du divorce.",
+    "Maintien de cette obligation même si les époux s'entendent parfaitement bien.",
+    "Absence de dispense malgré un accord complet trouvé entre les conjoints sur toutes les conséquences de la séparation.",
+    "Objectif de la règle : veiller aux intérêts respectifs de chaque conjoint.",
+    "Fondement textuel : article 229-1 du Code civil."
+   ],
+   "regles": [
+    "Chaque époux doit impérativement être assisté d'un avocat dans le cadre du divorce, même en cas d'accord sur l'intégralité de ses conséquences, dans le but de préserver leurs intérêts respectifs (art. 229-1 C. civ.)."
+   ],
+   "qui": "Les personnes mariées envisageant de divorcer et s'étant arrangées à l'amiable sur l'ensemble des conséquences de leur rupture.",
+   "a_verifier": [
+    "S'assurer que chacun des deux époux bénéficie bien de l'assistance de son propre avocat distinct (art. 229-1 C. civ.)."
+   ],
+   "vigilance": "L'accord parfait entre les conjoints sur toutes les suites du divorce ne dispense pas de la présence obligatoire d'un avocat pour chacun d'eux.",
+   "references": [
+    "C. civ., art. 229-1"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39475 at https://www.notaires.fr",
@@ -2664,7 +3246,32 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La question posée porte sur la capacité d'une personne placée sous curatelle à procéder seule à l'aliénation de son bien immobilier. La réponse formulée à cette interrogation est strictement négative. Pour réaliser la vente d'un immeuble lui appartenant, le majeur sous curatelle a l'obligation légale d'être assisté de la personne désignée comme son curateur. Cette règle de protection s'appuie directement sur les dispositions des articles 467 et 505 du Code civil. En pratique, l'acte de vente ne peut donc pas être valablement passé sans l'intervention conjointe du curateur aux côtés du majeur protégé.",
+   "contexte": null,
+   "points": [
+    "Impossibilité pour le majeur placé sous curatelle d'effectuer seul la vente de son logement.",
+    "Nécessité absolue de l'assistance du curateur pour concrétiser la transaction immobilière.",
+    "Fondement légal expressément assis sur l'article 467 du Code civil.",
+    "Fondement légal expressément assis sur l'article 505 du Code civil."
+   ],
+   "regles": [
+    "L'assistance du curateur est impérative lors de la vente d'un bien immobilier appartenant à un majeur sous curatelle (C. civ., art. 467 et 505)."
+   ],
+   "qui": "Le majeur sous curatelle souhaitant vendre son bien immobilier et le curateur chargé de son assistance.",
+   "a_verifier": [
+    "Recueillir et constater l'assistance effective du curateur lors de la passation de l'acte de vente immobilière du majeur protégé."
+   ],
+   "vigilance": null,
+   "references": [
+    "C. civ., art. 467",
+    "C. civ., art. 505"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39474 at https://www.notaires.fr",
@@ -2676,7 +3283,8 @@
   "matieres": [
    "Famille & régimes matrimoniaux"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai_tries": 1
  },
  {
   "id": "NDF-39511 at https://www.notaires.fr",
@@ -2689,7 +3297,34 @@
    "Immobilier & copropriété",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La présente note apporte une réponse à la question de la durée légale minimale exigée lors de la prise en location d'un local commercial. À titre de principe, la durée convenue pour un bail commercial ne peut pas être fixée en deçà de neuf années. Cette prescription impérative trouve son assise textuelle dans les dispositions de l'article L. 145-4 du Code de commerce. Le législateur n'écarte cette durée plancher que dans l'hypothèse où les parties recourent à un bail qualifié de précaire ou de dérogatoire. En dehors de cette exception expresse, le respect du terme minimal de neuf ans s'impose donc obligatoirement aux contractants.",
+   "contexte": null,
+   "points": [
+    "Fixation impérative de la durée minimale légale du bail commercial à neuf années.",
+    "Fondement juridique expressément rattaché à l'article L. 145-4 du Code de commerce.",
+    "Interdiction légale de stipuler une durée de jouissance inférieure à neuf ans pour le contrat de droit commun.",
+    "Exception expressément mentionnée sous l'appellation de bail dit « précaire ».",
+    "Alternative contractuelle également visée sous la qualification de bail « dérogatoire ».",
+    "Domaine d'application matériel limité à la location d'un local commercial."
+   ],
+   "regles": [
+    "La durée minimale légale imposée pour un bail commercial ne peut pas être inférieure à neuf ans, sauf recours à une convention dérogatoire (art. L145-4 C. com)."
+   ],
+   "qui": "Le bailleur et le preneur concluant un bail portant sur un local commercial, à l'exclusion de ceux souscrivant un bail précaire ou dérogatoire.",
+   "a_verifier": [
+    "Vérifier que la convention de mise en location prévoit une durée contractuelle d'au moins neuf années.",
+    "S'assurer, si une durée plus courte est envisagée, que l'acte est formellement conclu sous la qualification de bail précaire ou dérogatoire."
+   ],
+   "vigilance": null,
+   "references": [
+    "Art. L145-4 C. com"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39510 at https://www.notaires.fr",
@@ -2701,7 +3336,37 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La consultation porte sur la prise en charge de l'entretien d'une allée située sur une propriété privée mais grevée d'une servitude de passage au profit d'un voisin. Le propriétaire du fonds traversé souhaite savoir s'il dispose du droit de rejeter la sollicitation de ce voisin lui réclamant d'entretenir les lieux. La réponse de principe est positive, autorisant le propriétaire du terrain à refuser cette charge. Selon les règles légales, l'obligation d'entretenir revient en effet au bénéficiaire du droit de passage, à savoir le propriétaire du fonds dominant. Néanmoins, cette répartition n'est pas absolue et cède devant l'existence d'une stipulation contraire inscrite dans l'acte ayant établi la servitude.",
+   "contexte": null,
+   "points": [
+    "La situation concerne un terrain supportant une allée affectée à la desserte de la propriété d'un voisin.",
+    "Le voisin concerné dispose d'un droit de servitude de passage sur ladite allée.",
+    "Le propriétaire du fonds supportant l'allée peut en principe refuser d'assumer l'entretien sollicité par le voisin.",
+    "La loi impose par défaut les charges d'entretien au propriétaire du fonds dominant.",
+    "Le fonds dominant s'entend de celui qui bénéficie effectivement de la servitude de passage.",
+    "Une exception à cette imputation légale est expressément prévue par la voie contractuelle.",
+    "Une clause contraire doit figurer dans l'acte constitutif de la servitude pour transférer cette charge.",
+    "Les fondements textuels applicables sont les articles 697 et 698 du Code civil."
+   ],
+   "regles": [
+    "Les frais et travaux nécessaires à l'entretien de la servitude incombent légalement au propriétaire du fonds dominant bénéficiaire du passage (art. 697 et 698 C. civ.).",
+    "Une dérogation conventionnelle à la répartition légale de l'entretien est valable dès lors qu'elle figure sous la forme d'une clause contraire dans l'acte établissant la servitude (art. 697 et 698 C. civ.)."
+   ],
+   "qui": "Le propriétaire du terrain grevé d'une allée de passage (fonds servant) et le voisin titulaire de la servitude de passage (fonds dominant).",
+   "a_verifier": [
+    "Consulter l'acte constitutif de la servitude de passage afin de déceler l'éventuelle présence d'une clause contraire mettant l'entretien à la charge du propriétaire du fonds traversé."
+   ],
+   "vigilance": null,
+   "references": [
+    "art. 697 C. civ.",
+    "art. 698 C. civ."
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39509 at https://www.notaires.fr",
@@ -2713,7 +3378,46 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La révision du loyer d'un bail de trois ans ne peut être opérée librement par le bailleur un an après la signature. Pour procéder à une telle augmentation, la présence d'une clause spécifique insérée dans le contrat de bail s'avère impérative. Cette faculté d'actualisation financière ne peut s'exercer que de façon annuelle. Par ailleurs, la hausse envisageable est strictement encadrée et soumise à un plafond légal. Ce plafonnement correspond à la variation de l'indice de référence des loyers diffusé trimestriellement par l'Insee. Cet indice repose lui-même sur la moyenne de l'évolution des prix à la consommation observée sur les douze derniers mois, sans intégrer le tabac ni les loyers. En pratique, le bailleur doit obligatoirement fonder sa demande sur la stipulation contractuelle et respecter cette limite légale de réévaluation.",
+   "contexte": null,
+   "points": [
+    "Interdiction pour le bailleur d'augmenter librement le loyer en cours de bail de 3 ans.",
+    "Nécessité absolue de prévoir une clause spécifique au sein du contrat de bail pour autoriser la révision.",
+    "Périodicité de l'augmentation du loyer strictement limitée à un rythme annuel.",
+    "Plafonnement impératif de la hausse par l'indice de référence des loyers (IRL).",
+    "Publication trimestrielle de l'indice de référence par l'Institut national de la statistique et des études économiques (INSEE).",
+    "Calcul de l'indice fondé sur la moyenne de l'évolution des prix à la consommation au cours des douze derniers mois.",
+    "Exclusion du tabac dans le calcul de la moyenne des prix à la consommation retenue pour l'indice.",
+    "Exclusion des loyers de l'assiette prise en compte pour établir l'indice de référence."
+   ],
+   "regles": [
+    "L'augmentation annuelle du loyer est conditionnée à l'existence d'une clause contractuelle expresse l'autorisant au sein du bail (art. 17-1 loi n° 89-462 du 6 juillet 1989).",
+    "La hausse de loyer ne peut excéder la variation trimestrielle de l'indice de référence des loyers arrêté par l'INSEE, calculé d'après la moyenne annuelle de l'évolution des prix à la consommation hors tabac et hors loyers (art. 17-1 loi n° 89-462 du 6 juillet 1989)."
+   ],
+   "qui": "Les bailleurs et les locataires engagés dans un contrat de bail d'une durée de 3 ans souhaitant réviser le montant du loyer après un an.",
+   "a_verifier": [
+    "Contrôler la présence formelle d'une clause de révision du loyer dans le contrat de bail initial.",
+    "Vérifier le respect de l'intervalle annuel requis pour la mise en œuvre de la révision.",
+    "S'assurer que le calcul de la hausse respecte le plafond de variation de l'indice de référence des loyers publié par l'INSEE."
+   ],
+   "vigilance": null,
+   "references": [
+    "Art. 17-1 loi n° 89-462 du 6 juillet 1989"
+   ],
+   "schema": {
+    "titre": "Conditions de mise en œuvre de la révision du loyer",
+    "etapes": [
+     "Constatation de la stipulation expresse d'une clause de révision dans le contrat de bail",
+     "Attente de l'échéance annuelle pour solliciter la revalorisation",
+     "Prise en compte de la variation de l'indice de référence des loyers arrêté par l'INSEE",
+     "Application de l'augmentation dans la limite exclusive de ce plafond légal"
+    ]
+   },
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39507 at https://www.notaires.fr",
@@ -2725,7 +3429,8 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai_tries": 1
  },
  {
   "id": "NDF-39505 at https://www.notaires.fr",
@@ -2739,7 +3444,30 @@
    "Immobilier & copropriété",
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La consultation porte sur la possibilité pour une usufruitière de conclure seule un bail commercial sur un local commercial. La réponse apportée exclut catégoriquement cette initiative solitaire. La réglementation impose impérativement d'obtenir l'accord du ou des nus-propriétaires du bien. Ce raisonnement repose expressément sur l'application de l'article 595 du Code civil. En pratique, l'usufruitière doit nécessairement associer la nue-propriété à l'opération contractuelle envisagée.",
+   "contexte": null,
+   "points": [
+    "Prohibition pour l'usufruitier d'agir seul lors de la conclusion d'un bail commercial portant sur un local commercial.",
+    "Exigence légale impérative du consentement du nu-propriétaire ou de l'ensemble des nus-propriétaires.",
+    "Application directe de l'article 595 du Code civil comme fondement textuel de cette obligation."
+   ],
+   "regles": [
+    "La conclusion d'un bail commercial par l'usufruitier requiert obligatoirement le consentement du ou des nus-propriétaires (art. 595 C. civ.)."
+   ],
+   "qui": "L'usufruitier et le ou les nus-propriétaires d'un local commercial destiné à faire l'objet d'un bail commercial.",
+   "a_verifier": [
+    "Recueillir et constater le consentement du ou des nus-propriétaires à la conclusion du bail commercial."
+   ],
+   "vigilance": null,
+   "references": [
+    "Art. 595 C. civ."
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39504 at https://www.notaires.fr",
@@ -2751,7 +3479,35 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La consultation porte sur la possibilité pour un propriétaire de réaliser l'agrandissement de son habitation en limite séparative de la parcelle voisine. Aucune interdiction générale et de principe n'est formellement édictée par la loi pour ce type d'implantation. La législation délègue cependant cette appréciation aux prescriptions d'urbanisme établies à l'échelle locale. La faisabilité de l'opération est dès lors subordonnée au contenu du plan local d'urbanisme de la collectivité territoriale compétente. Il est impératif de solliciter les services municipaux du ressort de l'immeuble pour connaître les exigences applicables.",
+   "contexte": null,
+   "points": [
+    "Projet envisagé : extension d'une maison d'habitation positionnée directement en limite de propriété voisine.",
+    "Principe de légalité : absence de prohibition générale ou formelle au niveau de la loi.",
+    "Compétence normative : renvoi exprès de la loi aux documents d'urbanisme communaux ou intercommunaux.",
+    "Norme de référence locale : encadrement par les dispositions du plan local d'urbanisme (PLU).",
+    "Démarche requise : prise de contact nécessaire auprès de la mairie du lieu où se situe l'immeuble.",
+    "Fondement légal expressément mentionné : article L. 151-17 du Code de l'urbanisme."
+   ],
+   "regles": [
+    "Absence d'interdiction formelle de construire en limite de propriété au niveau de la loi générale, laquelle renvoie aux dispositions locales (art. L. 151-17 C. urba.).",
+    "Détermination des règles d'implantation des constructions par le plan local d'urbanisme (PLU) de la commune d'implantation (art. L. 151-17 C. urba.)."
+   ],
+   "qui": "Les propriétaires souhaitant procéder à l'agrandissement de leur maison individuelle en bordure de la parcelle d'un voisin, ainsi que les services municipaux d'urbanisme de la commune de situation.",
+   "a_verifier": [
+    "Consulter les dispositions du plan local d'urbanisme (PLU) régissant la zone où se situe l'immeuble.",
+    "Prendre attache auprès de la mairie du lieu de situation de la maison pour connaître les contraintes d'implantation sur la limite séparative."
+   ],
+   "vigilance": null,
+   "references": [
+    "C. urb., art. L. 151-17"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39502 at https://www.notaires.fr",
@@ -2763,7 +3519,33 @@
   "matieres": [
    "Sociétés & patrimoine professionnel"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La question juridique traitée concerne la durée minimale requise pour la location d'un appartement vide consenti à une société. L'interrogation soumise visait à savoir si ce contrat pouvait légalement être conclu pour une période de trois ans. La réponse apportée écarte cette durée triennale. Il est précisé que le bail doit être souscrit pour au moins six années dès lors que le preneur a la qualité de personne morale. Cette exigence est établie sur le fondement de l'article 10 de la loi n° 89-462 du 6 juillet 1989.",
+   "contexte": null,
+   "points": [
+    "Location portant sur un appartement vide (non meublé)",
+    "Locataire ayant la qualité de personne morale (société)",
+    "Exclusion d'une durée minimale de contrat fixée à 3 ans",
+    "Imposition d'une durée minimale de bail de 6 ans",
+    "Fondement juridique tiré de l'article 10 de la loi n° 89-462 du 6 juillet 1989"
+   ],
+   "regles": [
+    "La durée minimale du contrat de bail portant sur un appartement vide doit être de 6 ans dès lors que le preneur est une personne morale (société) (loi n° 89-462 du 6 juillet 1989, art. 10)."
+   ],
+   "qui": "Bailleurs louant un appartement vide et preneurs personnes morales (sociétés).",
+   "a_verifier": [
+    "Vérifier la qualité juridique du preneur (personne morale / société).",
+    "Vérifier que la clause de durée du bail stipule au minimum 6 années pour la location d'un logement vide à une personne morale."
+   ],
+   "vigilance": null,
+   "references": [
+    "Loi n° 89-462 du 6 juill. 1989, art. 10"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39496 at https://www.notaires.fr",
@@ -2775,7 +3557,35 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La consultation juridique traite de la faculté pour un bailleur d'imposer le prélèvement automatique pour l'encaissement des loyers. À la suite de la signature d'un bail d'habitation, une telle exigence unilatérale du propriétaire est déclarée illégale. Le droit en vigueur proscrit expressément cette pratique contraignante à l'encontre du preneur. Il est en effet interdit d'exiger comme mode de règlement un ordre de prélèvement direct sur le compte bancaire courant de l'occupant. Cette solution découle de l'application stricte de l'article 4, c) de la loi n° 89-462 du 6 juillet 1989.",
+   "contexte": null,
+   "points": [
+    "Cadre contractuel : conclusion et signature d'un bail d'habitation.",
+    "Comportement en cause : bailleur qui exige le paiement du loyer par prélèvement bancaire automatique.",
+    "Réponse juridique : absence de droit du bailleur d'imposer cette modalité de paiement.",
+    "Interdiction légale d'astreindre le locataire à un ordre de prélèvement automatique.",
+    "Protection spécifique attachée au compte courant du locataire.",
+    "Champ d'application matériel circonscrit au mode de règlement du loyer.",
+    "Fondement textuel : loi n° 89-462 du 6 juillet 1989.",
+    "Disposition précise applicable : article 4, alinéa ou point c)."
+   ],
+   "regles": [
+    "Il est interdit au bailleur d'imposer au locataire, pour le règlement de son loyer, un ordre de prélèvement automatique sur son compte courant (Loi n° 89-462 du 6 juillet 1989, art. 4, c))."
+   ],
+   "qui": "Bailleurs et locataires signataires d'un bail d'habitation, s'agissant de la détermination des modalités de règlement du loyer.",
+   "a_verifier": [
+    "Vérifier les clauses des baux d'habitation afin d'exclure toute stipulation rendant le prélèvement automatique obligatoire pour le locataire."
+   ],
+   "vigilance": null,
+   "references": [
+    "Loi n° 89-462 du 6 juillet 1989, art. 4, c)"
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39495 at https://www.notaires.fr",
@@ -2787,7 +3597,30 @@
   "matieres": [
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La question posée concerne la prise en charge financière des réparations d'un mur séparatif mitoyen en état d'écroulement. L'un des propriétaires riverains se heurte au refus de son voisin de participer aux dépenses nécessaires à la remise en état de l'ouvrage commun. Il est répondu par l'affirmative à la possibilité de contraindre ce copropriétaire récalcitrant. La législation autorise en effet à exiger la contribution financière du voisin aux réparations de la clôture commune séparant les propriétés. Cette obligation de participation s'appuie directement sur les dispositions des articles 663 et 667 du Code civil.",
+   "contexte": null,
+   "points": [
+    "Le litige porte sur un mur mitoyen séparant deux propriétés et qui menace ruine ou s'écroule.",
+    "Un propriétaire a la faculté légale de contraindre son voisin à participer aux frais de réparation du mur de séparation.",
+    "Le refus opposé par le voisin de financer la remise en état de la clôture mitoyenne ne fait pas obstacle à cette obligation de contribution.",
+    "La règle repose sur le cadre légal fixé par les articles 663 et 667 du Code civil."
+   ],
+   "regles": [
+    "Obligation légale pour un propriétaire de contribuer aux dépenses de réparation de la clôture assurant la séparation des fonds contigus (art. 663 et 667 C. civ.)."
+   ],
+   "qui": "Propriétaires d'immeubles contigus séparés par une clôture ou un mur mitoyen qui s'écroule.",
+   "a_verifier": [],
+   "vigilance": null,
+   "references": [
+    "Art. 663 C. civ.",
+    "Art. 667 C. civ."
+   ],
+   "schema": null,
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39493 at https://www.notaires.fr",
@@ -2801,7 +3634,45 @@
    "Fiscalité",
    "Profession, déontologie & actes"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai": {
+   "resume": "La question posée porte sur l'obligation de recourir aux services d'un notaire pour publier au service de la publicité foncière un règlement de copropriété modifié par un cabinet d'avocats. La réponse apportée est catégoriquement affirmative. En effet, tout acte ou droit doit résulter d'un acte reçu en la forme authentique par un notaire exerçant en France pour faire l'objet des formalités de publicité foncière. Cette exigence s'applique pleinement au règlement de copropriété initial comme à ses éventuels avenants modificatifs. Ces actes doivent impérativement être publiés afin de devenir opposables aux tiers. Par conséquent, l'intervention d'un notaire pour conférer l'authenticité à l'acte modificatif est requise pour permettre sa publication légale.",
+   "contexte": null,
+   "points": [
+    "Recours obligatoire au notaire pour la publication foncière d'une modification de règlement de copropriété préparée par un avocat.",
+    "Exigence de la forme authentique pour tout acte ou droit devant donner lieu aux formalités de publicité foncière.",
+    "Compétence exclusive reconnue à un notaire exerçant en France pour recevoir l'acte authentique destiné à la publicité foncière.",
+    "Application de l'obligation de publication tant au règlement de copropriété qu'à ses avenants.",
+    "Nécessité de la formalité de publicité foncière pour rendre le règlement de copropriété ou ses avenants opposables.",
+    "Obligation corrélative d'établir le règlement de copropriété ou ses avenants sous la forme d'un acte authentique.",
+    "Impossibilité de publier directement au service de la publicité foncière un acte rédigé par un avocat sans forme authentique notariée.",
+    "Fondement légal assis sur les dispositions de l'article 4 du décret n° 55-22 du 5 janvier 1955."
+   ],
+   "regles": [
+    "Tout acte ou droit donnant lieu aux formalités de publicité foncière doit nécessairement résulter d'un acte reçu en la forme authentique par un notaire exerçant en France (D. 55-22 du 5 janvier 1955, art. 4).",
+    "Le règlement de copropriété et ses avenants doivent être établis obligatoirement sous la forme d'un acte authentique pour être publiés et acquérir leur opposabilité (D. 55-22 du 5 janvier 1955, art. 4)."
+   ],
+   "qui": "Les copropriétaires et syndicats de copropriétaires faisant modifier leur règlement de copropriété (y compris par un cabinet d'avocats), les règlements de copropriété et leurs avenants, ainsi que les notaires exerçant en France chargés d'en recevoir la forme authentique.",
+   "a_verifier": [
+    "Vérifier que le règlement de copropriété ou l'avenant modificatif fait l'objet d'un acte reçu en la forme authentique par un notaire exerçant en France.",
+    "Accomplir les formalités requises auprès du service de la publicité foncière afin d'assurer l'opposabilité de l'acte."
+   ],
+   "vigilance": null,
+   "references": [
+    "Décret n° 55-22 du 5 janvier 1955, art. 4"
+   ],
+   "schema": {
+    "titre": "Séquence nécessaire pour l'opposabilité d'une modification du règlement de copropriété",
+    "etapes": [
+     "Modification du règlement de copropriété (notamment par un avocat)",
+     "Réception de l'acte en la forme authentique par un notaire exerçant en France",
+     "Dépôt et accomplissement des formalités de publicité foncière",
+     "Opposabilité du règlement ou de ses avenants"
+    ]
+   },
+   "partielle": true
+  },
+  "ai_v": 3
  },
  {
   "id": "NDF-39491 at https://www.notaires.fr",
@@ -2814,7 +3685,8 @@
    "Successions & libéralités",
    "Immobilier & copropriété"
   ],
-  "first_seen": "2026-10-08"
+  "first_seen": "2026-10-08",
+  "ai_tries": 0
  },
  {
   "id": "NDF-39490 at https://www.notaires.fr",
