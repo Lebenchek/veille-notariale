@@ -1091,6 +1091,8 @@ def main():
         log(f"Nettoyage : {len(store) - len(kept)} élément(s) d'anciennes sources retiré(s).")
     store = kept
     for i in store.values():
+        raw = str(i.get("source", ""))                       # anciennes données : « Notaires de France - Famille », « SEPAJ (actualités…) »
+        i["source"] = next(a for a in ALLOWED_SOURCES if raw.startswith(a))
         i["abstract"] = cut_teaser(i.get("abstract", ""))
         i.pop("type", None); i.pop("bulletin", None)
         if i.get("ai_v") != AI_VERSION:
@@ -1404,7 +1406,8 @@ function fiche(i){const a=i.ai;if(!a)return"";
   ${a.partielle?`<p class="note">Source partielle : seul l'extrait public a pu être exploité. Cette fiche ne couvre donc pas tout l'article.</p>`:""}</div></details>`}
 function renderActus(){
  const D=DB.items||[],cut7=Date.now()-7*864e5;
- const SRC=[...new Set(D.map(i=>i.source))].sort(),MAT=[...new Set(D.flatMap(i=>i.matieres))].sort();
+ D.forEach(i=>{const b=["Notaires de France","SEPAJ","LegalNews"].find(a=>String(i.source).startsWith(a));if(b)i.source=b});
+const SRC=[...new Set(D.map(i=>i.source))].sort(),MAT=[...new Set(D.flatMap(i=>i.matieres))].sort();
  $("nav").innerHTML=`<div class="navlbl">Source</div><button class="navitem ${!src&&!mat?"on":""}" data-k="all">Toutes les sources <span class="n">${D.length}</span></button>`+
   SRC.map(s=>`<button class="navitem ${src===s?"on":""}" data-k="src" data-v="${esc(s)}"><span class="dot" style="background:${COL[CLS[s]]||"var(--mut)"}"></span>${esc(s)} <span class="n">${D.filter(i=>i.source===s).length}</span></button>`).join("")+
   `<div class="navlbl">Matière</div>`+MAT.map(m=>`<button class="navitem ${mat===m?"on":""}" data-k="mat" data-v="${esc(m)}">${esc(m)} <span class="n">${D.filter(i=>i.matieres.includes(m)).length}</span></button>`).join("");
