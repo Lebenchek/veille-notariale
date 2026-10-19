@@ -238,6 +238,7 @@ function fiche(i){const a=i.ai;if(!a)return"";
   ${a.vigilance?`<div class="vig"><b>⚠ Vigilance</b>${esc(a.vigilance)}</div>`:""}
   ${a.schema&&a.schema.etapes&&a.schema.etapes.length?sec("Schéma — "+esc(a.schema.titre||"enchaînement"),flow(a.schema)):""}
   ${refs&&refs.length?sec("Références citées",`<div class="refs">${refs.map(r=>`<span class="ref">${esc(r)}</span>`).join("")}</div>`):""}
+  ${a.source_primaire?`<p class="note"><b>Fiche établie sur la source officielle retrouvée</b> : <a href="${esc(a.source_primaire.url)}" target="_blank" rel="noopener">${esc(a.source_primaire.domaine)}</a>. Le texte officiel a été identifié automatiquement (IA + recherche) puis contrôlé ; consultez-le avant tout usage professionnel.</p>`:""}
   ${a.partielle?`<p class="note">Source partielle : seul l'extrait public a pu être exploité. Cette fiche ne couvre donc pas tout l'article.</p>`:""}</div></details>`}
 function renderActus(){
  const D=DB.items||[],cut7=Date.now()-7*864e5;
@@ -254,7 +255,7 @@ const SRC=[...new Set(D.map(i=>i.source))].sort(),MAT=[...new Set(D.flatMap(i=>i
  h+='<div id="list">';let last=null;
  for(const i of r){const g=group(i);if(g!==last){h+=`<div class="daysep"><span class="l">${g}</span></div>`;last=g}
   const c=CLS[i.source]||"sp",nw=new Date(i.first_seen).getTime()>=cut7;
-  h+=`<article class="card s-${c}"><div class="top"><span class="badge">${esc(i.source)}</span>${nw?'<span class="badge new">Nouveau</span>':""}${i.ai&&i.ai.partielle?'<span class="badge part">Extrait public</span>':""}<span class="date">${fd(i.date)}</span></div>
+  h+=`<article class="card s-${c}"><div class="top"><span class="badge">${esc(i.source)}</span>${nw?'<span class="badge new">Nouveau</span>':""}${i.ai&&i.ai.partielle?'<span class="badge part">Extrait public</span>':""}${i.ai&&i.ai.source_primaire?'<span class="badge part">Source officielle</span>':""}<span class="date">${fd(i.date)}</span></div>
   <a class="t" href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)}</a><div class="tags">${i.matieres.map(m=>`<span class="tag">${esc(m)}</span>`).join("")}</div>
   ${i.ai?`<span class="aitag">Fiche IA — à vérifier</span><p class="resume">${esc(i.ai.resume)}</p>`:`<p class="abs">${esc(i.abstract)}</p>`}
   ${fiche(i)}<a class="src" href="${esc(i.url)}" target="_blank" rel="noopener">Consulter la source →</a></article>`}
