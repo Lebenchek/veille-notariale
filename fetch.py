@@ -8,7 +8,7 @@ DATA_PASSPHRASE avant d'être publiées. Le dépôt GitHub peut rester public : 
 chiffré illisible est visible. Aucun texte intégral n'est publié ; les fiches sont des reformulations.
 """
 import os, sys, json, html, re, time, zlib, base64, hashlib, secrets, datetime as dt
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 import requests, feedparser
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -189,32 +189,99 @@ def src_sepaj():
     return out[:150]
 
 
+def _lnn_parse(raw):
+    """Extrait les articles d'une page LegalNews : lien d'article (…/123456-titre.html) + date « JJ.MM.AA » la plus proche."""
+    dates = [(m.start(), m) for m in re.finditer(r"(?<!\d)(\d{2})\.(\d{2})\.(\d{2})(?!\d)", raw)]
+    anchors = list(re.finditer(r'<a\b[^>]*href="([^"]*?/\d{5,7}-[^"]*?\.html)"[^>]*>(.*?)</a>', raw, re.S | re.I))
+    by_href, order = {}, []
+    for k, m in enumerate(anchors):
+        href, title = html.unescape(m.group(1)), clean_text(m.group(2))
+        prev_end = anchors[k - 1].end() if k else 0
+        nxt = anchors[k + 1].start() if k + 1 < len(anchors) else len(raw)
+        before = [d for p, d in dates if prev_end <= p < m.start() and m.start() - p < 900]
+        after = [d for p, d in dates if m.end() <= p < nxt and p - m.end() < 900]
+        d = before[-1] if before else (after[0] if after else None)
+        e = by_href.get(href)
+        if e is None:
+            e = by_href[href] = {"href": href, "title": "", "d": None, "end": m.end(), "nxt": nxt}
+            order.append(href)
+        if len(title) > len(e["title"]):
+            e["title"] = title
+        if e["d"] is None and d is not None:
+            e["d"] = d
+        e["end"] = max(e["end"], m.end()); e["nxt"] = nxt
+    out = []
+    for h in order:
+        e = by_href[h]
+        if len(e["title"]) < 10 or e["d"] is None:
+            continue
+        d = e["d"]
+        if not (1 <= int(d.group(2)) <= 12 and 1 <= int(d.group(1)) <= 31):
+            continue
+        full = h if h.startswith("http") else "https://www.legalnewsnotaires.fr" + (h if h.startswith("/") else "/" + h)
+        out.append({"id": "LNN-" + hashlib.sha1((f"20{d.group(3)}-{d.group(2)}-{d.group(1)}" + re.sub(r"\W+", "", e["title"].lower())).encode()).hexdigest()[:14], "source": "LegalNews",
+                    "date": f"20{d.group(3)}-{d.group(2)}-{d.group(1)}", "title": e["title"],
+                    "abstract": cut_teaser(raw[e["end"]:min(e["nxt"], e["end"] + 1200)]), "url": full})
+    return out
+
+
 def src_legalnews():
-    """LegalNews Notaires : page d'accueil publique (titre + extrait). Le contenu abonné n'est pas lu."""
-    url = "https://www.legalnewsnotaires.fr/home-lnn.html"
-    try:
-        r = requests.get(url, headers=UA_WEB, timeout=30); r.raise_for_status()
-    except Exception as e:
-        log("LegalNews Notaires", e); return []
-    raw, out = r.text, []
-    matches = list(re.finditer(r"(\d{2})\.(\d{2})\.(\d{2})\s*-\s*\d{2}:\d{2}", raw))
-    for idx, md in enumerate(matches):
-        end = matches[idx + 1].start() if idx + 1 < len(matches) else min(len(raw), md.end() + 2500)
-        chunk = raw[md.end():end]
-        m = re.search(r'<a[^>]+href="([^"]*-\d+(?:-\d+)?\.html)"[^>]*>(.*?)</a>', chunk, re.S)
-        if not m:
-            continue
-        href, title = m.group(1), clean_text(m.group(2))
-        if len(title) < 10:
-            continue
-        full = href if href.startswith("http") else "https://www.legalnewsnotaires.fr" + href
-        out.append({"id": "LNN-" + href, "source": "LegalNews", "date": f"20{md.group(3)}-{md.group(2)}-{md.group(1)}",
-                    "title": title, "abstract": cut_teaser(chunk[m.end():]), "url": full})
-    seen, dedup = set(), []
-    for it in out:
-        if it["id"] not in seen:
-            seen.add(it["id"]); dedup.append(it)
-    return dedup[:150]
+    """LegalNews Notaires : pages d'accueil publiques paginées (titre + extrait). Le contenu abonné n'est pas lu."""
+    base = "https://www.legalnewsnotaires.fr/home-lnn.html"
+    cutoff = (TODAY - dt.timedelta(days=LOOKBACK_DAYS)).isoformat()
+    seen_t, out, home_html = set(), [], ""
+    for page in range(0, 12):
+        url = base if page == 0 else f"{base}?start={12 * page}"
+        try:
+            r = requests.get(url, headers=UA_WEB, timeout=30)
+        except Exception as e:
+            log("LegalNews : page inaccessible", url, e); break
+        if r.status_code != 200:
+            log(f"LegalNews : HTTP {r.status_code} sur {url} ({len(r.text)} octets)"); break
+        if page == 0:
+            home_html = r.text
+        items = _lnn_parse(r.text)
+        log(f"LegalNews : page {page + 1} -> {len(items)} article(s) repéré(s)")
+        if not items:
+            if page == 0:
+                log("LegalNews : aucun article reconnu sur la page d'accueil ; début de la page :", clean_text(r.text)[:200])
+            break
+        new = 0
+        for it in items:
+            k = (it["date"], re.sub(r"\W+", "", it["title"].lower()))
+            if k in seen_t:                      # même article classé dans plusieurs rubriques
+                continue
+            seen_t.add(k); out.append(it); new += 1
+        if new == 0 or all(i["date"] < cutoff for i in items):
+            break
+    # pages de rubriques (Personnes & famille, Fiscalité, Immobilier…) : pour ne manquer aucun article d'une matière
+    rub = re.compile(r"^(?:https?://www\.legalnewsnotaires\.fr)?(/(?:personnes-famille|patrimoine-successions|patrimoine|fiscalite[a-z-]*|affaires[a-z-]*|"
+                     r"immobilier[a-z-]*|droit-public[a-z-]*|profession[a-z-]*)(?:/[a-z0-9-]+)?(?:\.html|/)?)$", re.I)
+    pages, seen_p = [], set()
+    for m in re.finditer(r'href="([^"#?]+)"', home_html):
+        mm = rub.match(html.unescape(m.group(1)))
+        if mm and not re.search(r"/\d{5,7}-", mm.group(1)) and mm.group(1) not in seen_p:
+            seen_p.add(mm.group(1)); pages.append(mm.group(1))
+    n_new = 0
+    for p in pages[:30]:
+        for suffix in ("", "?start=12"):
+            try:
+                r = requests.get("https://www.legalnewsnotaires.fr" + p + suffix, headers=UA_WEB, timeout=30)
+            except Exception:
+                break
+            if r.status_code != 200:
+                break
+            got = _lnn_parse(r.text)
+            added = 0
+            for it in got:
+                k = (it["date"], re.sub(r"\W+", "", it["title"].lower()))
+                if k not in seen_t:
+                    seen_t.add(k); out.append(it); added += 1
+            n_new += added
+            if added == 0 or all(i["date"] < cutoff for i in got):
+                break
+    log(f"LegalNews : {len(pages)} page(s) de rubrique repérée(s), {n_new} article(s) supplémentaire(s)")
+    return out[:400]
 
 
 # --------------------------------------------------------------------------------------------------
@@ -487,9 +554,10 @@ def fiche_prompt(title, text, partial):
             f"TITRE : {title}\n\nTEXTE :\n{text}")
 
 
-def make_fiche(it):
-    """Retourne (fiche ou None, statut) ; statut : 'ok', 'vide' (rien d'exploitable) ou 'erreur' (à retenter)."""
-    full = fetch_full_text(it["url"]) if it.get("url") else None
+def make_fiche(it, official_text=None):
+    """Retourne (fiche ou None, statut) ; statut : 'ok', 'vide' (rien d'exploitable) ou 'erreur' (à retenter).
+    official_text : texte d'une source officielle gratuite retrouvée pour l'article (remplace l'extrait public)."""
+    full = official_text or (fetch_full_text(it["url"]) if it.get("url") else None)
     text = full or it.get("abstract", "")
     if len(text) < 60:
         return None, "vide"
@@ -505,6 +573,113 @@ def make_fiche(it):
         return None, "erreur"
     f["partielle"] = partial
     return f, "ok"
+
+
+# --------------------------------------------------------------------------------------------------
+# Source officielle gratuite : pour un article réservé aux abonnés (SEPAJ, LegalNews), on retrouve le texte
+# officiel dont il parle (décision, texte, instruction…) afin d'en tirer une fiche complète et vérifiable.
+# --------------------------------------------------------------------------------------------------
+OFFICIAL_DOMAINS = ("legifrance.gouv.fr", "courdecassation.fr", "conseil-etat.fr", "conseil-constitutionnel.fr",
+                    "bofip.impots.gouv.fr", "impots.gouv.fr", "economie.gouv.fr", "service-public.fr", "amf-france.org",
+                    "senat.fr", "assemblee-nationale.fr", "eur-lex.europa.eu", "curia.europa.eu", "europa.eu",
+                    "hudoc.echr.coe.int", "echr.coe.int", "justice.gouv.fr", "vie-publique.fr", "notaires.fr", "cnb.avocat.fr",
+                    "ecologie.gouv.fr", "urssaf.fr", "banque-france.fr", "tribunal-de-commerce.fr", "cour-de-cassation.fr")
+RESOLVE_MAX = int(os.getenv("RESOLVE_MAX", "20"))
+
+
+def _is_official(url):
+    h = (urlparse(url).hostname or "").lower()
+    return any(h == d or h.endswith("." + d) for d in OFFICIAL_DOMAINS)
+
+
+def gemini_search(prompt):
+    """Gemini + recherche Google (contenu public uniquement). Retourne (texte, [urls des sources citées]) ou (None, [])."""
+    if "gemini-search" in _DEAD or not os.getenv("GEMINI_API_KEY"):
+        return None, []
+    try:
+        body = {"contents": [{"parts": [{"text": prompt}]}], "tools": [{"google_search": {}}],
+                "generationConfig": {"temperature": 0.1, "maxOutputTokens": 900}}
+        for attempt in (1, 2):
+            r = requests.post("https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent",
+                              timeout=90, headers={"x-goog-api-key": os.getenv("GEMINI_API_KEY", "").strip()}, json=body)
+            if attempt == 1 and r.status_code in (429, 503) and not any(h in (r.text or "").lower() for h in _QUOTA_HINTS):
+                time.sleep(min(_retry_after(r.text) or 15, 60) + 1)
+                continue
+            break
+        if r.status_code >= 400:
+            log(f"Recherche de source officielle : échec {r.status_code} — {(r.text or '')[:200].replace(chr(10), ' ')}")
+            _DEAD.add("gemini-search"); return None, []
+        c = r.json()["candidates"][0]
+        text = "".join(p.get("text", "") for p in c.get("content", {}).get("parts", []))
+        uris = [w["web"]["uri"] for w in (c.get("groundingMetadata", {}).get("groundingChunks") or []) if w.get("web", {}).get("uri")]
+        return text, uris
+    except Exception as e:
+        log("Recherche de source officielle : exception", repr(e)[:200])
+        _DEAD.add("gemini-search"); return None, []
+
+
+def _final_url(u):
+    try:
+        r = requests.get(u, headers=UA_WEB, timeout=25, stream=True, allow_redirects=True)
+        fin = r.url; r.close(); return fin
+    except Exception:
+        return u
+
+
+def fetch_official(url, max_chars=10000):
+    """Texte public d'une page officielle (HTML ou PDF), en mémoire seulement."""
+    try:
+        r = requests.get(url, headers=UA_WEB, timeout=40)
+        if r.status_code != 200:
+            return None
+        if r.content[:4] == b"%PDF" or "pdf" in (r.headers.get("content-type") or "").lower():
+            import io, pdfplumber
+            with pdfplumber.open(io.BytesIO(r.content)) as pdf:
+                t = "\n".join((p.extract_text() or "") for p in pdf.pages[:14])
+        else:
+            t = r.text
+            m = re.search(r"(?is)<(article|main)[^>]*>(.*?)</\1>", t)
+            if m:
+                t = m.group(2)
+            t = re.sub(r"(?is)<(script|style|nav|header|footer|noscript|aside|form).*?>.*?</\1>", " ", t)
+            t = re.sub(r"(?i)</(p|div|li|h[1-6]|tr)>", "\n", t)
+            t = clean_text_keep_lines(t)
+        t = t.strip()
+        return t[:max_chars] if len(t) > 400 else None
+    except Exception as e:
+        log("Lecture source officielle", url[:90], repr(e)[:120])
+        return None
+
+
+def resolve_primary(it):
+    """Retourne (texte officiel, {'url','domaine'}) si une source officielle correspondant sans ambiguïté à l'article est
+    retrouvée ; sinon (None, None). L'IA ne fait qu'orienter : seuls des sites officiels de la liste blanche sont retenus,
+    et la correspondance est contrôlée sur le texte réellement lu."""
+    q = (f"Article de presse juridique à l'attention des notaires : « {it['title']} » (publié le {it['date']}). "
+         f"Extrait : {it.get('abstract', '')[:300]}\n"
+         "Retrouve la source officielle dont il parle (décision de la Cour de cassation, du Conseil d'État, de la CJUE ou de la CEDH ; "
+         "texte au Journal officiel ou sur Légifrance ; instruction ou guide de l'AMF ; BOFiP ou rescrit ; dossier législatif du "
+         "Sénat ou de l'Assemblée ; communiqué ministériel). Donne en une ou deux phrases ce que c'est (juridiction, date, numéro).")
+    text, uris = gemini_search(q)
+    if not uris:
+        return None, None
+    cands, seen = [], set()
+    for u in uris[:8]:
+        fin = _final_url(u)
+        if fin not in seen and _is_official(fin):
+            seen.add(fin); cands.append(fin)
+    for url in cands[:3]:
+        body = fetch_official(url)
+        if not body or all_ai_dead():
+            continue
+        out = call_ai("Un article de presse juridique est intitulé « " + it["title"] + " » (" + it["date"] + "). Extrait : "
+                      + it.get("abstract", "")[:300] + "\n\nVoici le début d'une page officielle :\n" + body[:2500]
+                      + "\n\nCette page est-elle LA source officielle dont parle l'article (même décision, même texte, même sujet précis) ? "
+                      'Réponds UNIQUEMENT par un JSON : {"correspond": true ou false, "raison": "une phrase"}. En cas de doute, false.', 300)
+        d = _json_from(out) if out else None
+        if isinstance(d, dict) and d.get("correspond") is True:
+            return fetch_official(url, 10000) or body, {"url": url, "domaine": (urlparse(url).hostname or "").replace("www.", "")}
+    return None, None
 
 
 # --------------------------------------------------------------------------------------------------
@@ -1146,6 +1321,36 @@ def main():
         else:
             it["ai_tries"] = it.get("ai_tries", 0) + (0 if all_ai_dead() else 1)
 
+    # 4) Articles SEPAJ / LegalNews réservés aux abonnés : retrouver la source officielle gratuite et refaire la fiche dessus
+    n_res = 0
+    if os.getenv("GEMINI_API_KEY") and _providers():
+        for it in items:
+            if n_res >= RESOLVE_MAX or "gemini-search" in _DEAD or all_ai_dead() or time.time() > deadline + 900:
+                break
+            if it["source"] not in ("SEPAJ", "LegalNews") or it.get("primaire") or it.get("primaire_tries", 0) >= 2:
+                continue
+            if it.get("ai_v") is None:
+                continue                                    # fiche de base pas encore faite : on y reviendra
+            if it.get("ai") and not it["ai"].get("partielle"):
+                continue                                    # déjà complète (texte intégral lu)
+            n_res += 1
+            text, prim = resolve_primary(it)
+            if not text:
+                if "gemini-search" not in _DEAD:
+                    it["primaire_tries"] = it.get("primaire_tries", 0) + 1
+                continue
+            fiche, status = make_fiche(it, official_text=text)
+            if status == "ok":
+                fiche["partielle"] = False
+                fiche["source_primaire"] = prim
+                it["ai"], it["ai_v"], it["primaire"] = fiche, AI_VERSION, prim
+                log(f"Source officielle retrouvée pour « {it['title'][:60]} » : {prim['domaine']}")
+            else:
+                it["primaire_tries"] = it.get("primaire_tries", 0) + 1
+        log(f"Sources officielles : {n_res} article(s) examiné(s).")
+    elif not os.getenv("GEMINI_API_KEY"):
+        log("Sources officielles : GEMINI_API_KEY absente, étape ignorée.")
+
     items = sorted(store.values(), key=lambda i: (i["date"], i["first_seen"]), reverse=True)
     issues = sorted(cr.values(), key=lambda x: -int(x["numero"]))
     out = {"v": 4, "updated": dt.datetime.now(dt.timezone.utc).strftime("%d/%m/%Y %H:%M UTC"), "updated_day": str(TODAY),
@@ -1403,6 +1608,7 @@ function fiche(i){const a=i.ai;if(!a)return"";
   ${a.vigilance?`<div class="vig"><b>⚠ Vigilance</b>${esc(a.vigilance)}</div>`:""}
   ${a.schema&&a.schema.etapes&&a.schema.etapes.length?sec("Schéma — "+esc(a.schema.titre||"enchaînement"),flow(a.schema)):""}
   ${refs&&refs.length?sec("Références citées",`<div class="refs">${refs.map(r=>`<span class="ref">${esc(r)}</span>`).join("")}</div>`):""}
+  ${a.source_primaire?`<p class="note"><b>Fiche établie sur la source officielle retrouvée</b> : <a href="${esc(a.source_primaire.url)}" target="_blank" rel="noopener">${esc(a.source_primaire.domaine)}</a>. Le texte officiel a été identifié automatiquement (IA + recherche) puis contrôlé ; consultez-le avant tout usage professionnel.</p>`:""}
   ${a.partielle?`<p class="note">Source partielle : seul l'extrait public a pu être exploité. Cette fiche ne couvre donc pas tout l'article.</p>`:""}</div></details>`}
 function renderActus(){
  const D=DB.items||[],cut7=Date.now()-7*864e5;
@@ -1419,7 +1625,7 @@ const SRC=[...new Set(D.map(i=>i.source))].sort(),MAT=[...new Set(D.flatMap(i=>i
  h+='<div id="list">';let last=null;
  for(const i of r){const g=group(i);if(g!==last){h+=`<div class="daysep"><span class="l">${g}</span></div>`;last=g}
   const c=CLS[i.source]||"sp",nw=new Date(i.first_seen).getTime()>=cut7;
-  h+=`<article class="card s-${c}"><div class="top"><span class="badge">${esc(i.source)}</span>${nw?'<span class="badge new">Nouveau</span>':""}${i.ai&&i.ai.partielle?'<span class="badge part">Extrait public</span>':""}<span class="date">${fd(i.date)}</span></div>
+  h+=`<article class="card s-${c}"><div class="top"><span class="badge">${esc(i.source)}</span>${nw?'<span class="badge new">Nouveau</span>':""}${i.ai&&i.ai.partielle?'<span class="badge part">Extrait public</span>':""}${i.ai&&i.ai.source_primaire?'<span class="badge part">Source officielle</span>':""}<span class="date">${fd(i.date)}</span></div>
   <a class="t" href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)}</a><div class="tags">${i.matieres.map(m=>`<span class="tag">${esc(m)}</span>`).join("")}</div>
   ${i.ai?`<span class="aitag">Fiche IA — à vérifier</span><p class="resume">${esc(i.ai.resume)}</p>`:`<p class="abs">${esc(i.abstract)}</p>`}
   ${fiche(i)}<a class="src" href="${esc(i.url)}" target="_blank" rel="noopener">Consulter la source →</a></article>`}
