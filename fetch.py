@@ -7,7 +7,7 @@ Confidentialité : les données (fiches, brief, NOTA-BENE) sont CHIFFRÉES (AES-
 DATA_PASSPHRASE avant d'être publiées. Le dépôt GitHub peut rester public : sans la phrase secrète, seul du
 chiffré illisible est visible. Aucun texte intégral n'est publié ; les fiches sont des reformulations.
 """
-import os, sys, json, html, re, time, zlib, base64, hashlib, secrets, datetime as dt
+import os, sys, json, html, re, time, zlib, base64, hashlib, secrets, urllib.parse, datetime as dt
 from urllib.parse import urljoin, urlparse
 import requests, feedparser
 
@@ -23,7 +23,8 @@ TEASER_MAX = 320                    # longueur maximale de l'extrait affiché (c
 CRIDON_BASE = "https://www.cridon-so.fr"
 UA_BOT = {"User-Agent": "veille-notariale/3.0"}
 UA_WEB = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
-                        "Chrome/124.0 Safari/537.36", "Accept-Language": "fr-FR,fr;q=0.9"}
+                        "Chrome/124.0 Safari/537.36", "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.5",
+          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "Upgrade-Insecure-Requests": "1"}
 
 
 def log(*a):
@@ -225,6 +226,27 @@ def _lnn_parse(raw):
     return out
 
 
+def _lnn_get(url):
+    """Page LegalNews : accès direct ; si le site refuse les serveurs GitHub (403), repli par un lecteur web public gratuit
+    (r.jina.ai) qui renvoie le HTML de la même page publique. Retourne (texte HTML ou None, méthode, code HTTP)."""
+    try:
+        r = requests.get(url, headers=dict(UA_WEB, Referer="https://www.legalnewsnotaires.fr/"), timeout=30)
+        if r.status_code == 200:
+            return r.text, "direct", 200
+        code = r.status_code
+    except Exception as e:
+        log("LegalNews : accès direct impossible", url, repr(e)[:120]); code = 0
+    try:
+        r = requests.get("https://r.jina.ai/" + url, headers={"X-Return-Format": "html", "Accept": "text/html",
+                                                              "User-Agent": UA_WEB["User-Agent"]}, timeout=60)
+        if r.status_code == 200 and len(r.text) > 1500:
+            return r.text, "lecteur", 200
+        log(f"LegalNews : repli par lecteur web -> HTTP {r.status_code} ({len(r.text)} octets)")
+    except Exception as e:
+        log("LegalNews : repli par lecteur web impossible", repr(e)[:120])
+    return None, "echec", code
+
+
 def src_legalnews():
     """LegalNews Notaires : pages d'accueil publiques paginées (titre + extrait). Le contenu abonné n'est pas lu."""
     base = "https://www.legalnewsnotaires.fr/home-lnn.html"
@@ -232,19 +254,16 @@ def src_legalnews():
     seen_t, out, home_html = set(), [], ""
     for page in range(0, 12):
         url = base if page == 0 else f"{base}?start={12 * page}"
-        try:
-            r = requests.get(url, headers=UA_WEB, timeout=30)
-        except Exception as e:
-            log("LegalNews : page inaccessible", url, e); break
-        if r.status_code != 200:
-            log(f"LegalNews : HTTP {r.status_code} sur {url} ({len(r.text)} octets)"); break
+        body, how, code = _lnn_get(url)
+        if body is None:
+            log(f"LegalNews : page inaccessible (HTTP {code}) : {url}"); break
         if page == 0:
-            home_html = r.text
-        items = _lnn_parse(r.text)
-        log(f"LegalNews : page {page + 1} -> {len(items)} article(s) repéré(s)")
+            home_html = body
+        items = _lnn_parse(body)
+        log(f"LegalNews : page {page + 1} ({how}) -> {len(items)} article(s) repéré(s)")
         if not items:
             if page == 0:
-                log("LegalNews : aucun article reconnu sur la page d'accueil ; début de la page :", clean_text(r.text)[:200])
+                log("LegalNews : aucun article reconnu sur la page d'accueil ; début de la page :", clean_text(body)[:200])
             break
         new = 0
         for it in items:
@@ -265,13 +284,10 @@ def src_legalnews():
     n_new = 0
     for p in pages[:30]:
         for suffix in ("", "?start=12"):
-            try:
-                r = requests.get("https://www.legalnewsnotaires.fr" + p + suffix, headers=UA_WEB, timeout=30)
-            except Exception:
+            body, how, code = _lnn_get("https://www.legalnewsnotaires.fr" + p + suffix)
+            if body is None:
                 break
-            if r.status_code != 200:
-                break
-            got = _lnn_parse(r.text)
+            got = _lnn_parse(body)
             added = 0
             for it in got:
                 k = (it["date"], re.sub(r"\W+", "", it["title"].lower()))
@@ -618,6 +634,32 @@ def gemini_search(prompt):
         _DEAD.add("gemini-search"); return None, []
 
 
+def ddg_search(q):
+    """Repli sans clé : recherche DuckDuckGo (page HTML), limitée aux sites officiels. Retourne une liste d'URL."""
+    if "ddg" in _DEAD:
+        return []
+    try:
+        r = requests.post("https://html.duckduckgo.com/html/", data={"q": q, "kl": "fr-fr"}, timeout=30,
+                          headers=dict(UA_WEB, Referer="https://html.duckduckgo.com/"))
+        if r.status_code != 200 or "result__a" not in r.text:
+            log(f"Recherche de source officielle (DuckDuckGo) : HTTP {r.status_code}, pas de résultats exploitables ; repli abandonné pour ce run.")
+            _DEAD.add("ddg"); return []
+        urls = []
+        for m in re.finditer(r'class="result__a"[^>]*href="([^"]+)"', r.text):
+            h = html.unescape(m.group(1))
+            mm = re.search(r"uddg=([^&]+)", h)
+            u = urllib.parse.unquote(mm.group(1)) if mm else h
+            if u.startswith("//"):
+                u = "https:" + u
+            if u.startswith("http"):
+                urls.append(u)
+        time.sleep(3)
+        return urls
+    except Exception as e:
+        log("Recherche de source officielle (DuckDuckGo) : exception", repr(e)[:150])
+        _DEAD.add("ddg"); return []
+
+
 def _final_url(u):
     try:
         r = requests.get(u, headers=UA_WEB, timeout=25, stream=True, allow_redirects=True)
@@ -661,6 +703,10 @@ def resolve_primary(it):
          "texte au Journal officiel ou sur Légifrance ; instruction ou guide de l'AMF ; BOFiP ou rescrit ; dossier législatif du "
          "Sénat ou de l'Assemblée ; communiqué ministériel). Donne en une ou deux phrases ce que c'est (juridiction, date, numéro).")
     text, uris = gemini_search(q)
+    if not uris:
+        sites = " OR ".join("site:" + d for d in ("courdecassation.fr", "legifrance.gouv.fr", "conseil-etat.fr", "bofip.impots.gouv.fr",
+                                                   "amf-france.org", "eur-lex.europa.eu", "senat.fr", "curia.europa.eu"))
+        uris = ddg_search(f"{it['title']} {sites}")
     if not uris:
         return None, None
     cands, seen = [], set()
@@ -1130,9 +1176,16 @@ def cridon_run(cr, meta, deadline):
             log("CRIDON : connexion refusée. Vérifiez identifiant et mot de passe (aucune nouvelle tentative tant que les secrets ne changent pas).")
         return []
     meta.pop("cridon_fail", None)
-    cands = cridon_list_pdfs(s)
+    cands, seen_n, uniq = cridon_list_pdfs(s), set(), []
+    skip = set(meta.get("cridon_skip") or [])
+    for c in cands:                                   # un seul PDF par numéro ; PDF déjà reconnus comme étrangers écartés
+        if c["url"] in skip or (c["num"] and c["num"] in seen_n):
+            continue
+        if c["num"]:
+            seen_n.add(c["num"])
+        uniq.append(c)
     maxn = int(os.getenv("CRIDON_MAX_ISSUES", "3"))
-    todo = [c for c in cands if not (c["num"] and cr.get(str(c["num"]), {}).get("complete"))][:maxn]
+    todo = [c for c in uniq if not (c["num"] and cr.get(str(c["num"]), {}).get("complete"))][:maxn]
     done_now = []
     partials_all = meta.setdefault("cridon_partial", {})
     tmpdir = os.path.join(os.getenv("RUNNER_TEMP", "/tmp"), "nb_pdf"); os.makedirs(tmpdir, exist_ok=True)
@@ -1144,6 +1197,13 @@ def cridon_run(cr, meta, deadline):
             continue
         try:
             info = read_issue_pdf(pdf)
+            head = ""
+            try:
+                import pdfplumber
+                with pdfplumber.open(pdf) as _p:
+                    head = re.sub(r"\s+", " ", (_p.pages[0].extract_text() or ""))[:160]
+            except Exception:
+                pass
         except Exception as e:
             log("CRIDON : PDF illisible", e); continue
         finally:
@@ -1151,7 +1211,8 @@ def cridon_run(cr, meta, deadline):
             except OSError: pass
         num = info.get("numero") or c["num"]
         if not num or not info["docs"]:
-            log("CRIDON : structure du PDF non reconnue (numéro ou fiches introuvables)."); continue
+            log(f"CRIDON : PDF non reconnu comme NOTA-BENE, ignoré désormais ({c['url'][-70:]}) ; début : « {head} »")
+            meta.setdefault("cridon_skip", []).append(c["url"]); continue
         key = str(num)
         label = f"{info['mois'].capitalize()} {info['annee']}" if info.get("mois") else f"n°{num}"
         iss = cr.setdefault(key, {"id": f"CRIDON-{num}", "numero": num, "label": label, "first_seen": str(TODAY), "docs": []})
@@ -1323,9 +1384,9 @@ def main():
 
     # 4) Articles SEPAJ / LegalNews réservés aux abonnés : retrouver la source officielle gratuite et refaire la fiche dessus
     n_res = 0
-    if os.getenv("GEMINI_API_KEY") and _providers():
+    if _providers():
         for it in items:
-            if n_res >= RESOLVE_MAX or "gemini-search" in _DEAD or all_ai_dead() or time.time() > deadline + 900:
+            if n_res >= RESOLVE_MAX or ("gemini-search" in _DEAD and "ddg" in _DEAD) or all_ai_dead() or time.time() > deadline + 900:
                 break
             if it["source"] not in ("SEPAJ", "LegalNews") or it.get("primaire") or it.get("primaire_tries", 0) >= 2:
                 continue
@@ -1336,7 +1397,7 @@ def main():
             n_res += 1
             text, prim = resolve_primary(it)
             if not text:
-                if "gemini-search" not in _DEAD:
+                if not ("gemini-search" in _DEAD and "ddg" in _DEAD):
                     it["primaire_tries"] = it.get("primaire_tries", 0) + 1
                 continue
             fiche, status = make_fiche(it, official_text=text)
@@ -1348,8 +1409,6 @@ def main():
             else:
                 it["primaire_tries"] = it.get("primaire_tries", 0) + 1
         log(f"Sources officielles : {n_res} article(s) examiné(s).")
-    elif not os.getenv("GEMINI_API_KEY"):
-        log("Sources officielles : GEMINI_API_KEY absente, étape ignorée.")
 
     items = sorted(store.values(), key=lambda i: (i["date"], i["first_seen"]), reverse=True)
     issues = sorted(cr.values(), key=lambda x: -int(x["numero"]))
